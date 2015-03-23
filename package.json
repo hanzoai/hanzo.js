@@ -1,5 +1,5 @@
 {
-  "name": "crowdstart",
+  "name": "crowdstart.js",
   "version": "0.0.1",
   "description": "JavaScript client for the Crowdstart platform.",
   "main": "index.js",
