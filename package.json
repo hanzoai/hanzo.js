@@ -2,10 +2,35 @@
   "name": "crowdstart.js",
   "version": "0.0.1",
   "description": "JavaScript client for the Crowdstart platform.",
-  "main": "index.js",
+  "homepage": "http://github.com/crowdstart/crowdstart.js",
+  "bugs": "http://github.com/crowdstart/crowdstart.js/issues",
+  "keywords": [
+    "browser",
+    "crowdfunding",
+    "crowdstart",
+    "payments"
+  ],
+  "main": "lib/",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "cake build",
+    "test": "cake test"
   },
-  "author": "",
-  "license": "MIT"
+  "author": "Zach Kelling <zk@crowdstart.com> (http://zeekay.io)",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/crowdstart/crowdstart.js/blob/master/LICENSE"
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/crowdstart/crowdstart.js"
+  },
+  "devDependencies": {
+    "chai": "^2.1.2",
+    "coffee-script": "^1.9.1",
+    "executive": "^0.4.7",
+    "mocha": "^2.2.1"
+  }
 }
