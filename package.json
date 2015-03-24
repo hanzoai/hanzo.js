@@ -31,6 +31,10 @@
     "chai": "^2.1.2",
     "coffee-script": "^1.9.1",
     "executive": "^0.4.7",
-    "mocha": "^2.2.1"
+    "mocha": "^2.2.1",
+    "requisite": "^1.9.1"
+  },
+  "dependencies": {
+    "xhr": "^2.0.1"
   }
 }
