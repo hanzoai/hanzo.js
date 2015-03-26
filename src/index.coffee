@@ -1,15 +1,16 @@
 xhr = require 'xhr'
 
 class Crowdstart
+  endpoint: "https://api.crowdstart.com"
   constructor: (@key) ->
 
   setKey: (key) ->
     @key = key
 
-  req: (url, payload, cb) ->
+  req: (uri, payload, cb) ->
     xhr
-      body: JSON.stringify payload,
-      uri:  url
+      body: JSON.stringify payload
+      uri:  @endpoint + uri
       headers:
         'Content-Type': 'application/json'
         'Authorization': @key
