@@ -10,7 +10,7 @@ class Crowdstart
   req: (uri, payload, cb) ->
     xhr
       body: JSON.stringify payload
-      uri:  @endpoint + uri
+      uri:  @endpoint.trimRight '/' + '/' + uri.trimLeft '/'
       headers:
         'Content-Type': 'application/json'
         'Authorization': @key
@@ -23,7 +23,8 @@ class Crowdstart
   charge: (data, cb) ->
     @req '/charge', cb
 
-unless typeof window is 'undefined'
-  global = window
+if typeof window isnt 'undefined'
+  window.Crowdstart = new Crowdstart()
 
-global.Crowdstart = (new Crowdstart)
+
+module.exports = Crowdstart

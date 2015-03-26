@@ -32,6 +32,7 @@
     "coffee-script": "^1.9.1",
     "executive": "^0.4.7",
     "mocha": "^2.2.1",
+    "postmortem": "^0.1.8",
     "requisite": "^1.9.1"
   },
   "dependencies": {
