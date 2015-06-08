@@ -21,13 +21,23 @@ class Crowdstart
     , (err, res, body) ->
       cb res.statusCode, body, res.headers.location
 
+  login: (data, cb) ->
+    uri = '/account/login'
+
+    @req uri, data, cb
+
+  create: (data, cb) ->
+    uri = '/account/create'
+
+    @req uri, data, cb
+
   authorize: (data, cb) ->
     uri = '/authorize'
 
     if @storeId?
       uri = "/store/#{@storeId}" + uri
 
-    @req '/authorize', data, cb
+    @req uri, data, cb
 
   charge: (data, cb) ->
     uri = '/charge'
@@ -35,6 +45,6 @@ class Crowdstart
     if @storeId?
       uri = "/store/#{@storeId}" + uri
 
-    @req '/charge', data, cb
+    @req uri, data, cb
 
 module.exports = Crowdstart
