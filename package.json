@@ -36,6 +36,9 @@
     "requisite": "^1.9.1"
   },
   "dependencies": {
-    "xhr": "^2.0.1"
+    "bluebird": "^2.10.0",
+    "cookies-js": "^1.2.2",
+    "raf": "^3.1.0",
+    "xhr-promise": "^1.2.0"
   }
 }
