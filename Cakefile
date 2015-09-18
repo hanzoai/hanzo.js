@@ -10,14 +10,13 @@ task 'clean', 'clean project', (options) ->
 task 'build', 'build project', (options) ->
   exec 'node_modules/.bin/coffee -bcm -o lib/ src/'
   exec 'node_modules/.bin/requisite src/index.coffee -g -o crowdstart.js'
-  exec 'node_modules/.bin/requisite src/index.coffee -m -o checkout.min.js'
+  # exec 'node_modules/.bin/requisite src/index.coffee -m -o checkout.min.js'
+  exec 'node_modules/.bin/requisite test/crowdstart.coffee -g -o ./.test/crowdstart.js'
 
 task 'watch', 'watch for changes and recompile project', ->
   exec 'node_modules/.bin/coffee -bcmw -o lib/ src/'
 
 task 'test', 'run tests', (options) ->
-  exec 'node_modules/.bin/requisite test/crowdstart.coffee -g -o ./.test/crowdstart.js'
-
   test = options.test ? 'test/index.html'
   if options.grep?
     grep = "--grep #{options.grep}"

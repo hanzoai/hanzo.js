@@ -3,16 +3,26 @@ cookies = require 'cookies-js'
 
 sessionTokenName = 'crowdstart-session'
 
+cachedToken = ''
+
 class Crowdstart
+  debug: false
   endpoint: "https://api.crowdstart.com"
   lastResponse: null
   constructor: (@key) ->
 
   setToken: (token)->
+    if window.location.protocol == 'file:'
+      cachedToken = token
+      return
+
     cookies.set sessionTokenName, token, expires: 604800
 
   getToken: ()->
-    cookies.get sessionTokenName
+    if window.location.protocol == 'file:'
+      return cachedToken
+
+    return (cookies.get sessionTokenName) ? ''
 
   setKey: (key) ->
     @key = key
@@ -20,35 +30,52 @@ class Crowdstart
   setStore: (id) ->
     @storeId = id
 
-  req: (uri, data, method = 'POST') ->
+  req: (uri, data, method = 'POST', token = @key) ->
     opts =
       url: (@endpoint.replace /\/$/, '') + uri
       method: method
       headers:
         'Content-Type': 'application/json'
-        'Authorization': @key
+        'Authorization': token
       data: JSON.stringify(data)
+
+    if @debug
+      console.log('REQUEST HEADER:', opts)
 
     p = shim.xhr opts
     p.then (res)=>
       return @lastResponse = res
 
-    p.catch (err)->
-      console.log err
-      return err
-
     return p
 
+  # USER/ACCOUNT
+
   # data =
-  #     email: ...
-  #     password: ...
+  #     firstName:          ...
+  #     lastName:           ...
+  #     email:              ...
+  #     password:           ...
+  #     passwordConfirm:    ...
+  create: (data, cb) ->
+    uri = '/account/create'
+
+    p = @req uri, data
+    return p.then (res)->
+      if res.status != 200
+        throw new Error 'User Create Failed'
+
+      return res
+
+  # data =
+  #     email:      ...
+  #     password:   ...
   login: (data) ->
     uri = '/account/login'
 
     p = @req uri, data
-    p.then (res)=>
+    return p.then (res) =>
       if res.status != 200
-        throw new Error('Login Failed')
+        throw new Error 'User Login Failed'
 
       data = res.responseText
       @setToken data.token
@@ -56,17 +83,38 @@ class Crowdstart
       return res
 
   # data =
-  #     email: ...
+  #     email:  ...
   reset: (data)->
     uri = '/account/reset?email=' + data.email
 
     return @req uri, data, 'GET'
 
-  create: (data, cb) ->
-    uri = '/account/create'
+  # data is optional
+  #
+  # data = null means you are firing a get request
+  # data != null means you are firing a patch request
+  #
+  # data should be a user object
+  account: (data)->
+    uri = '/account'
 
-    return @req uri, data
+    if data?
+      p = @req uri, data, 'PATCH', @getToken()
+      return p.then (res) ->
+        if res.status != 200
+          console.error res
+          throw new Error 'Account Update Failed'
 
+        return res
+    else
+      p = @req uri, data, 'GET', @getToken()
+      return p.then (res) ->
+        if res.status != 200
+          throw new Error 'Account Retrieval Failed'
+
+        return res
+
+  # PAYMENT
   authorize: (data, cb) ->
     uri = '/authorize'
 
