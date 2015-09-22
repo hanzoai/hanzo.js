@@ -5,7 +5,7 @@ sessionTokenName = 'crowdstart-session'
 
 cachedToken = ''
 
-class Crowdstart
+class Client
   debug: false
   endpoint: "https://api.crowdstart.com"
   lastResponse: null
@@ -131,4 +131,4 @@ class Crowdstart
 
     return @req uri, data
 
-module.exports = Crowdstart
+module.exports = Client

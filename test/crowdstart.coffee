@@ -2,10 +2,10 @@ should = require('chai').should()
 require 'chai-as-promised'
 
 randomToken = require 'random-token'
-Crowdstart = require '../src/crowdstart'
+Client = require '../src/crowdstart'
 
 testKey = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjQwLCJqdGkiOiJGUGgtQmtIY2ZQUSIsInN1YiI6IkVxVEdveHA1dTMifQ.l7pPfWm18TGNMFLwCDz3FNu15iSxEVlWZce3ckb6KOGPxY1Yam_lXlDNWyrX-NOwSfuAQP3bsFJvz5FYzi8wJA'
-client = new Crowdstart
+client = new Client
 client.setKey testKey
 client.debug = true
 

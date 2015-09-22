@@ -1,6 +1,9 @@
-Crowdstart = new (require './crowdstart')
+Client = new (require './crowdstart')
 
 if typeof window isnt 'undefined'
-  window.Crowdstart = Crowdstart
+  if window.Crowdstart?
+    window.Crowdstart.Client  = Crowdstart
+  else
+    window.Crowdstart = Client: Crowdstart
 else
-  module.exports = Crowdstart
+  module.exports = Client
