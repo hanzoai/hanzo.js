@@ -40,7 +40,7 @@
     "phantomjs": "1.9.7-15",
     "postmortem": "^0.1.8",
     "random-token": "0.0.8",
-    "requisite": "^1.9.1"
+    "requisite": "^1.10.1"
   },
   "dependencies": {
     "bluebird": "^2.10.0",
