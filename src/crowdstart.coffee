@@ -67,6 +67,21 @@ class Client
       return res
 
   # data =
+  #     tokenId:            ...
+  createConfirm: (data)->
+    uri = '/account/create/confirm/' + data.tokenId
+
+    p = @req uri, data
+    return p.then (res) =>
+      if res.status != 200
+        throw new Error 'User Create Confirmation Failed'
+
+      data = res.responseText
+      @setToken data.token
+
+      return res
+
+  # data =
   #     email:      ...
   #     password:   ...
   login: (data) ->
@@ -87,7 +102,32 @@ class Client
   reset: (data)->
     uri = '/account/reset?email=' + data.email
 
-    return @req uri, data, 'GET'
+    p = @req uri, data, 'GET'
+    return p.then (res) =>
+      if res.status != 200
+        throw new Error 'Password Reset Failed'
+
+      data = res.responseText
+      @setToken data.token
+
+      return res
+
+  # data =
+  #     tokenId:            ...
+  #     password:           ...
+  #     passwordConfirm:    ...
+  resetConfirm: (data)->
+    uri = '/account/reset/confirm/' + data.tokenId
+
+    p = @req uri, data
+    return p.then (res) =>
+      if res.status != 200
+        throw new Error 'Password Reset Confirmation Failed'
+
+      data = res.responseText
+      @setToken data.token
+
+      return res
 
   # data is optional
   #
