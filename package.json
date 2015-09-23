@@ -1,6 +1,6 @@
 {
   "name": "crowdstart.js",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "JavaScript client for the Crowdstart platform.",
   "homepage": "http://github.com/crowdstart/crowdstart.js",
   "bugs": "http://github.com/crowdstart/crowdstart.js/issues",
