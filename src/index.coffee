@@ -1,4 +1,4 @@
-Client = new (require './crowdstart')
+Client = require './crowdstart'
 
 if typeof window isnt 'undefined'
   if window.Crowdstart?
