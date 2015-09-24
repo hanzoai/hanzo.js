@@ -153,7 +153,7 @@ class Client
 
     p = @req uri, data
     return p.then (res) =>
-      if res.status != 200
+      if res.status != 201
         throw new Error 'Referrer Creation Failed'
 
       return res

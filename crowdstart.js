@@ -205,7 +205,7 @@
         p = this.req(uri, data);
         return p.then(function (_this) {
           return function (res) {
-            if (res.status !== 200) {
+            if (res.status !== 201) {
               throw new Error('Referrer Creation Failed')
             }
             return res
