@@ -76,9 +76,6 @@ class Client
       if res.status != 200
         throw new Error 'User Create Confirmation Failed'
 
-      data = res.responseText
-      @setToken data.token
-
       return res
 
   # data =
@@ -107,9 +104,6 @@ class Client
       if res.status != 200
         throw new Error 'Password Reset Failed'
 
-      data = res.responseText
-      @setToken data.token
-
       return res
 
   # data =
@@ -123,9 +117,6 @@ class Client
     return p.then (res) =>
       if res.status != 200
         throw new Error 'Password Reset Confirmation Failed'
-
-      data = res.responseText
-      @setToken data.token
 
       return res
 
@@ -153,6 +144,19 @@ class Client
           throw new Error 'Account Retrieval Failed'
 
         return res
+
+  # data =
+  #     userid:            ...
+  #     program:           ...
+  newReferrer: (data)->
+    uri = '/referrer'
+
+    p = @req uri, data
+    return p.then (res) =>
+      if res.status != 200
+        throw new Error 'Referrer Creation Failed'
+
+      return res
 
   # PAYMENT
   authorize: (data, cb) ->
