@@ -5,11 +5,23 @@ sessionTokenName = 'crowdstart-session'
 
 cachedToken = ''
 
+bindCbs = (p, predicate, success, fail)->
+  p = p.then predicate
+  p = p.then(success) if success?
+  p = p.catch(fail)   if fail?
+  return p
+
+
 class Client
   debug: false
   endpoint: "https://api.crowdstart.com"
   lastResponse: null
   constructor: (@key) ->
+    user = {}
+    for name, fn of @user
+      user[name] = fn.bind(@)
+
+    @user = user
 
   setToken: (token)->
     if window.location.protocol == 'file:'
@@ -49,130 +61,171 @@ class Client
     return p
 
   # USER/ACCOUNT
+  user:
+    # data =
+    #     email:          ...
+    exists: (data, success, fail) ->
+      uri = '/account/exists/' + data.email
 
-  # data =
-  #     firstName:          ...
-  #     lastName:           ...
-  #     email:              ...
-  #     password:           ...
-  #     passwordConfirm:    ...
-  create: (data, cb) ->
-    uri = '/account/create'
+      return bindCbs @req(uri, {}), (res)->
+        return res.status == 200
+      , success, fail
 
-    p = @req uri, data
-    return p.then (res)->
-      if res.status != 200
-        throw new Error 'User Create Failed'
+    # data =
+    #     firstName:          ...
+    #     lastName:           ...
+    #     email:              ...
+    #     password:           ...
+    #     passwordConfirm:    ...
+    create: (data, success, fail) ->
+      uri = '/account/create'
 
-      return res
-
-  # data =
-  #     tokenId:            ...
-  createConfirm: (data)->
-    uri = '/account/create/confirm/' + data.tokenId
-
-    p = @req uri, data
-    return p.then (res) =>
-      if res.status != 200
-        throw new Error 'User Create Confirmation Failed'
-
-      return res
-
-  # data =
-  #     email:      ...
-  #     password:   ...
-  login: (data) ->
-    uri = '/account/login'
-
-    p = @req uri, data
-    return p.then (res) =>
-      if res.status != 200
-        throw new Error 'User Login Failed'
-
-      data = res.responseText
-      @setToken data.token
-
-      return res
-
-  # data =
-  #     email:  ...
-  reset: (data)->
-    uri = '/account/reset?email=' + data.email
-
-    p = @req uri, data, 'GET'
-    return p.then (res) =>
-      if res.status != 200
-        throw new Error 'Password Reset Failed'
-
-      return res
-
-  # data =
-  #     tokenId:            ...
-  #     password:           ...
-  #     passwordConfirm:    ...
-  resetConfirm: (data)->
-    uri = '/account/reset/confirm/' + data.tokenId
-
-    p = @req uri, data
-    return p.then (res) =>
-      if res.status != 200
-        throw new Error 'Password Reset Confirmation Failed'
-
-      return res
-
-  # data is optional
-  #
-  # data = null means you are firing a get request
-  # data != null means you are firing a patch request
-  #
-  # data should be a user object
-  account: (data)->
-    uri = '/account'
-
-    if data?
-      p = @req uri, data, 'PATCH', @getToken()
-      return p.then (res) ->
+      return bindCbs @req(uri, data), (res)->
         if res.status != 200
-          console.error res
-          throw new Error 'Account Update Failed'
+          throw new Error 'User Create Failed'
+        return res
+      , success, fail
+
+    # data =
+    #     tokenId:            ...
+    createConfirm: (data, success, fail) ->
+      uri = '/account/create/confirm/' + data.tokenId
+
+      return bindCbs @req(uri, {}), (res)->
+        if res.status != 200
+          throw new Error 'User Create Confirmation Failed'
+        return res
+      , success, fail
+
+    # data =
+    #     email:      ...
+    #     password:   ...
+    login: (data, success, fail) ->
+      uri = '/account/login'
+
+      return bindCbs @req(uri, data), (res)=>
+        if res.status != 200
+          throw new Error 'User Login Failed'
+
+        data = res.responseText
+        @setToken data.token
 
         return res
-    else
-      p = @req uri, data, 'GET', @getToken()
-      return p.then (res) ->
+      , success, fail
+
+    # data =
+    #     email:  ...
+    reset: (data, success, fail) ->
+      uri = '/account/reset?email=' + data.email
+
+      return bindCbs @req(uri, data, 'GET'), (res)->
+        if res.status != 200
+          throw new Error 'Password Reset Failed'
+
+        return res
+      , success, fail
+
+    # data =
+    #     tokenId:            ...
+    #     password:           ...
+    #     passwordConfirm:    ...
+    resetConfirm: (data, success, fail) ->
+      uri = '/account/reset/confirm/' + data.tokenId
+
+      return bindCbs @req(uri, data), (res)->
+        if res.status != 200
+          throw new Error 'Password Reset Confirmation Failed'
+
+        return res
+      , success, fail
+
+    # no data required
+    account: (success, fail) ->
+      uri = '/account'
+
+      return bindCbs @req(uri, {}, 'GET', @getToken()), (res)->
         if res.status != 200
           throw new Error 'Account Retrieval Failed'
 
         return res
+      , success, fail
 
-  # data =
-  #     userid:            ...
-  #     program:           ...
-  newReferrer: (data)->
-    uri = '/referrer'
+    # data should be a user object
+    updateAccount: (data, success, fail) ->
+      uri = '/account'
 
-    p = @req uri, data
-    return p.then (res) =>
-      if res.status != 201
-        throw new Error 'Referrer Creation Failed'
+      return bindCbs @req(uri, data, 'PATCH', @getToken()), (res)->
+        if res.status != 200
+          throw new Error 'Account Update Failed'
 
-      return res
+        return res
+      , success, fail
+
+    # data =
+    #     userid:            ...
+    #     program:           ...
+    newReferrer: (data, success, fail) ->
+      uri = '/referrer'
+
+      return bindCbs @req(uri, data, 'GET', @getToken()), (res)->
+        if res.status != 201
+          throw new Error 'Referrer Creation Failed'
+
+        return res
+      , success, fail
 
   # PAYMENT
   authorize: (data, cb) ->
-    uri = '/authorize'
+    uri = '/payment/authorize'
 
     if @storeId?
       uri = "/store/#{@storeId}" + uri
 
-    return @req uri, data
+    p = @req uri, data
+    return p.then (res) ->
+      if res.status != 200
+        throw new Error 'Payment Authorization Failed'
+
+      cb(res) if cb?
+
+      return res
+
+  capture: (data, cb) ->
+    uri = '/payment/capture'
+
+    if @storeId?
+      uri = "/store/#{@storeId}" + uri
+
+    p = @req uri, data
+    return p.then (res) ->
+      if res.status != 200
+        throw new Error 'Payment Capture Failed'
+
+      cb(res) if cb?
+
+      return res
 
   charge: (data, cb) ->
-    uri = '/charge'
+    uri = '/payment/charge'
 
     if @storeId?
       uri = "/store/#{@storeId}" + uri
 
-    return @req uri, data
+    p = @req uri, data
+    return p.then (res) ->
+      if res.status != 200
+        throw new Error 'Payment Charge Failed'
+
+      cb(res) if cb?
+
+      return res
+
+  # PRODUCTS
+  product: (productId, cb) ->
+
+  coupon: (code, cb) ->
+
+
+
 
 module.exports = Client

@@ -20,9 +20,9 @@ goodPass1 = randomToken 6
 goodPass2 = randomToken 6
 badPass1 = randomToken 5
 
-describe 'Crowdstart#create', ->
+describe 'client#create', ->
   it 'should create users', (done) ->
-    p = client.create
+    p = client.user.create
       firstName: firstName
       lastName: lastName
       email: email
@@ -34,7 +34,7 @@ describe 'Crowdstart#create', ->
       done()
 
   it 'should enforce email requirement', (done) ->
-    p = client.create
+    p = client.user.create
       firstName: firstName
       lastName: lastName
       email: firstName
@@ -48,7 +48,7 @@ describe 'Crowdstart#create', ->
       done()
 
   it 'should enforce required field requirement', (done) ->
-    p = client.create
+    p = client.user.create
       firstName: ''
       lastName: lastName
       email: randomEmail()
@@ -62,7 +62,7 @@ describe 'Crowdstart#create', ->
       done()
 
   it 'should allow required but optional field requirement', (done) ->
-    p = client.create
+    p = client.user.create
       #firstName: firstName
       lastName: lastName
       email: randomEmail()
@@ -74,7 +74,7 @@ describe 'Crowdstart#create', ->
       done()
 
   it 'should enforce password match requirement', (done) ->
-    p = client.create
+    p = client.user.create
       firstName: firstName
       lastName: lastName
       email: randomEmail()
@@ -88,7 +88,7 @@ describe 'Crowdstart#create', ->
       done()
 
   it 'should enforce password min-length requirement', (done) ->
-    p = client.create
+    p = client.user.create
       firstName: firstName
       lastName: lastName
       email: randomEmail()
@@ -101,12 +101,12 @@ describe 'Crowdstart#create', ->
       res.responseText.error.message.should.equal 'Password needs to be atleast 6 characters'
       done()
 
-describe 'Crowdstart#login', ->
+describe 'client#login', ->
   # test users are automatically enabled
   it 'should login valid users', (done) ->
     client.getToken().should.equal ''
 
-    p = client.login
+    p = client.user.login
       email: email
       password: goodPass1
 
@@ -116,7 +116,7 @@ describe 'Crowdstart#login', ->
       done()
 
   it 'should not login non-existant users', (done) ->
-    p = client.login
+    p = client.user.login
       email: randomEmail()
       password: goodPass1
 
@@ -127,7 +127,7 @@ describe 'Crowdstart#login', ->
       done()
 
   it 'should not login non-existant users', (done) ->
-    p = client.login
+    p = client.user.login
       email: email
       password: goodPass2
 
@@ -137,9 +137,9 @@ describe 'Crowdstart#login', ->
       res.responseText.error.message.should.equal 'Email or password is incorrect'
       done()
 
-describe 'Crowdstart#account', ->
+describe 'client#account', ->
   it 'should retieve logged in user data', (done)->
-    p = client.account()
+    p = client.user.account()
     p.then (res)->
       res.status.should.equal 200
       data = res.responseText
@@ -149,7 +149,7 @@ describe 'Crowdstart#account', ->
       done()
 
   it 'should patch logged in user data', (done)->
-    p = client.account
+    p = client.user.updateAccount
       firstName: newFirstName
 
     p.then (res)->
@@ -165,6 +165,6 @@ describe 'Crowdstart#account', ->
       if (/PhantomJS/.test(navigator.userAgent))
         done()
 
-describe 'Crowdstart#charge', ->
+describe 'client#charge', ->
   it 'should charge payments', (done) ->
     done()
