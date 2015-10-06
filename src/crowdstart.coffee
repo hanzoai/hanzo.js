@@ -23,6 +23,12 @@ class Client
 
     @user = user
 
+    payment = {}
+    for name, fn of @payment
+      payment[name] = fn.bind(@)
+
+    @payment = payment
+
   setToken: (token)->
     if window.location.protocol == 'file:'
       cachedToken = token
@@ -162,8 +168,8 @@ class Client
       , success, fail
 
     # data =
-    #     userid:            ...
-    #     program:           ...
+    #     userId:   id of user
+    #     program:  program object
     newReferrer: (data, success, fail) ->
       uri = '/referrer'
 
@@ -175,53 +181,54 @@ class Client
       , success, fail
 
   # PAYMENT
-  authorize: (data, cb) ->
-    uri = '/payment/authorize'
+  payment:
+    # data =
+    #     user:     user object
+    #     order:    order object
+    #     payment:  payment object
+    authorize: (data, success, fail) ->
+      uri = '/authorize'
 
-    if @storeId?
-      uri = "/store/#{@storeId}" + uri
+      if @storeId?
+        uri = "/store/#{@storeId}" + uri
 
-    p = @req uri, data
-    return p.then (res) ->
-      if res.status != 200
-        throw new Error 'Payment Authorization Failed'
+      return bindCbs @req(uri, data), (res)->
+        if res.status != 200
+          throw new Error 'Payment Authorization Failed'
 
-      cb(res) if cb?
+        return res
+      , success, fail
 
-      return res
+    # data =
+    #     orderId:  order id of existing order
+    capture: (data, success, fail) ->
+      uri = '/capture/' + data.orderId
 
-  capture: (data, cb) ->
-    uri = '/payment/capture'
+      if @storeId?
+        uri = "/store/#{@storeId}" + uri
 
-    if @storeId?
-      uri = "/store/#{@storeId}" + uri
+      return bindCbs @req(uri, {}), (res)->
+        if res.status != 200
+          throw new Error 'Payment Capture Failed'
 
-    p = @req uri, data
-    return p.then (res) ->
-      if res.status != 200
-        throw new Error 'Payment Capture Failed'
+        return res
+      , success, fail
 
-      cb(res) if cb?
+    charge: (data, success, fail) ->
+      uri = '/charge'
 
-      return res
+      if @storeId?
+        uri = "/store/#{@storeId}" + uri
 
-  charge: (data, cb) ->
-    uri = '/payment/charge'
+      return bindCbs @req(uri, data), (res)->
+        if res.status != 200
+          throw new Error 'Payment Charge Failed'
 
-    if @storeId?
-      uri = "/store/#{@storeId}" + uri
-
-    p = @req uri, data
-    return p.then (res) ->
-      if res.status != 200
-        throw new Error 'Payment Charge Failed'
-
-      cb(res) if cb?
-
-      return res
+        return res
+      , success, fail
 
   # PRODUCTS
-  product: (productId, cb) ->
+  product: (productId, success, fail) ->
 
   coupon: (code, cb) ->
 

@@ -20,7 +20,7 @@ goodPass1 = randomToken 6
 goodPass2 = randomToken 6
 badPass1 = randomToken 5
 
-describe 'client#create', ->
+xdescribe 'client#user.create', ->
   it 'should create users', (done) ->
     p = client.user.create
       firstName: firstName
@@ -101,7 +101,7 @@ describe 'client#create', ->
       res.responseText.error.message.should.equal 'Password needs to be atleast 6 characters'
       done()
 
-describe 'client#login', ->
+xdescribe 'client#user.login', ->
   # test users are automatically enabled
   it 'should login valid users', (done) ->
     client.getToken().should.equal ''
@@ -137,7 +137,7 @@ describe 'client#login', ->
       res.responseText.error.message.should.equal 'Email or password is incorrect'
       done()
 
-describe 'client#account', ->
+xdescribe 'client#user.account', ->
   it 'should retieve logged in user data', (done)->
     p = client.user.account()
     p.then (res)->
@@ -148,6 +148,7 @@ describe 'client#account', ->
       data.email.should.equal email
       done()
 
+xdescribe 'client#user.updateAccount', ->
   it 'should patch logged in user data', (done)->
     p = client.user.updateAccount
       firstName: newFirstName
@@ -165,6 +166,113 @@ describe 'client#account', ->
       if (/PhantomJS/.test(navigator.userAgent))
         done()
 
-describe 'client#charge', ->
-  it 'should charge payments', (done) ->
-    done()
+describe 'client#payment flows', ->
+  xit 'should 1 step charge payments', (done) ->
+    @timeout 10000
+
+    p = client.payment.charge
+      user:
+        email:      email
+        firstName:  firstName
+        lastName:   lastName
+      order:
+        shippingAddress:
+          line1:        'line1'
+          line2:        'line2'
+          city:         'city'
+          state:        'state'
+          postalCode:   '11111'
+          country:      'USA'
+        currency: 'usd'
+        items:[{
+          productSlug: 'sad-keanu-shirt'
+          quantity: 1
+        }]
+      payment:
+        account:
+          number: '4242424242424242'
+          cvc: '424'
+          month: '1'
+          year: '2020'
+
+    p.then (res)->
+      res.status.should.equal 200
+      order = res.responseText
+
+      order.userId.should.not.be.undefined
+      order.shippingAddress.line1.should.equal 'line1'
+      order.shippingAddress.line2.should.equal 'line2'
+      order.shippingAddress.city.should.equal 'city'
+      order.shippingAddress.state.should.equal 'state'
+      order.shippingAddress.postalCode.should.equal '11111'
+      order.shippingAddress.country.should.equal 'USA'
+      order.currency.should.equal 'usd'
+      order.total.should.equal 2500
+      order.payments.length.should.equal 1
+      order.status.should.equal 'open'
+      order.paymentStatus.should.equal 'paid'
+      order.items.length.should.equal 1
+      order.items[0].productSlug.should.equal 'sad-keanu-shirt'
+      order.items[0].quantity.should.equal 1
+
+      done()
+
+  it 'should 2 step authorize/capture payments', (done) ->
+    @timeout 20000
+
+    p = client.payment.authorize
+      user:
+        email:      email
+        firstName:  firstName
+        lastName:   lastName
+      order:
+        shippingAddress:
+          line1:        'line1'
+          line2:        'line2'
+          city:         'city'
+          state:        'state'
+          postalCode:   '11111'
+          country:      'USA'
+        currency: 'usd'
+        items:[{
+          productSlug: 'sad-keanu-shirt'
+          quantity: 1
+        }]
+      payment:
+        account:
+          number: '4242424242424242'
+          cvc: '424'
+          month: '1'
+          year: '2020'
+
+    p.then (res)->
+      res.status.should.equal 200
+      order = res.responseText
+
+      order.userId.should.not.be.undefined
+      order.shippingAddress.line1.should.equal 'line1'
+      order.shippingAddress.line2.should.equal 'line2'
+      order.shippingAddress.city.should.equal 'city'
+      order.shippingAddress.state.should.equal 'state'
+      order.shippingAddress.postalCode.should.equal '11111'
+      order.shippingAddress.country.should.equal 'USA'
+      order.currency.should.equal 'usd'
+      order.total.should.equal 2500
+      order.payments.length.should.equal 1
+      order.status.should.equal 'open'
+      order.paymentStatus.should.equal 'unpaid'
+      order.items.length.should.equal 1
+      order.items[0].productSlug.should.equal 'sad-keanu-shirt'
+      order.items[0].quantity.should.equal 1
+
+      p2 = client.payment.capture
+        orderId: order.id
+
+      p2.then (res)->
+        res.status.should.equal 200
+        order2 = res.responseText
+        order2.paymentStatus.should.equal 'paid'
+
+        done()
+
+
