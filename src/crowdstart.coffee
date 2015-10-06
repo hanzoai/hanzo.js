@@ -29,6 +29,12 @@ class Client
 
     @payment = payment
 
+    util = {}
+    for name, fn of @util
+      util[name] = fn.bind(@)
+
+    @util = util
+
   setToken: (token)->
     if window.location.protocol == 'file:'
       cachedToken = token
@@ -119,6 +125,9 @@ class Client
         return res
       , success, fail
 
+    logout: ()->
+      @setToken ''
+
     # data =
     #     email:  ...
     reset: (data, success, fail) ->
@@ -169,6 +178,7 @@ class Client
 
     # data =
     #     userId:   id of user
+    #     orderId:  id of order
     #     program:  program object
     newReferrer: (data, success, fail) ->
       uri = '/referrer'
@@ -207,7 +217,7 @@ class Client
       if @storeId?
         uri = "/store/#{@storeId}" + uri
 
-      return bindCbs @req(uri, {}), (res)->
+      return bindCbs @req(uri, {}), (res) ->
         if res.status != 200
           throw new Error 'Payment Capture Failed'
 
@@ -220,19 +230,52 @@ class Client
       if @storeId?
         uri = "/store/#{@storeId}" + uri
 
-      return bindCbs @req(uri, data), (res)->
+      return bindCbs @req(uri, data), (res) ->
         if res.status != 200
           throw new Error 'Payment Charge Failed'
 
         return res
       , success, fail
 
-  # PRODUCTS
-  product: (productId, success, fail) ->
+    paypal: (data, success, fail) ->
+      uri = '/paypal/pay'
 
-  coupon: (code, cb) ->
+      if @storeId?
+        uri = "/store/#{@storeId}" + uri
 
+      return bindCbs @req(uri, data), (res) ->
+        if res.status != 200
+          throw new Error 'Get Paypal PayKey Failed'
 
+        return res
+      , success, fail
 
+  # UTILITY
+  util:
+    product: (productId, success, fail) ->
+      uri = '/product/' + productId
+
+      if @storeId?
+        uri = "/store/#{@storeId}" + uri
+
+      return bindCbs @req(uri, {}, 'GET'), (res) ->
+        if res.status != 200
+          throw new Error 'Get Product Failed'
+
+        return res
+      , success, fail
+
+    coupon: (code, success, fail) ->
+      uri = '/coupon/' + code
+
+      if @storeId?
+        uri = "/store/#{@storeId}" + uri
+
+      return bindCbs @req(uri, {}, 'GET'), (res) ->
+        if res.status != 200
+          throw new Error 'Get Coupon Failed'
+
+        return res
+      , success, fail
 
 module.exports = Client

@@ -4,7 +4,7 @@ require 'chai-as-promised'
 randomToken = require 'random-token'
 Client = require '../src/crowdstart'
 
-testKey = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjQwLCJqdGkiOiJGUGgtQmtIY2ZQUSIsInN1YiI6IkVxVEdveHA1dTMifQ.l7pPfWm18TGNMFLwCDz3FNu15iSxEVlWZce3ckb6KOGPxY1Yam_lXlDNWyrX-NOwSfuAQP3bsFJvz5FYzi8wJA'
+testKey = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjQ1MDM2MTcwNzU2NzUxNzYsImp0aSI6IkNTaWFDckhpdDQ0Iiwic3ViIjoiRXFUR294cDV1MyJ9.fRcRQRRe0CrcnGSW12fmQ_8Cly6mqByIc5wTnANPdPWP3V1Bx9AIGbTVPTx_3KbBEziGewKJtNT1ys6WDXegyg'
 client = new Client
 client.setKey testKey
 client.debug = true
@@ -20,7 +20,7 @@ goodPass1 = randomToken 6
 goodPass2 = randomToken 6
 badPass1 = randomToken 5
 
-xdescribe 'client#user.create', ->
+describe 'client#user.create', ->
   it 'should create users', (done) ->
     p = client.user.create
       firstName: firstName
@@ -101,7 +101,7 @@ xdescribe 'client#user.create', ->
       res.responseText.error.message.should.equal 'Password needs to be atleast 6 characters'
       done()
 
-xdescribe 'client#user.login', ->
+describe 'client#user.login', ->
   # test users are automatically enabled
   it 'should login valid users', (done) ->
     client.getToken().should.equal ''
@@ -137,7 +137,7 @@ xdescribe 'client#user.login', ->
       res.responseText.error.message.should.equal 'Email or password is incorrect'
       done()
 
-xdescribe 'client#user.account', ->
+describe 'client#user.account', ->
   it 'should retieve logged in user data', (done)->
     p = client.user.account()
     p.then (res)->
@@ -148,7 +148,7 @@ xdescribe 'client#user.account', ->
       data.email.should.equal email
       done()
 
-xdescribe 'client#user.updateAccount', ->
+describe 'client#user.updateAccount', ->
   it 'should patch logged in user data', (done)->
     p = client.user.updateAccount
       firstName: newFirstName
@@ -166,8 +166,25 @@ xdescribe 'client#user.updateAccount', ->
       if (/PhantomJS/.test(navigator.userAgent))
         done()
 
+describe 'client#util', ->
+  it 'should get product', (done) ->
+    p = client.util.product 'sad-keanu-shirt'
+    p.then (res)->
+      res.status.should.equal 200
+      data = res.responseText
+      data.price.should.equal 2500
+      done()
+
+  it 'should get coupon', (done) ->
+    p = client.util.coupon 'SUCH-COUPON'
+    p.then (res)->
+      res.status.should.equal 200
+      data = res.responseText
+      data.amount.should.equal 5
+      done()
+
 describe 'client#payment flows', ->
-  xit 'should 1 step charge payments', (done) ->
+  it 'should 1 step charge payments', (done) ->
     @timeout 10000
 
     p = client.payment.charge
@@ -217,7 +234,7 @@ describe 'client#payment flows', ->
 
       done()
 
-  it 'should 2 step authorize/capture payments', (done) ->
+  xit 'should 2 step authorize/capture payments', (done) ->
     @timeout 20000
 
     p = client.payment.authorize
@@ -275,4 +292,31 @@ describe 'client#payment flows', ->
 
         done()
 
+  xit 'should get paypal paykey', (done) ->
+    @timeout 10000
 
+    p = client.payment.paypal
+      user:
+        email:      email
+        firstName:  firstName
+        lastName:   lastName
+      order:
+        shippingAddress:
+          line1:        'line1'
+          line2:        'line2'
+          city:         'city'
+          state:        'state'
+          postalCode:   '11111'
+          country:      'USA'
+        currency: 'usd'
+        items:[{
+          productSlug: 'sad-keanu-shirt'
+          quantity: 1
+        }]
+
+    p.then (res)->
+      res.status.should.equal 200
+      data = res.responseText
+      data.payKey.should.not.be.null
+
+      done()
