@@ -5,5 +5,6 @@ if typeof window isnt 'undefined'
     window.Crowdstart.Client  = Client
   else
     window.Crowdstart = Client: Client
-else
+
+if module?
   module.exports = Client
