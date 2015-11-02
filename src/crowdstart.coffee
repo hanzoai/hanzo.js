@@ -176,20 +176,6 @@ class Client
         return res
       , success, fail
 
-    # data =
-    #     userId:   id of user
-    #     orderId:  id of order
-    #     program:  program object
-    newReferrer: (data, success, fail) ->
-      uri = '/referrer'
-
-      return bindCbs @req(uri, data, 'GET', @getToken()), (res)->
-        if res.status != 201
-          throw new Error 'Referrer Creation Failed'
-
-        return res
-      , success, fail
-
   # PAYMENT
   payment:
     # data =
@@ -246,6 +232,20 @@ class Client
       return bindCbs @req(uri, data), (res) ->
         if res.status != 200
           throw new Error 'Get Paypal PayKey Failed'
+
+        return res
+      , success, fail
+
+    # data =
+    #     userId:   id of user
+    #     orderId:  id of order
+    #     program:  program object
+    newReferrer: (data, success, fail) ->
+      uri = '/referrer'
+
+      return bindCbs @req(uri, data, 'GET'), (res)->
+        if res.status != 201
+          throw new Error 'Referrer Creation Failed'
 
         return res
       , success, fail
