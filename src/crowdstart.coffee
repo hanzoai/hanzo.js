@@ -243,7 +243,7 @@ class Client
     newReferrer: (data, success, fail) ->
       uri = '/referrer'
 
-      return bindCbs @req(uri, data, 'GET'), (res)->
+      return bindCbs @req(uri, data, 'POST'), (res)->
         if res.status != 201
           throw new Error 'Referrer Creation Failed'
 
