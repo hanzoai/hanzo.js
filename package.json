@@ -28,15 +28,13 @@
     "url": "http://github.com/crowdstart/crowdstart.js"
   },
   "devDependencies": {
-    "chai": "^2.1.2",
+    "chai": "^3.4.1",
     "chai-as-promised": "^5.1.0",
     "coffee-script": "^1.9.1",
     "es5-shim": "^4.1.13",
-    "executive": "^0.4.7",
-    "install": "^0.1.8",
+    "executive": "^0.5.1",
     "mocha": "^2.2.1",
     "mocha-phantomjs": "^3.6.0",
-    "npm": "^2.14.3",
     "phantomjs": "1.9.7-15",
     "postmortem": "^0.1.8",
     "random-token": "0.0.8",
