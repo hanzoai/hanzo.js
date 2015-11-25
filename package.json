@@ -43,6 +43,7 @@
     "requisite": "^1.14.0",
     "selenium-standalone": "^4.7.2",
     "serve-static": "^1.10.0",
+    "shortcake": "^0.5.1",
     "webdriverio": "^3.3.0"
   },
   "dependencies": {
