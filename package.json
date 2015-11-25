@@ -28,17 +28,22 @@
     "url": "http://github.com/crowdstart/crowdstart.js"
   },
   "devDependencies": {
+    "cake": "^0.1.1",
     "chai": "^3.4.1",
     "chai-as-promised": "^5.1.0",
+    "co-mocha": "^1.1.2",
     "coffee-script": "^1.9.1",
+    "connect": "^3.4.0",
     "es5-shim": "^4.1.13",
     "executive": "^0.5.1",
     "mocha": "^2.2.1",
-    "mocha-phantomjs": "^3.6.0",
-    "phantomjs": "1.9.7-15",
+    "phantomjs": "^1.9.19",
     "postmortem": "^0.1.8",
     "random-token": "0.0.8",
-    "requisite": "^1.10.1"
+    "requisite": "^1.14.0",
+    "selenium-standalone": "^4.7.2",
+    "serve-static": "^1.10.0",
+    "webdriverio": "^3.3.0"
   },
   "dependencies": {
     "bluebird": "^2.10.0",

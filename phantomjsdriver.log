@@ -1,0 +1,256 @@
+[INFO  - 2015-11-25T21:55:43.052Z] GhostDriver - Main - running on port 45229
+[INFO  - 2015-11-25T21:55:43.328Z] Session [465db0d0-93bf-11e5-8875-23bcec35d451] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T21:55:43.328Z] Session [465db0d0-93bf-11e5-8875-23bcec35d451] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T21:55:43.328Z] Session [465db0d0-93bf-11e5-8875-23bcec35d451] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T21:55:43.328Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 465db0d0-93bf-11e5-8875-23bcec35d451
+[INFO  - 2015-11-25T21:55:43.492Z] ShutdownReqHand - _handle - About to shutdown
+[INFO  - 2015-11-25T21:56:27.512Z] GhostDriver - Main - running on port 41311
+[INFO  - 2015-11-25T21:56:27.760Z] Session [60d9a0e0-93bf-11e5-9c90-d57d2d29b72b] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T21:56:27.760Z] Session [60d9a0e0-93bf-11e5-9c90-d57d2d29b72b] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T21:56:27.760Z] Session [60d9a0e0-93bf-11e5-9c90-d57d2d29b72b] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T21:56:27.760Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 60d9a0e0-93bf-11e5-9c90-d57d2d29b72b
+[INFO  - 2015-11-25T21:56:36.707Z] ShutdownReqHand - _handle - About to shutdown
+[INFO  - 2015-11-25T21:57:44.422Z] GhostDriver - Main - running on port 41862
+[INFO  - 2015-11-25T21:57:44.674Z] Session [8eb19ef0-93bf-11e5-b394-a95fe3e50405] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T21:57:44.674Z] Session [8eb19ef0-93bf-11e5-b394-a95fe3e50405] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T21:57:44.674Z] Session [8eb19ef0-93bf-11e5-b394-a95fe3e50405] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T21:57:44.674Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 8eb19ef0-93bf-11e5-b394-a95fe3e50405
+[INFO  - 2015-11-25T21:57:53.480Z] ShutdownReqHand - _handle - About to shutdown
+[INFO  - 2015-11-25T22:03:24.198Z] GhostDriver - Main - running on port 45488
+[INFO  - 2015-11-25T22:03:24.462Z] Session [593927b0-93c0-11e5-bce0-5b3df1994177] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T22:03:24.462Z] Session [593927b0-93c0-11e5-bce0-5b3df1994177] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T22:03:24.462Z] Session [593927b0-93c0-11e5-bce0-5b3df1994177] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T22:03:24.462Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 593927b0-93c0-11e5-bce0-5b3df1994177
+[INFO  - 2015-11-25T22:04:51.584Z] GhostDriver - Main - running on port 39160
+[INFO  - 2015-11-25T22:04:51.841Z] Session [8d4e21e0-93c0-11e5-bff0-8ffaa2fb4c9c] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T22:04:51.841Z] Session [8d4e21e0-93c0-11e5-bff0-8ffaa2fb4c9c] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T22:04:51.841Z] Session [8d4e21e0-93c0-11e5-bff0-8ffaa2fb4c9c] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T22:04:51.841Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 8d4e21e0-93c0-11e5-bff0-8ffaa2fb4c9c
+[INFO  - 2015-11-25T22:05:18.243Z] GhostDriver - Main - running on port 1788
+[INFO  - 2015-11-25T22:05:18.513Z] Session [9d341bf0-93c0-11e5-9fab-b59a01652ce1] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T22:05:18.513Z] Session [9d341bf0-93c0-11e5-9fab-b59a01652ce1] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T22:05:18.514Z] Session [9d341bf0-93c0-11e5-9fab-b59a01652ce1] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T22:05:18.514Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 9d341bf0-93c0-11e5-9fab-b59a01652ce1
+[INFO  - 2015-11-25T22:05:18.678Z] ShutdownReqHand - _handle - About to shutdown
+[INFO  - 2015-11-25T22:05:48.711Z] GhostDriver - Main - running on port 39488
+[INFO  - 2015-11-25T22:05:48.962Z] Session [af5a1af0-93c0-11e5-8ecc-c9fa41efebe8] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T22:05:48.962Z] Session [af5a1af0-93c0-11e5-8ecc-c9fa41efebe8] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T22:05:48.962Z] Session [af5a1af0-93c0-11e5-8ecc-c9fa41efebe8] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T22:05:48.962Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: af5a1af0-93c0-11e5-8ecc-c9fa41efebe8
+[INFO  - 2015-11-25T22:06:02.335Z] GhostDriver - Main - running on port 13085
+[INFO  - 2015-11-25T22:06:02.595Z] Session [b77a7d10-93c0-11e5-8e93-77cd470a8ddf] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T22:06:02.595Z] Session [b77a7d10-93c0-11e5-8e93-77cd470a8ddf] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T22:06:02.596Z] Session [b77a7d10-93c0-11e5-8e93-77cd470a8ddf] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T22:06:02.596Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: b77a7d10-93c0-11e5-8e93-77cd470a8ddf
+[INFO  - 2015-11-25T22:06:43.432Z] GhostDriver - Main - running on port 2423
+[INFO  - 2015-11-25T22:06:43.709Z] Session [cffbd5a0-93c0-11e5-89d5-179d09bd2c3f] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T22:06:43.709Z] Session [cffbd5a0-93c0-11e5-89d5-179d09bd2c3f] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T22:06:43.709Z] Session [cffbd5a0-93c0-11e5-89d5-179d09bd2c3f] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T22:06:43.709Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: cffbd5a0-93c0-11e5-89d5-179d09bd2c3f
+[INFO  - 2015-11-25T22:07:24.930Z] GhostDriver - Main - running on port 44648
+[INFO  - 2015-11-25T22:07:25.168Z] Session [e8b220e0-93c0-11e5-b7ff-0bbc7ae817dc] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T22:07:25.168Z] Session [e8b220e0-93c0-11e5-b7ff-0bbc7ae817dc] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T22:07:25.169Z] Session [e8b220e0-93c0-11e5-b7ff-0bbc7ae817dc] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T22:07:25.169Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: e8b220e0-93c0-11e5-b7ff-0bbc7ae817dc
+[INFO  - 2015-11-25T22:08:12.022Z] GhostDriver - Main - running on port 16031
+[INFO  - 2015-11-25T22:08:12.267Z] Session [04c4b680-93c1-11e5-a83c-21d3bf0a2182] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T22:08:12.267Z] Session [04c4b680-93c1-11e5-a83c-21d3bf0a2182] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T22:08:12.267Z] Session [04c4b680-93c1-11e5-a83c-21d3bf0a2182] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T22:08:12.267Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 04c4b680-93c1-11e5-a83c-21d3bf0a2182
+[INFO  - 2015-11-25T22:08:20.010Z] ShutdownReqHand - _handle - About to shutdown
+[INFO  - 2015-11-25T22:16:33.048Z] GhostDriver - Main - running on port 45003
+[INFO  - 2015-11-25T22:16:33.315Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T22:16:33.315Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T22:16:33.315Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T22:16:33.315Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 2f6a9200-93c2-11e5-a7b6-e707dcde865c
+[ERROR - 2015-11-25T22:16:33.391Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:16:33.391Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:16:34.937Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:16:34.937Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:16:35.402Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:16:35.402Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:16:35.952Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:16:35.952Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:16:36.425Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:16:36.425Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:16:36.921Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:16:36.921Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:16:37.421Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:16:37.421Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:16:37.889Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:16:37.889Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:16:38.350Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:16:38.350Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:16:38.848Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:16:38.848Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:16:39.336Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:16:39.336Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:16:39.840Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:16:39.840Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:16:40.338Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:16:40.338Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:16:40.813Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:16:40.813Z] Session [2f6a9200-93c2-11e5-a7b6-e707dcde865c] - page.onError - stack:
+
+[INFO  - 2015-11-25T22:16:41.259Z] ShutdownReqHand - _handle - About to shutdown
+[INFO  - 2015-11-25T22:18:22.808Z] GhostDriver - Main - running on port 31206
+[INFO  - 2015-11-25T22:18:23.052Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T22:18:23.052Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T22:18:23.052Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T22:18:23.052Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 70d31b90-93c2-11e5-b99b-c5503027bdad
+[ERROR - 2015-11-25T22:18:23.128Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:18:23.128Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:18:24.656Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:18:24.656Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:18:25.200Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:18:25.200Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:18:25.785Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:18:25.785Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:18:26.370Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:18:26.370Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:18:26.928Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:18:26.928Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:18:27.488Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:18:27.488Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:18:28.058Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:18:28.058Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:18:28.615Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:18:28.615Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:18:29.164Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:18:29.164Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:18:29.721Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:18:29.721Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:18:30.287Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:18:30.287Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:18:30.849Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:18:30.849Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:18:31.404Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:18:31.404Z] Session [70d31b90-93c2-11e5-b99b-c5503027bdad] - page.onError - stack:
+
+[INFO  - 2015-11-25T22:18:31.951Z] ShutdownReqHand - _handle - About to shutdown
+[INFO  - 2015-11-25T22:19:24.665Z] GhostDriver - Main - running on port 2362
+[INFO  - 2015-11-25T22:19:24.928Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T22:19:24.928Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T22:19:24.928Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T22:19:24.928Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75
+[ERROR - 2015-11-25T22:19:25.005Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:19:25.005Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:19:26.837Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:19:26.838Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:19:27.374Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:19:27.374Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:19:27.930Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:19:27.930Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:19:28.454Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:19:28.454Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:19:28.984Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:19:28.984Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:19:29.520Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:19:29.520Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:19:30.066Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:19:30.066Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:19:30.676Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:19:30.676Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:19:31.213Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:19:31.213Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:19:31.763Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:19:31.763Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:19:32.342Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:19:32.342Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:19:32.925Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:19:32.925Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - stack:
+
+[ERROR - 2015-11-25T22:19:33.512Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - msg: SyntaxError: Parse error
+[ERROR - 2015-11-25T22:19:33.512Z] Session [95b4a2d0-93c2-11e5-8fd6-5b5bf5cd3c75] - page.onError - stack:
+
+[INFO  - 2015-11-25T22:19:34.074Z] ShutdownReqHand - _handle - About to shutdown
+[INFO  - 2015-11-25T22:21:37.123Z] GhostDriver - Main - running on port 17575
+[INFO  - 2015-11-25T22:21:37.382Z] Session [e4a7aa40-93c2-11e5-9122-914dc9ae8c08] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T22:21:37.382Z] Session [e4a7aa40-93c2-11e5-9122-914dc9ae8c08] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T22:21:37.382Z] Session [e4a7aa40-93c2-11e5-9122-914dc9ae8c08] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T22:21:37.382Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: e4a7aa40-93c2-11e5-9122-914dc9ae8c08
+[INFO  - 2015-11-25T22:32:26.188Z] GhostDriver - Main - running on port 45080
+[INFO  - 2015-11-25T22:32:26.451Z] Session [67879500-93c4-11e5-9948-8753f490d0df] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T22:32:26.451Z] Session [67879500-93c4-11e5-9948-8753f490d0df] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T22:32:26.451Z] Session [67879500-93c4-11e5-9948-8753f490d0df] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T22:32:26.451Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 67879500-93c4-11e5-9948-8753f490d0df
+[INFO  - 2015-11-25T22:43:45.271Z] GhostDriver - Main - running on port 29660
+[INFO  - 2015-11-25T22:43:45.503Z] Session [fc46b1c0-93c5-11e5-89f1-4bc87902ef0a] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T22:43:45.503Z] Session [fc46b1c0-93c5-11e5-89f1-4bc87902ef0a] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T22:43:45.503Z] Session [fc46b1c0-93c5-11e5-89f1-4bc87902ef0a] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T22:43:45.503Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: fc46b1c0-93c5-11e5-89f1-4bc87902ef0a
+[INFO  - 2015-11-25T22:44:32.630Z] GhostDriver - Main - running on port 28343
+[INFO  - 2015-11-25T22:44:32.895Z] Session [188623c0-93c6-11e5-868b-af50a3f895d8] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T22:44:32.895Z] Session [188623c0-93c6-11e5-868b-af50a3f895d8] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T22:44:32.895Z] Session [188623c0-93c6-11e5-868b-af50a3f895d8] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T22:44:32.895Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 188623c0-93c6-11e5-868b-af50a3f895d8
+[INFO  - 2015-11-25T22:45:01.112Z] GhostDriver - Main - running on port 35915
+[INFO  - 2015-11-25T22:45:01.320Z] Session [29777350-93c6-11e5-b3b3-8d049643e40c] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T22:45:01.320Z] Session [29777350-93c6-11e5-b3b3-8d049643e40c] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T22:45:01.320Z] Session [29777350-93c6-11e5-b3b3-8d049643e40c] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T22:45:01.320Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 29777350-93c6-11e5-b3b3-8d049643e40c
+[INFO  - 2015-11-25T22:52:51.001Z] GhostDriver - Main - running on port 37294
+[INFO  - 2015-11-25T22:52:51.261Z] Session [4192c1a0-93c7-11e5-95cb-b9a31670ce5f] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T22:52:51.261Z] Session [4192c1a0-93c7-11e5-95cb-b9a31670ce5f] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T22:52:51.261Z] Session [4192c1a0-93c7-11e5-95cb-b9a31670ce5f] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T22:52:51.261Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 4192c1a0-93c7-11e5-95cb-b9a31670ce5f
+[INFO  - 2015-11-25T22:55:30.114Z] GhostDriver - Main - running on port 6038
+[INFO  - 2015-11-25T22:55:30.386Z] Session [a06b7500-93c7-11e5-a919-275eee86e5e5] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T22:55:30.386Z] Session [a06b7500-93c7-11e5-a919-275eee86e5e5] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T22:55:30.386Z] Session [a06b7500-93c7-11e5-a919-275eee86e5e5] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T22:55:30.386Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: a06b7500-93c7-11e5-a919-275eee86e5e5
+[INFO  - 2015-11-25T23:14:49.957Z] GhostDriver - Main - running on port 26348
+[INFO  - 2015-11-25T23:14:50.218Z] Session [53bb9f70-93ca-11e5-850a-b95a90e964b0] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T23:14:50.218Z] Session [53bb9f70-93ca-11e5-850a-b95a90e964b0] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T23:14:50.218Z] Session [53bb9f70-93ca-11e5-850a-b95a90e964b0] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T23:14:50.218Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 53bb9f70-93ca-11e5-850a-b95a90e964b0
+[INFO  - 2015-11-25T23:18:57.529Z] GhostDriver - Main - running on port 41985
+[INFO  - 2015-11-25T23:18:57.779Z] Session [e74a9610-93ca-11e5-9d1c-af759c500614] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T23:18:57.779Z] Session [e74a9610-93ca-11e5-9d1c-af759c500614] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T23:18:57.779Z] Session [e74a9610-93ca-11e5-9d1c-af759c500614] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T23:18:57.779Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: e74a9610-93ca-11e5-9d1c-af759c500614
+[INFO  - 2015-11-25T23:19:11.480Z] ShutdownReqHand - _handle - About to shutdown
+[INFO  - 2015-11-25T23:21:26.270Z] GhostDriver - Main - running on port 32023
+[INFO  - 2015-11-25T23:21:26.531Z] Session [3ff43000-93cb-11e5-b9e5-a1d8585e5819] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2015-11-25T23:21:26.531Z] Session [3ff43000-93cb-11e5-b9e5-a1d8585e5819] - page.customHeaders:  - {}
+[INFO  - 2015-11-25T23:21:26.531Z] Session [3ff43000-93cb-11e5-b9e5-a1d8585e5819] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"mac-unknown-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2015-11-25T23:21:26.531Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 3ff43000-93cb-11e5-b9e5-a1d8585e5819
+[INFO  - 2015-11-25T23:21:36.435Z] ShutdownReqHand - _handle - About to shutdown
