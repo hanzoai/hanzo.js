@@ -34,8 +34,9 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
           .then (res) ->
             done res
           .catch (err) ->
-            done client.lastResponse
+            done err
 
+      console.log value
       value.status.should.equal 200
 
     it 'should enforce email requirement', (success) ->
