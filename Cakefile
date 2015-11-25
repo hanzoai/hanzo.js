@@ -1,7 +1,7 @@
 exec = require('executive').interactive
 
-option '-g', '--grep [filter]', 'test filter'
-option '-v', '--version [<newversion> | major | minor | patch | build]', 'new version'
+option '-b', '--browser [browser]', 'browser to use for tests'
+option '-g', '--grep [filter]',     'test filter'
 
 task 'clean', 'clean project', (options) ->
   exec 'rm -rf lib'
@@ -11,26 +11,55 @@ task 'build', 'build project', (options) ->
   exec 'node_modules/.bin/coffee -bcm -o lib/ src/'
   exec 'node_modules/.bin/requisite src/index.coffee -g -o crowdstart.js'
   # exec 'node_modules/.bin/requisite src/index.coffee -m -o checkout.min.js'
-  exec 'node_modules/.bin/requisite test/crowdstart.coffee -g -o ./.test/crowdstart.js'
 
 task 'watch', 'watch for changes and recompile project', ->
   exec 'node_modules/.bin/coffee -bcmw -o lib/ src/'
 
-task 'test', 'run tests', (options) ->
-  test = options.test ? 'test/index.html'
-  if options.grep?
-    grep = "--grep #{options.grep}"
-  else
-    grep = ''
+task 'selenium-install', 'Install selenium standalone', ->
+  exec 'node_modules/.bin/selenium-standalone install'
 
-  exec "NODE_ENV=test ./node_modules/.bin/mocha-phantomjs
-      --colors
-      --reporter spec
-      --timeout 5000
-      --compilers coffee:coffee-script/register
-      --require postmortem/register
-      #{grep}
-      #{test}"
+task 'static-server', 'Run static server for tests', ->
+  connect = require 'connect'
+  server = connect()
+  server.use (require 'serve-static') './test'
+
+  port = process.env.PORT ? 3333
+  console.log "Static server started at http://localhost:#{port}"
+  server.listen port
+
+task 'test', 'Run tests', (options) ->
+  browserName      = options.browser ? 'phantomjs'
+  externalSelenium = options.externalSelenium ? false
+  verbose          = options.verbose ? false
+
+  invoke 'static-server'
+
+  runTest = (cb) ->
+    exec "NODE_ENV=test
+          BROWSER=#{browserName}
+          VERBOSE=#{verbose}
+          node_modules/.bin/mocha
+          --compilers coffee:coffee-script/register
+          --require co-mocha
+          --require test/helper.coffee
+          --reporter spec
+          --colors
+          --timeout 90000
+          test/test.coffee", cb
+
+  if externalSelenium
+    runTest (err) ->
+      process.exit 1 if err?
+      process.exit 0
+
+  selenium = require 'selenium-standalone'
+  selenium.start (err, child) ->
+    throw err if err?
+
+    runTest (err) ->
+      child.kill()
+      process.exit 1 if err?
+      process.exit 0
 
 task 'publish', 'publish project', (options) ->
   newVersion = options.version ? 'patch'
