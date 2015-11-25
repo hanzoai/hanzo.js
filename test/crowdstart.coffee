@@ -4,8 +4,9 @@ require 'chai-as-promised'
 randomToken = require 'random-token'
 Client = require '../src/crowdstart'
 
-testKey = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjQ1MDM2MTcwNzU2NzUxNzYsImp0aSI6IkNTaWFDckhpdDQ0Iiwic3ViIjoiRXFUR294cDV1MyJ9.fRcRQRRe0CrcnGSW12fmQ_8Cly6mqByIc5wTnANPdPWP3V1Bx9AIGbTVPTx_3KbBEziGewKJtNT1ys6WDXegyg'
+testKey = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjQ1MDM2MTcwNzU2NzUxNzYsImp0aSI6InMyVERIbV9GcWZnIiwic3ViIjoiRXFUR294cDV1MyJ9.rITJP_i-hyPizykcu7RyQD1NAXimWUGUYMfSeWtHp_fITCfgmMcXhm4hlVGTZpdFmPFGchq0kW_qpWdBI_5Spw'
 client = new Client
+client.endpoint = 'https://api.staging.crowdstart.com'
 client.setKey testKey
 client.debug = true
 

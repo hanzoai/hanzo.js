@@ -11,7 +11,6 @@ bindCbs = (p, predicate, success, fail)->
   p = p.catch(fail)   if fail?
   return p
 
-
 class Client
   debug: false
   endpoint: "https://api.crowdstart.com"
