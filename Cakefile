@@ -1,5 +1,7 @@
 require 'shortcake'
 
+fs = require 'mz/fs'
+
 option '-b', '--browser [browser]', 'browser to use for tests'
 option '-g', '--grep [filter]',     'test filter'
 
@@ -19,7 +21,8 @@ task 'watch', 'watch for changes and recompile project', ->
   exec 'node_modules/.bin/coffee -bcmw -o lib/ src/'
 
 task 'selenium-install', 'Install selenium standalone', (cb) ->
-  exec 'node_modules/.bin/selenium-standalone install', cb
+  unless yield fs.exists '/node_modules/selenium-standalone/.selenium/selenium-server'
+    exec 'node_modules/.bin/selenium-standalone install', cb
 
 task 'static-server', 'Run static server for tests', ->
   connect = require 'connect'
@@ -34,8 +37,6 @@ task 'test', 'Run tests', ['selenium-install', 'static-server'], (options) ->
   browserName      = options.browser ? 'phantomjs'
   externalSelenium = options.externalSelenium ? false
   verbose          = options.verbose ? false
-
-  invoke 'static-server'
 
   runTest = (cb) ->
     exec "NODE_ENV=test
