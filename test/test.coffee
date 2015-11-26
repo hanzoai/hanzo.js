@@ -22,8 +22,6 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
     it 'should create users', ->
       {value} = yield browser
         .executeAsync (done) ->
-          done()
-        .executeAsync (done) ->
           client.user.create
             firstName:       firstName
             lastName:        lastName
@@ -41,10 +39,10 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
       {value} = yield browser
         .executeAsync (done) ->
           client.user.create
-            firstName: firstName
-            lastName: lastName
-            email: firstName
-            password: goodPass1
+            firstName:       firstName
+            lastName:        lastName
+            email:           firstName
+            password:        goodPass1
             passwordConfirm: goodPass1
           .then (res)->
             done res
@@ -58,14 +56,14 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
       {value} = yield browser
         .executeAsync (done) ->
           client.user.create
-            firstName: ''
-            lastName: lastName
-            email: randomEmail()
-            password: goodPass1
+            firstName:       ''
+            lastName:        lastName
+            email:           randomEmail()
+            password:        goodPass1
             passwordConfirm: goodPass1
-          .then (res)->
+          .then (res) ->
             done res
-          .catch (err)->
+          .catch (err) ->
             done client.lastResponse
 
       value.status.should.equal 400
@@ -75,10 +73,10 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
       {value} = yield browser
         .executeAsync (done) ->
           client.user.create
-            # firstName: firstName
-            lastName: lastName
-            email: randomEmail()
-            password: goodPass1
+            # firstName:       firstName
+            lastName:        lastName
+            email:           randomEmail()
+            password:        goodPass1
             passwordConfirm: goodPass1
           .then (res) ->
             done res
@@ -92,14 +90,14 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
       {value} = yield browser
         .executeAsync (done) ->
           client.user.create
-            firstName: firstName
-            lastName: lastName
-            email: randomEmail()
-            password: goodPass1
+            firstName:       firstName
+            lastName:        lastName
+            email:           randomEmail()
+            password:        goodPass1
             passwordConfirm: goodPass2
-          .then (res)->
+          .then (res) ->
             done res
-          .catch (err)->
+          .catch (err) ->
             done client.lastResponse
 
       value.status.should.equal 400
@@ -109,10 +107,10 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
       {value} = yield browser
         .executeAsync (done) ->
           client.user.create
-            firstName: firstName
-            lastName: lastName
-            email: randomEmail()
-            password: badPass1
+            firstName:       firstName
+            lastName:        lastName
+            email:           randomEmail()
+            password:        badPass1
             passwordConfirm: badPass1
           .then (res) ->
             done res
@@ -130,13 +128,13 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
           oldToken = client.getToken()
 
           client.user.login
-            email: email
+            email:    email
             password: goodPass1
           .then (res) ->
             done
-              res: res
               oldToken: oldToken
-              token: client.getToken()
+              res:      res
+              token:    client.getToken()
           .catch (err) ->
             done client.lastResponse
 
@@ -148,11 +146,11 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
       {value} = yield browser
         .executeAsync (done) ->
           client.user.login
-            email: randomEmail()
+            email:    randomEmail()
             password: goodPass1
-          .then (res)->
+          .then (res) ->
             done res
-          .catch (err)->
+          .catch (err) ->
             done client.lastResponse
 
       value.status.should.equal 401
@@ -162,11 +160,11 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
       {value} = yield browser
         .executeAsync (done) ->
           client.user.login
-            email: email
+            email:    email
             password: goodPass2
-          .then (res)->
+          .then (res) ->
             done res
-          .catch (err)->
+          .catch (err) ->
             done client.lastResponse
 
       value.status.should.equal 401
@@ -177,9 +175,9 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
       {value} = yield browser
         .executeAsync (done) ->
           client.user.account()
-          .then (res)->
+          .then (res) ->
             done res
-          .catch (err)->
+          .catch (err) ->
             done client.lastResponse
 
       value.status.should.equal 200
@@ -211,9 +209,9 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
       {value} = yield browser
         .executeAsync (done) ->
           client.util.product 'sad-keanu-shirt'
-          .then (res)->
+          .then (res) ->
             done res
-          .catch (err)->
+          .catch (err) ->
             done client.lastResponse
 
       value.status.should.equal 200
@@ -224,9 +222,9 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
       {value} = yield browser
         .executeAsync (done) ->
           client.util.coupon 'SUCH-COUPON'
-          .then (res)->
+          .then (res) ->
             done res
-          .catch (err)->
+          .catch (err) ->
             done client.lastResponse
 
       value.status.should.equal 200
@@ -251,20 +249,20 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
                 postalCode:   '11111'
                 country:      'USA'
               currency: 'usd'
-              items:[{
+              items: [{
                 productSlug: 'sad-keanu-shirt'
-                quantity: 1
+                quantity:    1
               }]
             payment:
               account:
                 number: '4242424242424242'
-                cvc: '424'
-                month: '1'
-                year: '2020'
+                cvc:    '424'
+                month:  '1'
+                year:   '2020'
 
-          .then (res)->
+          .then (res) ->
             done res
-          .catch (err)->
+          .catch (err) ->
             done client.lastResponse
 
       value.status.should.equal 200
@@ -310,9 +308,9 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
             payment:
               account:
                 number: '4242424242424242'
-                cvc: '424'
-                month: '1'
-                year: '2020'
+                cvc:    '424'
+                month:  '1'
+                year:   '2020'
 
           p.then (res)->
             res.status.should.equal 200
@@ -359,9 +357,9 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
                 postalCode:   '11111'
                 country:      'USA'
               currency: 'usd'
-              items:[{
+              items: [{
                 productSlug: 'sad-keanu-shirt'
-                quantity: 1
+                quantity:    1
               }]
 
           p.then (res) ->
