@@ -2,7 +2,7 @@ chai = require 'chai'
 chai.should()
 chai.use require 'chai-as-promised'
 
-Nightmare = require 'jospeh/nightmare'
+Nightmare = require 'joseph/nightmare'
 
 before ->
   global.browser = Nightmare

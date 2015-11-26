@@ -6,7 +6,7 @@ describe 'Crowdstart.js', ->
 
   describe 'client#user.create', ->
     it 'should create users', ->
-      res = yield browser.evaluateAsync ->
+      res = yield browser.evaluate ->
         client.user.create
           firstName:       firstName
           lastName:        lastName
@@ -18,7 +18,7 @@ describe 'Crowdstart.js', ->
 
     it 'should enforce email requirement', ->
       try
-        yield browser.evaluateAsync ->
+        yield browser.evaluate ->
           client.user.create
             firstName:       firstName
             lastName:        lastName
@@ -34,7 +34,7 @@ describe 'Crowdstart.js', ->
 
     it 'should enforce required field requirement', ->
       try
-        yield browser.evaluateAsync ->
+        yield browser.evaluate ->
           client.user.create
             firstName:       ''
             lastName:        lastName
@@ -49,7 +49,7 @@ describe 'Crowdstart.js', ->
 
     it 'should require email, firstName, lastName', ->
       try
-        yield browser.evaluateAsync ->
+        yield browser.evaluate ->
           client.user.create
             # firstName:       firstName
             lastName:        lastName
@@ -64,7 +64,7 @@ describe 'Crowdstart.js', ->
 
     it 'should enforce password match requirement', ->
       try
-        yield browser.evaluateAsync ->
+        yield browser.evaluate ->
           client.user.create
             firstName:       firstName
             lastName:        lastName
@@ -79,7 +79,7 @@ describe 'Crowdstart.js', ->
 
     it 'should enforce password min-length requirement', ->
       try
-        yield browser.evaluateAsync ->
+        yield browser.evaluate ->
           client.user.create
             firstName:       firstName
             lastName:        lastName
@@ -95,14 +95,14 @@ describe 'Crowdstart.js', ->
   describe 'client#user.login', ->
     # test users are automatically enabled
     it 'should login valid users', ->
-      res = yield browser.evaluateAsync ->
+      res = yield browser.evaluate ->
         client.user.login
           email:    email
           password: goodPass1
 
     it 'should not login non-existant users', ->
       try
-        yield browser.evaluateAsync ->
+        yield browser.evaluate ->
           client.user.login
             email:    randomEmail()
             password: goodPass1
@@ -115,7 +115,7 @@ describe 'Crowdstart.js', ->
 
     it 'should not allow login with invalid password', ->
       try
-        yield browser.evaluateAsync ->
+        yield browser.evaluate ->
           client.user.login
             email:    email
             password: goodPass2
@@ -128,7 +128,7 @@ describe 'Crowdstart.js', ->
 
   describe 'client#user.account', ->
     it 'should retieve logged in user data', ->
-      res = yield browser.evaluateAsync ->
+      res = yield browser.evaluate ->
           client.user.account()
 
       res.status.should.equal 200
@@ -139,7 +139,7 @@ describe 'Crowdstart.js', ->
 
   describe 'client#user.updateAccount', ->
     it 'should patch logged in user data', ->
-      res = yield browser.evaluateAsync ->
+      res = yield browser.evaluate ->
           client.user.updateAccount
             firstName: newFirstName
 
@@ -149,165 +149,146 @@ describe 'Crowdstart.js', ->
         data.lastName.should.not.equal ''
         data.email.should.not.equal ''
 
-  # describe 'client#util', ->
-    # it 'should get product', ->
-    #   {value} = yield browser
-    #     .evaluateAsync (done) ->
-    #       client.util.product 'sad-keanu-shirt'
-    #       .then (res) ->
-    #         done res
-    #       .catch (err) ->
-    #         done client.lastResponse
+  describe 'client#util', ->
+    it 'should get product', ->
+      res = yield browser.evaluate ->
+        client.util.product 'sad-keanu-shirt'
 
-    #   value.status.should.equal 200
-    #   data = value.responseText
-    #   data.price.should.equal 2500
+      res.status.should.equal 200
+      data = res.responseText
+      data.price.should.equal 2500
 
-    # it 'should get coupon', ->
-    #   {value} = yield browser
-    #     .evaluateAsync (done) ->
-    #       client.util.coupon 'SUCH-COUPON'
-    #       .then (res) ->
-    #         done res
-    #       .catch (err) ->
-    #         done client.lastResponse
+    it 'should get coupon', ->
+      res = yield browser.evaluate ->
+        client.util.coupon 'SUCH-COUPON'
 
-    #   value.status.should.equal 200
-    #   data = value.responseText
-    #   data.amount.should.equal 5
+      res.status.should.equal 200
+      data = res.responseText
+      data.amount.should.equal 5
 
-  # describe 'client#payment flows', ->
-    # it 'should 1 step charge payments', ->
-    #   {value} = yield browser
-    #     .evaluateAsync (done) ->
-    #       client.payment.charge
-    #         user:
-    #           email:      email
-    #           firstName:  firstName
-    #           lastName:   lastName
-    #         order:
-    #           shippingAddress:
-    #             line1:        'line1'
-    #             line2:        'line2'
-    #             city:         'city'
-    #             state:        'state'
-    #             postalCode:   '11111'
-    #             country:      'USA'
-    #           currency: 'usd'
-    #           items: [{
-    #             productSlug: 'sad-keanu-shirt'
-    #             quantity:    1
-    #           }]
-    #         payment:
-    #           account:
-    #             number: '4242424242424242'
-    #             cvc:    '424'
-    #             month:  '1'
-    #             year:   '2020'
+  describe 'client#payment flows', ->
+    it 'should 1 step charge payments', ->
+      res = yield browser.evaluate ->
+        client.payment.charge
+          user:
+            email:      email
+            firstName:  firstName
+            lastName:   lastName
+          order:
+            shippingAddress:
+              line1:        'line1'
+              line2:        'line2'
+              city:         'city'
+              state:        'state'
+              postalCode:   '11111'
+              country:      'USA'
+            currency: 'usd'
+            items: [{
+              productSlug: 'sad-keanu-shirt'
+              quantity:    1
+            }]
+          payment:
+            account:
+              number: '4242424242424242'
+              cvc:    '424'
+              month:  '1'
+              year:   '2020'
 
-    #       .then (res) ->
-    #         done res
-    #       .catch (err) ->
-    #         done client.lastResponse
+      res.status.should.equal 200
+      order = res.responseText
 
-    #   value.status.should.equal 200
-    #   order = value.responseText
+      order.userId.should.not.be.undefined
+      order.shippingAddress.line1.should.equal 'line1'
+      order.shippingAddress.line2.should.equal 'line2'
+      order.shippingAddress.city.should.equal 'city'
+      order.shippingAddress.state.should.equal 'state'
+      order.shippingAddress.postalCode.should.equal '11111'
+      order.shippingAddress.country.should.equal 'USA'
+      order.currency.should.equal 'usd'
+      order.total.should.equal 2500
+      order.payments.length.should.equal 1
+      order.status.should.equal 'open'
+      order.paymentStatus.should.equal 'paid'
+      order.items.length.should.equal 1
+      order.items[0].productSlug.should.equal 'sad-keanu-shirt'
+      order.items[0].quantity.should.equal 1
 
-    #   order.userId.should.not.be.undefined
-    #   order.shippingAddress.line1.should.equal 'line1'
-    #   order.shippingAddress.line2.should.equal 'line2'
-    #   order.shippingAddress.city.should.equal 'city'
-    #   order.shippingAddress.state.should.equal 'state'
-    #   order.shippingAddress.postalCode.should.equal '11111'
-    #   order.shippingAddress.country.should.equal 'USA'
-    #   order.currency.should.equal 'usd'
-    #   order.total.should.equal 2500
-    #   order.payments.length.should.equal 1
-    #   order.status.should.equal 'open'
-    #   order.paymentStatus.should.equal 'paid'
-    #   order.items.length.should.equal 1
-    #   order.items[0].productSlug.should.equal 'sad-keanu-shirt'
-    #   order.items[0].quantity.should.equal 1
+    it 'should 2 step authorize/capture payments', ->
+      res = yield browser.evaluate ->
+        client.payment.authorize
+          user:
+            email:      email
+            firstName:  firstName
+            lastName:   lastName
+          order:
+            shippingAddress:
+              line1:        'line1'
+              line2:        'line2'
+              city:         'city'
+              state:        'state'
+              postalCode:   '11111'
+              country:      'USA'
+            currency: 'usd'
+            items:[{
+              productSlug: 'sad-keanu-shirt'
+              quantity: 1
+            }]
+          payment:
+            account:
+              number: '4242424242424242'
+              cvc:    '424'
+              month:  '1'
+              year:   '2020'
 
-    # xit 'should 2 step authorize/capture payments', ->
-    #   browser
-    #     .evaluateAsync (done) ->
-    #       p = client.payment.authorize
-    #         user:
-    #           email:      email
-    #           firstName:  firstName
-    #           lastName:   lastName
-    #         order:
-    #           shippingAddress:
-    #             line1:        'line1'
-    #             line2:        'line2'
-    #             city:         'city'
-    #             state:        'state'
-    #             postalCode:   '11111'
-    #             country:      'USA'
-    #           currency: 'usd'
-    #           items:[{
-    #             productSlug: 'sad-keanu-shirt'
-    #             quantity: 1
-    #           }]
-    #         payment:
-    #           account:
-    #             number: '4242424242424242'
-    #             cvc:    '424'
-    #             month:  '1'
-    #             year:   '2020'
+      res.status.should.equal 200
+      order = res.responseText
 
-    #       p.then (res)->
-    #         res.status.should.equal 200
-    #         order = res.responseText
+      order.userId.should.not.be.undefined
+      order.shippingAddress.line1.should.equal 'line1'
+      order.shippingAddress.line2.should.equal 'line2'
+      order.shippingAddress.city.should.equal 'city'
+      order.shippingAddress.state.should.equal 'state'
+      order.shippingAddress.postalCode.should.equal '11111'
+      order.shippingAddress.country.should.equal 'USA'
+      order.currency.should.equal 'usd'
+      order.total.should.equal 2500
+      order.payments.length.should.equal 1
+      order.status.should.equal 'open'
+      order.paymentStatus.should.equal 'unpaid'
+      order.items.length.should.equal 1
+      order.items[0].productSlug.should.equal 'sad-keanu-shirt'
+      order.items[0].quantity.should.equal 1
 
-    #         order.userId.should.not.be.undefined
-    #         order.shippingAddress.line1.should.equal 'line1'
-    #         order.shippingAddress.line2.should.equal 'line2'
-    #         order.shippingAddress.city.should.equal 'city'
-    #         order.shippingAddress.state.should.equal 'state'
-    #         order.shippingAddress.postalCode.should.equal '11111'
-    #         order.shippingAddress.country.should.equal 'USA'
-    #         order.currency.should.equal 'usd'
-    #         order.total.should.equal 2500
-    #         order.payments.length.should.equal 1
-    #         order.status.should.equal 'open'
-    #         order.paymentStatus.should.equal 'unpaid'
-    #         order.items.length.should.equal 1
-    #         order.items[0].productSlug.should.equal 'sad-keanu-shirt'
-    #         order.items[0].quantity.should.equal 1
+      res = yield browser.evaluate (orderId) ->
+        client.payment.capture
+          orderId: orderId
+      , order.id
 
-    #         p2 = client.payment.capture
-    #           orderId: order.id
+      res.status.should.equal 200
+      order2 = res.responseText
+      order2.paymentStatus.should.equal 'paid'
 
-    #         p2.then (res)->
-    #           res.status.should.equal 200
-    #           order2 = res.responseText
-    #           order2.paymentStatus.should.equal 'paid'
+    xit 'should get paypal paykey', ->
+      res = yield browser.evaluate ->
+        client.payment.paypal
+          user:
+            email:      email
+            firstName:  firstName
+            lastName:   lastName
+          order:
+            shippingAddress:
+              line1:        'line1'
+              line2:        'line2'
+              city:         'city'
+              state:        'state'
+              postalCode:   '11111'
+              country:      'USA'
+            currency: 'usd'
+            items: [{
+              productSlug: 'sad-keanu-shirt'
+              quantity:    1
+            }]
 
-    # xit 'should get paypal paykey', ->
-    #   browser
-    #     .evaluateAsync (done) ->
-    #       p = client.payment.paypal
-    #         user:
-    #           email:      email
-    #           firstName:  firstName
-    #           lastName:   lastName
-    #         order:
-    #           shippingAddress:
-    #             line1:        'line1'
-    #             line2:        'line2'
-    #             city:         'city'
-    #             state:        'state'
-    #             postalCode:   '11111'
-    #             country:      'USA'
-    #           currency: 'usd'
-    #           items: [{
-    #             productSlug: 'sad-keanu-shirt'
-    #             quantity:    1
-    #           }]
-
-    #       p.then (res) ->
-    #         res.status.should.equal 200
-    #         data = res.responseText
-    #         data.payKey.should.not.be.null
+      res.status.should.equal 200
+      data = res.responseText
+      data.payKey.should.not.be.null
