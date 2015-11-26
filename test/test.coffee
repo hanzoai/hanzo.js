@@ -22,25 +22,19 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
     browser.end done
 
   describe 'client#user.create', ->
-    it 'should create users', ->
+    xit 'should create users', ->
       {value} = yield browser
         .executeAsync (done) ->
-          doCreate = ->
-            client.user.create
-              firstName:       firstName
-              lastName:        lastName
-              email:           email
-              password:        goodPass1
-              passwordConfirm: goodPass1
-            .then (res) ->
-              done res
-            .catch (err) ->
-              done err
-
-          client.user.exists
-            email: email
-          .then doCreate
-          .catch doCreate
+          client.user.create
+            firstName:       firstName
+            lastName:        lastName
+            email:           email
+            password:        goodPass1
+            passwordConfirm: goodPass1
+          .then (res) ->
+            done res
+          .catch (err) ->
+            done err
 
       value.status.should.equal 200
 
