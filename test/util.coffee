@@ -10,6 +10,7 @@ exports.getBrowser = ->
 
   if caps.browserName == 'phantomjs'
     caps['phantomjs.binary.path'] = './node_modules/.bin/phantomjs'
+    caps['phantomjs.cli.jargs']   = '--web-security=false'
 
   logLevel = if process.env.VERBOSE == 'true' then 'verbose' else 'silent'
 
@@ -38,8 +39,7 @@ exports.getBrowser = ->
     # caps['tunnel-identifier'] = TRAVIS_JOB_NUMBER
 
     if TRAVIS_BUILD_NUMBER
-      console.log TRAVIS_REPO_SLUG
       caps.project = TRAVIS_REPO_SLUG?.replace /\s/, '/'
-      caps.build = "Travis (#{TRAVIS_BUILD_NUMBER}) for #{caps.project}"
+      caps.build   = "Travis (#{TRAVIS_BUILD_NUMBER}) for #{caps.project}"
 
-  webdriver.remote(opts)
+  webdriver.remote opts
