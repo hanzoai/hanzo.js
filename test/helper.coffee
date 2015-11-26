@@ -15,7 +15,11 @@ getBrowser = ->
     deviceOrientation: process.env.DEVICE_ORIENTATION
 
   if caps.browserName == 'phantomjs'
-    # caps['phantomjs.binary.path'] = (require 'phantomjs').path
+    if process.env.TRAVIS?
+      caps['phantomjs.binary.path'] = '/usr/local/phantomjs-2.0.0/bin/phantomjs'
+    # else
+    #   caps['phantomjs.binary.path'] = (require 'phantomjs').path
+
     caps['phantomjs.cli.args'] = '''
       --web-security=false
       --ignore-ssl-errors=true
