@@ -6,7 +6,6 @@ require 'chai-as-promised'
 randomToken = require 'random-token'
 
 describe "Crowdstart.js (#{process.env.BROWSER})", ->
-
   testPage = "http://localhost:#{process.env.PORT ? 3333}/fixtures/index.html"
   browser  = null
 
@@ -22,8 +21,10 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
     browser.end done
 
   describe 'client#user.create', ->
-    xit 'should create users', ->
+    it 'should create users', ->
       {value} = yield browser
+        .executeAsync (done) ->
+          done()
         .executeAsync (done) ->
           client.user.create
             firstName:       firstName
@@ -38,7 +39,7 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
 
       value.status.should.equal 200
 
-    it 'should enforce email requirement', (success) ->
+    it 'should enforce email requirement', ->
       {value} = yield browser
         .executeAsync (done) ->
           client.user.create
@@ -51,12 +52,11 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
             done res
           .catch (err)->
             done client.lastResponse
-        .call success
 
       value.status.should.equal 400
       value.responseText.error.message.should.equal 'Email is not valid'
 
-    it 'should enforce required field requirement', (success) ->
+    it 'should enforce required field requirement', ->
       {value} = yield browser
         .executeAsync (done) ->
           client.user.create
@@ -69,12 +69,11 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
             done res
           .catch (err)->
             done client.lastResponse
-        .call success
 
       value.status.should.equal 400
       value.responseText.error.message.should.equal 'First name cannot be blank'
 
-    it 'should allow required but optional field requirement', (success) ->
+    it 'should allow required but optional field requirement', ->
       {value} = yield browser
         .executeAsync (done) ->
           client.user.create
@@ -83,16 +82,15 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
             email: randomEmail()
             password: goodPass1
             passwordConfirm: goodPass1
-          .then (res)->
+          .then (res) ->
             done res
-          .catch (err)->
+          .catch (err) ->
             done client.lastResponse
-        .call success
 
       value.status.should.equal 400
       value.responseText.error.message.should.equal 'First name cannot be blank'
 
-    it 'should enforce password match requirement', (success) ->
+    it 'should enforce password match requirement', ->
       {value} = yield browser
         .executeAsync (done) ->
           client.user.create
@@ -105,12 +103,11 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
             done res
           .catch (err)->
             done client.lastResponse
-        .call success
 
       value.status.should.equal 400
       value.responseText.error.message.should.equal 'Passwords need to match'
 
-    it 'should enforce password min-length requirement', (success) ->
+    it 'should enforce password min-length requirement', ->
       {value} = yield browser
         .executeAsync (done) ->
           client.user.create
@@ -119,38 +116,36 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
             email: randomEmail()
             password: badPass1
             passwordConfirm: badPass1
-          .then (res)->
+          .then (res) ->
             done res
-          .catch (err)->
+          .catch (err) ->
             done client.lastResponse
-        .call success
 
       value.status.should.equal 400
       value.responseText.error.message.should.equal 'Password needs to be atleast 6 characters'
 
   describe 'client#user.login', ->
     # test users are automatically enabled
-    it 'should login valid users', (success) ->
+    it 'should login valid users', ->
       {value} = yield browser
         .executeAsync (done) ->
           oldToken = client.getToken()
           client.user.login
             email: email
             password: goodPass1
-          .then (res)->
+          .then (res) ->
             done
               res: res
               oldToken: oldToken
               token: client.getToken()
-          .catch (err)->
+          .catch (err) ->
             done client.lastResponse
-        .call success
 
       value.res.status.should.equal 200
       value.oldToken.should.equal ''
       value.token.should.not.equal ''
 
-    it 'should not login non-existant users', (success) ->
+    it 'should not login non-existant users', ->
       {value} = yield browser
         .executeAsync (done) ->
           client.user.login
@@ -160,12 +155,11 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
             done res
           .catch (err)->
             done client.lastResponse
-        .call success
 
       value.status.should.equal 401
       value.responseText.error.message.should.equal 'Email or password is incorrect'
 
-    it 'should not login non-existant users', (success) ->
+    it 'should not login non-existant users', ->
       {value} = yield browser
         .executeAsync (done) ->
           client.user.login
@@ -175,13 +169,12 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
             done res
           .catch (err)->
             done client.lastResponse
-        .call success
 
       value.status.should.equal 401
       value.responseText.error.message.should.equal 'Email or password is incorrect'
 
   describe 'client#user.account', ->
-    it 'should retieve logged in user data', (success)->
+    it 'should retieve logged in user data', ->
       {value} = yield browser
         .executeAsync (done) ->
           client.user.account()
@@ -189,7 +182,6 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
             done res
           .catch (err)->
             done client.lastResponse
-        .call success
 
       value.status.should.equal 200
       data = value.responseText
@@ -198,19 +190,17 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
       data.email.should.equal email
 
   describe 'client#user.updateAccount', ->
-    it 'should patch logged in user data', (success)->
+    it 'should patch logged in user data', ->
       {value} = yield browser
         .executeAsync (done) ->
           client.user.updateAccount
             firstName: newFirstName
-          .then (res)->
+          .then (res) ->
             done res
           # compensate for stupid phantom js bug
-          .catch (err)->
+          .catch (err) ->
             done client.lastResponse
-        .call success
 
-      if !/PhantomJS/.test(navigator.userAgent)
         value.status.should.equal 200
         data = value.responseText
         data.firstName.should.equal newFirstName
@@ -218,7 +208,7 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
         data.email.should.equal email
 
   describe 'client#util', ->
-    it 'should get product', (success) ->
+    it 'should get product', ->
       {value} = yield browser
         .executeAsync (done) ->
           client.util.product 'sad-keanu-shirt'
@@ -226,13 +216,12 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
             done res
           .catch (err)->
             done client.lastResponse
-        .call success
 
       value.status.should.equal 200
       data = value.responseText
       data.price.should.equal 2500
 
-    it 'should get coupon', (success) ->
+    it 'should get coupon', ->
       {value} = yield browser
         .executeAsync (done) ->
           client.util.coupon 'SUCH-COUPON'
@@ -240,14 +229,13 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
             done res
           .catch (err)->
             done client.lastResponse
-        .call success
 
       value.status.should.equal 200
       data = value.responseText
       data.amount.should.equal 5
 
   describe 'client#payment flows', ->
-    it 'should 1 step charge payments', (success) ->
+    it 'should 1 step charge payments', ->
       {value} = yield browser
         .executeAsync (done) ->
           client.payment.charge
@@ -279,7 +267,6 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
             done res
           .catch (err)->
             done client.lastResponse
-        .call success
 
       value.status.should.equal 200
       order = value.responseText
@@ -300,7 +287,7 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
       order.items[0].productSlug.should.equal 'sad-keanu-shirt'
       order.items[0].quantity.should.equal 1
 
-    xit 'should 2 step authorize/capture payments', (success) ->
+    xit 'should 2 step authorize/capture payments', ->
       browser
         .executeAsync (done) ->
           p = client.payment.authorize
@@ -356,10 +343,7 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
               order2 = res.responseText
               order2.paymentStatus.should.equal 'paid'
 
-              done()
-        .call success
-
-    xit 'should get paypal paykey', (success) ->
+    xit 'should get paypal paykey', ->
       browser
         .executeAsync (done) ->
           p = client.payment.paypal
@@ -381,10 +365,7 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
                 quantity: 1
               }]
 
-          p.then (res)->
+          p.then (res) ->
             res.status.should.equal 200
             data = res.responseText
             data.payKey.should.not.be.null
-
-            done()
-        .call success
