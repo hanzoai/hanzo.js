@@ -14,7 +14,7 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
     browser = getBrowser()
     browser
       .init()
-      .timeoutsAsyncScript(5000)
+      .timeoutsAsyncScript(10000)
       .url testPage
       .call done
 
@@ -34,8 +34,9 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
           .then (res) ->
             done res
           .catch (err) ->
-            done client.lastResponse
+            done err
 
+      console.log value
       value.status.should.equal 200
 
     it 'should enforce email requirement', (success) ->

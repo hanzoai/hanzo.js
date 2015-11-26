@@ -1,4 +1,6 @@
-exec = require('executive').interactive
+require 'shortcake'
+
+fs = require 'mz/fs'
 
 option '-b', '--browser [browser]', 'browser to use for tests'
 option '-g', '--grep [filter]',     'test filter'
@@ -10,13 +12,17 @@ task 'clean', 'clean project', (options) ->
 task 'build', 'build project', (options) ->
   exec 'node_modules/.bin/coffee -bcm -o lib/ src/'
   exec 'node_modules/.bin/requisite src/index.coffee -g -o crowdstart.js'
-  # exec 'node_modules/.bin/requisite src/index.coffee -m -o checkout.min.js'
+
+task 'build-min', 'build project', (options) ->
+  invoke 'build', ->
+    exec 'node_modules/.bin/requisite src/index.coffee -m -o checkout.min.js'
 
 task 'watch', 'watch for changes and recompile project', ->
   exec 'node_modules/.bin/coffee -bcmw -o lib/ src/'
 
-task 'selenium-install', 'Install selenium standalone', ->
-  exec 'node_modules/.bin/selenium-standalone install'
+task 'selenium-install', 'Install selenium standalone', (cb) ->
+  unless yield fs.exists '/node_modules/selenium-standalone/.selenium/selenium-server'
+    exec 'node_modules/.bin/selenium-standalone install', cb
 
 task 'static-server', 'Run static server for tests', ->
   connect = require 'connect'
@@ -27,12 +33,10 @@ task 'static-server', 'Run static server for tests', ->
   console.log "Static server started at http://localhost:#{port}"
   server.listen port
 
-task 'test', 'Run tests', (options) ->
+task 'test', 'Run tests', ['selenium-install', 'static-server'], (options) ->
   browserName      = options.browser ? 'phantomjs'
   externalSelenium = options.externalSelenium ? false
   verbose          = options.verbose ? false
-
-  invoke 'static-server'
 
   runTest = (cb) ->
     exec "NODE_ENV=test
