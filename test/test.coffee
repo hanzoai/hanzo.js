@@ -14,7 +14,7 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
     browser = getBrowser()
     browser
       .init()
-      .timeoutsAsyncScript(5000)
+      .timeoutsAsyncScript(10000)
       .url testPage
       .call done
 
