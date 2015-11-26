@@ -14,7 +14,7 @@ getBrowser = ->
 
   if caps.browserName == 'phantomjs'
     # caps['phantomjs.binary.path'] = './node_modules/.bin/phantomjs'
-    caps['phantomjs.cli.args']   = '--web-security=false'
+    caps['phantomjs.cli.args'] = ['--web-security=false', '--ignore-ssl-errors=true', '--webdriver-loglevel=DEBUG']
 
   logLevel = if process.env.VERBOSE == 'true' then 'verbose' else 'silent'
 
