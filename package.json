@@ -38,7 +38,6 @@
     "executive": "^0.5.1",
     "mocha": "^2.2.1",
     "mz": "^2.1.0",
-    "phantomjs": "^1.9.19",
     "postmortem": "^0.1.8",
     "random-token": "0.0.8",
     "requisite": "^1.14.0",

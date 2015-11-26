@@ -9,7 +9,7 @@ exports.getBrowser = ->
     deviceOrientation: process.env.DEVICE_ORIENTATION
 
   if caps.browserName == 'phantomjs'
-    caps['phantomjs.binary.path'] = './node_modules/.bin/phantomjs'
+    # caps['phantomjs.binary.path'] = './node_modules/.bin/phantomjs'
     caps['phantomjs.cli.jargs']   = '--web-security=false'
 
   logLevel = if process.env.VERBOSE == 'true' then 'verbose' else 'silent'

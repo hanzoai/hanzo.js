@@ -21,10 +21,11 @@ task 'watch', 'watch for changes and recompile project', ->
 
 task 'selenium-install', 'Install selenium standalone', (cb) ->
   files = [
-    '/node_modules/selenium-standalone/.selenium/selenium-server'
-    '/node_modules/selenium-standalone/.selenium/chromedriver'
+    './node_modules/selenium-standalone/.selenium/selenium-server'
+    './node_modules/selenium-standalone/.selenium/chromedriver'
   ]
-  return if yield Promise.all (fs.exists f for f in files)
+  found = yield Promise.all (fs.exists f for f in files)
+  return if found.every (fileExists) -> fileExists
 
   exec 'node_modules/.bin/selenium-standalone install', cb
 

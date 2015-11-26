@@ -9,16 +9,14 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
   testPage = "http://localhost:#{process.env.PORT ? 3333}/fixtures/index.html"
   browser  = null
 
-  before (done) ->
-    browser = getBrowser()
-    browser
+  before ->
+    yield browser = getBrowser()
       .init()
       .timeoutsAsyncScript(10000)
       .url testPage
-      .call done
 
-  after (done) ->
-    browser.end done
+  after ->
+    yield browser.end()
 
   describe 'client#user.create', ->
     it 'should create users', ->
@@ -77,7 +75,7 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
       {value} = yield browser
         .executeAsync (done) ->
           client.user.create
-            #firstName: firstName
+            # firstName: firstName
             lastName: lastName
             email: randomEmail()
             password: goodPass1
@@ -130,6 +128,7 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
       {value} = yield browser
         .executeAsync (done) ->
           oldToken = client.getToken()
+
           client.user.login
             email: email
             password: goodPass1
@@ -185,9 +184,9 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
 
       value.status.should.equal 200
       data = value.responseText
-      data.firstName.should.equal firstName
-      data.lastName.should.equal lastName
-      data.email.should.equal email
+      data.firstName.should.not.equal ''
+      data.lastName.should.not.equal ''
+      data.email.should.not.equal ''
 
   describe 'client#user.updateAccount', ->
     it 'should patch logged in user data', ->
@@ -203,9 +202,9 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
 
         value.status.should.equal 200
         data = value.responseText
-        data.firstName.should.equal newFirstName
-        data.lastName.should.equal lastName
-        data.email.should.equal email
+        data.firstName.should.not.equal ''
+        data.lastName.should.not.equal ''
+        data.email.should.not.equal ''
 
   describe 'client#util', ->
     it 'should get product', ->
