@@ -5,6 +5,8 @@ chai.use require 'chai-as-promised'
 webdriver = require 'webdriverio'
 
 getBrowser = ->
+  logLevel = if process.env.VERBOSE == 'true' then 'verbose' else 'silent'
+
   caps =
     browserName:       process.env.BROWSER ? 'phantomjs'
     platform:          process.env.PLATFORM
@@ -13,26 +15,22 @@ getBrowser = ->
     deviceOrientation: process.env.DEVICE_ORIENTATION
 
   if caps.browserName == 'phantomjs'
-    # caps['phantomjs.binary.path'] = './node_modules/.bin/phantomjs'
-    caps['phantomjs.cli.args'] = ['--web-security=false', '--ignore-ssl-errors=true', '--webdriver-loglevel=DEBUG']
-
-  logLevel = if process.env.VERBOSE == 'true' then 'verbose' else 'silent'
-
-  opts =
-    desiredCapabilities: caps
-    logLevel: logLevel
+    # caps['phantomjs.binary.path'] = (require 'phantomjs').path
+    caps['phantomjs.cli.args'] = '''
+      --web-security=false
+      --ignore-ssl-errors=true
+      --webdriver-loglevel=DEBUG
+    '''.split '\n'
 
   if process.env.TRAVIS?
-    { BROWSERSTACK_KEY
-      BROWSERSTACK_USERNAME
-      TRAVIS_BRANCH
+    { TRAVIS_BRANCH
       TRAVIS_BUILD_NUMBER
       TRAVIS_COMMIT
       TRAVIS_JOB_NUMBER
       TRAVIS_PULL_REQUEST
       TRAVIS_REPO_SLUG } = process.env
 
-    # annotate tests with travis info
+    # Annotate tests with travis info
     caps.name = TRAVIS_COMMIT
     caps.tags = [
       TRAVIS_BRANCH
@@ -45,6 +43,10 @@ getBrowser = ->
     if TRAVIS_BUILD_NUMBER
       caps.project = TRAVIS_REPO_SLUG?.replace /\s/, '/'
       caps.build   = "Travis (#{TRAVIS_BUILD_NUMBER}) for #{caps.project}"
+
+  opts =
+    desiredCapabilities: caps
+    logLevel: logLevel
 
   webdriver.remote opts
 

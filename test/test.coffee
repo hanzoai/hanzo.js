@@ -4,6 +4,12 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
   before ->
     yield browser.url testPage
 
+    # # Hack for travis?
+    # yield browser.execute ->
+    #   phantom.page.settings ?= {}
+    #   phantom.page.settings.webSecurityEnabled = false
+    #   phantom.page.setContent phantom.page.content, phantom.page.url
+
   describe 'client#user.create', ->
     it 'should create users', ->
       {value} = yield browser
