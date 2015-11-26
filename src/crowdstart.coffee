@@ -55,11 +55,11 @@ class Client
 
   req: (uri, data, method = 'POST', token = @key) ->
     opts =
-      url: (@endpoint.replace /\/$/, '') + uri
+      url: (@endpoint.replace /\/$/, '') + uri + '?token=' + token
       method: method
-      headers:
-        'Content-Type': 'application/json'
-        'Authorization': token
+      # headers:
+      #   'Content-Type': 'application/json'
+      #   'Authorization': token
       data: JSON.stringify(data)
 
     if @debug
