@@ -10,7 +10,7 @@ exports.getBrowser = ->
 
   if caps.browserName == 'phantomjs'
     # caps['phantomjs.binary.path'] = './node_modules/.bin/phantomjs'
-    caps['phantomjs.cli.jargs']   = '--web-security=false'
+    caps['phantomjs.cli.args']   = '--web-security=false'
 
   logLevel = if process.env.VERBOSE == 'true' then 'verbose' else 'silent'
 
