@@ -7,7 +7,6 @@ option '-g', '--grep [filter]',     'test filter'
 
 task 'clean', 'clean project', (options) ->
   exec 'rm -rf lib'
-  exec 'rm -rf .test'
 
 task 'build', 'build project', (options) ->
   exec 'node_modules/.bin/coffee -bcm -o lib/ src/'
