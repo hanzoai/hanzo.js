@@ -4,15 +4,16 @@ fs = require 'mz/fs'
 
 option '-b', '--browser [browser]', 'browser to use for tests'
 option '-g', '--grep [filter]',     'test filter'
+option '-t', '--test [test]',       'specify test to run'
 
-task 'clean', 'clean project', (options) ->
+task 'clean', 'clean project', ->
   exec 'rm -rf lib'
 
-task 'build', 'build project', (options) ->
+task 'build', 'build project', ->
   exec 'node_modules/.bin/coffee -bcm -o lib/ src/'
   exec 'node_modules/.bin/requisite src/index.coffee -g -o crowdstart.js'
 
-task 'build-min', 'build project', (options) ->
+task 'build-min', 'build project', ->
   invoke 'build', ->
     exec 'node_modules/.bin/requisite src/index.coffee -m -o checkout.min.js'
 
@@ -38,23 +39,29 @@ task 'static-server', 'Run static server for tests', (cb) ->
   console.log "Static server started at http://localhost:#{port}"
   server.listen port, cb
 
-task 'test', 'Run tests', ['selenium-install', 'static-server'], (options) ->
-  browserName      = options.browser ? 'phantomjs'
-  externalSelenium = options.externalSelenium ? false
-  verbose          = options.verbose ? false
+task 'test', 'Run tests', ['selenium-install', 'static-server'], (opts) ->
+  browserName      = opts.browser          ? 'phantomjs'
+  externalSelenium = opts.externalSelenium ? false
+  grep             = opts.grep             ? ''
+  test             = opts.test             ? 'test/'
+  verbose          = opts.verbose          ? false
+
+  grep = "--grep #{opts.grep}" if grep
 
   runTest = (cb) ->
     exec "NODE_ENV=test
           BROWSER=#{browserName}
           VERBOSE=#{verbose}
           node_modules/.bin/mocha
+          --colors
+          --reporter spec
+          --timeout 90000
           --compilers coffee:coffee-script/register
           --require co-mocha
           --require postmortem/register
-          --reporter spec
-          --colors
-          --timeout 90000
-          test/test.coffee", cb
+          #{grep}
+          #{test}
+          test/", cb
 
   if externalSelenium
     runTest (err) ->

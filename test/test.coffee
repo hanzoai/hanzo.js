@@ -1,22 +1,8 @@
-should = require('chai').should()
-require 'chai-as-promised'
-
-{getBrowser} = require './util'
-
-randomToken = require 'random-token'
-
 describe "Crowdstart.js (#{process.env.BROWSER})", ->
   testPage = "http://localhost:#{process.env.PORT ? 3333}/fixtures/index.html"
-  browser  = null
 
   before ->
-    yield browser = getBrowser()
-      .init()
-      .timeoutsAsyncScript(10000)
-      .url testPage
-
-  after ->
-    yield browser.end()
+    yield browser.url testPage
 
   describe 'client#user.create', ->
     it 'should create users', ->
