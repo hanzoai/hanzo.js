@@ -25,17 +25,22 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
     it 'should create users', ->
       {value} = yield browser
         .executeAsync (done) ->
-          client.ping
-          client.user.create
-            firstName:       firstName
-            lastName:        lastName
-            email:           email
-            password:        goodPass1
-            passwordConfirm: goodPass1
-          .then (res) ->
-            done res
-          .catch (err) ->
-            done err
+          doCreate = ->
+            client.user.create
+              firstName:       firstName
+              lastName:        lastName
+              email:           email
+              password:        goodPass1
+              passwordConfirm: goodPass1
+            .then (res) ->
+              done res
+            .catch (err) ->
+              done err
+
+          client.user.exists
+            email: email
+          .then doCreate
+          .catch doCreate
 
       value.status.should.equal 200
 
@@ -135,13 +140,10 @@ describe "Crowdstart.js (#{process.env.BROWSER})", ->
       {value} = yield browser
         .executeAsync (done) ->
           oldToken = client.getToken()
-
-          p = Promise.all [
-            client.user.exists email: email
-            client.user.login email: email, password: goodPass1
-          ]
-
-          p.then (res)->
+          client.user.login
+            email: email
+            password: goodPass1
+          .then (res)->
             done
               res: res
               oldToken: oldToken
