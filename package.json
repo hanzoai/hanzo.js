@@ -34,6 +34,7 @@
     "co-mocha": "^1.1.2",
     "coffee-script": "^1.9.1",
     "connect": "^3.4.0",
+    "debug": "^2.2.0",
     "es5-shim": "^4.1.13",
     "executive": "^0.5.1",
     "mocha": "^2.3.4",

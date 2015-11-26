@@ -21,8 +21,6 @@ render = ({src, args}) ->
       ipc.send('log', sliced(arguments).map(String));
     }
 
-    console.log('hi', 'hello')
-
     function done(err, response) {
       if (err) {
         var message = {
