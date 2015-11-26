@@ -50,7 +50,7 @@ task 'test', 'Run tests', ['selenium-install', 'static-server'], (options) ->
           node_modules/.bin/mocha
           --compilers coffee:coffee-script/register
           --require co-mocha
-          --require test/helper.coffee
+          --require postmortem/register
           --reporter spec
           --colors
           --timeout 90000
