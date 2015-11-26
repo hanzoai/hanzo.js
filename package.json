@@ -38,13 +38,12 @@
     "executive": "^0.5.1",
     "mocha": "^2.3.4",
     "mz": "^2.1.0",
+    "nightmare": "^2.0.8",
     "postmortem": "^0.2.3",
     "random-token": "0.0.8",
     "requisite": "^1.14.0",
-    "selenium-standalone": "^4.7.2",
     "serve-static": "^1.10.0",
-    "shortcake": "^0.5.1",
-    "webdriverio": "^3.3.0"
+    "shortcake": "^0.5.1"
   },
   "dependencies": {
     "bluebird": "^2.10.0",

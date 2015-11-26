@@ -2,61 +2,91 @@ chai = require 'chai'
 chai.should()
 chai.use require 'chai-as-promised'
 
-webdriver = require 'webdriverio'
-
-getBrowser = ->
-  logLevel = if process.env.VERBOSE == 'true' then 'verbose' else 'silent'
-
-  caps =
-    browserName:       process.env.BROWSER ? 'phantomjs'
-    platform:          process.env.PLATFORM
-    version:           process.env.VERSION
-    deviceName:        process.env.DEVICE_NAME
-    deviceOrientation: process.env.DEVICE_ORIENTATION
-
-  if caps.browserName == 'phantomjs'
-    if process.env.TRAVIS?
-      caps['phantomjs.binary.path'] = '/usr/local/phantomjs-2.0.0/bin/phantomjs'
-    # else
-    #   caps['phantomjs.binary.path'] = (require 'phantomjs').path
-
-    caps['phantomjs.cli.args'] = '''
-      --web-security=false
-      --ignore-ssl-errors=true
-      --webdriver-loglevel=DEBUG
-    '''.split '\n'
-
-  if process.env.TRAVIS?
-    { TRAVIS_BRANCH
-      TRAVIS_BUILD_NUMBER
-      TRAVIS_COMMIT
-      TRAVIS_JOB_NUMBER
-      TRAVIS_PULL_REQUEST
-      TRAVIS_REPO_SLUG } = process.env
-
-    # Annotate tests with travis info
-    caps.name = TRAVIS_COMMIT
-    caps.tags = [
-      TRAVIS_BRANCH
-      TRAVIS_BUILD_NUMBER
-      TRAVIS_PULL_REQUEST
-    ]
-
-    caps['tunnel-identifier'] = TRAVIS_JOB_NUMBER
-
-    if TRAVIS_BUILD_NUMBER
-      caps.project = TRAVIS_REPO_SLUG?.replace /\s/, '/'
-      caps.build   = "Travis (#{TRAVIS_BUILD_NUMBER}) for #{caps.project}"
-
-  opts =
-    desiredCapabilities: caps
-    logLevel: logLevel
-
-  webdriver.remote opts
+Nightmare = require 'nightmare'
 
 before ->
-  global.browser = getBrowser()
-  yield browser.init().timeoutsAsyncScript(10000)
+  global.browser = Nightmare()
 
 after ->
   yield browser.end()
+
+render = ({src, args}) ->
+  """
+  (function javascript () {
+    var log = console.log;
+    var ipc = __nightmare.ipc;
+    var sliced = __nightmare.sliced;
+
+    console.log = function() {
+      ipc.send('log', sliced(arguments).map(String));
+    }
+
+    console.log('hi', 'hello')
+
+    function done(err, response) {
+      if (err) {
+        var message = {
+          name:    err.name,
+          message: err.message,
+          stack:   err.stack
+        }
+        ipc.send('error', JSON.stringify(message));
+      } else {
+        ipc.send('response', response);
+      }
+
+      console.log = log;
+    }
+
+    // Evaluate code
+    try {
+      var response = (#{src})(#{args})
+    } catch (err) {
+      return done(err)
+    }
+
+    // Handle Promises
+    if (typeof response.then === 'function') {
+      return response.then(function(value) {
+        done(null, value)
+      }).catch(function(err) {
+        done(err)
+      })
+    }
+
+    done(null, response)
+  })()
+  """
+
+debug = (require 'debug') 'nightmare-evaluate-async'
+
+evaluateAsync = (fn, args...) ->
+  debug '.evaluateAsync() fn on the page'
+
+  done = args.pop()
+
+  unless typeof done is 'function'
+    args.push done
+    done = ->
+
+  argsList = (JSON.stringify args).slice 1,-1
+  js = render src: (String fn), args: argsList
+
+  @child.once 'javascript', (errstr, result) ->
+    if errstr?
+      errmsg    = JSON.parse errstr
+      err       = new Error errmsg.message
+      err.name  = errmsg.name
+      err.stack = errmsg.stack
+      done err
+    else
+      done null, result
+
+  @child.emit 'javascript', js
+  @
+
+
+Nightmare::evaluateAsync = (args...) ->
+  debug 'queueing action "evaluateAsync"'
+  @_queue.push [evaluateAsync, args]
+  @
