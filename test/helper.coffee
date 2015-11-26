@@ -7,7 +7,7 @@ Nightmare = require 'nightmare'
 
 before ->
   global.browser = Nightmare
-    show: process.env.VERBOSE == 'true'
+    show: process.env.VERBOSE is 'true'
 
 after ->
   yield browser.end()
