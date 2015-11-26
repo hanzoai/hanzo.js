@@ -21,17 +21,22 @@ task 'watch', 'watch for changes and recompile project', ->
   exec 'node_modules/.bin/coffee -bcmw -o lib/ src/'
 
 task 'selenium-install', 'Install selenium standalone', (cb) ->
-  unless yield fs.exists '/node_modules/selenium-standalone/.selenium/selenium-server'
-    exec 'node_modules/.bin/selenium-standalone install', cb
+  files = [
+    '/node_modules/selenium-standalone/.selenium/selenium-server'
+    '/node_modules/selenium-standalone/.selenium/chromedriver'
+  ]
+  return if yield Promise.all (fs.exists f for f in files)
 
-task 'static-server', 'Run static server for tests', ->
+  exec 'node_modules/.bin/selenium-standalone install', cb
+
+task 'static-server', 'Run static server for tests', (cb) ->
   connect = require 'connect'
   server = connect()
   server.use (require 'serve-static') './test'
 
   port = process.env.PORT ? 3333
   console.log "Static server started at http://localhost:#{port}"
-  server.listen port
+  server.listen port, cb
 
 task 'test', 'Run tests', ['selenium-install', 'static-server'], (options) ->
   browserName      = options.browser ? 'phantomjs'
