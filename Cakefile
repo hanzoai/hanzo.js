@@ -11,15 +11,17 @@ task 'clean', 'clean project', ->
   exec 'rm -rf lib'
 
 task 'build', 'build project', ->
-  exec 'node_modules/.bin/coffee -bcm -o lib/ src/'
-  exec 'node_modules/.bin/requisite src/index.coffee -g -o crowdstart.js'
+  exec.parallel '''
+  coffee -bcm -o lib/ src/
+  requisite src/index.coffee -g -o crowdstart.js
+  '''
 
 task 'build-min', 'build project', ->
-  invoke 'build', ->
-    exec 'node_modules/.bin/requisite src/index.coffee -m -o checkout.min.js'
+  yield invoke 'build'
+  exec 'requisite src/index.coffee -m -o checkout.min.js'
 
 task 'watch', 'watch for changes and recompile project', ->
-  exec 'node_modules/.bin/coffee -bcmw -o lib/ src/'
+  exec 'coffee -bcmw -o lib/ src/'
 
 task 'static-server', 'Run static server for tests', (cb) ->
   connect = require 'connect'
@@ -30,7 +32,7 @@ task 'static-server', 'Run static server for tests', (cb) ->
   console.log "Static server started at http://localhost:#{port}"
   server.listen port, cb
 
-task 'test', 'Run tests', ['static-server'], (opts, cb) ->
+task 'test', 'Run tests', ['static-server'], (opts) ->
   grep    = opts.grep             ? ''
   test    = opts.test             ? 'test/'
   verbose = opts.verbose          ? ''
@@ -38,7 +40,7 @@ task 'test', 'Run tests', ['static-server'], (opts, cb) ->
   grep    = "--grep #{opts.grep}" if grep
   verbose = 'DEBUG=nightmare VERBOSE=true' if verbose
 
-  exec "NODE_ENV=test #{verbose}
+  yield exec "NODE_ENV=test #{verbose}
         node_modules/.bin/mocha
         --colors
         --reporter spec
@@ -48,16 +50,10 @@ task 'test', 'Run tests', ['static-server'], (opts, cb) ->
         --require postmortem/register
         #{grep}
         #{test}", (err) ->
-    if err
-      process.exit 1
-    else
-      process.exit 0
 
-task 'publish', 'publish project', (options) ->
-  newVersion = options.version ? 'patch'
-
-  exec """
+task 'publish', 'publish project', ->
+  exec '''
   git push
-  npm version #{newVersion}
+  git push --tags
   npm publish
-  """.split '\n'
+  '''
