@@ -1,7 +1,4 @@
-{isFunction} = require './utils'
-
-statusOk      = (res) -> res.status is 200
-statusCreated = (res) -> res.status is 201
+{isFunction, statusOk, statusCreated} = require './utils'
 
 storeUri = (u) ->
   (x) ->

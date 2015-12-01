@@ -1,5 +1,8 @@
 require 'shortcake'
 
+fs        = require 'fs'
+requisite = require 'requisite'
+
 option '-b', '--browser [browser]', 'browser to use for tests'
 option '-g', '--grep [filter]',     'test filter'
 option '-t', '--test [test]',       'specify test to run'
@@ -8,15 +11,32 @@ option '-v', '--verbose',           'enable verbose test logging'
 task 'clean', 'clean project', ->
   exec 'rm -rf lib'
 
-task 'build', 'build project', ->
-  exec.parallel '''
-  coffee -bcm -o lib/ src/
-  requisite src/index.coffee -g -o crowdstart.js
-  '''
+task 'build', 'build project', (cb) ->
+  todo = 2
+  done = -> cb() if todo-- is 0
 
-task 'build-min', 'build project', ->
-  yield invoke 'build'
-  exec 'requisite src/index.coffee -m -o checkout.min.js'
+  exec 'coffee -bcm -o lib/ src/', done
+
+  requisite.bundle entry: 'src/index.coffee', (err, bundle) ->
+    throw err if err?
+
+    bundle.moduleCache['./api'].walkAst (node) ->
+      if (node.type == 'ObjectExpression') and (Array.isArray node.properties)
+
+        node.properties = node.properties.filter (prop) ->
+          if prop?.key?.name == 'method' and prop?.value?.value == 'POST'
+            return false
+          if prop?.key?.name == 'expects' and prop?.value?.name == 'statusOk'
+            return false
+          true
+
+      false
+
+    fs.writeFileSync 'crowdstart.js', bundle.toString(), 'utf8'
+    done()
+
+task 'build-min', 'build project', ['build'], ->
+  exec 'uglifyjs crowdstart.js --compress --mangle --lint=false > crowdstart.min.js'
 
 task 'static-server', 'Run static server for tests', (cb) ->
   connect = require 'connect'
