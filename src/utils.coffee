@@ -1,6 +1,8 @@
 exports.isFunction = (fn) -> typeof fn is 'function'
-
 exports.isString   = (s)  -> typeof s  is 'string'
+
+exports.statusOk      = (res) -> res.status is 200
+exports.statusCreated = (res) -> res.status is 201
 
 exports.newError = (data, res) ->
   if res.error?

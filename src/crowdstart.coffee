@@ -2,6 +2,8 @@ Client  = require './client'
 api     = require './api'
 cookies = require 'cookies-js'
 
+{statusOk} = require './utils'
+
 sessionTokenName = 'crowdstart-session'
 cachedToken      = ''
 
@@ -29,6 +31,9 @@ module.exports = class Crowdstart
           mkuri = blueprint.uri
 
         {expects, method, process} = blueprint
+
+        expects ?= statusOk
+        method  ?= 'POST'
 
         @[api][name] = (data, cb) =>
           uri = mkuri.call @, data
