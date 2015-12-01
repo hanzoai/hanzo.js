@@ -28,7 +28,6 @@
     "url": "http://github.com/crowdstart/crowdstart.js"
   },
   "devDependencies": {
-    "cake": "^0.1.1",
     "chai": "^3.4.1",
     "chai-as-promised": "^5.1.0",
     "co-mocha": "^1.1.2",
@@ -39,7 +38,6 @@
     "executive": "^0.5.1",
     "joseph": "^0.2.6",
     "mocha": "^2.3.4",
-    "mz": "^2.1.0",
     "nightmare": "^2.0.8",
     "postmortem": "^0.2.3",
     "random-token": "0.0.8",
@@ -48,8 +46,8 @@
     "shortcake": "^1.1.5"
   },
   "dependencies": {
-    "bluebird": "^2.10.0",
+    "broken": "^0.1.1",
     "cookies-js": "^1.2.2",
-    "xhr-promise": "^1.2.0"
+    "xhr-promise-es6": "^1.2.1"
   }
 }

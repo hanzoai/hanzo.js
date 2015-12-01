@@ -1,39 +1,48 @@
-shim    = require './shim'
+Client  = require './client'
+api     = require './api'
 cookies = require 'cookies-js'
 
 sessionTokenName = 'crowdstart-session'
+cachedToken      = ''
 
-cachedToken = ''
 
-Promise::addCallback = (cb) ->
-  return unless isFunction cb
-
-  @then  (res) -> cb null, res
-  @catch (err) -> cb err
-
-class Client
-  debug:        false
-  endpoint:     'https://api.crowdstart.com'
-  lastResponse: null
-
+module.exports = class Crowdstart
   constructor: (@key) ->
-    user = {}
-    for name, fn of @user
-      user[name] = fn.bind(@)
+    @client = new Client @key
+    for k, v of api
+      addApi k, v
 
-    @user = user
+  addApi: (api, blueprints) ->
+    for name, blueprint of blueprints
+      do (name, blueprint) ->
+        # Just a normal method
+        if isFunction blueprint
+          @[api][name] = -> blueprint.apply @, arguments
+          return
 
-    payment = {}
-    for name, fn of @payment
-      payment[name] = fn.bind(@)
+        # Request blueprint...
 
-    @payment = payment
+        # Setup uri builder
+        if typeof blueprint.uri is 'string'
+          mkuri = (res) -> blueprint.uri
+        else
+          mkuri = blueprint.uri
 
-    util = {}
-    for name, fn of @util
-      util[name] = fn.bind(@)
+        {expects, method, process} = blueprint
 
-    @util = util
+        @[api][name] = (data, cb) =>
+          uri = mkuri.call @, data
+          @client.request uri, data, method
+            .then (res) ->
+              if res.error?
+                return newError data, res
+              unless expects res
+                return newError data, res
+              if process?
+                process.call @, res
+              res
+            .callback cb
+>>>>>>> Stashed changes
 
   setToken: (token) ->
     if window.location.protocol == 'file:'
@@ -48,10 +57,11 @@ class Client
     return (cookies.get sessionTokenName) ? ''
 
   setKey: (key) ->
-    @key = key
+    @client.key = key
 
   setStore: (id) ->
     @storeId = id
+<<<<<<< Updated upstream
 
   req: (uri, data, method = 'POST', token = @key) ->
     opts =
@@ -276,5 +286,3 @@ class Client
 
         return res
       , success, fail
-
-module.exports = Client
