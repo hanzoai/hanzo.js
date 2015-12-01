@@ -5,16 +5,17 @@ sessionTokenName = 'crowdstart-session'
 
 cachedToken = ''
 
-bindCbs = (p, predicate, success, fail)->
-  p = p.then predicate
-  p = p.then(success) if success?
-  p = p.catch(fail)   if fail?
-  return p
+Promise::addCallback = (cb) ->
+  return unless isFunction cb
+
+  @then  (res) -> cb null, res
+  @catch (err) -> cb err
 
 class Client
-  debug: false
-  endpoint: "https://api.crowdstart.com"
+  debug:        false
+  endpoint:     'https://api.crowdstart.com'
   lastResponse: null
+
   constructor: (@key) ->
     user = {}
     for name, fn of @user
@@ -34,14 +35,13 @@ class Client
 
     @util = util
 
-  setToken: (token)->
+  setToken: (token) ->
     if window.location.protocol == 'file:'
-      cachedToken = token
-      return
+      return cachedToken = token
 
     cookies.set sessionTokenName, token, expires: 604800
 
-  getToken: ()->
+  getToken: ->
     if window.location.protocol == 'file:'
       return cachedToken
 
@@ -78,7 +78,7 @@ class Client
     exists: (data, success, fail) ->
       uri = '/account/exists/' + data.email
 
-      return bindCbs @req(uri, {}), (res)->
+      return bindCbs @req(uri, {}), (res) ->
         return res.status == 200
       , success, fail
 

@@ -20,9 +20,6 @@ task 'build-min', 'build project', ->
   yield invoke 'build'
   exec 'requisite src/index.coffee -m -o checkout.min.js'
 
-task 'watch', 'watch for changes and recompile project', ->
-  exec 'coffee -bcmw -o lib/ src/'
-
 task 'static-server', 'Run static server for tests', (cb) ->
   connect = require 'connect'
   server = connect()
@@ -49,10 +46,25 @@ task 'test', 'Run tests', ['static-server'], (opts) ->
         --require co-mocha
         --require postmortem/register
         #{grep}
-        #{test}", (err) ->
+        #{test}"
+
+task 'watch', 'watch for changes and recompile project', ->
+  exec 'coffee -bcmw -o lib/ src/'
+
+task 'watch:test', 'watch for changes and re-run tests', ->
+  invoke 'watch'
+
+  require('vigil').watch __dirname, (filename, stats) ->
+    return if running 'test'
+
+    if /^src/.test filename
+      invoke 'test'
+
+    if /^test/.test filename
+      invoke 'test', test: filename
 
 task 'publish', 'publish project', ->
-  exec '''
+  exec.parallel '''
   git push
   git push --tags
   npm publish
