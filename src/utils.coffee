@@ -1,4 +1,5 @@
 exports.isFunction = (fn) -> typeof fn is 'function'
+
 exports.isString   = (s)  -> typeof s  is 'string'
 
 exports.newError = (data, res) ->

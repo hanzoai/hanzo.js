@@ -1,6 +1,7 @@
 Xhr         = require 'xhr-promise-es6'
 Xhr.Promise = require 'broken'
 
+
 module.exports = class Client
   debug:    false
   endpoint: 'https://api.crowdstart.com'
