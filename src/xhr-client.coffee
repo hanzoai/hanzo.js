@@ -6,7 +6,7 @@ module.exports = class Client
   debug:    false
   endpoint: 'https://api.crowdstart.com'
 
-  constructor: (@key) ->
+  constructor: ({@key, @endpoint, @debug} = {}) ->
     return new Client @key unless @ instanceof Client
 
   setKey: (key) ->

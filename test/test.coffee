@@ -10,9 +10,9 @@ describe 'Crowdstart.js', ->
     it 'should instantiate', ->
       Crowdstart.Api 'fakekey'
 
-  describe 'Crowdstart.Client', ->
+  describe 'Crowdstart.XhrClient', ->
     it 'should instantiate', ->
-      Crowdstart.Client 'fakekey'
+      Crowdstart.XhrClient 'fakekey'
 
   describe 'client#user.create', ->
     it 'should create users', ->
@@ -24,6 +24,7 @@ describe 'Crowdstart.js', ->
           password:        goodPass1
           passwordConfirm: goodPass1
 
+      console.log res
       res.status.should.eq 200
 
     it 'should enforce email requirement', ->

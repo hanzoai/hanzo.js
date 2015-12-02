@@ -8,8 +8,14 @@ cachedToken      = ''
 
 
 module.exports = class Api
-  constructor: (@client) ->
-    return new Api @client unless @ instanceof Api
+  constructor: ({@endpoint, @debug, @key, @client} = {}) ->
+    return new Api arguments... unless @ instanceof Api
+
+    unless @client
+      @client = new (require './xhr-client')
+        key:      @key
+        debug:    @debug
+        endpoint: @endpoint
 
     for api, blueprints of methods
       @addBlueprints api, blueprints
