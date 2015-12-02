@@ -11,6 +11,7 @@
     "payments"
   ],
   "main": "lib/",
+  "browser": "lib/browser",
   "scripts": {
     "prepublish": "cake build",
     "test": "cake build && cake test"

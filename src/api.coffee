@@ -3,7 +3,9 @@ cookies = require 'cookies-js'
 {isFunction, newError, statusOk} = require './utils'
 
 module.exports = class Api
-  sessionName: 'crowdstart-session'
+  @SESSION_NAME = 'crowdstart-session'
+  @BLUEPRINTS   = {}
+  @CLIENT       = ->
 
   constructor: (opts = {}) ->
     return new Api arguments... unless @ instanceof Api
@@ -11,12 +13,12 @@ module.exports = class Api
     {endpoint, debug, key, client, blueprints} = opts
 
     @debug      = debug
-    blueprints ?= require './blueprints/browser'
+    blueprints ?= Api.BLUEPRINTS
 
     if client
       @client = client
     else
-      @client = new (require './client')
+      @client = new Api.CLIENT
         debug:    debug
         endpoint: endpoint
         key:      key
@@ -45,7 +47,7 @@ module.exports = class Api
 
         # Blueprint defaults
         expects ?= statusOk
-        method  ?= 'POST'
+        method  ?= 'POST'  # Defaulting to POST shaves a few kb off browser bundle
 
         @[api][name] = (data, cb) =>
           uri = mkuri.call @, data
@@ -64,11 +66,11 @@ module.exports = class Api
     @client.setKey key
 
   setUserKey: (key) ->
-    cookies.set @sessionName, key, expires: 604800
+    cookies.set Api.SESSION_NAME, key, expires: 604800
     @client.setUserKey key
 
   getUserKey: ->
-    return (cookies.get @sessionName) ? ''
+    return (cookies.get Api.SESSION_NAME) ? ''
 
   setStore: (id) ->
     @storeId = id

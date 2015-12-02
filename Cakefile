@@ -19,7 +19,7 @@ task 'build', 'build project', (cb) ->
 
   exec 'coffee -bcm -o lib/ src/', done
 
-  requisite.bundle entry: 'src/index.coffee', (err, bundle) ->
+  requisite.bundle entry: 'src/browser.coffee', (err, bundle) ->
     return done err if err?
 
     # Strip out unnecessary api bits
