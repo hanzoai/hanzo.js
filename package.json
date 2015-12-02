@@ -36,7 +36,7 @@
     "debug": "^2.2.0",
     "es5-shim": "^4.1.13",
     "executive": "^0.5.1",
-    "joseph": "^0.2.6",
+    "joseph": "^0.2.9",
     "mocha": "^2.3.4",
     "nightmare": "^2.0.8",
     "postmortem": "^0.2.3",

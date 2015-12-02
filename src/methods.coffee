@@ -52,10 +52,10 @@ module.exports =
       method:  'POST'
       expects: statusOk
       process: (res) ->
-        @setToken res.data.token
+        @setUserKey res.data.token
         res
 
-    logout: -> @setToken ''
+    logout: -> @setUserKey ''
 
     # data =
     #     email:  ...
@@ -125,11 +125,11 @@ module.exports =
   # UTILITY
   util:
     product:
-      uri:     storeUri (x) -> '/product/' + x.id ? x
+      uri:     storeUri (x) -> '/product/' + (x.id ? x.slug ? x)
       method:  'GET'
       expects: statusOk
 
-    coupon: (code, success, fail) ->
-      uri:     storeUri (x) -> '/coupon/' + x.id ? x
+    coupon:
+      uri:     storeUri (x) -> '/coupon/' + (x.id ? x.code ? x)
       method:  'GET'
       expects: statusOk

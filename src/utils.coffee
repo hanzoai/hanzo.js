@@ -10,9 +10,10 @@ exports.newError = (data, res) ->
   err = new Error message
   err.message = message
 
-  err.req     = data
-  err.res     = res
-  res.data    = res.data
-  err.status  = res.status
-  err.type    = res.data?.error?.type
+  err.req          = data
+  err.res          = res
+  err.data         = res.data
+  err.responseText = res.data
+  err.status       = res.status
+  err.type         = res.data?.error?.type
   err

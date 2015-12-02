@@ -3,8 +3,7 @@ cookies = require 'cookies-js'
 
 {isFunction, newError, statusOk} = require './utils'
 
-sessionTokenName = 'crowdstart-session'
-cachedToken      = ''
+sessionName = 'crowdstart-session'
 
 
 module.exports = class Api
@@ -56,20 +55,15 @@ module.exports = class Api
               res
             .callback cb
 
-  setToken: (token) ->
-    if window.location.protocol == 'file:'
-      return cachedToken = token
-
-    cookies.set sessionTokenName, token, expires: 604800
-
-  getToken: ->
-    if window.location.protocol == 'file:'
-      return cachedToken
-
-    return (cookies.get sessionTokenName) ? ''
-
   setKey: (key) ->
     @client.setKey key
+
+  setUserKey: (key) ->
+    cookies.set sessionName, key, expires: 604800
+    @client.setUserKey key
+
+  getUserKey: ->
+    return (cookies.get sessionName) ? ''
 
   setStore: (id) ->
     @storeId = id

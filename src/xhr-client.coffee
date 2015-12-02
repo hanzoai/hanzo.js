@@ -12,9 +12,15 @@ module.exports = class Client
   setKey: (key) ->
     @key = key
 
-  request: (uri, data, method = 'POST', token = @key) ->
+  setUserKey: (key) ->
+    @userKey = key
+
+  getKey: ->
+    @userKey or @key
+
+  request: (uri, data, method = 'POST', key = @getKey()) ->
     opts =
-      url: (@endpoint.replace /\/$/, '') + uri + '?token=' + token
+      url: (@endpoint.replace /\/$/, '') + uri + '?token=' + key
       method: method
       # headers:
       #   'Content-Type': 'application/json'
@@ -26,8 +32,10 @@ module.exports = class Client
 
     (new Xhr).send opts
       .then (res) ->
-        res.data = res.responseText
+        res.data   = res.responseText
         res
       .catch (res) ->
-        res.data = res.responseText
+        try
+          res.data   = res.responseText ? (JSON.parse res.xhr.responseText)
+        catch err
         throw newError data, res

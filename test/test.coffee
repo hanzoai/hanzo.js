@@ -36,6 +36,7 @@ describe 'Crowdstart.js', ->
             email:           firstName
             password:        goodPass1
             passwordConfirm: goodPass1
+          # setTimeout cb, 100000
 
       catch err
 
@@ -129,15 +130,14 @@ describe 'Crowdstart.js', ->
       err.message.should.eq 'Email or password is incorrect'
 
   describe 'client#user.account', ->
-    it 'should retieve logged in user data', ->
+    it 'should retrieve logged in user data', ->
       res = yield browser.evaluate ->
           client.user.account()
 
       res.status.should.equal 200
-      data = res.responseText
-      data.firstName.should.not.equal ''
-      data.lastName.should.not.equal ''
-      data.email.should.not.equal ''
+      res.data.firstName.should.not.equal ''
+      res.data.lastName.should.not.equal ''
+      res.data.email.should.not.equal ''
 
   describe 'client#user.updateAccount', ->
     it 'should patch logged in user data', ->
@@ -146,27 +146,26 @@ describe 'Crowdstart.js', ->
             firstName: newFirstName
 
         res.status.should.equal 200
-        data = res.responseText
-        data.firstName.should.not.equal ''
-        data.lastName.should.not.equal ''
-        data.email.should.not.equal ''
+        res.data.firstName.should.not.equal ''
+        res.data.lastName.should.not.equal ''
+        res.data.email.should.not.equal ''
 
   describe 'client#util', ->
     it 'should get product', ->
-      res = yield browser.evaluate ->
-        client.util.product 'sad-keanu-shirt'
+      try
+        res = yield browser.evaluate ->
+          client.util.product 'sad-keanu-shirt'
+      catch err
 
       res.status.should.equal 200
-      data = res.responseText
-      data.price.should.equal 2500
+      res.data.price.should.equal 2500
 
     it 'should get coupon', ->
       res = yield browser.evaluate ->
         client.util.coupon 'SUCH-COUPON'
 
       res.status.should.equal 200
-      data = res.responseText
-      data.amount.should.equal 5
+      res.data.amount.should.equal 500
 
   describe 'client#payment flows', ->
     it 'should 1 step charge payments', ->
