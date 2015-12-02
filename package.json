@@ -35,7 +35,6 @@
     "connect": "^3.4.0",
     "debug": "^2.2.0",
     "es5-shim": "^4.1.13",
-    "executive": "^0.5.1",
     "joseph": "^0.2.9",
     "mocha": "^2.3.4",
     "nightmare": "^2.0.8",
@@ -49,6 +48,6 @@
     "broken": "^0.1.1",
     "cookies-js": "^1.2.2",
     "joseph": "^0.2.8",
-    "xhr-promise-es6": "^1.2.3"
+    "xhr-promise-es6": "^1.2.4"
   }
 }
