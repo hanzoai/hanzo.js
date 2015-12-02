@@ -84,6 +84,12 @@ task 'test', 'Run tests', ['static-server'], (opts) ->
 task 'test-ci', 'Run tests', (opts) ->
   invoke 'test', bail: true, coverage: true
 
+task 'coverage', 'Process coverage statistics', ->
+    exec '''
+      cat ./coverage/lcov.info | coveralls
+      cat ./coverage/coverage.json | codecov
+      '''
+
 task 'watch', 'watch for changes and recompile project', ->
   exec 'coffee -bcmw -o lib/ src/'
 
