@@ -26,8 +26,8 @@ var user = api.account.create({
 
 [travis-url]: https://travis-ci.org/crowdstart/crowdstart.js
 [travis-image]: https://img.shields.io/travis/crowdstart/crowdstart.js.svg
-[coveralls-url]: https://coveralls.io/r/crowdstart.js/crowdstart.js/
-[coveralls-image]: https://img.shields.io/coveralls/crowdstart.js/crowdstart.js.svg
+[coveralls-url]: https://coveralls.io/r/crowdstart/crowdstart.js/
+[coveralls-image]: https://img.shields.io/coveralls/crowdstart/crowdstart.js.svg
 [npm-url]: https://www.npmjs.com/package/crowdstart.js
 [npm-image]: https://img.shields.io/npm/v/crowdstart.js.svg
 [downloads-image]: https://img.shields.io/npm/dm/crowdstart.js.svg
