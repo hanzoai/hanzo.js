@@ -47,7 +47,7 @@ blueprints =
 
     # data =
     #     tokenId:            ...
-    createConfirm:
+    enable:
       uri:     (x) -> '/account/create/confirm/' + x.tokenId
       method:  'POST'
       expects: statusOk
@@ -76,7 +76,7 @@ blueprints =
     #     tokenId:            ...
     #     password:           ...
     #     passwordConfirm:    ...
-    resetConfirm:
+    confirm:
       uri:     (x) -> '/account/reset/confirm/' + x.tokenId
       method:  'POST'
       expects: statusOk

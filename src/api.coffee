@@ -11,7 +11,7 @@ module.exports = class Api
     return new Api arguments... unless @ instanceof Api
 
     unless @client
-      @client = new (require './xhr-client')
+      @client = new (require './client')
         debug:    @debug
         endpoint: @endpoint
         key:      @key
