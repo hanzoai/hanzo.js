@@ -1,16 +1,23 @@
-{isFunction, statusOk, statusCreated, statusNoContent} = require './utils'
+{
+  isFunction
+  statusCreated
+  statusNoContent
+  statusOk
+} = require '../utils'
 
-storeUri = (u) ->
-  (x) ->
-    if isFunction u
-      uri = u x
-    else
-      uri = u
+{byId, storePrefixed} = require './uri'
 
-    if @storeId?
-      "/store/#{@storeId}" + uri
-    else
-      uri
+# Default blueprint for browser APIs
+createBlueprint = (name) ->
+    endpoint = "/#{name}"
+
+    list:
+      uri:    endpoint
+      method: 'GET'
+    get:
+      uri:     byId name
+      method:  'GET'
+      expects: statusOk
 
 blueprints =
   # ACCOUNT
@@ -65,64 +72,36 @@ blueprints =
   # PAYMENT
   payment:
     authorize:
-      uri:     storeUri '/authorize'
+      uri:     storePrefixed '/authorize'
       method:  'POST'
       expects: statusOk
 
     capture:
-      uri:     storeUri (x) -> '/capture/' + x.orderId
+      uri:     storePrefixed (x) -> '/capture/' + x.orderId
       method:  'POST'
       expects: statusOk
 
     charge:
-      uri:     storeUri '/charge'
+      uri:     storePrefixed '/charge'
       method:  'POST'
       expects: statusOk
 
     paypal:
-      uri:     storeUri '/paypal/pay'
+      uri:     storePrefixed '/paypal/pay'
       method:  'POST'
       expects: statusOk
 
+# Add model-specific APIs
 models = [
   'coupon'
   'product'
   'referral'
   'referrer'
-  'subscriber'
   'transaction'
-  'user'
 ]
 
-for name in models
-  do (name) ->
-    endpoint = "/#{name}"
-
-    blueprints[name] =
-      list:
-        uri:    endpoint
-        method: 'GET'
-      get:
-        uri:     (x) -> "#{endpoint}/#{x.id ? x}"
-        method:  'GET'
-        expects: statusOk
-      create:
-        uri:     endpoint
-        method:  'POST'
-        expects: statusCreated
-      update:
-        uri:     (x) -> "#{endpoint}/#{x.id ? x}"
-        method:  'PATCH'
-        expects: statusOk
-      delete:
-        uri:     (x) -> "#{endpoint}/#{x.id ? x}"
-        method:  'DELETE'
-        expects: statusNoContent
-
-for k, v of blueprints.coupon
-  blueprints.coupon[k].uri = storeUri (x) -> "/coupon/#{x.code ? x}"
-
-for k, v of blueprints.product
-  blueprints.product[k].uri = storeUri (x) -> "/product/#{x.id ? x.slug ? x}"
+for model in models
+  do (model) ->
+    blueprints[model] = createBlueprint model
 
 module.exports = blueprints

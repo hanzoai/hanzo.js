@@ -1,20 +1,25 @@
-blueprints = require './blueprints'
-cookies    = require 'cookies-js'
+cookies = require 'cookies-js'
 
 {isFunction, newError, statusOk} = require './utils'
 
-sessionName = 'crowdstart-session'
-
-
 module.exports = class Api
-  constructor: ({@endpoint, @debug, @key, @client} = {}) ->
+  sessionName: 'crowdstart-session'
+
+  constructor: (opts = {}) ->
     return new Api arguments... unless @ instanceof Api
 
-    unless @client
+    {endpoint, debug, key, client, blueprints} = opts
+
+    @debug      = debug
+    blueprints ?= require './blueprints/browser'
+
+    if client
+      @client = client
+    else
       @client = new (require './client')
-        debug:    @debug
-        endpoint: @endpoint
-        key:      @key
+        debug:    debug
+        endpoint: endpoint
+        key:      key
 
     @addBlueprints k, v for k, v of blueprints
 
@@ -59,11 +64,11 @@ module.exports = class Api
     @client.setKey key
 
   setUserKey: (key) ->
-    cookies.set sessionName, key, expires: 604800
+    cookies.set @sessionName, key, expires: 604800
     @client.setUserKey key
 
   getUserKey: ->
-    return (cookies.get sessionName) ? ''
+    return (cookies.get @sessionName) ? ''
 
   setStore: (id) ->
     @storeId = id

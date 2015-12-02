@@ -13,14 +13,17 @@ task 'clean', 'clean project', ->
 
 task 'build', 'build project', (cb) ->
   todo = 2
-  done = -> cb() if todo-- is 0
+  done = (err) ->
+    throw err if err?
+    cb() if --todo is 0
 
   exec 'coffee -bcm -o lib/ src/', done
 
   requisite.bundle entry: 'src/index.coffee', (err, bundle) ->
-    throw err if err?
+    return done err if err?
 
-    bundle.moduleCache['./api'].walkAst (node) ->
+    # Strip out unnecessary api bits
+    bundle.moduleCache['./blueprints/browser'].walkAst (node) ->
       if (node.type == 'ObjectExpression') and (Array.isArray node.properties)
 
         node.properties = node.properties.filter (prop) ->
@@ -32,8 +35,7 @@ task 'build', 'build project', (cb) ->
 
       false
 
-    fs.writeFileSync 'crowdstart.js', bundle.toString(), 'utf8'
-    done()
+    fs.writeFile 'crowdstart.js', bundle.toString(), 'utf8', done
 
 task 'build-min', 'build project', ['build'], ->
   exec 'uglifyjs crowdstart.js --compress --mangle --lint=false > crowdstart.min.js'
@@ -41,7 +43,7 @@ task 'build-min', 'build project', ['build'], ->
 task 'static-server', 'Run static server for tests', (cb) ->
   connect = require 'connect'
   server = connect()
-  server.use (require 'serve-static') './test'
+  server.use (require 'serve-static') './test/fixtures'
 
   port = process.env.PORT ? 3333
   console.log "Static server started at http://localhost:#{port}"
