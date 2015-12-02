@@ -1,4 +1,4 @@
-describe 'account', ->
+describe 'Api.account (browser)', ->
   describe '.create', ->
     it 'should create users', ->
       {status} = yield browser.evaluate ->

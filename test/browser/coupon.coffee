@@ -1,4 +1,4 @@
-describe 'coupon', ->
+describe 'Api.coupon (browser)', ->
   describe '.get', ->
     it 'should get coupon', ->
       res = yield browser.evaluate ->

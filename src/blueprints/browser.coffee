@@ -43,7 +43,7 @@ blueprints =
       method:  'POST'
       expects: statusOk  # TODO: Make this statusCreated
 
-    enable:
+    createConfirm:
       uri:     (x) -> '/account/create/confirm/' + x.tokenId
       method:  'POST'
       expects: statusOk
@@ -64,13 +64,13 @@ blueprints =
       method:  'POST'
       expects: statusOk
 
-    confirm:
+    resetConfirm:
       uri:     (x) -> '/account/reset/confirm/' + x.tokenId
       method:  'POST'
       expects: statusOk
 
-  # PAYMENT
-  payment:
+  # CHECKOUT
+  checkout:
     authorize:
       uri:     storePrefixed '/authorize'
       method:  'POST'

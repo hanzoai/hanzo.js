@@ -1,8 +1,8 @@
-describe 'payment', ->
+describe 'Api.checkout (browser)', ->
   describe '.charge', ->
     it 'should 1 step charge payments', ->
       res = yield browser.evaluate ->
-        api.payment.charge
+        api.checkout.charge
           user:
             email:      email
             firstName:  firstName
@@ -49,7 +49,7 @@ describe 'payment', ->
   describe '.authorize', ->
     it 'should authorize payment', ->
       res = yield browser.evaluate ->
-        api.payment.authorize
+        api.checkout.authorize
           user:
             email:      email
             firstName:  firstName
@@ -96,7 +96,7 @@ describe 'payment', ->
   describe '.capture', ->
     it 'should capture payment', ->
       res = yield browser.evaluate ->
-        api.payment.authorize
+        api.checkout.authorize
           user:
             email:      email
             firstName:  firstName
@@ -125,7 +125,7 @@ describe 'payment', ->
       order = res.data
 
       res = yield browser.evaluate (orderId) ->
-        api.payment.capture
+        api.checkout.capture
           orderId: orderId
       , order.id
 
@@ -136,7 +136,7 @@ describe 'payment', ->
   describe '.paypal', ->
     xit 'should get paypal paykey', ->
       res = yield browser.evaluate ->
-        api.payment.paypal
+        api.checkout.paypal
           user:
             email:      email
             firstName:  firstName

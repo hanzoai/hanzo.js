@@ -1,4 +1,4 @@
-describe 'product', ->
+describe 'Api.product (browser)', ->
   describe '.get', ->
     it 'should get product', ->
       try
