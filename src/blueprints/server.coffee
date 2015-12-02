@@ -38,17 +38,23 @@ blueprints = require './browser'
 
 # Add model-specific APIs
 models = [
+  'collection'
   'coupon'
+  'order'
   'product'
   'referral'
   'referrer'
   'subscriber'
   'transaction'
   'user'
+  'variant'
 ]
 
 for model in models
   do (model) ->
     blueprints[model] = createBlueprint model
+
+# Extend existing payment APIs
+blueprints.payment = Object.assign blueprints.payment, createBlueprint 'payment'
 
 module.exports = blueprints

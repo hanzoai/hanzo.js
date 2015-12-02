@@ -91,13 +91,19 @@ blueprints =
       method:  'POST'
       expects: statusOk
 
+  # REFERRER
+  referrer:
+    create:
+      uri:     '/referrer'
+      method:  'POST'
+      expects: statusCreated
+
 # Add model-specific APIs
 models = [
   'coupon'
+  'collection'
   'product'
-  'referral'
-  'referrer'
-  'transaction'
+  'variant'
 ]
 
 for model in models
