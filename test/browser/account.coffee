@@ -1,7 +1,7 @@
 describe 'account', ->
   describe '.create', ->
     it 'should create users', ->
-      res = yield browser.evaluate ->
+      {status} = yield browser.evaluate ->
         api.account.create
           firstName:       firstName
           lastName:        lastName
@@ -9,7 +9,7 @@ describe 'account', ->
           password:        goodPass1
           passwordConfirm: goodPass1
 
-      res.status.should.eq 200
+      status.should.eq 200
 
     it 'should enforce email requirement', ->
       try
@@ -115,21 +115,21 @@ describe 'account', ->
 
   describe '.get', ->
     it 'should retrieve logged in user data', ->
-      res = yield browser.evaluate ->
+      {data, status} = yield browser.evaluate ->
           api.account.get()
 
-      res.status.should.equal 200
-      res.data.firstName.should.not.equal ''
-      res.data.lastName.should.not.equal ''
-      res.data.email.should.not.equal ''
+      status.should.equal 200
+      data.firstName.should.not.equal ''
+      data.lastName.should.not.equal ''
+      data.email.should.not.equal ''
 
   describe '.update', ->
     it 'should patch logged in user data', ->
-      res = yield browser.evaluate ->
+      {data, status} = yield browser.evaluate ->
           api.account.update
             firstName: newFirstName
 
-        res.status.should.equal 200
-        res.data.firstName.should.not.equal ''
-        res.data.lastName.should.not.equal ''
-        res.data.email.should.not.equal ''
+      status.should.equal 200
+      data.firstName.should.not.equal ''
+      data.lastName.should.not.equal ''
+      data.email.should.not.equal ''
