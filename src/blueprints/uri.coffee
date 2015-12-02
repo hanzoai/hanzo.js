@@ -1,3 +1,5 @@
+{isFunction} = require '../utils'
+
 # Wrap a uri function to provide store-prefixed URLs
 exports.storePrefixed = sp = (u) ->
   (x) ->
