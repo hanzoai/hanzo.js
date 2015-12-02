@@ -62,7 +62,7 @@ task 'test', 'Run tests', ['static-server'], (opts) ->
           node_modules/.bin/mocha
           --colors
           --reporter spec
-          --timeout 10000
+          --timeout 10000000
           --compilers coffee:coffee-script/register
           --require co-mocha
           --require postmortem/register

@@ -5,16 +5,14 @@ exports.statusOk      = (res) -> res.status is 200
 exports.statusCreated = (res) -> res.status is 201
 
 exports.newError = (data, res) ->
-  if res.error?
-    err = new Error res.error.message
-    err.message = res.error.message
-  else
-    err = new Error 'Request failed'
-    err.message = 'Request failed'
+  message = res?.data?.error?.message ? 'Request failed'
+
+  err = new Error message
+  err.message = message
 
   err.req     = data
   err.res     = res
   res.data    = res.data
   err.status  = res.status
-  err.type    = res.error.type
+  err.type    = res.data?.error?.type
   err

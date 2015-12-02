@@ -28,5 +28,6 @@ module.exports = class Client
       .then (res) ->
         res.data = res.responseText
         res
-      .catch (err) ->
-        throw newError data, err
+      .catch (res) ->
+        res.data = res.responseText
+        throw newError data, res

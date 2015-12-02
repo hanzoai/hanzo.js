@@ -25,7 +25,6 @@ describe 'Crowdstart.js', ->
           password:        goodPass1
           passwordConfirm: goodPass1
 
-      console.log res
       res.status.should.eq 200
 
     it 'should enforce email requirement', ->
@@ -37,16 +36,15 @@ describe 'Crowdstart.js', ->
             email:           firstName
             password:        goodPass1
             passwordConfirm: goodPass1
+
       catch err
 
-      String(err).should.equal 'Error: User Create Failed'
-
-      # res.status.should.equal 400
-      # res.responseText.error.message.should.equal 'Email is not valid'
+      err.status.should.eq 400
+      String(err).should.equal 'Error: Email is not valid'
 
     it 'should enforce required field requirement', ->
       try
-        yield browser.evaluate ->
+        res = yield browser.evaluate ->
           client.user.create
             firstName:       ''
             lastName:        lastName
@@ -55,9 +53,8 @@ describe 'Crowdstart.js', ->
             passwordConfirm: goodPass1
       catch err
 
+      err.status.should.eq 400
       String(err).should.equal 'Error: User Create Failed'
-      # value.status.should.equal 400
-      # value.responseText.error.message.should.equal 'First name cannot be blank'
 
     it 'should require email, firstName, lastName', ->
       try

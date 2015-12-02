@@ -1,7 +1,7 @@
 methods = require './methods'
 cookies = require 'cookies-js'
 
-{isFunction, statusOk} = require './utils'
+{isFunction, newError, statusOk} = require './utils'
 
 sessionTokenName = 'crowdstart-session'
 cachedToken      = ''
@@ -45,17 +45,19 @@ module.exports = class Api
 
         @[api][name] = (data, cb) =>
           uri = mkuri.call @, data
-          p = @client.request uri, data, method
-          p.then (res) ->
-            if res.error?
-              return newError data, res
-            unless expects res
-              return newError data, res
-            if process?
-              process.call @, res
-            res
-          p.callback cb
-          p
+          @client.request uri, data, method
+            .then (res) ->
+              console.log 'in then'
+              if res.data?.error?
+                console.log 'throwing, found error object'
+                throw newError data, res
+              unless expects res
+                console.log "throwing, didn't match expects"
+                throw newError data, res
+              if process?
+                process.call @, res
+              res
+            .callback cb
 
   setToken: (token) ->
     if window.location.protocol == 'file:'
