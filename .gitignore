@@ -1,5 +1,5 @@
 lib/
-node_modules
-.test
+coverage/
+node_modules/
 phantomjsdriver.log
 npm-debug.log

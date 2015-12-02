@@ -37,6 +37,7 @@
     "coveralls": "^2.11.4",
     "debug": "^2.2.0",
     "es5-shim": "^4.1.13",
+    "istanbul": "^0.4.1",
     "joseph": "^0.2.9",
     "mocha": "^2.3.4",
     "nightmare": "^2.0.8",
