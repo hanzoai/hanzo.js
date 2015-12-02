@@ -14,47 +14,32 @@ storeUri = (u) ->
 
 blueprints =
   account:
-    # no data required
     get:
       uri:     '/account'
       method:  'GET'
       expects: statusOk
 
-    # data should be a user object
     update:
       uri:     '/account'
       method:  'PATCH'
       expects: statusOk
 
-    # data =
-    #     email:          ...
     exists:
       uri:     (x) -> "/account/exists/#{x.email ? x.username ? x.id ? x}"
       method:  'GET'
       expects: statusOk
       process: (res) -> res.data.exists
 
-    # data =
-    #     firstName:          ...
-    #     lastName:           ...
-    #     email:              ...
-    #     password:           ...
-    #     passwordConfirm:    ...
     create:
       uri:     '/account/create'
       method:  'POST'
       expects: statusOk  # TODO: Make this statusCreated
 
-    # data =
-    #     tokenId:            ...
     enable:
       uri:     (x) -> '/account/create/confirm/' + x.tokenId
       method:  'POST'
       expects: statusOk
 
-    # data =
-    #     email:      ...
-    #     password:   ...
     login:
       uri:     '/account/login'
       method:  'POST'
@@ -65,17 +50,11 @@ blueprints =
 
     logout: -> @setUserKey ''
 
-    # data =
-    #     email:  ...
     reset:
       uri:     (x) -> '/account/reset?email=' + x.email
       method:  'POST'
       expects: statusOk
 
-    # data =
-    #     tokenId:            ...
-    #     password:           ...
-    #     passwordConfirm:    ...
     confirm:
       uri:     (x) -> '/account/reset/confirm/' + x.tokenId
       method:  'POST'
@@ -83,17 +62,11 @@ blueprints =
 
   # PAYMENT
   payment:
-    # data =
-    #     user:     user object
-    #     order:    order object
-    #     payment:  payment object
     authorize:
       uri:     storeUri '/authorize'
       method:  'POST'
       expects: statusOk
 
-    # data =
-    #     orderId:  order id of existing order
     capture:
       uri:     storeUri (x) -> '/capture/' + x.orderId
       method:  'POST'
@@ -145,7 +118,7 @@ for name in models
         expects: statusNoContent
 
 for k, v of blueprints.coupon
-  blueprints.product[k].uri = storeUri (x) -> "/coupon/#{x.code ? x}"
+  blueprints.coupon[k].uri = storeUri (x) -> "/coupon/#{x.code ? x}"
 
 for k, v of blueprints.product
   blueprints.product[k].uri = storeUri (x) -> "/product/#{x.id ? x.slug ? x}"
