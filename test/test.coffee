@@ -1,4 +1,5 @@
-Crowdstart = require '../lib'
+Api       = require '../lib/api'
+XhrClient = require '../lib/xhr-client'
 
 describe 'Crowdstart.js', ->
   testPage = "http://localhost:#{process.env.PORT ? 3333}/fixtures"
@@ -8,11 +9,11 @@ describe 'Crowdstart.js', ->
 
   describe 'Crowdstart.Api', ->
     it 'should instantiate', ->
-      Crowdstart.Api 'fakekey'
+      Api 'fakekey'
 
-  describe 'Crowdstart.XhrClient', ->
+  describe 'Crowdstart.Client', ->
     it 'should instantiate', ->
-      Crowdstart.XhrClient 'fakekey'
+      XhrClient 'fakekey'
 
   describe 'client#user.create', ->
     it 'should create users', ->
