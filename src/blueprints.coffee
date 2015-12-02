@@ -13,6 +13,7 @@ storeUri = (u) ->
       uri
 
 blueprints =
+  # ACCOUNT
   account:
     get:
       uri:     '/account'
@@ -48,7 +49,8 @@ blueprints =
         @setUserKey res.data.token
         res
 
-    logout: -> @setUserKey ''
+    logout: ->
+      @setUserKey ''
 
     reset:
       uri:     (x) -> '/account/reset?email=' + x.email
