@@ -7,6 +7,9 @@
 
 {byId} = require './uri'
 
+# Start with browser-based APIs.
+blueprints = require './browser'
+
 # Default blueprint for server APIs
 createBlueprint = (name) ->
     endpoint = "/#{name}"
@@ -33,14 +36,12 @@ createBlueprint = (name) ->
       method:  'DELETE'
       expects: statusNoContent
 
-# Start with browser-based APIs.
-blueprints = require './browser'
-
 # Add model-specific APIs
 models = [
   'collection'
   'coupon'
   'order'
+  'payment'
   'product'
   'referral'
   'referrer'
@@ -53,8 +54,5 @@ models = [
 for model in models
   do (model) ->
     blueprints[model] = createBlueprint model
-
-# Extend existing payment APIs
-blueprints.payment = Object.assign blueprints.payment, createBlueprint 'payment'
 
 module.exports = blueprints

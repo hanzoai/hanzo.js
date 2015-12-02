@@ -41,7 +41,7 @@ blueprints =
     create:
       uri:     '/account/create'
       method:  'POST'
-      expects: statusOk  # TODO: Make this statusCreated
+      expects: (x) -> (statusOk x) or (statusCreate x)
 
     createConfirm:
       uri:     (x) -> '/account/create/confirm/' + x.tokenId
