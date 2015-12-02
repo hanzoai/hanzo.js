@@ -1,4 +1,4 @@
-{isFunction, statusOk, statusCreated} = require './utils'
+{isFunction, statusOk, statusCreated, statusNoContent} = require './utils'
 
 storeUri = (u) ->
   (x) ->
@@ -12,11 +12,19 @@ storeUri = (u) ->
     else
       uri
 
+blueprints =
+  account:
+    # no data required
+    get:
+      uri:     '/account'
+      method:  'GET'
+      expects: statusOk
 
-module.exports =
-
-  # USER/ACCOUNT
-  user:
+    # data should be a user object
+    update:
+      uri:     '/account'
+      method:  'PATCH'
+      expects: statusOk
 
     # data =
     #     email:          ...
@@ -73,18 +81,6 @@ module.exports =
       method:  'POST'
       expects: statusOk
 
-    # no data required
-    account:
-      uri:     '/account'
-      method:  'GET'
-      expects: statusOk
-
-    # data should be a user object
-    updateAccount:
-      uri:     '/account'
-      method:  'PATCH'
-      expects: statusOk
-
   # PAYMENT
   payment:
     # data =
@@ -113,23 +109,45 @@ module.exports =
       method:  'POST'
       expects: statusOk
 
-    # data =
-    #     userId:   id of user
-    #     orderId:  id of order
-    #     program:  program object
-    newReferrer: ->
-      uri:     '/referrer'
-      method:  'POST'
-      expects: statusCreated
+models = [
+  'coupon'
+  'product'
+  'referral'
+  'referrer'
+  'subscriber'
+  'transaction'
+  'user'
+]
 
-  # UTILITY
-  util:
-    product:
-      uri:     storeUri (x) -> '/product/' + (x.id ? x.slug ? x)
-      method:  'GET'
-      expects: statusOk
+for name in models
+  do (name) ->
+    endpoint = "/#{name}"
 
-    coupon:
-      uri:     storeUri (x) -> '/coupon/' + (x.id ? x.code ? x)
-      method:  'GET'
-      expects: statusOk
+    blueprints[name] =
+      list:
+        uri:    endpoint
+        method: 'GET'
+      get:
+        uri:     (x) -> "#{endpoint}/#{x.id ? x}"
+        method:  'GET'
+        expects: statusOk
+      create:
+        uri:     endpoint
+        method:  'POST'
+        expects: statusCreated
+      update:
+        uri:     (x) -> "#{endpoint}/#{x.id ? x}"
+        method:  'PATCH'
+        expects: statusOk
+      delete:
+        uri:     (x) -> "#{endpoint}/#{x.id ? x}"
+        method:  'DELETE'
+        expects: statusNoContent
+
+for k, v of blueprints.coupon
+  blueprints.product[k].uri = storeUri (x) -> "/coupon/#{x.code ? x}"
+
+for k, v of blueprints.product
+  blueprints.product[k].uri = storeUri (x) -> "/product/#{x.id ? x.slug ? x}"
+
+module.exports = blueprints

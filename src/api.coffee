@@ -1,5 +1,5 @@
-methods = require './methods'
-cookies = require 'cookies-js'
+blueprints = require './blueprints'
+cookies    = require 'cookies-js'
 
 {isFunction, newError, statusOk} = require './utils'
 
@@ -12,12 +12,11 @@ module.exports = class Api
 
     unless @client
       @client = new (require './xhr-client')
-        key:      @key
         debug:    @debug
         endpoint: @endpoint
+        key:      @key
 
-    for api, blueprints of methods
-      @addBlueprints api, blueprints
+    @addBlueprints k, v for k, v of blueprints
 
   addBlueprints: (api, blueprints) ->
     @[api] ?= {}
@@ -39,6 +38,7 @@ module.exports = class Api
 
         {expects, method, process} = blueprint
 
+        # Blueprint defaults
         expects ?= statusOk
         method  ?= 'POST'
 
