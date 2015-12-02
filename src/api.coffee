@@ -27,7 +27,7 @@ module.exports = class Api
       do (name, blueprint) =>
         # Just a normal method
         if isFunction blueprint
-          @[api][name] = -> blueprint.apply @, arguments
+          @[api][name] = => blueprint.apply @, arguments
           return
 
         # Request blueprint...
@@ -46,13 +46,10 @@ module.exports = class Api
         @[api][name] = (data, cb) =>
           uri = mkuri.call @, data
           @client.request uri, data, method
-            .then (res) ->
-              console.log 'in then'
+            .then (res) =>
               if res.data?.error?
-                console.log 'throwing, found error object'
                 throw newError data, res
               unless expects res
-                console.log "throwing, didn't match expects"
                 throw newError data, res
               if process?
                 process.call @, res

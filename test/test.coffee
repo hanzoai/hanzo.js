@@ -40,9 +40,9 @@ describe 'Crowdstart.js', ->
       catch err
 
       err.status.should.eq 400
-      String(err).should.equal 'Error: Email is not valid'
+      err.message.should.eq 'Email is not valid'
 
-    it 'should enforce required field requirement', ->
+    it 'should not allow firstName to be blank', ->
       try
         res = yield browser.evaluate ->
           client.user.create
@@ -54,9 +54,9 @@ describe 'Crowdstart.js', ->
       catch err
 
       err.status.should.eq 400
-      String(err).should.equal 'Error: User Create Failed'
+      err.message.should.eq 'First name cannot be blank'
 
-    it 'should require email, firstName, lastName', ->
+    it 'should not allow firstName to be nil', ->
       try
         yield browser.evaluate ->
           client.user.create
@@ -66,10 +66,9 @@ describe 'Crowdstart.js', ->
             password:        goodPass1
             passwordConfirm: goodPass1
       catch err
-      String(err).should.equal 'Error: User Create Failed'
 
-      # value.status.should.equal 400
-      # value.responseText.error.message.should.equal 'First name cannot be blank'
+      err.status.should.eq 400
+      err.message.should.eq 'First name cannot be blank'
 
     it 'should enforce password match requirement', ->
       try
@@ -81,10 +80,9 @@ describe 'Crowdstart.js', ->
             password:        goodPass1
             passwordConfirm: goodPass2
       catch err
-      String(err).should.equal 'Error: User Create Failed'
 
-      # value.status.should.equal 400
-      # value.responseText.error.message.should.equal 'Passwords need to match'
+      err.status.should.eq 400
+      err.message.should.equal 'Passwords need to match'
 
     it 'should enforce password min-length requirement', ->
       try
@@ -96,10 +94,9 @@ describe 'Crowdstart.js', ->
             password:        badPass1
             passwordConfirm: badPass1
       catch err
-      String(err).should.equal 'Error: User Create Failed'
 
-    #   value.status.should.equal 400
-    #   value.responseText.error.message.should.equal 'Password needs to be atleast 6 characters'
+      err.status.should.eq 400
+      err.message.should.eq 'Password needs to be atleast 6 characters'
 
   describe 'client#user.login', ->
     # test users are automatically enabled
@@ -117,10 +114,8 @@ describe 'Crowdstart.js', ->
             password: goodPass1
       catch err
 
-      String(err).should.equal 'Error: User Login Failed'
-
-    #   value.status.should.equal 401
-    #   value.responseText.error.message.should.equal 'Email or password is incorrect'
+      err.status.should.equal 401
+      err.message.should.equal 'Email or password is incorrect'
 
     it 'should not allow login with invalid password', ->
       try
@@ -130,10 +125,8 @@ describe 'Crowdstart.js', ->
             password: goodPass2
       catch err
 
-      String(err).should.equal 'Error: User Login Failed'
-
-    #   value.status.should.equal 401
-    #   value.responseText.error.message.should.equal 'Email or password is incorrect'
+      err.status.should.eq 401
+      err.message.should.eq 'Email or password is incorrect'
 
   describe 'client#user.account', ->
     it 'should retieve logged in user data', ->
@@ -203,7 +196,7 @@ describe 'Crowdstart.js', ->
               month:  '1'
               year:   '2020'
 
-      res.status.should.equal 200
+      res.status.should.eq 200
       order = res.responseText
 
       order.userId.should.not.be.undefined
@@ -249,7 +242,7 @@ describe 'Crowdstart.js', ->
               month:  '1'
               year:   '2020'
 
-      res.status.should.equal 200
+      res.status.should.eq 200
       order = res.responseText
 
       order.userId.should.not.be.undefined
@@ -273,7 +266,7 @@ describe 'Crowdstart.js', ->
           orderId: orderId
       , order.id
 
-      res.status.should.equal 200
+      res.status.should.eq 200
       order2 = res.responseText
       order2.paymentStatus.should.equal 'paid'
 
@@ -298,6 +291,5 @@ describe 'Crowdstart.js', ->
               quantity:    1
             }]
 
-      res.status.should.equal 200
-      data = res.responseText
-      data.payKey.should.not.be.null
+      res.status.should.eq 200
+      res.data.payKey.should.not.be.null
