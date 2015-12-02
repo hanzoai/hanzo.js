@@ -1,10 +1,16 @@
-Client = require './crowdstart'
+Api    = require './api'
+Client = require './client'
 
-if typeof window isnt 'undefined'
-  if window.Crowdstart?
-    window.Crowdstart.Client  = Client
-  else
-    window.Crowdstart = Client: Client
+# Set up API for server environment
+Api.CLIENT     = Client
+Api.BLUEPRINTS = require './blueprints/server'
 
-if module?
-  module.exports = Client
+wrapper =
+  Api:    Api
+  Client: Client
+
+Object.defineProperties wrapper,
+  blueprints: enumerable: true, get: -> require './blueprints'
+  utils:      enumerable: true, get: -> require './utils'
+
+module.exports = wrapper
