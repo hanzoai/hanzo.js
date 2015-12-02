@@ -1,135 +1,70 @@
-{isFunction, statusOk, statusCreated} = require './utils'
+methods = require './methods'
+cookies = require 'cookies-js'
 
-storeUri = (u) ->
-  (x) ->
-    if isFunction u
-      uri = u x
-    else
-      uri = u
+{isFunction, statusOk} = require './utils'
 
-    if @storeId?
-      "/store/#{@storeId}" + uri
-    else
-      uri
+sessionTokenName = 'crowdstart-session'
+cachedToken      = ''
 
 
-module.exports =
+module.exports = class Api
+  constructor: (@client) ->
+    return new Api @client unless @ instanceof Api
 
-  # USER/ACCOUNT
-  user:
+    for api, blueprints of methods
+      @addBlueprints api, blueprints
 
-    # data =
-    #     email:          ...
-    exists:
-      uri:     (x) -> "/account/exists/#{x.email ? x.username ? x.id ? x}"
-      method:  'GET'
-      expects: statusOk
-      process: (res) -> res.data.exists
+  addBlueprints: (api, blueprints) ->
+    @[api] ?= {}
 
-    # data =
-    #     firstName:          ...
-    #     lastName:           ...
-    #     email:              ...
-    #     password:           ...
-    #     passwordConfirm:    ...
-    create:
-      uri:     '/account/create'
-      method:  'POST'
-      expects: statusOk  # TODO: Make this statusCreated
+    for name, blueprint of blueprints
+      do (name, blueprint) =>
+        # Just a normal method
+        if isFunction blueprint
+          @[api][name] = -> blueprint.apply @, arguments
+          return
 
-    # data =
-    #     tokenId:            ...
-    createConfirm:
-      uri:     (x) -> '/account/create/confirm/' + x.tokenId
-      method:  'POST'
-      expects: statusOk
+        # Request blueprint...
 
-    # data =
-    #     email:      ...
-    #     password:   ...
-    login:
-      uri:     '/account/login'
-      method:  'POST'
-      expects: statusOk
-      process: (res) ->
-        @setToken res.data.token
-        res
+        # Setup uri builder
+        if typeof blueprint.uri is 'string'
+          mkuri = (res) -> blueprint.uri
+        else
+          mkuri = blueprint.uri
 
-    logout: -> @setToken ''
+        {expects, method, process} = blueprint
 
-    # data =
-    #     email:  ...
-    reset:
-      uri:     (x) -> '/account/reset?email=' + x.email
-      method:  'POST'
-      expects: statusOk
+        expects ?= statusOk
+        method  ?= 'POST'
 
-    # data =
-    #     tokenId:            ...
-    #     password:           ...
-    #     passwordConfirm:    ...
-    resetConfirm:
-      uri:     (x) -> '/account/reset/confirm/' + x.tokenId
-      method:  'POST'
-      expects: statusOk
+        @[api][name] = (data, cb) =>
+          uri = mkuri.call @, data
+          p = @client.request uri, data, method
+          p.then (res) ->
+            if res.error?
+              return newError data, res
+            unless expects res
+              return newError data, res
+            if process?
+              process.call @, res
+            res
+          p.callback cb
+          p
 
-    # no data required
-    account:
-      uri:     '/account'
-      method:  'GET'
-      expects: statusOk
+  setToken: (token) ->
+    if window.location.protocol == 'file:'
+      return cachedToken = token
 
-    # data should be a user object
-    updateAccount:
-      uri:     '/account'
-      method:  'PATCH'
-      expects: statusOk
+    cookies.set sessionTokenName, token, expires: 604800
 
-  # PAYMENT
-  payment:
-    # data =
-    #     user:     user object
-    #     order:    order object
-    #     payment:  payment object
-    authorize:
-      uri:     storeUri '/authorize'
-      method:  'POST'
-      expects: statusOk
+  getToken: ->
+    if window.location.protocol == 'file:'
+      return cachedToken
 
-    # data =
-    #     orderId:  order id of existing order
-    capture:
-      uri:     storeId (x) -> '/capture/' + x.orderId
-      method:  'POST'
-      expects: statusOk
+    return (cookies.get sessionTokenName) ? ''
 
-    charge:
-      uri:     storeId '/charge'
-      method:  'POST'
-      expects: statusOk
+  setKey: (key) ->
+    @client.setKey key
 
-    paypal:
-      uri:     storeId '/paypal/pay'
-      method:  'POST'
-      expects: statusOk
-
-    # data =
-    #     userId:   id of user
-    #     orderId:  id of order
-    #     program:  program object
-    newReferrer: ->
-      uri:     '/referrer'
-      method:  'POST'
-      expects: statusCreated
-
-  # UTILITY
-  util:
-    product:
-      uri:     storeId (x) -> '/product/' + x.id ? x
-      method:  'GET'
-      expects: statusOk
-
-    coupon: (code, success, fail) ->
-      uri:     storeId (x) -> '/coupon/' + x.id ? x
-      method:  'GET'
-      expects: statusOk
+  setStore: (id) ->
+    @storeId = id

@@ -1,8 +1,18 @@
+Crowdstart = require '../lib'
+
 describe 'Crowdstart.js', ->
   testPage = "http://localhost:#{process.env.PORT ? 3333}/fixtures"
 
   before ->
     yield browser.goto testPage
+
+  describe 'Crowdstart.Api', ->
+    it 'should instantiate', ->
+      Crowdstart.Api 'fakekey'
+
+  describe 'Crowdstart.Client', ->
+    it 'should instantiate', ->
+      Crowdstart.Client 'fakekey'
 
   describe 'client#user.create', ->
     it 'should create users', ->

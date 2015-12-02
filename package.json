@@ -48,6 +48,6 @@
   "dependencies": {
     "broken": "^0.1.1",
     "cookies-js": "^1.2.2",
-    "xhr-promise-es6": "^1.2.1"
+    "xhr-promise-es6": "^1.2.3"
   }
 }

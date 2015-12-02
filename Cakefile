@@ -48,23 +48,34 @@ task 'static-server', 'Run static server for tests', (cb) ->
   server.listen port, cb
 
 task 'test', 'Run tests', ['static-server'], (opts) ->
+  bail    = true
   grep    = opts.grep             ? ''
   test    = opts.test             ? 'test/'
   verbose = opts.verbose          ? ''
 
+  bail    = '--bail' if bail
   grep    = "--grep #{opts.grep}" if grep
   verbose = 'DEBUG=nightmare VERBOSE=true' if verbose
 
-  yield exec "NODE_ENV=test #{verbose}
-        node_modules/.bin/mocha
-        --colors
-        --reporter spec
-        --timeout 10000
-        --compilers coffee:coffee-script/register
-        --require co-mocha
-        --require postmortem/register
-        #{grep}
-        #{test}"
+  try
+    yield exec.interactive "NODE_ENV=test #{verbose}
+          node_modules/.bin/mocha
+          --colors
+          --reporter spec
+          --timeout 10000
+          --compilers coffee:coffee-script/register
+          --require co-mocha
+          --require postmortem/register
+          #{bail}
+          #{grep}
+          #{test}"
+  catch err
+    process.exit 1
+  process.exit 0
+
+task 'test-ci', 'Run tests', ['static-server'], (opts) ->
+  opts.bail = false
+  invoke 'test'
 
 task 'watch', 'watch for changes and recompile project', ->
   exec 'coffee -bcmw -o lib/ src/'

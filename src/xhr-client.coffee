@@ -7,6 +7,10 @@ module.exports = class Client
   endpoint: 'https://api.crowdstart.com'
 
   constructor: (@key) ->
+    return new Client @key unless @ instanceof Client
+
+  setKey: (key) ->
+    @key = key
 
   request: (uri, data, method = 'POST', token = @key) ->
     opts =

@@ -1,5 +1,7 @@
-Client     = require './client'
-Crowdstart = require './crowdstart'
+global.Crowdstart ?= {}
 
-global.Crowdstart        = Crowdstart
-global.Crowdstart.Client = Client
+Crowdstart.Api       = require './api'
+Crowdstart.XhrClient = require './xhr-client'
+Crowdstart.Client = (key) -> Crowdstart.Api Crowdstart.XhrClient key
+
+module.exports = Crowdstart
