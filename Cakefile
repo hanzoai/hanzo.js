@@ -88,6 +88,7 @@ task 'coverage', 'Process coverage statistics', ->
     exec '''
       cat ./coverage/lcov.info | coveralls
       cat ./coverage/coverage.json | codecov
+      rm -rf coverage/
       '''
 
 task 'watch', 'watch for changes and recompile project', ->
