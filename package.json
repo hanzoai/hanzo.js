@@ -12,6 +12,9 @@
   ],
   "main": "lib/",
   "browser": "lib/browser",
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "scripts": {
     "prepublish": "cake build-min",
     "test": "cake build && cake test"
