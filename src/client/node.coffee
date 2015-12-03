@@ -28,12 +28,13 @@ module.exports = class NodeClient extends XhrClient
 
     new Promise (resolve, reject) =>
       request opts, (err, res) =>
-        res.status = res.statusCode
-        res.data   = res.body
+        if res?
+          if @debug
+            console.log '--RESPONSE--'
+            console.log res.toJSON()
 
-        if @debug
-          console.log '--RESPONSE--'
-          console.log res.toJSON()
+            res.status = res.statusCode
+            res.data   = res.body
 
         if err? or (res.status > 308) or res.data?.error?
           err = newError opts, res

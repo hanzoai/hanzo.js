@@ -18,9 +18,11 @@ exports.byId = (name) ->
   switch name
     when 'coupon'
       sp (x) -> "/coupon/#{x.code ? x}"
+    when 'collection'
+      sp (x) -> "/collection/#{x.slug ? x}"
     when 'product'
       sp (x) -> "/product/#{x.id ? x.slug ? x}"
     when 'variant'
-      sp (x) -> "/product/#{x.id ? x.sku ? x}"
+      sp (x) -> "/variant/#{x.id ? x.sku ? x}"
     else
-      (x) -> "#{name}/#{x.id ? x}"
+      (x) -> "/#{name}/#{x.id ? x}"
