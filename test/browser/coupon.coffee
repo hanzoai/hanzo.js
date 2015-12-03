@@ -1,8 +1,7 @@
 describe 'Api.coupon (browser)', ->
   describe '.get', ->
     it 'should get coupon', ->
-      res = yield browser.evaluate ->
+      coupon = yield browser.evaluate ->
         api.coupon.get 'SUCH-COUPON'
 
-      res.status.should.equal 200
-      res.data.amount.should.equal 500
+      coupon.amount.should.equal 500

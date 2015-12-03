@@ -1,7 +1,7 @@
 describe 'Api.checkout (browser)', ->
   describe '.charge', ->
     it 'should 1 step charge payments', ->
-      res = yield browser.evaluate ->
+      order = yield browser.evaluate ->
         api.checkout.charge
           user:
             email:      email
@@ -27,9 +27,6 @@ describe 'Api.checkout (browser)', ->
               month:  '1'
               year:   '2020'
 
-      res.status.should.eq 200
-      order = res.data
-
       order.userId.should.not.be.undefined
       order.shippingAddress.line1.should.equal 'line1'
       order.shippingAddress.line2.should.equal 'line2'
@@ -48,7 +45,7 @@ describe 'Api.checkout (browser)', ->
 
   describe '.authorize', ->
     it 'should authorize payment', ->
-      res = yield browser.evaluate ->
+      order = yield browser.evaluate ->
         api.checkout.authorize
           user:
             email:      email
@@ -73,9 +70,6 @@ describe 'Api.checkout (browser)', ->
               cvc:    '424'
               month:  '1'
               year:   '2020'
-
-      res.status.should.eq 200
-      order = res.data
 
       order.userId.should.not.be.undefined
       order.shippingAddress.line1.should.equal 'line1'
@@ -95,7 +89,7 @@ describe 'Api.checkout (browser)', ->
 
   describe '.capture', ->
     it 'should capture payment', ->
-      res = yield browser.evaluate ->
+      order = yield browser.evaluate ->
         api.checkout.authorize
           user:
             email:      email
@@ -121,21 +115,16 @@ describe 'Api.checkout (browser)', ->
               month:  '1'
               year:   '2020'
 
-      res.status.should.eq 200
-      order = res.data
-
-      res = yield browser.evaluate (orderId) ->
+      order2 = yield browser.evaluate (orderId) ->
         api.checkout.capture
           orderId: orderId
       , order.id
 
-      res.status.should.eq 200
-      order2 = res.responseText
       order2.paymentStatus.should.equal 'paid'
 
   describe '.paypal', ->
     xit 'should get paypal paykey', ->
-      res = yield browser.evaluate ->
+      order = yield browser.evaluate ->
         api.checkout.paypal
           user:
             email:      email
@@ -155,5 +144,4 @@ describe 'Api.checkout (browser)', ->
               quantity:    1
             }]
 
-      res.status.should.eq 200
-      res.data.payKey.should.not.be.null
+      order.payKey.should.not.be.null

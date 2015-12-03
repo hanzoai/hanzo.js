@@ -1,14 +1,14 @@
 describe 'Api.account', ->
   describe '.create', ->
     it 'should create users', ->
-      {status} = yield api.account.create
+      user = yield api.account.create
         firstName:       firstName
         lastName:        lastName
         email:           email
         password:        goodPass1
         passwordConfirm: goodPass1
 
-      status.should.eq 201
+      user.firstName.should.not.eq ''
 
     it 'should enforce email requirement', ->
       try

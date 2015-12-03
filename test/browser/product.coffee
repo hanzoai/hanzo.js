@@ -1,10 +1,6 @@
 describe 'Api.product (browser)', ->
   describe '.get', ->
     it 'should get product', ->
-      try
-        res = yield browser.evaluate ->
+      product = yield browser.evaluate ->
           api.product.get 'sad-keanu-shirt'
-      catch err
-
-      res.status.should.equal 200
-      res.data.price.should.equal 2500
+      product.price.should.equal 2500

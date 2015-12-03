@@ -1,15 +1,14 @@
 describe 'Api.account (browser)', ->
   describe '.create', ->
     it 'should create users', ->
-      {status} = yield browser.evaluate ->
+      user = yield browser.evaluate ->
         api.account.create
           firstName:       firstName
           lastName:        lastName
           email:           email
           password:        goodPass1
           passwordConfirm: goodPass1
-
-      status.should.eq 201
+      user.firstName.should.not.eq ''
 
     it 'should enforce email requirement', ->
       try
@@ -86,12 +85,11 @@ describe 'Api.account (browser)', ->
   describe '.login', ->
     # test users are automatically enabled
     it 'should login valid users', ->
-      {status} = yield browser.evaluate ->
+      res = yield browser.evaluate ->
         api.account.login
           email:    email
           password: goodPass1
-
-      status.should.eq 200
+      res.token.should.not.eq ''
 
     it 'should not login non-existant users', ->
       try
@@ -117,21 +115,19 @@ describe 'Api.account (browser)', ->
 
   describe '.get', ->
     it 'should retrieve logged in user data', ->
-      {data, status} = yield browser.evaluate ->
+      user = yield browser.evaluate ->
           api.account.get()
 
-      status.should.equal 200
-      data.firstName.should.not.equal ''
-      data.lastName.should.not.equal ''
-      data.email.should.not.equal ''
+      user.firstName.should.not.equal ''
+      user.lastName.should.not.equal ''
+      user.email.should.not.equal ''
 
   describe '.update', ->
     it 'should patch logged in user data', ->
-      {data, status} = yield browser.evaluate ->
+      user = yield browser.evaluate ->
           api.account.update
             firstName: newFirstName
 
-      status.should.equal 200
-      data.firstName.should.not.equal ''
-      data.lastName.should.not.equal ''
-      data.email.should.not.equal ''
+      user.firstName.should.not.equal ''
+      user.lastName.should.not.equal ''
+      user.email.should.not.equal ''

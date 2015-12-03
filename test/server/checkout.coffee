@@ -1,7 +1,7 @@
 describe 'Api.checkout', ->
   describe '.charge', ->
     it 'should 1 step charge payments', ->
-      res = yield api.checkout.charge
+      order = yield api.checkout.charge
         user:
           email:      email
           firstName:  firstName
@@ -25,9 +25,6 @@ describe 'Api.checkout', ->
             cvc:    '424'
             month:  '1'
             year:   '2020'
-
-      res.status.should.eq 200
-      order = res.data
 
       order.userId.should.not.be.undefined
       order.shippingAddress.line1.should.equal 'line1'
@@ -47,7 +44,7 @@ describe 'Api.checkout', ->
 
   describe '.authorize', ->
     it 'should authorize payment', ->
-      res = yield api.checkout.authorize
+      order = yield api.checkout.authorize
         user:
           email:      email
           firstName:  firstName
@@ -71,9 +68,6 @@ describe 'Api.checkout', ->
             cvc:    '424'
             month:  '1'
             year:   '2020'
-
-      res.status.should.eq 200
-      order = res.data
 
       order.userId.should.not.be.undefined
       order.shippingAddress.line1.should.equal 'line1'
@@ -93,7 +87,7 @@ describe 'Api.checkout', ->
 
   describe '.capture', ->
     it 'should capture payment', ->
-      res = yield api.checkout.authorize
+      order = yield api.checkout.authorize
         user:
           email:      email
           firstName:  firstName
@@ -118,18 +112,12 @@ describe 'Api.checkout', ->
             month:  '1'
             year:   '2020'
 
-      res.status.should.eq 200
-      order = res.data
-
-      res = yield api.checkout.capture orderId: order.id
-
-      res.status.should.eq 200
-      order2 = res.responseText
+      order2 = yield api.checkout.capture orderId: order.id
       order2.paymentStatus.should.equal 'paid'
 
   describe '.paypal', ->
     xit 'should get paypal paykey', ->
-      res = yield api.checkout.paypal
+      order = yield api.checkout.paypal
         user:
           email:      email
           firstName:  firstName
@@ -148,5 +136,4 @@ describe 'Api.checkout', ->
             quantity:    1
           }]
 
-      res.status.should.eq 200
-      res.data.payKey.should.not.be.null
+      order.payKey.should.not.be.null

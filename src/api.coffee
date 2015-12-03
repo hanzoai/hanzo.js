@@ -47,8 +47,7 @@ module.exports = class Api
                 throw newError data, res
               if bp.process?
                 bp.process.call @, res
-              # res.data ? res.body
-              res
+              res.data ? res.body
             .callback cb
 
         @[api][name] = method
