@@ -61,7 +61,7 @@ task 'test', 'Run tests', ['static-server'], (opts) ->
   verbose = 'DEBUG=nightmare VERBOSE=true' if verbose
 
   if coverage
-    bin = 'istanbul cover _mocha --'
+    bin = 'istanbul --print=none cover _mocha --'
   else
     bin = 'mocha'
 
@@ -78,7 +78,7 @@ task 'test', 'Run tests', ['static-server'], (opts) ->
         #{test}"
 
   if stderr is ''
-    process.exist 0
+    process.exit 0
   else
     process.exit 1
 
