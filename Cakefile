@@ -65,24 +65,21 @@ task 'test', 'Run tests', ['static-server'], (opts) ->
   else
     bin = 'mocha'
 
-  try
-    yield exec.interactive "NODE_ENV=test #{verbose}
-          #{bin}
-          --colors
-          --reporter spec
-          --timeout 10000000
-          --compilers coffee:coffee-script/register
-          --require co-mocha
-          --require postmortem/register
-          #{bail}
-          #{grep}
-          #{test}"
-  catch err
-    process.exit 1
-  process.exit 0
+  {stdout, stderr} = yield exec "NODE_ENV=test #{verbose}
+        #{bin}
+        --colors
+        --reporter spec
+        --timeout 10000000
+        --compilers coffee:coffee-script/register
+        --require co-mocha
+        --require postmortem/register
+        #{bail}
+        #{grep}
+        #{test}"
+  process.exit 1 unless stderr is ''
 
 task 'test-ci', 'Run tests', (opts) ->
-  invoke 'test', bail: true, coverage: true
+  invoke 'test', bail: false, coverage: true
 
 task 'coverage', 'Process coverage statistics', ->
     exec '''
