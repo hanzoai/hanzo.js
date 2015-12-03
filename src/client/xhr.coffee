@@ -1,6 +1,7 @@
 Xhr         = require 'xhr-promise-es6'
 Xhr.Promise = require 'broken'
 
+{newError} = require '../utils'
 
 module.exports = class Client
   debug:    false
