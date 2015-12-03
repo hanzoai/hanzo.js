@@ -105,7 +105,6 @@ task 'watch:test', 'watch for changes and re-run tests', ->
 task 'major', ['version'], ->
 task 'minor', ['version'], ->
 task 'patch', ['version'], ->
-
 task 'version', 'change version of project', (opts) ->
   {stdout, stderr} = yield exec.quiet 'git status --porcelain'
   if stderr or stdout
@@ -130,6 +129,7 @@ task 'version', 'change version of project', (opts) ->
       process.exit 1
 
   console.log version, '->', newVersion
+  console.log
 
   data = fs.readFileSync 'README.md', 'utf8'
   data = data.replace version, newVersion
@@ -143,8 +143,6 @@ task 'version', 'change version of project', (opts) ->
   git commit -m #{newVersion}
   git tag v#{newVersion}
   """
-
-  process.exit 0
 
 task 'publish', 'publish project', ->
   exec.parallel '''
