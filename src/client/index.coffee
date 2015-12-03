@@ -23,7 +23,11 @@ module.exports = class Client
     opts =
       url:    (@endpoint.replace /\/$/, '') + uri + '?token=' + key
       method: method
-      json:   data ? true
+
+    if (method is 'POST') or (method is 'PATCH')
+      opts.json = data
+    else
+      opts.json = true
 
     if @debug
       console.log '--REQUEST--'
