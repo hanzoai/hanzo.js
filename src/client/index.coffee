@@ -17,7 +17,7 @@ module.exports = class Client
     @userKey = key
 
   getKey: ->
-    @userKey or @key
+    @userKey or @key or Client.KEY
 
   request: (uri, data, method = 'POST', key = @getKey()) ->
     opts =
