@@ -1,7 +1,7 @@
 describe 'Api.coupon', ->
   describe '.get', ->
     it 'should get coupon', ->
-      res = yield api.coupon.get 'SUCH-COUPON'
+      {status, data} = yield api.coupon.get 'SUCH-COUPON'
 
-      res.status.should.equal 200
-      res.data.amount.should.equal 500
+      status.should.equal 200
+      data.amount.should.equal 500

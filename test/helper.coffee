@@ -2,20 +2,18 @@ chai = require 'chai'
 chai.should()
 chai.use require 'chai-as-promised'
 
-{Api} = require '../lib'
+Api = require '../lib'
 
 before ->
-  testKey = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjI0LCJqdGkiOiJuNnZ4TlhRRllHcyIsInN1YiI6IkVxVEdveHA1dTMifQ.7rwAI6GK0bPAd_WH9X-qBOw-hgUlrpHnZvSxrxDn0uWDS3CIENUXPG1O15LKK2oDV1ncmeqqdP_eCOXLPrj9zA'
-
   global.api = Api
-    debug: true
+    debug:    false
     endpoint: 'https://api.staging.crowdstart.com'
-    key: testKey
+    key:      'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjI0LCJqdGkiOiJuNnZ4TlhRRllHcyIsInN1YiI6IkVxVEdveHA1dTMifQ.7rwAI6GK0bPAd_WH9X-qBOw-hgUlrpHnZvSxrxDn0uWDS3CIENUXPG1O15LKK2oDV1ncmeqqdP_eCOXLPrj9zA'
 
-  randomToken = (n) ->
+  global.randomToken = (n) ->
     Math.random().toString(36).replace(/[^a-z0-9A-Z]+/g, '').substr 0, n
 
-  randomEmail = ->
+  global.randomEmail = ->
     randomToken(4) + '@email.com'
 
   global.email        = randomEmail()

@@ -1,6 +1,6 @@
 {
   "name": "crowdstart.js",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "description": "JavaScript client for the Crowdstart platform.",
   "homepage": "http://github.com/crowdstart/crowdstart.js",
   "bugs": "http://github.com/crowdstart/crowdstart.js/issues",
@@ -13,7 +13,7 @@
   "main": "lib/",
   "browser": "lib/browser",
   "scripts": {
-    "prepublish": "cake build",
+    "prepublish": "cake build-min",
     "test": "cake build && cake test"
   },
   "author": "Zach Kelling <zk@crowdstart.com> (http://zeekay.io)",
@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "broken": "^0.1.1",
-    "cookies-js": "^1.2.2",
+    "js-cookie": "^2.0.4",
     "request": "^2.67.0",
     "shortcake": "^1.1.5",
     "xhr-promise-es6": "^1.2.4"

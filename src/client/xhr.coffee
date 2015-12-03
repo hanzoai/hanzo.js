@@ -18,24 +18,33 @@ module.exports = class Client
   getKey: ->
     @userKey or @key
 
-  request: (uri, data, method = 'POST', key = @getKey()) ->
+  request: (url, data, method = 'POST', key = @getKey()) ->
     opts =
-      url: (@endpoint.replace /\/$/, '') + uri + '?token=' + key
+      url:    (@endpoint.replace /\/$/, '') + url + '?token=' + key
       method: method
-      # headers:
-      #   'Content-Type': 'application/json'
-      #   'Authorization': token
-      data: JSON.stringify data
+      data:   JSON.stringify data
 
     if @debug
-      console.log('REQUEST HEADER:', opts)
+      console.log '--REQUEST--'
+      console.log opts
 
     (new Xhr).send opts
       .then (res) ->
+        if @debug
+          console.log '--RESPONSE--'
+          console.log res
+
         res.data   = res.responseText
         res
       .catch (res) ->
         try
           res.data   = res.responseText ? (JSON.parse res.xhr.responseText)
         catch err
-        throw newError data, res
+
+        err = newError data, res
+        if @debug
+          console.log '--RESPONSE--'
+          console.log res
+          console.log 'ERROR:', err
+
+        throw err

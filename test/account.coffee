@@ -8,7 +8,7 @@ describe 'Api.account', ->
         password:        goodPass1
         passwordConfirm: goodPass1
 
-      status.should.eq 200
+      status.should.eq 201
 
     it 'should enforce email requirement', ->
       try
@@ -26,7 +26,7 @@ describe 'Api.account', ->
 
     it 'should not allow firstName to be blank', ->
       try
-        res = yield api.account.create
+        yield api.account.create
           firstName:       ''
           lastName:        lastName
           email:           randomEmail()
@@ -75,49 +75,3 @@ describe 'Api.account', ->
 
       err.status.should.eq 400
       err.message.should.eq 'Password needs to be atleast 6 characters'
-
-  describe '.login', ->
-    # test users are automatically enabled
-    it 'should login valid users', ->
-      res = yield api.account.login
-        email:    email
-        password: goodPass1
-
-    it 'should not login non-existant users', ->
-      try
-        yield api.account.login
-          email:    randomEmail()
-          password: goodPass1
-      catch err
-
-      err.status.should.equal 401
-      err.message.should.equal 'Email or password is incorrect'
-
-    it 'should not allow login with invalid password', ->
-      try
-        yield api.account.login
-          email:    email
-          password: goodPass2
-      catch err
-
-      err.status.should.eq 401
-      err.message.should.eq 'Email or password is incorrect'
-
-  describe '.get', ->
-    it 'should retrieve logged in user data', ->
-      {data, status} = yield api.account.get()
-
-      status.should.equal 200
-      data.firstName.should.not.equal ''
-      data.lastName.should.not.equal ''
-      data.email.should.not.equal ''
-
-  describe '.update', ->
-    it 'should patch logged in user data', ->
-      {data, status} = yield api.account.update
-        firstName: newFirstName
-
-      status.should.equal 200
-      data.firstName.should.not.equal ''
-      data.lastName.should.not.equal ''
-      data.email.should.not.equal ''

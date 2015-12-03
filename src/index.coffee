@@ -5,12 +5,6 @@ Client = require './client'
 Api.CLIENT     = Client
 Api.BLUEPRINTS = require './blueprints/server'
 
-wrapper =
-  Api:    Api
-  Client: Client
+Client.KEY     = process.env.CROWDSTART_KEY
 
-Object.defineProperties wrapper,
-  blueprints: enumerable: true, get: -> require './blueprints'
-  utils:      enumerable: true, get: -> require './utils'
-
-module.exports = wrapper
+module.exports = Api
