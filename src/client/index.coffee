@@ -1,7 +1,7 @@
 request = require 'request'
 Promise = require 'broken'
 
-{isString, newError} = require '../utils'
+{newError} = require '../utils'
 
 module.exports = class Client
   debug:    false

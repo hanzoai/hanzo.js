@@ -2,7 +2,7 @@ chai = require 'chai'
 chai.should()
 chai.use require 'chai-as-promised'
 
-Api = require '../lib'
+Api = require '../../lib'
 
 before ->
   global.api = Api

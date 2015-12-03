@@ -51,10 +51,10 @@ task 'static-server', 'Run static server for tests', (cb) ->
 
 task 'test', 'Run tests', ['static-server'], (opts) ->
   bail     = true
-  grep     = opts.grep             ? ''
-  test     = opts.test             ? 'test/ test/browser/'
-  verbose  = opts.verbose          ? ''
-  coverage = opts.coverage        ? false
+  grep     = opts.grep     ? ''
+  test     = opts.test     ? 'test/ test/server/ test/browser/'
+  verbose  = opts.verbose  ? ''
+  coverage = opts.coverage ? false
 
   bail    = '--bail' if bail
   grep    = "--grep #{opts.grep}" if grep
