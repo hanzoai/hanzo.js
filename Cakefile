@@ -76,10 +76,14 @@ task 'test', 'Run tests', ['static-server'], (opts) ->
         #{bail}
         #{grep}
         #{test}"
-  process.exit 1 unless stderr is ''
+
+  if stderr is ''
+    process.exist 0
+  else
+    process.exit 1
 
 task 'test-ci', 'Run tests', (opts) ->
-  invoke 'test', bail: false, coverage: true
+  invoke 'test', bail: true, coverage: true
 
 task 'coverage', 'Process coverage statistics', ->
     exec '''
