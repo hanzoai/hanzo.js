@@ -93,7 +93,7 @@ describe 'Api.checkout', ->
 
   describe '.capture', ->
     it 'should capture payment', ->
-      res = api.checkout.authorize
+      res = yield api.checkout.authorize
         user:
           email:      email
           firstName:  firstName
