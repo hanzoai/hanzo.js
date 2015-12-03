@@ -19,9 +19,9 @@ module.exports = class Client
   getKey: ->
     @userKey or @key or Client.KEY
 
-  request: (uri, data, method = 'POST', key = @getKey()) ->
+  request: (url, data, method = 'POST', key = @getKey()) ->
     opts =
-      url:    (@endpoint.replace /\/$/, '') + uri + '?token=' + key
+      url:    (@endpoint.replace /\/$/, '') + url + '?token=' + key
       method: method
 
     if (method is 'POST') or (method is 'PATCH')

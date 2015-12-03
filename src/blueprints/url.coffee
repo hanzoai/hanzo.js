@@ -1,19 +1,19 @@
 {isFunction} = require '../utils'
 
-# Wrap a uri function to provide store-prefixed URLs
+# Wrap a url function to provide store-prefixed URLs
 exports.storePrefixed = sp = (u) ->
   (x) ->
     if isFunction u
-      uri = u x
+      url = u x
     else
-      uri = u
+      url = u
 
     if @storeId?
-      "/store/#{@storeId}" + uri
+      "/store/#{@storeId}" + url
     else
-      uri
+      url
 
-# Returns a URI for getting a single
+# Returns a URL for getting a single
 exports.byId = (name) ->
   switch name
     when 'coupon'

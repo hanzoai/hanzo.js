@@ -5,55 +5,53 @@
   statusOk
 } = require '../utils'
 
-{byId, storePrefixed} = require './uri'
+{byId, storePrefixed} = require './url'
 
-# Default blueprint for browser APIs
+# Only list, get methods of a few models are supported with a publishable key,
+# so only these methods are exposed in the browser.
 createBlueprint = (name) ->
-    endpoint = "/#{name}"
+  endpoint = "/#{name}"
 
-    list:
-      uri:    endpoint
-      method: 'GET'
-    get:
-      uri:     byId name
-      method:  'GET'
-      expects: statusOk
+  list:
+    url:     endpoint
+    method:  'GET'
+    expects: statusOk
+  get:
+    url:     byId name
+    method:  'GET'
+    expects: statusOk
 
 blueprints =
   # ACCOUNT
   account:
     get:
-      uri:     '/account'
+      url:     '/account'
       method:  'GET'
       expects: statusOk
 
     update:
-      uri:     '/account'
+      url:     '/account'
       method:  'PATCH'
       expects: statusOk
 
     exists:
-      uri:     (x) -> "/account/exists/#{x.email ? x.username ? x.id ? x}"
+      url:     (x) -> "/account/exists/#{x.email ? x.username ? x.id ? x}"
       method:  'GET'
       expects: statusOk
       process: (res) -> res.data.exists
 
     create:
-      uri:     '/account/create'
+      url:     '/account/create'
       method:  'POST'
-      expects: (x) ->
-        console.log 'expects gets:', x
-        bool = (statusOk x) or (statusCreated x)
-        console.log 'expects:', bool
-        bool
+      expects: (x) -> (statusOk x) or (statusCreated x)
 
     createConfirm:
-      uri:     (x) -> '/account/create/confirm/' + x.tokenId
+      url:     (x) -> "/account/create/confirm/#{x.tokenId ? x}"
       method:  'POST'
       expects: statusOk
 
     login:
-      uri:     '/account/login'
+      url:     '/account/login'
       method:  'POST'
       expects: statusOk
       process: (res) ->
@@ -64,45 +62,45 @@ blueprints =
       @setUserKey ''
 
     reset:
-      uri:     (x) -> '/account/reset?email=' + x.email
+      url:     (x) -> "/account/reset?email=#{x.email ? x}"
       method:  'POST'
       expects: statusOk
 
     resetConfirm:
-      uri:     (x) -> '/account/reset/confirm/' + x.tokenId
+      url:     (x) -> "/account/reset/confirm/#{x.tokenId ? x}"
       method:  'POST'
       expects: statusOk
 
   # CHECKOUT
   checkout:
     authorize:
-      uri:     storePrefixed '/authorize'
+      url:     storePrefixed '/authorize'
       method:  'POST'
       expects: statusOk
 
     capture:
-      uri:     storePrefixed (x) -> '/capture/' + x.orderId
+      url:     storePrefixed (x) -> "/capture/#{x.orderId ? x}"
       method:  'POST'
       expects: statusOk
 
     charge:
-      uri:     storePrefixed '/charge'
+      url:     storePrefixed '/charge'
       method:  'POST'
       expects: statusOk
 
     paypal:
-      uri:     storePrefixed '/paypal/pay'
+      url:     storePrefixed '/paypal/pay'
       method:  'POST'
       expects: statusOk
 
   # REFERRER
   referrer:
     create:
-      uri:     '/referrer'
+      url:     '/referrer'
       method:  'POST'
       expects: statusCreated
 
-# Add model-specific APIs
+# MODELS
 models = [
   'coupon'
   'collection'

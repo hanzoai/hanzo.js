@@ -5,38 +5,39 @@
   statusOk
 } = require '../utils'
 
-{byId} = require './uri'
+{byId} = require './url'
 
 # Start with browser-based APIs.
 blueprints = require './browser'
 
-# Default blueprint for server APIs
+# Complete RESTful API available with secret key, so all methods are
+# exposed in server environment.
 createBlueprint = (name) ->
-    endpoint = "/#{name}"
+  endpoint = "/#{name}"
 
-    uri = byId name
+  url = byId name
 
-    list:
-      uri:    endpoint
-      method: 'GET'
-    get:
-      uri:     uri
-      method:  'GET'
-      expects: statusOk
-    create:
-      uri:     endpoint
-      method:  'POST'
-      expects: statusCreated
-    update:
-      uri:     uri
-      method:  'PATCH'
-      expects: statusOk
-    delete:
-      uri:     uri
-      method:  'DELETE'
-      expects: statusNoContent
+  list:
+    url:    endpoint
+    method: 'GET'
+  get:
+    url:     url
+    method:  'GET'
+    expects: statusOk
+  create:
+    url:     endpoint
+    method:  'POST'
+    expects: statusCreated
+  update:
+    url:     url
+    method:  'PATCH'
+    expects: statusOk
+  delete:
+    url:     url
+    method:  'DELETE'
+    expects: statusNoContent
 
-# Add model-specific APIs
+# MODELS
 models = [
   'collection'
   'coupon'

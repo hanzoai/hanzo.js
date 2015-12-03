@@ -37,11 +37,11 @@ module.exports = class Api
 
         # Request blueprint...
 
-        # Setup uri builder
-        if typeof blueprint.uri is 'string'
-          mkuri = (res) -> blueprint.uri
+        # Setup url builder
+        if typeof blueprint.url is 'string'
+          mkurl = (res) -> blueprint.url
         else
-          mkuri = blueprint.uri
+          mkurl = blueprint.url
 
         {expects, method, process} = blueprint
 
@@ -50,8 +50,8 @@ module.exports = class Api
         method  ?= 'POST'  # Defaulting to POST shaves a few kb off browser bundle
 
         @[api][name] = (data, cb) =>
-          uri = mkuri.call @, data
-          @client.request uri, data, method
+          url = mkurl.call @, data
+          @client.request url, data, method
             .then (res) =>
               if res.data?.error?
                 throw newError data, res
@@ -61,6 +61,8 @@ module.exports = class Api
                 process.call @, res
               res
             .callback cb
+        return
+    return
 
   setKey: (key) ->
     @client.setKey key
@@ -70,7 +72,7 @@ module.exports = class Api
     @client.setUserKey key
 
   getUserKey: ->
-    return (cookie.get Api.SESSION_NAME) ? ''
+    cookie.get Api.SESSION_NAME
 
   setStore: (id) ->
     @storeId = id
