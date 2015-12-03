@@ -1,4 +1,5 @@
 # crowdstart.js  [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NPM version][npm-image]][npm-url]  [![Gitter chat][gitter-image]][gitter-url]
+
 <!-- [![Downloads][downloads-image]][downloads-url] -->
 Full-featured JavaScript SDK for Crowdstart. Node.js and browser.
 
@@ -15,7 +16,7 @@ Include [crowdstart.js](crowdstart.js) in your website or bundle
 `crowdstart.js` using your favorite build tool.
 
 ```html
-<script src="https://cdn.rawgit.com/crowdstart/crowdstart.js/v2.1.4/crowdstart.min.js"></script>
+<script src="https://cdn.rawgit.com/crowdstart/crowdstart.js/v2.1.9/crowdstart.min.js"></script>
 <script>
 var api = new Crowdstart.Api({key: key});
 </script>

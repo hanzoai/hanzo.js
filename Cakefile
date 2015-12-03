@@ -107,8 +107,8 @@ task 'minor', ['version'], ->
 task 'patch', ['version'], ->
 
 task 'version', 'change version of project', (opts) ->
-  {status} = yield exec 'git status --porcelain'
-  unless status is 0
+  {stdout, stderr} = yield exec.quiet 'git status --porcelain'
+  if stderr or stdout
     console.log 'working directory not clean'
     return
 
