@@ -1,4 +1,4 @@
-cookies = require 'cookies-js'
+cookie = require 'js-cookie'
 
 {isFunction, newError, statusOk} = require './utils'
 
@@ -66,11 +66,11 @@ module.exports = class Api
     @client.setKey key
 
   setUserKey: (key) ->
-    cookies.set Api.SESSION_NAME, key, expires: 604800
+    cookie.set Api.SESSION_NAME, key, expires: 604800
     @client.setUserKey key
 
   getUserKey: ->
-    return (cookies.get Api.SESSION_NAME) ? ''
+    return (cookie.get Api.SESSION_NAME) ? ''
 
   setStore: (id) ->
     @storeId = id
