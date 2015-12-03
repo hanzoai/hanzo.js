@@ -128,7 +128,7 @@ task 'version', 'change version of project', (opts) ->
       console.log 'Unable to parse versioning'
       process.exit 1
 
-  console.log version, '->', newVersion
+  console.log "v#{version} -> v#{newVersion}"
   console.log
 
   data = fs.readFileSync 'README.md', 'utf8'
