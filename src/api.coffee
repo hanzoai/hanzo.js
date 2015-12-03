@@ -1,6 +1,6 @@
 cookie = require 'js-cookie'
 
-{isFunction, newError, statusOk} = require './utils'
+{isFunction, isString, newError, statusOk} = require './utils'
 
 module.exports = class Api
   @SESSION_NAME = 'crowdstart-session'
@@ -8,17 +8,17 @@ module.exports = class Api
   @CLIENT       = ->
 
   constructor: (opts = {}) ->
-    return new Api arguments... unless @ instanceof Api
+    return new Api opts unless @ instanceof Api
 
     {endpoint, debug, key, client, blueprints} = opts
 
     @debug      = debug
-    blueprints ?= Api.BLUEPRINTS
+    blueprints ?= @constructor.BLUEPRINTS
 
     if client
       @client = client
     else
-      @client = new Api.CLIENT
+      @client = new @constructor.CLIENT
         debug:    debug
         endpoint: endpoint
         key:      key
@@ -28,51 +28,40 @@ module.exports = class Api
   addBlueprints: (api, blueprints) ->
     @[api] ?= {}
 
-    for name, blueprint of blueprints
-      do (name, blueprint) =>
-        # Just a normal method
-        if isFunction blueprint
-          @[api][name] = => blueprint.apply @, arguments
-          return
+    for name, bp of blueprints
+      do (name, bp) =>
+        # Normal method
+        if isFunction bp
+          return @[api][name] = => bp.apply @, arguments
 
-        # Request blueprint...
+        # Blueprint method
+        bp.expects ?= statusOk
+        bp.method  ?= 'POST'  # Defaulting to POST shaves a few kb off browser bundle
 
-        # Setup url builder
-        if typeof blueprint.url is 'string'
-          mkurl = (res) -> blueprint.url
-        else
-          mkurl = blueprint.url
-
-        {expects, method, process} = blueprint
-
-        # Blueprint defaults
-        expects ?= statusOk
-        method  ?= 'POST'  # Defaulting to POST shaves a few kb off browser bundle
-
-        @[api][name] = (data, cb) =>
-          url = mkurl.call @, data
-          @client.request url, data, method
+        method = (data, cb) =>
+          @client.request bp, data
             .then (res) =>
               if res.data?.error?
                 throw newError data, res
-              unless expects res
+              unless bp.expects res
                 throw newError data, res
-              if process?
-                process.call @, res
+              if bp.process?
+                bp.process.call @, res
               res
             .callback cb
-        return
+
+        @[api][name] = method
     return
 
   setKey: (key) ->
     @client.setKey key
 
   setUserKey: (key) ->
-    cookie.set Api.SESSION_NAME, key, expires: 604800
+    cookie.set @constructor.SESSION_NAME, key, expires: 604800
     @client.setUserKey key
 
   getUserKey: ->
-    cookie.get Api.SESSION_NAME
+    cookie.get @constructor.SESSION_NAME
 
   setStore: (id) ->
     @storeId = id

@@ -5,7 +5,7 @@ chai.use require 'chai-as-promised'
 Api = require '../../lib'
 
 before ->
-  global.api = Api
+  global.api = new Api
     debug:    false
     endpoint: 'https://api.staging.crowdstart.com'
     key:      'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjI0LCJqdGkiOiJuNnZ4TlhRRllHcyIsInN1YiI6IkVxVEdveHA1dTMifQ.7rwAI6GK0bPAd_WH9X-qBOw-hgUlrpHnZvSxrxDn0uWDS3CIENUXPG1O15LKK2oDV1ncmeqqdP_eCOXLPrj9zA'

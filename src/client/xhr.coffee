@@ -1,14 +1,18 @@
 Xhr         = require 'xhr-promise-es6'
 Xhr.Promise = require 'broken'
 
-{newError} = require '../utils'
+{isFunction, newError} = require '../utils'
 
-module.exports = class Client
+module.exports = class XhrClient
   debug:    false
   endpoint: 'https://api.crowdstart.com'
 
-  constructor: ({@key, @endpoint, @debug} = {}) ->
-    return new Client @key unless @ instanceof Client
+  constructor: (opts = {}) ->
+    {@key, @debug} = opts
+    @setEndpoint opts.endpoint
+
+  setEndpoint: (endpoint = '') ->
+    @endpoint = endpoint.replace /\/$/, ''
 
   setKey: (key) ->
     @key = key
@@ -17,12 +21,18 @@ module.exports = class Client
     @userKey = key
 
   getKey: ->
-    @userKey or @key
+    @userKey or @key or @constructor.KEY
 
-  request: (url, data, method = 'POST', key = @getKey()) ->
+  getUrl: (url, data, key) ->
+    if isFunction url
+      url = url.call @, data
+
+    "#{@endpoint}#{url}?token=#{key}"
+
+  request: (blueprint, data, key = @getKey()) ->
     opts =
-      url:    (@endpoint.replace /\/$/, '') + url + '?token=' + key
-      method: method
+      url:    @getUrl blueprint.url, data, key
+      method: blueprint.method
       data:   JSON.stringify data
 
     if @debug

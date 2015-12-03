@@ -1,5 +1,5 @@
 Api    = require './api'
-Client = require './client'
+Client = require './client/node'
 
 # Set up API for server environment
 Api.CLIENT     = Client

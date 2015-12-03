@@ -1,5 +1,5 @@
-Client = require '../../lib/client/xhr'
+XhrClient = require '../../lib/client/xhr'
 
-describe 'Client (browser)', ->
+describe 'XhrClient (browser)', ->
   it 'should instantiate', ->
-    Client 'fakekey'
+    new XhrClient 'fakekey'

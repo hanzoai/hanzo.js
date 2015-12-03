@@ -1,5 +1,5 @@
-Client = require '../lib/client'
+NodeClient = require '../lib/client/node'
 
-describe 'Client', ->
+describe 'NodeClient', ->
   it 'should instantiate', ->
-    Client 'fakekey'
+    new NodeClient 'fakekey'
