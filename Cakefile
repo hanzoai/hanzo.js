@@ -40,14 +40,13 @@ task 'build', 'build project', (cb) ->
 task 'build-min', 'build project', ['build'], ->
   exec 'uglifyjs crowdstart.js --compress --mangle --lint=false > crowdstart.min.js'
 
-task 'static-server', 'Run static server for tests', (cb) ->
-  connect = require 'connect'
-  server = connect()
-  server.use (require 'serve-static') './test/fixtures'
+server = do require 'connect'
 
+task 'static-server', 'Run static server for tests', (cb) ->
   port = process.env.PORT ? 3333
-  console.log "Static server started at http://localhost:#{port}"
-  server.listen port, cb
+
+  server.use (require 'serve-static') './test/fixtures'
+  server = require('http').createServer(server).listen port, cb
 
 task 'test', 'Run tests', ['static-server'], (opts) ->
   bail     = true
@@ -65,7 +64,7 @@ task 'test', 'Run tests', ['static-server'], (opts) ->
   else
     bin = 'mocha'
 
-  {stdout, stderr} = yield exec "NODE_ENV=test #{verbose}
+  {status} = yield exec "NODE_ENV=test #{verbose}
         #{bin}
         --colors
         --reporter spec
@@ -77,20 +76,18 @@ task 'test', 'Run tests', ['static-server'], (opts) ->
         #{grep}
         #{test}"
 
-  if stderr is ''
-    process.exit 0
-  else
-    process.exit 1
+  server.close()
+  process.exit status
 
 task 'test-ci', 'Run tests', (opts) ->
   invoke 'test', bail: true, coverage: true
 
 task 'coverage', 'Process coverage statistics', ->
-    exec '''
-      cat ./coverage/lcov.info | coveralls
-      cat ./coverage/coverage.json | codecov
-      rm -rf coverage/
-      '''
+  exec '''
+    cat ./coverage/lcov.info | coveralls
+    cat ./coverage/coverage.json | codecov
+    rm -rf coverage/
+    '''
 
 task 'watch', 'watch for changes and recompile project', ->
   exec 'coffee -bcmw -o lib/ src/'
