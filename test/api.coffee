@@ -1,5 +1,5 @@
-Api = require '../lib/api'
+Api = require '../lib'
 
 describe 'Api', ->
   it 'should instantiate', ->
-    Api 'fakekey'
+    new Api 'fakekey'
