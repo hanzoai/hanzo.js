@@ -8,7 +8,7 @@ describe 'Api.account', ->
         password:        goodPass1
         passwordConfirm: goodPass1
 
-      status.should.eq 200
+      status.should.eq 201
 
     it 'should enforce email requirement', ->
       try

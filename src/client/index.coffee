@@ -1,7 +1,7 @@
 request = require 'request'
 Promise = require 'broken'
 
-{newError} = require '../utils'
+{isString, newError} = require '../utils'
 
 module.exports = class Client
   debug:    false
@@ -31,29 +31,24 @@ module.exports = class Client
 
     new Promise (resolve, reject) =>
       request opts, (err, res) =>
-        res.status       = res.statusCode
-        res.responseText = res.body
-
-        try
-          res.data = JSON.parse res.body
-        catch err
-          res.data = null
+        res.status = res.statusCode
+        res.data   = res.body
 
         if @debug
           console.log '--RESPONSE--'
-          console.log 'ERROR:', err if err?
           console.log res.toJSON()
 
-        if err?
-          console.log 'rejecting!'
-          return reject newError opts, res
+        if err? or (res.status > 308) or res.data?.error?
+          err = newError opts, res
+          console.log 'ERROR:', err if @debug
+          return reject err
 
         resolve
           url:          opts.url
           req:          opts
           res:          res
           data:         res.data
+          responseText: res.data
           status:       res.status
           statusText:   res.statusText
-          responseText: res.responseText
           headers:      res.headers

@@ -12,10 +12,10 @@ before ->
     endpoint: 'https://api.staging.crowdstart.com'
     key: testKey
 
-  randomToken = (n) ->
+  global.randomToken = (n) ->
     Math.random().toString(36).replace(/[^a-z0-9A-Z]+/g, '').substr 0, n
 
-  randomEmail = ->
+  global.randomEmail = ->
     randomToken(4) + '@email.com'
 
   global.email        = randomEmail()

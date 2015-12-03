@@ -41,7 +41,11 @@ blueprints =
     create:
       uri:     '/account/create'
       method:  'POST'
-      expects: (x) -> (statusOk x) or (statusCreate x)
+      expects: (x) ->
+        console.log 'expects gets:', x
+        bool = (statusOk x) or (statusCreated x)
+        console.log 'expects:', bool
+        bool
 
     createConfirm:
       uri:     (x) -> '/account/create/confirm/' + x.tokenId
