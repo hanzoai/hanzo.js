@@ -16,6 +16,9 @@ module.exports = class XhrClient
   setEndpoint: (endpoint = '') ->
     @endpoint = endpoint.replace /\/$/, ''
 
+  setStore: (id) ->
+    @storeId = id
+
   setKey: (key) ->
     @key = key
 

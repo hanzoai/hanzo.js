@@ -66,3 +66,4 @@ module.exports = class Api
 
   setStore: (id) ->
     @storeId = id
+    @client.setStore id
