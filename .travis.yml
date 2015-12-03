@@ -19,7 +19,7 @@ notifications:
     on_success: change
     on_failure: always
   slack:
-    secure: IdDebWJ7K4MfcxDmYJ3V3lZn8gYbXty7nHMQaaolr5YRjkjF8XD0ICWp8zGGdvDiS0emgL1WMIV4W0QCtqscxvVsu0RtNOTUaWqft9nJo++/ubcZpdusDgvdDCOcz2mpCghbVEFAiVg3E2irrjqnQjVYHKtCpUm+TEkomrkYt2A=
+    secure: PEV/DCajyUMO8EeH/3CYeIkeZhTRITdjmWGs6ZziNpJgEGepH/BdH6SCPWwnTprpF9/MEovdLmsvtaT6auJkNGpoRPHRSb+EU2Bt9nvtCPmgZv16gess2bS0Ceq9K+YmFesoagU8DzLl8rEMw0OQrMWWsV/B0plhK1QnjlPkQKg=
 addons:
   apt:
     packages:
