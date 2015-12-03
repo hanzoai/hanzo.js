@@ -13,7 +13,7 @@
   "main": "lib/",
   "browser": "lib/browser",
   "scripts": {
-    "prepublish": "cake build",
+    "prepublish": "cake build-min",
     "test": "cake build && cake test"
   },
   "author": "Zach Kelling <zk@crowdstart.com> (http://zeekay.io)",
