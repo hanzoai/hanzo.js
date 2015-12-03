@@ -26,7 +26,7 @@ describe 'Api.account', ->
 
     it 'should not allow firstName to be blank', ->
       try
-        res = yield api.account.create
+        yield api.account.create
           firstName:       ''
           lastName:        lastName
           email:           randomEmail()

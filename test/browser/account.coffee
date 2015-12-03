@@ -9,7 +9,7 @@ describe 'Api.account (browser)', ->
           password:        goodPass1
           passwordConfirm: goodPass1
 
-      status.should.eq 200
+      status.should.eq 201
 
     it 'should enforce email requirement', ->
       try
@@ -29,7 +29,7 @@ describe 'Api.account (browser)', ->
 
     it 'should not allow firstName to be blank', ->
       try
-        res = yield browser.evaluate ->
+        yield browser.evaluate ->
           api.account.create
             firstName:       ''
             lastName:        lastName
@@ -86,10 +86,12 @@ describe 'Api.account (browser)', ->
   describe '.login', ->
     # test users are automatically enabled
     it 'should login valid users', ->
-      res = yield browser.evaluate ->
+      {status} = yield browser.evaluate ->
         api.account.login
           email:    email
           password: goodPass1
+
+      status.should.eq 200
 
     it 'should not login non-existant users', ->
       try
