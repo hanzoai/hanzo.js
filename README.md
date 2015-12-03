@@ -12,7 +12,7 @@ $ npm install crowdstart.js
 ```javascript
 var api = Crowdstart.Api({key: key});
 
-var user = api.account.create({
+api.account.create({
     firstName: 'Mr.',
     lastName:  'T',
     email:     'mrt@a-team.com',
