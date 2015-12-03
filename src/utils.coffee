@@ -15,7 +15,6 @@ exports.newError = (data, res) ->
   err.message = message
 
   err.req          = data
-  err.res          = res
   err.data         = res.data
   err.responseText = res.data
   err.status       = res.status

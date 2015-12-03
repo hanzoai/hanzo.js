@@ -45,6 +45,7 @@
     "joseph": "^0.2.9",
     "mocha": "^2.3.4",
     "mocha-lcov-reporter": "^1.0.0",
+    "moment": "^2.10.6",
     "nightmare": "^2.0.8",
     "postmortem": "^0.2.3",
     "random-token": "0.0.8",
