@@ -46,6 +46,7 @@ models = [
   'product'
   'referral'
   'referrer'
+  'site'
   'subscriber'
   'transaction'
   'user'
