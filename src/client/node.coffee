@@ -6,6 +6,12 @@ XhrClient = require './xhr'
 {newError} = require '../utils'
 
 module.exports = class NodeClient extends XhrClient
+  constructor: (opts = {}) ->
+    return new NodeClient opts unless @ instanceof NodeClient
+
+    {@key, @debug} = opts
+    @setEndpoint opts.endpoint
+
   request: (blueprint, data, key = @getKey()) ->
     opts =
       url:    @getUrl blueprint.url, data, key

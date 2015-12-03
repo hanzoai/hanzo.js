@@ -8,6 +8,8 @@ module.exports = class XhrClient
   endpoint: 'https://api.crowdstart.com'
 
   constructor: (opts = {}) ->
+    return new XhrClient opts unless @ instanceof XhrClient
+
     {@key, @debug} = opts
     @setEndpoint opts.endpoint
 
