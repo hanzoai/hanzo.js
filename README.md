@@ -340,6 +340,7 @@ This gets the information of a product with the supplied ID.
 
 ##### Returns
 - [`product`][product], product information.
+
 #### product.list([callback])
 This lists all the products available on your store.
 
@@ -1084,12 +1085,13 @@ This deletes a variant from your account.
 [gitter-image]: https://img.shields.io/badge/gitter-chat-brightgreen.svg
 
 [collection]:  https://www.crowdstart.com/docs/api#collection
+[coupon]:      https://www.crowdstart.com/docs/api#coupon
 [order]:       https://www.crowdstart.com/docs/api#order
 [payment]:     https://www.crowdstart.com/docs/api#payment
 [product]:     https://www.crowdstart.com/docs/api#product
 [referral]:    https://www.crowdstart.com/docs/api#referral
 [referrer]:    https://www.crowdstart.com/docs/api#referrer
+[subscriber]:  https://www.crowdstart.com/docs/api#subscriber
 [transaction]: https://www.crowdstart.com/docs/api#transaction
 [user]:        https://www.crowdstart.com/docs/api#user
 [variant]:     https://www.crowdstart.com/docs/api#variant
-[subscriber]:  https://www.crowdstart.com/docs/api#subscriber
