@@ -8,7 +8,7 @@ cookie = require 'js-cookie'
 module.exports = class XhrClient
   debug:       false
   endpoint:    'https://api.crowdstart.com'
-  sessionName: 'crowdstart-session'
+  sessionName: 'crwdst'
 
   constructor: (opts = {}) ->
     return new XhrClient opts unless @ instanceof XhrClient
