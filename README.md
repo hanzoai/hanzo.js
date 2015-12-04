@@ -1,10 +1,16 @@
 # crowdstart.js  [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NPM version][npm-image]][npm-url]  [![Gitter chat][gitter-image]][gitter-url]
 
 <!-- [![Downloads][downloads-image]][downloads-url] -->
-Full-featured JavaScript SDK for [Crowdstart][crowdstart]. Node.js and browser.
+Crowdstart.js is a complete Ecommerce SDK for JavaScript and client for
+[Crowdstart][crowdstart]. With Crowdstart.js you can:
 
-A complete JavaScript Ecommerce SDK featuring support for payment processing,
-order management, user creation, account management and more.
+- Launch static sites to test new ideas or reach additional markets.
+- Acquire, on-board and keep users.
+- Collect payments and create subscriptions for products, software or services.
+- Manage orders, shipping and fulfillment for products.
+- Run referral programs and other incentive-based programs for your business.
+- Gather detailed analytics about your users and their behavior.
+
 
 ## Install
 ```bash
@@ -12,24 +18,32 @@ $ npm install crowdstart.js
 ```
 
 ## Usage
-You can use `crowdstart.js` from a publicly accessible web page or from your
-server.
+You can use Crowdstart.js from any publicly accessible web page or from your
+server. Getting started is easy: you just need an API key from
+[Crowdstart][crowdstart] and a snippet of JavaScript to get going.
 
 ### Browser
-Include [crowdstart.js](crowdstart.js) in your website or bundle
-`crowdstart.js` using your favorite build tool.
+Include [`crowdstart.js`](crowdstart.js) in your website or bundle it using
+your favorite build tool. All account and commerce related APIs are available
+in the browser making it possible to building, maintaining or securing any
+backend services.
 
 ```html
 <script src="https://cdn.rawgit.com/crowdstart/crowdstart.js/v2.2.3/crowdstart.min.js"></script>
 <script>
-var api = new Crowdstart.Api({key: key});
+var api = new Crowdstart.Api({key: yourPublishedKey});
 </script>
 ```
 
+Make sure you use your published key and not your secret key!
+
 ### Node
+You can use either a published or secret key with the Node client. A secret key
+is required for full use of the Crowdstart API.
+
 ```javascript
 Crowdstart = require('crowdstart.js');
-var api = new Crowdstart({key: key});
+var api = new Crowdstart({key: yourSecretKey});
 ```
 
 ## Usage
