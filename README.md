@@ -113,6 +113,7 @@ This method creates a new user. It has more strict validation than the standard
     - `password` string, required.
     - `passwordConfirm` string, required.
 - `callback`, optional.
+
 ##### Returns
 - [`user`][user]
 
@@ -122,6 +123,7 @@ This method enable's a user account after creation using token provided in email
 ##### Arguments
 - `token` string, required.  This is the token that comes in when a user clicks the confirm email in their inbox.
 - `callback`, optional
+
 ##### Returns
 - boolean
 
@@ -140,17 +142,20 @@ This method checks to see if a exists, as per the identifier.
 ##### Arguments
 - `identifier` string, required.  Can be a user's email, username, or unique id.
 - `callback`, optional
+
 ##### Returns
 - boolean
 
 #### account.login(user [, callback])
 This method logs in a user and sets a user token on the client for subsequent
 calls.
+
 ##### Arguments
 - [`user`][user], required.
     - `email` string, required.
     - `password` string, required.
 - `callback`, optional.
+
 ##### Returns
 - [`user`][user]
 
@@ -159,6 +164,7 @@ This method destroys the current user session.
 
 ##### Arguments
 - `callback`, optional.
+
 ##### Returns
 - nil
 
@@ -169,6 +175,7 @@ This method starts the account reset process (such as if a user has forgotten th
 - `reset`, required, contains the following key:
     - `email`, string, required
 - `callback`, optional
+
 ##### Returns
 - nil
 
@@ -195,6 +202,7 @@ but the ones given will overwrite whatever was there before.
     - `shippingAddress` string, optional
     - `email` string, optional
 - `callback`, optional.
+
 ##### Returns
 - [`user`][user]
 
@@ -212,6 +220,7 @@ at the same time.
     - [`order`][order], order information.
     - [`payment`][payment], payment information.
 - `callback`, optional.
+
 ##### Returns
 - [`order`][order], order information.
 
@@ -224,6 +233,7 @@ This is the first half of the two-step payment process, and will authorize the p
     - [`order`][order], order information.
     - [`payment`][payment], payment information.
 - `callback`, optional.
+
 ##### Returns
 - [`order`][order], order information.
 
@@ -236,9 +246,9 @@ This is the first half of the two-step payment process, and will capture a payme
     - [`order`][order], order information.
     - [`payment`][payment], payment information.
 - `callback`, optional.
+
 ##### Returns
 - [`order`][order], order information.
-
 
 #### checkout.paypal(info [, callback])
 This initiates a PayPal payment.
@@ -248,6 +258,7 @@ This initiates a PayPal payment.
     - [`user`][user], user making order.
     - [`order`][order], order information.
 - `callback`, optional.
+
 ##### Returns
 - [`order`][order], order information.  `PayKey` is added to the order to allow for appropriate redirection to PayPal's site.
 
@@ -285,6 +296,7 @@ This gets the information of a coupon with the supplied ID.
 
 ##### Returns
 - [`coupon`][coupon], coupon information.
+
 #### coupon.list([callback])
 This lists all the coupons available on your store.
 
@@ -314,6 +326,7 @@ This lists all the products available on your store.
 
 ##### Returns
 - [`product`][product][], an array of available products.
+
 ### Variant
 This is an entity that represents a variation of a product that is available on your site.
 
@@ -326,6 +339,7 @@ This gets the information of a variant with the supplied ID.
 
 ##### Returns
 - [`variant`][variant], variant information.
+
 #### variant.list([callback])
 This lists all the variants available on your store.
 
@@ -356,6 +370,7 @@ This method creates a new user. It has more strict validation than the standard
     - `password` string, required.
     - `passwordConfirm` string, required.
 - `callback`, optional.
+
 ##### Returns
 - [`user`][user]
 
@@ -370,11 +385,13 @@ This method returns account information for currently logged in user.
 
 #### account.login(user [, callback])
 This method logs in a user and sets a user token on the client for making calls on their behalf.
+
 ##### Arguments
 - [`user`][user], required.
     - `email` string, required.
     - `password` string, required.
 - `callback`, optional.
+
 ##### Returns
 - [`user`][user]
 
@@ -383,6 +400,7 @@ This method destroys the current user session.
 
 ##### Arguments
 - `callback`, optional.
+
 ##### Returns
 - nil
 
@@ -392,8 +410,10 @@ This method checks to see if a exists, as per the identifier.
 ##### Arguments
 - `identifier` string, required.  Can be a user's email, username, or unique id.
 - `callback`, optional
+
 ##### Returns
 - boolean
+
 #### account.reset(reset [, callback])
 This method starts the account reset process (such as if a user has forgotten their password)
 
@@ -401,6 +421,7 @@ This method starts the account reset process (such as if a user has forgotten th
 - `reset`, required, contains the following key:
     - `email`, string, required
 - `callback`, optional
+
 ##### Returns
 - nil
 
@@ -427,6 +448,7 @@ but the ones given will overwrite whatever was there before.
     - `shippingAddress` string, optional
     - `email` string, optional
 - `callback`, optional.
+
 ##### Returns
 - [`user`][user]
 
@@ -444,6 +466,7 @@ at the same time.
     - [`order`][order], order information.
     - [`payment`][payment], payment information.
 - `callback`, optional.
+
 ##### Returns
 - [`order`][order], order information.
 
@@ -456,6 +479,7 @@ This is the first half of the two-step payment process, and will authorize the p
     - [`order`][order], order information.
     - [`payment`][payment], payment information.
 - `callback`, optional.
+
 ##### Returns
 - [`order`][order], order information.
 
@@ -468,6 +492,7 @@ This is the first half of the two-step payment process, and will capture a payme
     - [`order`][order], order information.
     - [`payment`][payment], payment information.
 - `callback`, optional.
+
 ##### Returns
 - [`order`][order], order information.
 
@@ -480,6 +505,7 @@ This initiates a PayPal payment.
     - [`user`][user], user making order.
     - [`order`][order], order information.
 - `callback`, optional.
+
 ##### Returns
 - [`order`][order], order information.  `PayKey` is added to the order to allow for appropriate redirection to PayPal's site.
 
@@ -547,6 +573,7 @@ This gets the information of a order with the supplied ID.
 
 ##### Returns
 - [`order`][order], order information.
+
 #### order.list([callback])
 This lists all the orders available on your store.
 
@@ -587,6 +614,7 @@ This deletes a order from your account.
 
 ##### Returns
 - boolean
+
 ### Payment
 This represents a transaction to give you money.
 
@@ -599,6 +627,7 @@ This gets the information of a payment with the supplied ID.
 
 ##### Returns
 - [`payment`][payment], payment information.
+
 #### payment.list([callback])
 This lists all the payments available on your store.
 
@@ -639,6 +668,7 @@ This deletes a payment from your account.
 
 ##### Returns
 - boolean
+
 ### Product
 This represents a thing that is available on your shop.
 
@@ -651,6 +681,7 @@ This gets the information of a product with the supplied ID.
 
 ##### Returns
 - [`product`][product], product information.
+
 #### product.list([callback])
 This lists all the products available on your store.
 
@@ -691,6 +722,7 @@ This deletes a product from your account.
 
 ##### Returns
 - boolean
+
 ### Referral
 This represents an identifying instance of an order that happened due to the intervention of a user on your site.
 
@@ -703,6 +735,7 @@ This gets the information of a referral with the supplied ID.
 
 ##### Returns
 - [`referral`][referral], referral information.
+
 #### referral.list([callback])
 This lists all the referrals available on your store.
 
@@ -743,8 +776,10 @@ This deletes a referral from your account.
 
 ##### Returns
 - boolean
+
 ### Referrer
 This represents a user that has induced an order to happen.
+
 #### referral.get(id [, callback])
 This gets the information of a referral with the supplied ID.
 
@@ -754,6 +789,7 @@ This gets the information of a referral with the supplied ID.
 
 ##### Returns
 - [`referral`][referral], referral information.
+
 #### referral.list([callback])
 This lists all the referrals available on your store.
 
@@ -794,6 +830,7 @@ This deletes a referral from your account.
 
 ##### Returns
 - boolean
+
 ### Subscriber
 This represents a user that is subscribed to a mailing list.
 
@@ -806,6 +843,7 @@ This gets the information of a subscriber with the supplied ID.
 
 ##### Returns
 - [`subscriber`][subscriber], subscriber information.
+
 #### subscriber.list([callback])
 This lists all the subscribers available on your store.
 
@@ -846,6 +884,7 @@ This deletes a subscriber from your account.
 
 ##### Returns
 - boolean
+
 ### Transaction
 This represents an internal action to settle up a user's account - think of it as store credit to Payment's real money.
 
@@ -858,6 +897,7 @@ This gets the information of a transaction with the supplied ID.
 
 ##### Returns
 - [`transaction`][transaction], transaction information.
+
 #### transaction.list([callback])
 This lists all the transactions available on your store.
 
@@ -910,6 +950,7 @@ This gets the information of a user with the supplied ID.
 
 ##### Returns
 - [`user`][user], user information.
+
 #### user.list([callback])
 This lists all the users available on your store.
 
@@ -950,6 +991,7 @@ This deletes a user from your account.
 
 ##### Returns
 - boolean
+
 ### Variant
 This is an entity that represents a variation of a product that is available on your site.
 
@@ -962,6 +1004,7 @@ This gets the information of a variant with the supplied ID.
 
 ##### Returns
 - [`variant`][variant], variant information.
+
 #### variant.list([callback])
 This lists all the variants available on your store.
 
