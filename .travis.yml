@@ -20,9 +20,7 @@ notifications:
     secure: PEV/DCajyUMO8EeH/3CYeIkeZhTRITdjmWGs6ZziNpJgEGepH/BdH6SCPWwnTprpF9/MEovdLmsvtaT6auJkNGpoRPHRSb+EU2Bt9nvtCPmgZv16gess2bS0Ceq9K+YmFesoagU8DzLl8rEMw0OQrMWWsV/B0plhK1QnjlPkQKg=
 before_install:
   - export TRAVIS_COMMIT_MSG="$(git log --format=%B --no-merges -n 1)"
-before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-  - npm install
 after_success:
   - node_modules/.bin/shortcake coverage
