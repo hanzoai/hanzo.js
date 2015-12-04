@@ -64,7 +64,7 @@ task 'test', 'Run tests', ['static-server'], (opts) ->
   else
     bin = 'mocha'
 
-  cmd = "NODE_ENV=test #{verbose}
+  {status} = yield exec "NODE_ENV=test #{verbose}
         #{bin}
         --colors
         --reporter spec
@@ -75,8 +75,6 @@ task 'test', 'Run tests', ['static-server'], (opts) ->
         #{bail}
         #{grep}
         #{test}"
-  console.log cmd
-  {status} = yield exec cmd
 
   server.close()
   process.exit status
