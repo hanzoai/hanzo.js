@@ -49,7 +49,7 @@ module.exports = class XhrClient
     if isFunction url
       url = url.call @, data
 
-    updateQuery "#{@endpoint}#{url}", 'token', key
+    updateQuery (@endpoint + url), 'token', key
 
   request: (blueprint, data, key = @getKey()) ->
     opts =
