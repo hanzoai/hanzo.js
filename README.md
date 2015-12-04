@@ -1089,3 +1089,4 @@ This deletes a variant from your account.
 [transaction]: https://www.crowdstart.com/docs/api#transaction
 [user]:        https://www.crowdstart.com/docs/api#user
 [variant]:     https://www.crowdstart.com/docs/api#variant
+[subscriber]:  https://www.crowdstart.com/docs/api#subscriber
