@@ -138,7 +138,7 @@ task 'version', 'change version of project', (opts) ->
   console.log
 
   data = fs.readFileSync 'README.md', 'utf8'
-  data = data.replace version, newVersion
+  data = data.replace (new RegExp version, 'g'), newVersion
   fs.writeFileSync 'README.md', data, 'utf8'
 
   pkg.version = newVersion
