@@ -1,8 +1,8 @@
 {isFunction, isString, newError, statusOk} = require './utils'
 
 module.exports = class Api
-  @BLUEPRINTS   = {}
-  @CLIENT       = ->
+  @BLUEPRINTS = {}
+  @CLIENT     = null
 
   constructor: (opts = {}) ->
     return new Api opts unless @ instanceof Api

@@ -74,22 +74,22 @@ blueprints =
   # CHECKOUT
   checkout:
     authorize:
-      url:     storePrefixed '/authorize'
+      url:     storePrefixed '/checkout/authorize'
       method:  'POST'
       expects: statusOk
 
     capture:
-      url:     storePrefixed (x) -> "/capture/#{x.orderId ? x}"
+      url:     storePrefixed (x) -> "/checkout/capture/#{x.orderId ? x}"
       method:  'POST'
       expects: statusOk
 
     charge:
-      url:     storePrefixed '/charge'
+      url:     storePrefixed '/checkout/charge'
       method:  'POST'
       expects: statusOk
 
     paypal:
-      url:     storePrefixed '/paypal/pay'
+      url:     storePrefixed '/checkout/paypal'
       method:  'POST'
       expects: statusOk
 

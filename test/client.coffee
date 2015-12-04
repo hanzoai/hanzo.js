@@ -1,9 +1,11 @@
 Client = require '../lib/client'
 
 describe 'Client', ->
-  it 'should instantiate', ->
-    client = new Client 'fakekey'
+  key = 'fakekey'
+  client = new Client key: key
+
+  it 'should instantiate with and without new', ->
+    Client key: key
 
   it 'should use default endpoint', ->
-    client = new Client 'fakekey'
     client.endpoint.should.eq 'https://api.crowdstart.com'
