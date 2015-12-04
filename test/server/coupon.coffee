@@ -34,8 +34,6 @@ describe 'Api.coupon', ->
         catch err
           setTimeout tryDelete, 500
 
-      console.log res
-
   describe '.update', ->
     it 'should update coupons', ->
       coupon = yield api.coupon.update code: 'SUCH-COUPON'

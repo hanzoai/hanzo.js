@@ -10,7 +10,6 @@ describe 'Api.collection', ->
 
   before ->
     yield api.collection.create fixture
-    console.log 'added'
 
   describe '.list', ->
     it 'should list collections', ->
@@ -40,8 +39,6 @@ describe 'Api.collection', ->
           res = yield api.collection.delete slug: collection.slug
         catch err
           setTimeout tryDelete, 500
-
-      console.log res
 
   describe '.update', ->
     it 'should update collections', ->

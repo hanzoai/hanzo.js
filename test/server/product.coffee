@@ -19,5 +19,4 @@ describe 'Api.product', ->
       product.price.should.eq 2500
 
     it 'should delete products', ->
-      res = yield api.product.delete slug: 'sad-keanu-shirt'
-      console.log res
+      yield api.product.delete slug: 'sad-keanu-shirt'
