@@ -1,4 +1,4 @@
-# crowdstart.js  [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NPM version][npm-image]][npm-url]  [![Gitter chat][gitter-image]][gitter-url]
+# Crowdstart.js  [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NPM version][npm-image]][npm-url]  [![Gitter chat][gitter-image]][gitter-url]
 
 <!-- [![Downloads][downloads-image]][downloads-url] -->
 Crowdstart.js is a complete Ecommerce SDK for JavaScript and client for
