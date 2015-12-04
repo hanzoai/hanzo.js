@@ -582,6 +582,7 @@ This deletes a collection from your account.
 
 ##### Returns
 - boolean
+
 ### Order
 This represents a confirmed request for products.
 
