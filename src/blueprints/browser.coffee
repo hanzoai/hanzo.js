@@ -47,7 +47,7 @@ blueprints =
 
     enable:
       url:     (x) -> "/account/enable/#{x.tokenId ? x}"
-      method:  'GET'
+      method:  'POST'
       expects: statusOk
 
     login:
