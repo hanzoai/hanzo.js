@@ -109,11 +109,13 @@ task 'watch:test', 'watch for changes and re-run tests', ->
 task 'major', ['version'], ->
 task 'minor', ['version'], ->
 task 'patch', ['version'], ->
-task 'version', 'change version of project', ['build-min'], (opts) ->
+task 'version', 'change version of project', (opts) ->
   {stdout, stderr} = yield exec.quiet 'git status --porcelain'
   if stderr or stdout
     console.log 'working directory not clean'
     return
+
+  yield invoke 'build-min'
 
   pkg     = require './package'
   version = pkg.version
