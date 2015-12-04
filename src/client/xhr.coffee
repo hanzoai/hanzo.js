@@ -1,13 +1,13 @@
 Xhr         = require 'xhr-promise-es6'
 Xhr.Promise = require 'broken'
 
-cookie = require 'js-cookie'
+global.cookie = require 'js-cookie'
 
 {isFunction, newError} = require '../utils'
 
 module.exports = class XhrClient
-  debug:      false
-  endpoint:   'https://api.crowdstart.com'
+  debug:       false
+  endpoint:    'https://api.crowdstart.com'
   sessionName: 'crowdstart-session'
 
   constructor: (opts = {}) ->
@@ -30,8 +30,8 @@ module.exports = class XhrClient
     @userKey or @key or @constructor.KEY
 
   getUserKey: ->
-    if global.document?
-      {@userKey} = cookie.getJSON @sessionName
+    if global.document? and (session = cookie.getJSON @sessionName)?
+      @userKey = session.userKey
     @userKey
 
   setUserKey: (key) ->
