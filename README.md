@@ -1,15 +1,19 @@
 # crowdstart.js  [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NPM version][npm-image]][npm-url]  [![Gitter chat][gitter-image]][gitter-url]
 
 <!-- [![Downloads][downloads-image]][downloads-url] -->
-Full-featured JavaScript SDK for Crowdstart. Node.js and browser.
+Full-featured JavaScript SDK for [Crowdstart][crowdstart]. Node.js and browser.
+
+A complete JavaScript Ecommerce SDK featuring support for payment processing,
+order management, user creation, account management and more.
 
 ## Install
-You can use `crowdstart.js` from a publicly accessible web page or from your
-server.
-
 ```bash
 $ npm install crowdstart.js
 ```
+
+## Usage
+You can use `crowdstart.js` from a publicly accessible web page or from your
+server.
 
 ### Browser
 Include [crowdstart.js](crowdstart.js) in your website or bundle
@@ -1046,6 +1050,7 @@ This deletes a variant from your account.
 ##### Returns
 - boolean
 
+[crowdstart]: https://crowdstart.com
 [travis-url]: https://travis-ci.org/crowdstart/crowdstart.js
 [travis-image]: https://img.shields.io/travis/crowdstart/crowdstart.js.svg
 [coveralls-url]: https://coveralls.io/r/crowdstart/crowdstart.js/
