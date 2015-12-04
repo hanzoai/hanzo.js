@@ -51,7 +51,8 @@
     "random-token": "0.0.8",
     "requisite": "^1.14.0",
     "serve-static": "^1.10.0",
-    "shortcake": "^1.1.7"
+    "shortcake": "^1.1.7",
+    "uglify-js": "^2.6.1"
   },
   "dependencies": {
     "broken": "^0.1.1",
