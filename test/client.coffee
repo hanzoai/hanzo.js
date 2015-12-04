@@ -1,9 +1,9 @@
-NodeClient = require '../lib/client/node'
+Client = require '../lib/client'
 
 describe 'Client', ->
   it 'should instantiate', ->
-    client = new NodeClient 'fakekey'
+    client = new Client 'fakekey'
 
   it 'should use default endpoint', ->
-    client = new NodeClient 'fakekey'
+    client = new Client 'fakekey'
     client.endpoint.should.eq 'https://api.crowdstart.com'
