@@ -11,6 +11,7 @@ Crowdstart.js is a complete Ecommerce SDK for JavaScript and client for
 - Run referral programs and other incentive-based programs for your business.
 - Gather detailed analytics about your users and their behavior.
 
+A complete Ecommerce platform at your fingertips, all in a tiny 5.3KiB (gzipped) library.
 
 ## Install
 ```bash
