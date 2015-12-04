@@ -16,7 +16,7 @@ Include [crowdstart.js](crowdstart.js) in your website or bundle
 `crowdstart.js` using your favorite build tool.
 
 ```html
-<script src="https://cdn.rawgit.com/crowdstart/crowdstart.js/v2.1.9/crowdstart.min.js"></script>
+<script src="https://cdn.rawgit.com/crowdstart/crowdstart.js/v2.1.10/crowdstart.min.js"></script>
 <script>
 var api = new Crowdstart.Api({key: key});
 </script>
