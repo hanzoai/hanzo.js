@@ -18,15 +18,15 @@ $ npm install crowdstart.js
 ```
 
 ## Usage
-You can use Crowdstart.js from any publicly accessible web page or from your
-server. Getting started is easy: you just need an API key from
-[Crowdstart][crowdstart] and a snippet of JavaScript to get going.
+You can embed Crowdstart.js in your application or web page and use it in the
+browser or on the server using Node.  Getting started is easy: you just need an
+API key from [Crowdstart][crowdstart] and a snippet of JavaScript to get going.
 
 ### Browser
-Include [`crowdstart.js`](crowdstart.js) in your website or bundle it using
-your favorite build tool. All account and commerce related APIs are available
-in the browser making it possible to building, maintaining or securing any
-backend services.
+Include [`crowdstart.js`][crowdstart.js] in your website or bundle it with your
+JavaScript application using your favorite build tool. All account and commerce
+related APIs are available in the browser making it possible to launch an
+ecommerce site without building, maintaining or securing any backend services.
 
 ```html
 <script src="https://cdn.rawgit.com/crowdstart/crowdstart.js/v2.2.3/crowdstart.min.js"></script>
@@ -1065,6 +1065,7 @@ This deletes a variant from your account.
 - boolean
 
 [crowdstart]: https://crowdstart.com
+[crowdstart.js]: https://cdn.rawgit.com/crowdstart/crowdstart.js/v2.2.3/crowdstart.min.js
 [travis-url]: https://travis-ci.org/crowdstart/crowdstart.js
 [travis-image]: https://img.shields.io/travis/crowdstart/crowdstart.js.svg
 [coveralls-url]: https://coveralls.io/r/crowdstart/crowdstart.js/
