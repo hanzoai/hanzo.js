@@ -19,7 +19,11 @@ task 'build', 'build project', (cb) ->
 
   exec 'coffee -bcm -o lib/ src/', done
 
-  requisite.bundle entry: 'src/browser.coffee', (err, bundle) ->
+  opts =
+    entry:      'src/browser.coffee'
+    stripDebug: true
+
+  requisite.bundle opts, (err, bundle) ->
     return done err if err?
 
     # Strip out unnecessary api bits
@@ -35,7 +39,7 @@ task 'build', 'build project', (cb) ->
 
       false
 
-    fs.writeFile 'crowdstart.js', bundle.toString(), 'utf8', done
+    fs.writeFile 'crowdstart.js', (bundle.toString opts), 'utf8', done
 
 task 'build-min', 'build project', ['build'], ->
   exec 'uglifyjs crowdstart.js --compress --mangle --lint=false > crowdstart.min.js'

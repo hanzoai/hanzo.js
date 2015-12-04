@@ -295,13 +295,13 @@
           data: JSON.stringify(data)
         };
         if (this.debug) {
-          console.log('--REQUEST--');
-          console.log(opts)
+          void 0;
+          void 0
         }
         return new Xhr().send(opts).then(function (res) {
           if (this.debug) {
-            console.log('--RESPONSE--');
-            console.log(res)
+            void 0;
+            void 0
           }
           res.data = res.responseText;
           return res
@@ -314,9 +314,9 @@
           }
           err = newError(data, res);
           if (this.debug) {
-            console.log('--RESPONSE--');
-            console.log(res);
-            console.log('ERROR:', err)
+            void 0;
+            void 0;
+            void 0
           }
           throw err
         })
@@ -734,7 +734,7 @@
             n ? f(function () {
               for (var e = 0, r = n.length; r > e; e++)
                 o(n[e], t)
-            }) : e.suppressUncaughtRejectionError || console.log('You upset Zousan. Please catch rejections: ', t, t.stack)
+            }) : e.suppressUncaughtRejectionError || void 0
           }
         },
         then: function (t, i) {
