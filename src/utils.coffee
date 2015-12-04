@@ -21,6 +21,7 @@ exports.newError = (data, res = {}) ->
   err.type         = res.data?.error?.type
   err
 
+# Update query on url
 exports.updateQuery = (url, key, value) ->
   re = new RegExp('([?&])' + key + '=.*?(&|#|$)(.*)', 'gi')
 
