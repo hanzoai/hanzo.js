@@ -304,7 +304,7 @@ This lists all the collections available on your store.
 - `callback`, optional
 
 ##### Returns
-- [`collection`][collection][], an array of available collections.
+- [`collection[]`][collection], an array of available collections.
 
 ### Coupon
 This is an entity that allows for special offers to be posted through your online store.
@@ -326,7 +326,7 @@ This lists all the coupons available on your store.
 - `callback`, optional
 
 ##### Returns
-- [`coupon`][coupon][], an array of available coupons.
+- [`coupon[]`][coupon], an array of available coupons.
 
 ### Product
 This is an entity that represents the things that are on offer at your site.
@@ -348,7 +348,7 @@ This lists all the products available on your store.
 - `callback`, optional
 
 ##### Returns
-- [`product`][product][], an array of available products.
+- [`product[]`][product], an array of available products.
 
 ### Variant
 This is an entity that represents a variation of a product that is available on your site.
@@ -370,7 +370,7 @@ This lists all the variants available on your store.
 - `callback`, optional
 
 ##### Returns
-- [`variant`][variant][], an array of available variants.
+- [`variant[]`][variant], an array of available variants.
 
 
 ## Server API
@@ -551,7 +551,7 @@ This lists all the collections available on your store.
 - `callback`, optional
 
 ##### Returns
-- [`collection`][collection][], an array of available collections.
+- [`collection[]`][collection], an array of available collections.
 
 #### collection.create(collection [, callback])
 This creates a new collection.
@@ -605,7 +605,7 @@ This lists all the orders available on your store.
 - `callback`, optional
 
 ##### Returns
-- [`order`][order][], an array of available orders.
+- [`order[]`][order], an array of available orders.
 
 #### order.create(order [, callback])
 This creates a new order.
@@ -659,7 +659,7 @@ This lists all the payments available on your store.
 - `callback`, optional
 
 ##### Returns
-- [`payment`][payment][], an array of available payments.
+- [`payment[]`][payment], an array of available payments.
 
 #### payment.create(payment [, callback])
 This creates a new payment.
@@ -713,7 +713,7 @@ This lists all the products available on your store.
 - `callback`, optional
 
 ##### Returns
-- [`product`][product][], an array of available products.
+- [`product[]`][product], an array of available products.
 
 #### product.create(product [, callback])
 This creates a new product.
@@ -767,7 +767,7 @@ This lists all the referrals available on your store.
 - `callback`, optional
 
 ##### Returns
-- [`referral`][referral][], an array of available referrals.
+- [`referral[]`][referral], an array of available referrals.
 
 #### referral.create(referral [, callback])
 This creates a new referral.
@@ -821,7 +821,7 @@ This lists all the referrals available on your store.
 - `callback`, optional
 
 ##### Returns
-- [`referral`][referral][], an array of available referrals.
+- [`referral[]`][referral], an array of available referrals.
 
 #### referral.create(referral [, callback])
 This creates a new referral.
@@ -875,7 +875,7 @@ This lists all the subscribers available on your store.
 - `callback`, optional
 
 ##### Returns
-- [`subscriber`][subscriber][], an array of available subscribers.
+- [`subscriber[]`][subscriber], an array of available subscribers.
 
 #### subscriber.create(subscriber [, callback])
 This creates a new subscriber.
@@ -929,7 +929,7 @@ This lists all the transactions available on your store.
 - `callback`, optional
 
 ##### Returns
-- [`transaction`][transaction][], an array of available transactions.
+- [`transaction[]`][transaction], an array of available transactions.
 
 #### transaction.create(transaction [, callback])
 This creates a new transaction.
@@ -983,7 +983,7 @@ This lists all the users available on your store.
 - `callback`, optional
 
 ##### Returns
-- [`user`][user][], an array of available users.
+- [`user[]`][user], an array of available users.
 
 #### user.create(user [, callback])
 This creates a new user.
@@ -1037,7 +1037,7 @@ This lists all the variants available on your store.
 - `callback`, optional
 
 ##### Returns
-- [`variant`][variant][], an array of available variants.
+- [`variant[]`][variant], an array of available variants.
 
 #### variant.create(variant [, callback])
 This creates a new variant.
