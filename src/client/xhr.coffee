@@ -1,9 +1,9 @@
 Xhr         = require 'xhr-promise-es6'
 Xhr.Promise = require 'broken'
 
-global.cookie = require 'js-cookie'
+cookie = require 'js-cookie'
 
-{isFunction, newError} = require '../utils'
+{isFunction, newError, updateQuery} = require '../utils'
 
 
 module.exports = class XhrClient
@@ -49,7 +49,7 @@ module.exports = class XhrClient
     if isFunction url
       url = url.call @, data
 
-    "#{@endpoint}#{url}?token=#{key}"
+    updateQuery "#{@endpoint}#{url}", 'token', 'key'
 
   request: (blueprint, data, key = @getKey()) ->
     opts =

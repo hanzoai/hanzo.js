@@ -20,3 +20,24 @@ exports.newError = (data, res = {}) ->
   err.status       = res.status
   err.type         = res.data?.error?.type
   err
+
+exports.updateQuery = (url, key, value) ->
+  re = new RegExp('([?&])' + key + '=.*?(&|#|$)(.*)', 'gi')
+
+  if re.test url
+    if value?
+      url.replace re, '$1' + key + '=' + value + '$2$3'
+    else
+      hash = url.split '#'
+      url = hash[0].replace(re, '$1$3').replace(/(&|\?)$/, '')
+      url += '#' + hash[1] if hash[1]?
+      url
+  else
+    if value?
+      separator = if url.indexOf('?') != -1 then '&' else '?'
+      hash = url.split '#'
+      url = hash[0] + separator + key + '=' + value
+      url += '#' + hash[1] if hash[1]?
+      url
+    else
+      url
