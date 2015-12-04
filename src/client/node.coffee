@@ -10,7 +10,7 @@ module.exports = class NodeClient extends XhrClient
     return new NodeClient opts unless @ instanceof NodeClient
 
     {@key, @debug} = opts
-    @setEndpoint opts.endpoint
+    @setEndpoint opts.endpoint if opts.endpoint
 
   request: (blueprint, data, key = @getKey()) ->
     opts =

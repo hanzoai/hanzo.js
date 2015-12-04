@@ -11,9 +11,9 @@ module.exports = class XhrClient
     return new XhrClient opts unless @ instanceof XhrClient
 
     {@key, @debug} = opts
-    @setEndpoint opts.endpoint
+    @setEndpoint opts.endpoint if opts.endpoint
 
-  setEndpoint: (endpoint = '') ->
+  setEndpoint: (endpoint) ->
     @endpoint = endpoint.replace /\/$/, ''
 
   setStore: (id) ->
