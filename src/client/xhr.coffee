@@ -6,8 +6,9 @@ cookie = require 'js-cookie'
 {isFunction, newError} = require '../utils'
 
 module.exports = class XhrClient
-  debug:    false
-  endpoint: 'https://api.crowdstart.com'
+  debug:      false
+  endpoint:   'https://api.crowdstart.com'
+  sessionName: 'crowdstart-session'
 
   constructor: (opts = {}) ->
     return new XhrClient opts unless @ instanceof XhrClient
@@ -25,15 +26,18 @@ module.exports = class XhrClient
   setKey: (key) ->
     @key = key
 
-  setUserKey: (key) ->
-    @userKey = cookie.set @constructor.SESSION_NAME, key, expires: 604800
-
   getKey: ->
     @userKey or @key or @constructor.KEY
 
   getUserKey: ->
-    key = cookie.getJSON @constructor.SESSION_NAME
-    @setUserKey key
+    if global.document?
+      {@userKey} = cookie.getJSON @sessionName
+    @userKey
+
+  setUserKey: (key) ->
+    if global.document?
+      cookie.set @sessionName, {userKey: key}, expires: 604800
+    @userKey = key
 
   getUrl: (url, data, key) ->
     if isFunction url

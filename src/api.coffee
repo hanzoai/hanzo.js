@@ -1,7 +1,6 @@
 {isFunction, isString, newError, statusOk} = require './utils'
 
 module.exports = class Api
-  @SESSION_NAME = 'crowdstart-session'
   @BLUEPRINTS   = {}
   @CLIENT       = ->
 
