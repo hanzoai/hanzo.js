@@ -19,7 +19,7 @@
     "referrals",
     "shipping",
     "site",
-    "subscriptions",
+    "subscriptions"
   ],
   "main": "lib/",
   "browser": "lib/browser",
