@@ -46,11 +46,12 @@ Crowdstart = require('crowdstart.js');
 var api = new Crowdstart({key: yourSecretKey});
 ```
 
-## Usage
-Promises are returned automatically by every API method when a callback is not
-supplied. Either style can be used interchangeably.
+### JavaScript API
+Promises are returned by every asynchronous method when a callback is not
+provided. Error-first callbacks are optional to every asynchronous method and
+may be used interchangeably with the Promise-based API.
 
-### Promise style
+#### Promise style
 Full Promise A+ compliant promises are returned by every API method call.
 
 ```javascript
@@ -61,14 +62,16 @@ promise
   .catch(failure)
 ```
 
-### Callback style
-Node.js style error first callbacks can also be supplied.
+#### Callback style
+Node.js-style error first callbacks can also be supplied.
 
 ```javascript
 api.account.create({}, function(err, user) {
     // ...etc
 });
 ```
+
+## API
 
 ### Crowdstart.Api(opts)
 Create a new Crowdstart API Client. Has a high level API which returns objects
