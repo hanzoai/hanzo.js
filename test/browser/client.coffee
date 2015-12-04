@@ -1,9 +1,11 @@
-XhrClient = require '../../lib/client/xhr'
-
-describe 'XhrClient (browser)', ->
+describe 'Client (browser)', ->
   it 'should instantiate', ->
-    new XhrClient 'fakekey'
+    yield browser.evaluate ->
+      new Crowdstart.Client 'fakekey'
 
   it 'should use default endpoint', ->
-    client = new XhrClient 'fakekey'
+    client = yield browser.evaluate ->
+      client = new Crowdstart.Client 'fakekey'
+      endpoint: client.endpoint
+
     client.endpoint.should.eq 'https://api.crowdstart.com'

@@ -5,7 +5,6 @@ cookie = require 'js-cookie'
 
 {isFunction, newError, updateQuery} = require '../utils'
 
-
 module.exports = class XhrClient
   debug:       false
   endpoint:    'https://api.crowdstart.com'
@@ -15,7 +14,10 @@ module.exports = class XhrClient
     return new XhrClient opts unless @ instanceof XhrClient
 
     {@key, @debug} = opts
-    @setEndpoint opts.endpoint if opts.endpoint
+
+    if opts.endpoint
+      @setEndpoint opts.endpoint
+
     @getUserKey()
 
   setEndpoint: (endpoint) ->
@@ -31,18 +33,16 @@ module.exports = class XhrClient
     @userKey or @key or @constructor.KEY
 
   getUserKey: ->
-    if global.document? and (session = cookie.getJSON @sessionName)?
+    if (session = cookie.getJSON @sessionName)?
       @userKey = session.userKey if session.userKey?
     @userKey
 
   setUserKey: (key) ->
-    if global.document?
-      cookie.set @sessionName, {userKey: key}, expires: 7 * 24 * 3600 * 1000
+    cookie.set @sessionName, {userKey: key}, expires: 7 * 24 * 3600 * 1000
     @userKey = key
 
   deleteUserKey: ->
-    if global.document?
-      cookie.set @sessionName, {userKey: null}, expires: 7 * 24 * 3600 * 1000
+    cookie.set @sessionName, {userKey: null}, expires: 7 * 24 * 3600 * 1000
     @userKey
 
   getUrl: (url, data, key) ->

@@ -1,6 +1,6 @@
 NodeClient = require '../lib/client/node'
 
-describe 'NodeClient', ->
+describe 'Client', ->
   it 'should instantiate', ->
     client = new NodeClient 'fakekey'
 
