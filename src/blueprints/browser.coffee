@@ -47,7 +47,7 @@ blueprints =
 
     enable:
       url:     (x) -> "/account/enable/#{x.tokenId ? x}"
-      method:  'POST'
+      method:  'GET'
       expects: statusOk
 
     login:
@@ -59,10 +59,10 @@ blueprints =
         res
 
     logout: ->
-      @setUserKey ''
+      @deleteUserKey()
 
     reset:
-      url:     '/account/reset'
+      url:     '/account/reset/#{x.tokenId ? x}'
       method:  'POST'
       expects: statusOk
 

@@ -56,6 +56,9 @@ module.exports = class Api
   setUserKey: (key) ->
     @client.setUserKey key
 
+  deleteUserKey: ->
+    @client.deleteUserKey()
+
   setStore: (id) ->
     @storeId = id
     @client.setStore id
