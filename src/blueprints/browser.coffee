@@ -45,8 +45,8 @@ blueprints =
       method:  'POST'
       expects: (x) -> (statusOk x) or (statusCreated x)
 
-    createConfirm:
-      url:     (x) -> "/account/create/confirm/#{x.tokenId ? x}"
+    enable:
+      url:     (x) -> "/account/enable/#{x.tokenId ? x}"
       method:  'POST'
       expects: statusOk
 
@@ -62,12 +62,12 @@ blueprints =
       @setUserKey ''
 
     reset:
-      url:     (x) -> "/account/reset?email=#{x.email ? x}"
+      url:     '/account/reset'
       method:  'POST'
       expects: statusOk
 
-    resetConfirm:
-      url:     (x) -> "/account/reset/confirm/#{x.tokenId ? x}"
+    confirm:
+      url:     (x) -> "/account/confirm/#{x.tokenId ? x}"
       method:  'POST'
       expects: statusOk
 
