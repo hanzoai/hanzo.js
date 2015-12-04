@@ -56,10 +56,8 @@
   },
   "dependencies": {
     "broken": "^0.1.1",
-    "executive": "^1.1.2",
     "js-cookie": "^2.0.4",
     "request": "^2.67.0",
-    "shortcake": "^1.1.5",
     "xhr-promise-es6": "^1.2.4"
   }
 }
