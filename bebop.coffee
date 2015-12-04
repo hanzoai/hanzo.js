@@ -9,8 +9,6 @@ compileCoffee = (src) ->
   requisite.bundle
     entry: 'src/browser.coffee'
     globalRequire: true
-    compilers:
-      jade: compileJade
   , (err, bundle) ->
     return console.error err if err?
     fs.writeFileSync 'crowdstart.js', bundle.toString(), 'utf8'
