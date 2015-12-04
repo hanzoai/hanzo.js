@@ -48,8 +48,51 @@ Node.js style error first callbacks can also be supplied.
 
 ```javascript
 api.account.create({}, function(err, user) {
+    // ...etc
 });
 ```
+
+### Crowdstart.Api(opts)
+Create a new Crowdstart API Client. Has a high level API which returns objects
+directly.
+
+##### Arguments
+- `opts` Options, optional
+    - `key` Key to use during requests.
+    - `endpoint` Defaults to `'https://api.crowdstart.com'`
+
+### Crowdstart.Client(opts)
+Lower-level client which `Api` builds on. You can direct requests to Crowdstart
+using blueprints.
+
+##### Arguments
+- `opts` Options, optional
+    - `key` Key to use during requests.
+    - `endpoint` Defaults to `'https://api.crowdstart.com'`
+
+#### client.request(blueprint [, data, key])
+Make a request using `blueprint`. Returns a promise which eventually returns a
+response object or rejects with an `Error`.
+
+##### Blueprints
+A `blueprint` is a description of an API method including URL, method, etc. You
+can re-use the default blueprints pretty easily to make your own requests directly.
+
+```javascript
+client.request(api.account.create, {email: '', ...})
+    .then(function(res) {
+        console.log(res.data)
+        console.log(res.status)
+    })
+    .catch(function(err) {
+        console.log(err.stack)
+    })
+```
+
+##### Arguments
+- `blueprint` Description of API endpoint.
+- `data` Data to send to Crowdstart.
+- `key` Key to use during requests.
 
 ## Browser API
 We only expose a subset of API methods to the Browser. Only the API calls which
