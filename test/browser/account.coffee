@@ -116,18 +116,18 @@ describe 'Api.account (browser)', ->
   describe '.get', ->
     it 'should retrieve logged in user data', ->
       user = yield browser.evaluate ->
-          api.account.get()
+        api.account.get()
 
-      user.firstName.should.not.equal ''
-      user.lastName.should.not.equal ''
-      user.email.should.not.equal ''
+      user.firstName.should.not.equal firstName
+      user.lastName.should.not.equal lastName
+      user.email.should.not.equal email
 
   describe '.update', ->
     it 'should patch logged in user data', ->
       user = yield browser.evaluate ->
-          api.account.update
-            firstName: newFirstName
+        api.account.update
+          firstName: newFirstName
 
-      user.firstName.should.not.equal ''
-      user.lastName.should.not.equal ''
-      user.email.should.not.equal ''
+      user.firstName.should.not.equal newFirstName
+      user.lastName.should.not.equal lastName
+      user.email.should.not.equal email
