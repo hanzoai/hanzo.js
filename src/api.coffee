@@ -41,7 +41,6 @@ module.exports = class Api
               if res.data?.error?
                 throw newError data, res
               unless bp.expects res
-                console.log res
                 throw newError data, res
               if bp.process?
                 bp.process.call @, res

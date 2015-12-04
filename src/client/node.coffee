@@ -33,8 +33,8 @@ module.exports = class NodeClient extends XhrClient
             console.log '--RESPONSE--'
             console.log res.toJSON()
 
-            res.status = res.statusCode
-            res.data   = res.body
+          res.status = res.statusCode
+          res.data   = res.body
 
         if err? or (res.status > 308) or res.data?.error?
           err = newError opts, res

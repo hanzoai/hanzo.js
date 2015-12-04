@@ -43,7 +43,7 @@ blueprints =
     create:
       url:     '/account/create'
       method:  'POST'
-      expects: (x) -> (statusOk x) or (statusCreated x)
+      expects: statusCreated x
 
     enable:
       url:     (x) -> "/account/enable/#{x.tokenId ? x}"
