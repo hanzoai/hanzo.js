@@ -1,5 +1,3 @@
-cookie = require 'js-cookie'
-
 {isFunction, isString, newError, statusOk} = require './utils'
 
 module.exports = class Api
@@ -57,11 +55,7 @@ module.exports = class Api
     @client.setKey key
 
   setUserKey: (key) ->
-    cookie.set @constructor.SESSION_NAME, key, expires: 604800
     @client.setUserKey key
-
-  getUserKey: ->
-    cookie.get @constructor.SESSION_NAME
 
   setStore: (id) ->
     @storeId = id

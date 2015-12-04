@@ -1,6 +1,8 @@
 Xhr         = require 'xhr-promise-es6'
 Xhr.Promise = require 'broken'
 
+cookie = require 'js-cookie'
+
 {isFunction, newError} = require '../utils'
 
 module.exports = class XhrClient
@@ -12,6 +14,7 @@ module.exports = class XhrClient
 
     {@key, @debug} = opts
     @setEndpoint opts.endpoint if opts.endpoint
+    @getUserKey()
 
   setEndpoint: (endpoint) ->
     @endpoint = endpoint.replace /\/$/, ''
@@ -23,10 +26,14 @@ module.exports = class XhrClient
     @key = key
 
   setUserKey: (key) ->
-    @userKey = key
+    @userKey = cookie.set @constructor.SESSION_NAME, key, expires: 604800
 
   getKey: ->
     @userKey or @key or @constructor.KEY
+
+  getUserKey: ->
+    key = cookie.getJSON @constructor.SESSION_NAME
+    @setUserKey key
 
   getUrl: (url, data, key) ->
     if isFunction url
