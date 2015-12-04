@@ -62,7 +62,7 @@ blueprints =
       @deleteUserKey()
 
     reset:
-      url:     '/account/reset/#{x.tokenId ? x}'
+      url:     '/account/reset'
       method:  'POST'
       expects: statusOk
 
