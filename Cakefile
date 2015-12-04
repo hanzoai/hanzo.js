@@ -64,7 +64,7 @@ task 'test', 'Run tests', ['static-server'], (opts) ->
   else
     bin = 'mocha'
 
-  {status} = yield exec "NODE_ENV=test #{verbose}
+  {status} = yield exec.interactive "NODE_ENV=test #{verbose}
         #{bin}
         --colors
         --reporter spec
