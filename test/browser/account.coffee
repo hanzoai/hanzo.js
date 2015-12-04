@@ -19,7 +19,6 @@ describe 'Api.account (browser)', ->
             email:           firstName
             password:        goodPass1
             passwordConfirm: goodPass1
-          # setTimeout cb, 100000
 
       catch err
 

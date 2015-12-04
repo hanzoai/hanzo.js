@@ -31,8 +31,8 @@ module.exports = class XhrClient
     @userKey or @key or @constructor.KEY
 
   getUserKey: ->
-    if global.document? and ({userKey} = cookie.getJSON @sessionName)?
-      @userKey = userKey
+    if global.document? and (session = cookie.getJSON @sessionName)?
+      @userKey = session.userKey if session.userKey?
     @userKey
 
   setUserKey: (key) ->
