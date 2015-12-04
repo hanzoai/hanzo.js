@@ -959,6 +959,7 @@ This deletes a transaction from your account.
 
 ##### Returns
 - boolean
+
 ### User
 This is a customer on your site.
 
