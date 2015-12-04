@@ -18,9 +18,9 @@ $ npm install crowdstart.js
 ```
 
 ## Usage
-You can embed Crowdstart.js in your application or web page and use it in the
-browser or on the server using Node.  Getting started is easy: you just need an
-API key from [Crowdstart][crowdstart] and a snippet of JavaScript to get going.
+You can embed Crowdstart.js in your application or web page or on the server
+with Node.  Getting started is easy: you just need an API key from
+[Crowdstart][crowdstart] and a snippet of JavaScript to get going.
 
 ### Browser
 Include [`crowdstart.js`][crowdstart.js] in your website or bundle it with your
