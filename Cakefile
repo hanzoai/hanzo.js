@@ -49,11 +49,11 @@ task 'static-server', 'Run static server for tests', (cb) ->
   server = require('http').createServer(server).listen port, cb
 
 task 'test', 'Run tests', ['static-server'], (opts) ->
-  bail     = true
+  bail     = opts.bail     ? true
+  coverage = opts.coverage ? false
   grep     = opts.grep     ? ''
   test     = opts.test     ? 'test/ test/server/ test/browser/'
   verbose  = opts.verbose  ? ''
-  coverage = opts.coverage ? false
 
   bail    = '--bail' if bail
   grep    = "--grep #{opts.grep}" if grep
@@ -64,7 +64,7 @@ task 'test', 'Run tests', ['static-server'], (opts) ->
   else
     bin = 'mocha'
 
-  {status} = yield exec "NODE_ENV=test #{verbose}
+  cmd = "NODE_ENV=test #{verbose}
         #{bin}
         --colors
         --reporter spec
@@ -75,6 +75,8 @@ task 'test', 'Run tests', ['static-server'], (opts) ->
         #{bail}
         #{grep}
         #{test}"
+  console.log cmd
+  {status} = yield exec cmd
 
   server.close()
   process.exit status
