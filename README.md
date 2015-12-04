@@ -73,8 +73,8 @@ This method creates a new user. It has more strict validation than the standard
 ##### Returns
 - [`user`][user]
 
-#### account.createConfirm(token [, callback])
-This method can be used to verify the user's account creation.
+#### account.enable(token [, callback])
+This method enable's a user account after creation using token provided in email.
 
 ##### Arguments
 - `token` string, required.  This is the token that comes in when a user clicks the confirm email in their inbox.
@@ -129,7 +129,7 @@ This method starts the account reset process (such as if a user has forgotten th
 ##### Returns
 - nil
 
-#### account.resetConfirm(tokenId [, callback])
+#### account.confirm(tokenId [, callback])
 This method completes the account reset process by confirming it with the ID garnished from the user's email.
 
 ##### Arguments
