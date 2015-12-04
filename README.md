@@ -1080,6 +1080,12 @@ This deletes a variant from your account.
 [gitter-url]: https://gitter.im/crowdstart/chat
 [gitter-image]: https://img.shields.io/badge/gitter-chat-brightgreen.svg
 
-[order]: https://www.crowdstart.com/docs/api#order
-[payment]: https://www.crowdstart.com/docs/api#payment
-[user]: https://www.crowdstart.com/docs/api#user
+[collection]:  https://www.crowdstart.com/docs/api#collection
+[order]:       https://www.crowdstart.com/docs/api#order
+[payment]:     https://www.crowdstart.com/docs/api#payment
+[product]:     https://www.crowdstart.com/docs/api#product
+[referral]:    https://www.crowdstart.com/docs/api#referral
+[referrer]:    https://www.crowdstart.com/docs/api#referrer
+[transaction]: https://www.crowdstart.com/docs/api#transaction
+[user]:        https://www.crowdstart.com/docs/api#user
+[variant]:     https://www.crowdstart.com/docs/api#variant
