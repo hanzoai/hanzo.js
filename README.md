@@ -166,7 +166,7 @@ This method destroys the current user session.
 - `callback`, optional.
 
 ##### Returns
-- nil
+- null
 
 #### account.reset(reset [, callback])
 This method starts the account reset process (such as if a user has forgotten their password)
@@ -177,7 +177,7 @@ This method starts the account reset process (such as if a user has forgotten th
 - `callback`, optional
 
 ##### Returns
-- nil
+- null
 
 #### account.confirm(tokenId [, callback])
 This method completes the account reset process by confirming it with the ID garnished from the user's email.
@@ -187,7 +187,7 @@ This method completes the account reset process by confirming it with the ID gar
 - `callback`, optional
 
 ##### Returns
-- nil
+- null
 
 #### account.update(user [, callback])
 This method updates a user with new information.  All fields in the [`user`][user] object are optional,
@@ -402,7 +402,7 @@ This method destroys the current user session.
 - `callback`, optional.
 
 ##### Returns
-- nil
+- null
 
 #### account.exists(identifier [, callback])
 This method checks to see if a exists, as per the identifier.
@@ -414,16 +414,16 @@ This method checks to see if a exists, as per the identifier.
 ##### Returns
 - boolean
 
-#### account.reset(reset [, callback])
+#### account.reset(info [, callback])
 This method starts the account reset process (such as if a user has forgotten their password)
 
 ##### Arguments
-- `reset`, required, contains the following key:
+- `info`, required, contains the following key:
     - `email`, string, required
 - `callback`, optional
 
 ##### Returns
-- nil
+- null
 
 #### account.resetConfirm(tokenId [, callback])
 This method completes the account reset process by confirming it with the ID garnished from the user's email.
@@ -433,7 +433,7 @@ This method completes the account reset process by confirming it with the ID gar
 - `callback`, optional
 
 ##### Returns
-- nil
+- null
 
 #### account.update(user [, callback])
 This method updates a user with new information.  All fields in the [`user`][user] object are optional,
