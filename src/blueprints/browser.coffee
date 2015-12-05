@@ -102,10 +102,15 @@ blueprints =
 
 # MODELS
 models = [
-  'coupon'
   'collection'
+  'coupon'
   'product'
   'variant'
+]
+
+userModels = [
+  'order'
+  'subscription'
 ]
 
 for model in models
