@@ -232,12 +232,12 @@ but the ones given will overwrite whatever was there before.
 Checkout encompasses the actual purchase of things from your website, and has support for both
 one and two step payment styles.
 
-#### checkout.charge(info [, callback])
+#### checkout.charge(opts [, callback])
 This is the one-step payment process, which will attempt to both authorize and capture the payment
 at the same time.
 
 ##### Arguments
-- `info` required, containing the following keys:
+- `opts` required, containing the following keys:
     - [`user`][user], user making order.
     - [`order`][order], order information.
     - [`payment`][payment], payment information.
@@ -246,11 +246,11 @@ at the same time.
 ##### Returns
 - [`order`][order], order information.
 
-#### checkout.authorize(info [, callback])
+#### checkout.authorize(opts [, callback])
 This is the first half of the two-step payment process, and will authorize the payment for later capture.
 
 ##### Arguments
-- `info` required, containing the following keys:
+- `opts` required, containing the following keys:
     - [`user`][user], user making order.
     - [`order`][order], order information.
     - [`payment`][payment], payment information.
@@ -259,11 +259,11 @@ This is the first half of the two-step payment process, and will authorize the p
 ##### Returns
 - [`order`][order], order information.
 
-#### checkout.capture(info [, callback])
+#### checkout.capture(opts [, callback])
 This is the first half of the two-step payment process, and will capture a payment that has been authorized prior.
 
 ##### Arguments
-- `info` required, containing the following keys:
+- `opts` required, containing the following keys:
     - [`user`][user], user making order.
     - [`order`][order], order information.
     - [`payment`][payment], payment information.
@@ -272,11 +272,11 @@ This is the first half of the two-step payment process, and will capture a payme
 ##### Returns
 - [`order`][order], order information.
 
-#### checkout.paypal(info [, callback])
+#### checkout.paypal(opts [, callback])
 This initiates a PayPal payment.
 
 ##### Arguments
-- `info` required, containing the following keys:
+- `opts` required, containing the following keys:
     - [`user`][user], user making order.
     - [`order`][order], order information.
 - `callback`, optional.
@@ -437,11 +437,11 @@ This method checks to see if a exists, as per the identifier.
 ##### Returns
 - boolean
 
-#### account.reset(info [, callback])
+#### account.reset(opts [, callback])
 This method starts the account reset process (such as if a user has forgotten their password)
 
 ##### Arguments
-- `info`, required, contains the following key:
+- `opts`, required, contains the following key:
     - `email`, string, required
 - `callback`, optional
 
@@ -479,12 +479,12 @@ but the ones given will overwrite whatever was there before.
 Checkout encompasses the actual purchase of things from your website, and has support for both
 one and two step payment styles.
 
-#### checkout.charge(info [, callback])
+#### checkout.charge(opts [, callback])
 This is the one-step payment process, which will attempt to both authorize and capture the payment
 at the same time.
 
 ##### Arguments
-- `info` required, containing the following keys:
+- `opts` required, containing the following keys:
     - [`user`][user], user making order.
     - [`order`][order], order information.
     - [`payment`][payment], payment information.
@@ -493,11 +493,11 @@ at the same time.
 ##### Returns
 - [`order`][order], order information.
 
-#### checkout.authorize(info [, callback])
+#### checkout.authorize(opts [, callback])
 This is the first half of the two-step payment process, and will authorize the payment for later capture.
 
 ##### Arguments
-- `info` required, containing the following keys:
+- `opts` required, containing the following keys:
     - [`user`][user], user making order.
     - [`order`][order], order information.
     - [`payment`][payment], payment information.
@@ -506,11 +506,11 @@ This is the first half of the two-step payment process, and will authorize the p
 ##### Returns
 - [`order`][order], order information.
 
-#### checkout.capture(info [, callback])
+#### checkout.capture(opts [, callback])
 This is the first half of the two-step payment process, and will capture a payment that has been authorized prior.
 
 ##### Arguments
-- `info` required, containing the following keys:
+- `opts` required, containing the following keys:
     - [`user`][user], user making order.
     - [`order`][order], order information.
     - [`payment`][payment], payment information.
@@ -520,11 +520,11 @@ This is the first half of the two-step payment process, and will capture a payme
 - [`order`][order], order information.
 
 
-#### checkout.paypal(info [, callback])
+#### checkout.paypal(opts [, callback])
 This initiates a PayPal payment.
 
 ##### Arguments
-- `info` required, containing the following keys:
+- `opts` required, containing the following keys:
     - [`user`][user], user making order.
     - [`order`][order], order information.
 - `callback`, optional.
