@@ -1,5 +1,5 @@
 {
-  "name": "crowdstart.js",
+  "name": "Crowdstart.js",
   "version": "2.2.3",
   "description": "JavaScript client for the Crowdstart platform.",
   "homepage": "http://github.com/crowdstart/crowdstart.js",
@@ -30,7 +30,7 @@
     "prepublish": "cake build-min",
     "test": "cake build && cake test"
   },
-  "author": "Zach Kelling <zk@crowdstart.com> (http://zeekay.io)",
+  "author": "Crowdstart, LLC <hi@crowdstart.com> (http://crowdstart.com)",
   "licenses": [
     {
       "type": "MIT",
