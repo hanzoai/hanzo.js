@@ -15,22 +15,23 @@ module.exports = class NodeClient extends XhrClient
     if NodeClient.ENDPOINT
       @setEndpoint NodeClient.ENDPOINT
 
+    if NodeClient.DEBUG
+      @debug = true
+
     if opts.endpoint
       @setEndpoint opts.endpoint
 
   request: (blueprint, data, key = @getKey()) ->
     opts =
-      url:     @getUrl blueprint.url, data, key
-      method:  blueprint.method
-      headers: blueprint.headers ? {}
+      url:                @getUrl blueprint.url, data, key
+      method:             blueprint.method
+      headers:            blueprint.headers ? {}
+      followAllRedirects: true
 
     if (opts.method is 'POST') or (opts.method is 'PATCH')
       opts.json = data
     else
       opts.json = true
-
-    if blueprint.followRedirects?
-      opts.followAllRedirects = blueprint.followRedirects
 
     if @debug
       console.log '--REQUEST--'
@@ -41,14 +42,21 @@ module.exports = class NodeClient extends XhrClient
         if res?
           if @debug
             console.log '--RESPONSE--'
-            console.log res.toJSON()
+            console.log
+              status: res.statusCode
+              body:   res.body
 
           res.status = res.statusCode
           res.data   = res.body
 
         if err? or (res.status > 308) or res.data?.error?
           err = newError opts, res
-          console.log 'ERROR:', err if @debug
+          if @debug
+            console.log 'ERROR:'
+            console.log
+              message: err.message
+              status:  err.status
+              type:    err.type
           return reject err
 
         resolve

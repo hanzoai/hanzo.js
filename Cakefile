@@ -52,7 +52,7 @@ task 'static-server', 'Run static server for tests', (cb) ->
   server.use (require 'serve-static') './test/fixtures'
   server = require('http').createServer(server).listen port, cb
 
-task 'test', 'Run tests', ['static-server'], (opts) ->
+task 'test', 'Run tests', ['build', 'static-server'], (opts) ->
   bail     = opts.bail     ? true
   coverage = opts.coverage ? false
   grep     = opts.grep     ? ''
@@ -61,14 +61,14 @@ task 'test', 'Run tests', ['static-server'], (opts) ->
 
   bail    = '--bail' if bail
   grep    = "--grep #{opts.grep}" if grep
-  verbose = 'DEBUG=nightmare VERBOSE=true' if verbose
+  verbose = 'DEBUG=nightmare VERBOSE=true CROWDSTART_DEBUG=1' if verbose
 
   if coverage
     bin = 'istanbul --print=none cover _mocha --'
   else
     bin = 'mocha'
 
-  {status} = yield exec.interactive "NODE_ENV=test #{verbose}
+  {status} = yield exec.interactive "NODE_ENV=test CROWDSTART_KEY='' CROWDSTART_ENDPOINT='' #{verbose}
         #{bin}
         --colors
         --reporter spec
