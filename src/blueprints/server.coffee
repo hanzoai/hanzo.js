@@ -58,4 +58,7 @@ for model in models
   do (model) ->
     blueprints[model] = createBlueprint model
 
+# Attach deploy API
+require('./deploy') blueprints
+
 module.exports = blueprints

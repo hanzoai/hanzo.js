@@ -1,5 +1,6 @@
-request = require 'request'
 Promise = require 'broken'
+fs      = require 'fs'
+request = require 'request'
 
 XhrClient = require './xhr'
 
@@ -10,24 +11,33 @@ module.exports = class NodeClient extends XhrClient
     return new NodeClient opts unless @ instanceof NodeClient
 
     {@key, @debug} = opts
-    @setEndpoint opts.endpoint if opts.endpoint
+
+    if NodeClient.ENDPOINT
+      @setEndpoint NodeClient.ENDPOINT
+
+    if opts.endpoint
+      @setEndpoint opts.endpoint
 
   request: (blueprint, data, key = @getKey()) ->
     opts =
-      url:    @getUrl blueprint.url, data, key
-      method: blueprint.method
+      url:     @getUrl blueprint.url, data, key
+      method:  blueprint.method
+      headers: blueprint.headers ? {}
 
     if (opts.method is 'POST') or (opts.method is 'PATCH')
       opts.json = data
     else
       opts.json = true
 
+    if blueprint.followRedirects?
+      opts.followAllRedirects = blueprint.followRedirects
+
     if @debug
       console.log '--REQUEST--'
       console.log opts
 
     new Promise (resolve, reject) =>
-      request opts, (err, res) =>
+      req = request opts, (err, res) =>
         if res?
           if @debug
             console.log '--RESPONSE--'
@@ -50,3 +60,6 @@ module.exports = class NodeClient extends XhrClient
           status:       res.status
           statusText:   res.statusText
           headers:      res.headers
+
+      if blueprint.upload?
+        (blueprint.upload.call @, data).pipe req

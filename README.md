@@ -1082,7 +1082,7 @@ This deletes a variant from your account.
 [downloads-image]: https://img.shields.io/npm/dm/crowdstart.js.svg
 [downloads-url]: http://badge.fury.io/js/crowdstart.js
 [gitter-url]: https://gitter.im/crowdstart/chat
-[gitter-image]: https://img.shields.io/badge/gitter-chat-brightgreen.svg
+[gitter-image]: https://img.shields.io/badge/gitter-join_chat-brightgreen.svg
 
 [collection]:  https://www.crowdstart.com/docs/api#collection
 [coupon]:      https://www.crowdstart.com/docs/api#coupon
