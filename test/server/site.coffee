@@ -1,4 +1,4 @@
-describe 'Api.site', ->
+describe.skip 'Api.site', ->
   testSite =
     name:      "my-site"
     domain:    "my-domain.com"
