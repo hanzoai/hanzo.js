@@ -52,7 +52,7 @@ module.exports = class NodeClient extends XhrClient
         if err? or (res.status > 308) or res.data?.error?
           err = newError opts, res
           if @debug
-            console.log 'ERROR:'
+            console.log '--ERROR--'
             console.log
               message: err.message
               status:  err.status
