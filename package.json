@@ -69,6 +69,6 @@
     "broken": "^0.1.1",
     "js-cookie": "^2.0.4",
     "request": "^2.67.0",
-    "xhr-promise-es6": "^1.2.4"
+    "xhr-promise-es6": "^1.2.6"
   }
 }
