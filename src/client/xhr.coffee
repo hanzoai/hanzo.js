@@ -20,8 +20,6 @@ module.exports = class XhrClient
 
     @getUserKey()
 
-    console.log 'in xhr'
-
   setEndpoint: (endpoint) ->
     @endpoint = endpoint.replace /\/$/, ''
 
