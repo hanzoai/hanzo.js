@@ -1,6 +1,6 @@
 {
   "name": "crowdstart.js",
-  "version": "2.2.6",
+  "version": "2.2.7",
   "description": "Ecommerce SDK for JavaScript and client for Crowdstart.",
   "homepage": "http://github.com/crowdstart/crowdstart.js",
   "bugs": "http://github.com/crowdstart/crowdstart.js/issues",

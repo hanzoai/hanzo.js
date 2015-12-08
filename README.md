@@ -30,7 +30,7 @@ related APIs are available in the browser making it possible to launch an
 ecommerce site without building, maintaining or securing any backend services.
 
 ```html
-<script src="https://cdn.rawgit.com/crowdstart/crowdstart.js/v2.2.6/crowdstart.min.js"></script>
+<script src="https://cdn.rawgit.com/crowdstart/crowdstart.js/v2.2.7/crowdstart.min.js"></script>
 <script>
 var api = new Crowdstart.Api({key: yourPublishedKey});
 </script>
@@ -1072,7 +1072,7 @@ This deletes a variant from your account.
 - boolean
 
 [crowdstart]: https://crowdstart.com
-[crowdstart.js]: https://cdn.rawgit.com/crowdstart/crowdstart.js/v2.2.6/crowdstart.min.js
+[crowdstart.js]: https://cdn.rawgit.com/crowdstart/crowdstart.js/v2.2.7/crowdstart.min.js
 [travis-url]: https://travis-ci.org/crowdstart/crowdstart.js
 [travis-image]: https://img.shields.io/travis/crowdstart/crowdstart.js.svg
 [coveralls-url]: https://coveralls.io/r/crowdstart/crowdstart.js/
