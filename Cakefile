@@ -7,6 +7,7 @@ option '-b', '--browser [browser]', 'browser to use for tests'
 option '-g', '--grep [filter]',     'test filter'
 option '-t', '--test [test]',       'specify test to run'
 option '-v', '--verbose',           'enable verbose test logging'
+option '-l', '--local',             'use local server for testing'
 
 task 'clean', 'clean project', ->
   exec 'rm -rf lib'
@@ -58,6 +59,7 @@ task 'test', 'Run tests', ['build', 'static-server'], (opts) ->
   grep     = opts.grep     ? ''
   test     = opts.test     ? 'test/ test/server/ test/browser/'
   verbose  = opts.verbose  ? ''
+  endpoint = opts.endpoint ? ''
 
   bail    = '--bail' if bail
   grep    = "--grep #{opts.grep}" if grep
