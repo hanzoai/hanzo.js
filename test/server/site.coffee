@@ -1,8 +1,8 @@
 describe 'Api.site', ->
   testSite =
-    name:      "my-site"
-    domain:    "my-domain.com"
-    password:  "some pass"
+    name:      'my-site'
+    domain:    'my-domain.com'
+    password:  'some pass'
     forceSsl:  false
     processingSettings:
       css:
