@@ -49,7 +49,7 @@
     "chai-as-promised": "^5.1.0",
     "co-mocha": "^1.1.2",
     "codecov.io": "^0.1.6",
-    "coffee-script": "^1.10.0",
+    "coffee-script": "1.10.0",
     "connect": "^3.4.0",
     "coveralls": "^2.11.4",
     "debug": "^2.2.0",
@@ -62,7 +62,7 @@
     "nightmare": "^2.0.8",
     "postmortem": "^0.2.3",
     "random-token": "0.0.8",
-    "requisite": "^1.14.0",
+    "requisite": "1.14.12",
     "serve-static": "^1.10.0",
     "shortcake": "1.1.11",
     "uglify-js": "^2.6.1"
