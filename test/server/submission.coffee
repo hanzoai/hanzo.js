@@ -42,8 +42,8 @@ describe 'Api.submission', ->
     it 'should delete site', ->
       obj = clone testSubmission
       sub = yield api.submission.create obj
-      yield api.site.delete obj.id
+      yield api.submission.delete sub.id
       try
-        yield api.submission.get id
+        yield api.submission.get sub.id
       catch err
       err.should.exist
