@@ -1,4 +1,4 @@
-describe.skip 'Api.submission', ->
+describe 'Api.submission', ->
   testSubmission =
     email: 'tim@suchfan.com'
     metadata:

@@ -11,6 +11,7 @@ option '-g', '--grep [filter]',     'test filter'
 option '-t', '--test [test]',       'specify test to run'
 option '-v', '--verbose',           'enable verbose test logging'
 option '-l', '--local',             'use local server for testing'
+option '-s', '--show',              'show nightmare browser window'
 
 task 'clean', 'clean project', ->
   exec 'rm -rf lib'
@@ -67,6 +68,8 @@ task 'test', 'Run tests', ['build', 'static-server'], (opts) ->
   bail    = '--bail' if bail
   grep    = "--grep #{opts.grep}" if grep
   verbose = 'DEBUG=nightmare VERBOSE=true CROWDSTART_DEBUG=1' if verbose
+  if opts.show
+    verbose = "#{verbose} NIGHTMARE_SHOW=1"
 
   if coverage
     bin = 'istanbul --print=none cover _mocha --'
