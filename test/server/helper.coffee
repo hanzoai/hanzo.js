@@ -23,3 +23,7 @@ before ->
   global.goodPass1    = randomToken 6
   global.goodPass2    = randomToken 6
   global.badPass1     = randomToken 5
+
+  global.clone = (args...) ->
+    args.unshift {}
+    Object.assign.apply Object, args

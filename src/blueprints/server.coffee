@@ -41,6 +41,7 @@ createBlueprint = (name) ->
 models = [
   'collection'
   'coupon'
+  'form'
   'order'
   'payment'
   'product'
@@ -49,6 +50,7 @@ models = [
   'site'
   'subscriber'
   'subscription'
+  'submission'
   'transaction'
   'user'
   'variant'
