@@ -74,7 +74,7 @@ api.account.create({}, function(err, user) {
 
 ## API
 
-### Crowdstart.Api(opts)
+### new Crowdstart.Api(opts)
 Create a new Crowdstart API Client. Has a high level API which returns objects
 directly.
 
@@ -83,7 +83,7 @@ directly.
     - `key` Key to use during requests.
     - `endpoint` Defaults to `'https://api.crowdstart.com'`
 
-### Crowdstart.Client(opts)
+### new Crowdstart.Client(opts)
 Lower-level client which `Api` builds on. You can direct requests to Crowdstart
 using blueprints.
 
