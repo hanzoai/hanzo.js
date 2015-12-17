@@ -8,7 +8,7 @@ before ->
   global.api = new Api
     debug:    false
     endpoint: 'https://api.staging.crowdstart.com'
-    key:      'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjIwLCJqdGkiOiJMbElLWHlvMjlkNCIsInN1YiI6IkVxVEdveHA1dTMifQ.vkJZwWWsH9GAWv6ZA6bFipJV6GmKr9nZXYwBNIvkUkaER-OFwj-dx0XT6Y5D8uoFIFnbWAMzcrOaWg5MHorvVQ'
+    key:      'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjIwLCJqdGkiOiJ2Tl9uY1VrMDBmMCIsInN1YiI6IkVxVEdveHA1dTMifQ.iuUsAcabrWU70JNUTfZjYWIVecdfMjWtrG_LhAkgi30g39lK2aOemsM123gRBMWA91TteIvUU9nqHiDSlKjagg'
 
   global.randomToken = (n) ->
     Math.random().toString(36).replace(/[^a-z0-9A-Z]+/g, '').substr 0, n
