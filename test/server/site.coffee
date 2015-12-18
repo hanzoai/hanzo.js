@@ -1,33 +1,38 @@
-describe.skip 'Api.site', ->
-  testSite =
-    name:      'my-site'
-    domain:    'my-domain.com'
-    password:  'some pass'
-    forceSsl:  false
-    processingSettings:
-      css:
-        bundle: true, minify: true
-      js:
-        bundle: true, minify: true
-      html:
-        prettyUrls: true
-        canonicalUrls: true
-      images:
-        optimize: true
+describe 'Api.site', ->
+  site   = null
+  siteId = null
 
   before ->
-   model = yield api.site.create testSite
+    site =
+      name:      'site-' + (randomToken 2)
+      domain:    'domain.com'
+      password:  'some pass'
+      forceSsl:  false
+      processingSettings:
+        css:
+          bundle: true, minify: true
+        js:
+          bundle: true, minify: true
+        html:
+          prettyUrls: true
+          canonicalUrls: true
+        images:
+          optimize: true
 
   describe '.create', ->
     it 'should create site', ->
-      site  = yield api.site.get name: 'my-site'
-      site2 = yield api.site.create Object.assign site, name: 'my-site-cop'
+      site2 = yield api.site.create site
       site2.name.should.eq site.name
+      siteId = site2.id
 
   describe '.get', ->
-    it 'should get site', ->
-      site = yield api.site.get 'my-site'
-      site.name.should.eq 'my-site'
+    it 'should get site by id', ->
+      site2 = yield api.site.get siteId
+      site2.name.should.eq site.name
+
+    it 'should get site by name', ->
+      site2 = yield api.site.get site.name
+      site2.name.should.eq site.name
 
   describe '.list', ->
     it 'should list sites', ->
@@ -37,12 +42,12 @@ describe.skip 'Api.site', ->
 
   describe '.update', ->
     it 'should update site', ->
-      site = yield api.site.update
-        name: 'my-site'
-        domain: 'my-site-domain2.com'
+      site2 = yield api.site.update
+        name:   site.name
+        domain: 'my-domain2.com'
 
-      site.domain.should.eq 'my-site-domain2.com'
+      site2.domain.should.eq 'my-domain2.com'
 
   describe '.delete', ->
     it 'should delete site', ->
-      yield api.site.delete name: 'my-site'
+      yield api.site.delete site.name

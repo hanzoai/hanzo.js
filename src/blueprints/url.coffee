@@ -24,5 +24,7 @@ exports.byId = (name) ->
       sp (x) -> "/product/#{x.id ? x.slug ? x}"
     when 'variant'
       sp (x) -> "/variant/#{x.id ? x.sku ? x}"
+    when 'site'
+      (x) -> "/site/#{x.id ? x.name ? x}"
     else
       (x) -> "/#{name}/#{x.id ? x}"
