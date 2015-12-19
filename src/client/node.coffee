@@ -28,6 +28,11 @@ module.exports = class NodeClient extends XhrClient
       headers:            blueprint.headers ? {}
       followAllRedirects: true
 
+    # Get body from previous step
+    if data.body?
+      opts.body = data.body
+
+    # Not JSON if blueprint.file or blueprint.stream is set
     if blueprint.stream? or blueprint.file?
       delete opts.json
     else
@@ -36,14 +41,23 @@ module.exports = class NodeClient extends XhrClient
       else
         opts.json = true
 
-    if blueprint.file?
-      opts.body = fs.readFileSync blueprint.file data
-
-    if @debug
-      console.log '--REQUEST--'
-      console.log opts
-
     new Promise (resolve, reject) =>
+      # Read file is requested
+      if blueprint.file? and (not data.body?)
+        fs.readFile (blueprint.file data), (err, body) =>
+          return reject err if err?
+
+          data.body = body
+
+          (@request blueprint, data, key)
+            .then resolve
+            .catch reject
+        return
+
+      if @debug
+        console.log '--REQUEST--'
+        console.log opts
+
       req = request opts, (err, res) =>
         if res?
           if @debug
