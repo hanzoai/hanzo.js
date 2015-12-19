@@ -3,10 +3,14 @@ path   = require 'path'
 crypto = require 'crypto'
 
 describe 'Api.deploy', ->
-  basedir = path.join __dirname, '..', 'fixtures'
+  basedir = path.join __dirname, '..', 'tmp'
   deploy  = null
   digest  = null
   site    = null
+
+  after ->
+    yield fs.unlink path.join basedir, 'index.html'
+    yield fs.rmdir basedir
 
   before ->
     site =
@@ -32,6 +36,8 @@ describe 'Api.deploy', ->
       files: {}
 
     # create digest for deploy
+    yield fs.mkdir basedir
+    yield fs.writeFile (path.join basedir, 'index.html'), randomToken 999
     files = yield fs.readdir basedir
 
     for file in files
@@ -46,7 +52,6 @@ describe 'Api.deploy', ->
       deploy = yield api.deploy.create digest
       deploy.required.should.eql (v for k,v of digest.files)
       deploy.siteId.should.eq digest.siteId
-      deploy.state.should.eq 'uploading'
 
   describe '.upload', ->
     it 'should upload file required for deploy', ->
