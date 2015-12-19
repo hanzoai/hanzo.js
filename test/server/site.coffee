@@ -4,7 +4,7 @@ describe 'Api.site', ->
 
   before ->
     site =
-      name:      'site-' + (randomToken 2)
+      name:      'site-' + (randomToken 4)
       domain:    'domain.com'
       password:  'some pass'
       forceSsl:  false
