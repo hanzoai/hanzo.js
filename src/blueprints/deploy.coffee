@@ -7,7 +7,7 @@ byId = (x) ->
   "#{endpoint x}/#{x.id ? x.deployId}"
 
 upload = (x) ->
-  "#{byId x}/#{x.path}"
+  "#{byId x}/files/#{x.path}"
 
 module.exports = (blueprints) ->
   blueprints.deploy =
