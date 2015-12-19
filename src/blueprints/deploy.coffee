@@ -1,7 +1,7 @@
 {statusCreated, statusNoContent, statusOk} = require '../utils'
 
 endpoint = (x) ->
-  "#{x.siteId}/deploy"
+  "/site/#{x.siteId}/deploy"
 
 byId = (x) ->
   "#{endpoint x}/#{x.id ? x.deployId}"
