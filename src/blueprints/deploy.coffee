@@ -1,3 +1,5 @@
+fs = require 'fs'
+
 {statusCreated, statusNoContent, statusOk} = require '../utils'
 
 endpoint = (x) ->
@@ -33,5 +35,5 @@ module.exports = (blueprints) ->
       expects: statusOk
       headers:
         'Content-Type': 'application/octet-stream'
-      streams: (x) -> fs.createReadStream x.absolutePath
+      file: (x) -> x.absolutePath
       followRedirects: true

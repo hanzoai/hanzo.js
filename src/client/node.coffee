@@ -28,10 +28,16 @@ module.exports = class NodeClient extends XhrClient
       headers:            blueprint.headers ? {}
       followAllRedirects: true
 
-    if (opts.method is 'POST') or (opts.method is 'PATCH')
-      opts.json = data
+    if blueprint.stream? or blueprint.file?
+      delete opts.json
     else
-      opts.json = true
+      if (['POST', 'PATCH', 'PUT'].indexOf opts.method) != -1
+        opts.json = data
+      else
+        opts.json = true
+
+    if blueprint.file?
+      opts.body = fs.readFileSync blueprint.file data
 
     if @debug
       console.log '--REQUEST--'
@@ -69,5 +75,5 @@ module.exports = class NodeClient extends XhrClient
           statusText:   res.statusText
           headers:      res.headers
 
-      if blueprint.upload?
-        (blueprint.upload.call @, data).pipe req
+      if blueprint.stream?
+        (blueprint.stream.call @, data).pipe req
