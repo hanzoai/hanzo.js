@@ -3,8 +3,10 @@ path   = require 'path'
 crypto = require 'crypto'
 
 describe 'Api.deploy', ->
-  deploy = null
-  site   = null
+  basedir = path.join __dirname, '..', 'fixtures'
+  deploy  = null
+  digest  = null
+  site    = null
 
   before ->
     site =
@@ -25,12 +27,11 @@ describe 'Api.deploy', ->
 
     {id} = yield api.site.create site
 
-    deploy =
+    digest =
       siteId: id
       files: {}
 
     # create digest for deploy
-    basedir = path.join __dirname, '..', 'fixtures'
     files = yield fs.readdir basedir
 
     for file in files
@@ -38,12 +39,23 @@ describe 'Api.deploy', ->
       hash    = crypto.createHash 'sha1'
                       .update content
                       .digest 'hex'
-      deploy.files[file] = hash
+      digest.files[file] = hash
 
   describe '.create', ->
     it 'should create deploy', ->
-      digest = yield api.deploy.create deploy
-      console.log digest
+      deploy = yield api.deploy.create digest
+      deploy.required.should.eql (v for k,v of digest.files)
+      deploy.siteId.should.eq digest.siteId
+      deploy.state.should.eq 'uploading'
+
+  describe '.upload', ->
+    it 'should upload file required for deploy', ->
+      for file of digest.files
+        yield api.deploy.upload
+          siteId:       digest.siteId
+          deployId:     deploy.id
+          path:         file
+          absolutePath: path.join basedir, file
 
   # describe '.get', ->
   #   it 'should get site by id', ->
