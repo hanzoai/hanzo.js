@@ -11,6 +11,7 @@ describe 'Api.deploy', ->
   after ->
     yield fs.unlink path.join basedir, 'index.html'
     yield fs.rmdir basedir
+    yield api.site.delete site.id
 
   before ->
     site =
@@ -29,10 +30,10 @@ describe 'Api.deploy', ->
         images:
           optimize: true
 
-    {id} = yield api.site.create site
+    site = yield api.site.create site
 
     digest =
-      siteId: id
+      siteId: site.id
       files: {}
 
     # create digest for deploy
