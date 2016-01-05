@@ -1,8 +1,8 @@
-# Crowdstart.js  [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NPM version][npm-image]][npm-url]  [![Gitter chat][gitter-image]][gitter-url]
+# Hanzo.js  [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NPM version][npm-image]][npm-url]  [![Gitter chat][gitter-image]][gitter-url]
 
 <!-- [![Downloads][downloads-image]][downloads-url] -->
-Crowdstart.js is a complete Ecommerce SDK for JavaScript and client for
-[Crowdstart][crowdstart]. With Crowdstart.js you can:
+Hanzo.js is a complete Ecommerce SDK for JavaScript and client for
+[Hanzo][hanzo]. With Hanzo.js you can:
 
 - Launch static sites to test new ideas or reach additional markets.
 - Acquire, on-board and keep users.
@@ -15,24 +15,24 @@ A complete Ecommerce platform at your fingertips, all in a tiny 5.3KiB (gzipped)
 
 ## Install
 ```bash
-$ npm install crowdstart.js
+$ npm install hanzo.js
 ```
 
 ## Usage
-You can embed Crowdstart.js in your application or web page or on the server
+You can embed Hanzo.js in your application or web page or on the server
 with Node.  Getting started is easy: you just need an API key from
-[Crowdstart][crowdstart] and a snippet of JavaScript to get going.
+[Hanzo][hanzo] and a snippet of JavaScript to get going.
 
 ### Browser
-Include [`crowdstart.js`][crowdstart.js] in your website or bundle it with your
+Include [`hanzo.js`][hanzo.js] in your website or bundle it with your
 JavaScript application using your favorite build tool. All account and commerce
 related APIs are available in the browser making it possible to launch an
 ecommerce site without building, maintaining or securing any backend services.
 
 ```html
-<script src="https://cdn.rawgit.com/crowdstart/crowdstart.js/v2.2.7/crowdstart.min.js"></script>
+<script src="https://cdn.rawgit.com/hanzo/hanzo.js/v2.2.7/hanzo.min.js"></script>
 <script>
-var api = new Crowdstart.Api({key: yourPublishedKey});
+var api = new Hanzo.Api({key: yourPublishedKey});
 </script>
 ```
 
@@ -40,11 +40,11 @@ Make sure you use your published key and not your secret key!
 
 ### Node
 You can use either a published or secret key with the Node client. A secret key
-is required for full use of the Crowdstart API.
+is required for full use of the Hanzo API.
 
 ```javascript
-Crowdstart = require('crowdstart.js');
-var api = new Crowdstart({key: yourSecretKey});
+Hanzo = require('hanzo.js');
+var api = new Hanzo({key: yourSecretKey});
 ```
 
 ### JavaScript API
@@ -74,23 +74,23 @@ api.account.create({}, function(err, user) {
 
 ## API
 
-### new Crowdstart.Api(opts)
-Create a new Crowdstart API Client. Has a high level API which returns objects
+### new Hanzo.Api(opts)
+Create a new Hanzo API Client. Has a high level API which returns objects
 directly.
 
 ##### Arguments
 - `opts` Options, optional
     - `key` Key to use during requests.
-    - `endpoint` Defaults to `'https://api.crowdstart.com'`
+    - `endpoint` Defaults to `'https://api.hanzo.io'`
 
-### new Crowdstart.Client(opts)
-Lower-level client which `Api` builds on. You can direct requests to Crowdstart
+### new Hanzo.Client(opts)
+Lower-level client which `Api` builds on. You can direct requests to Hanzo
 using blueprints.
 
 ##### Arguments
 - `opts` Options, optional
     - `key` Key to use during requests.
-    - `endpoint` Defaults to `'https://api.crowdstart.com'`
+    - `endpoint` Defaults to `'https://api.hanzo.io'`
 
 #### client.request(blueprint [, data, key])
 Make a request using `blueprint`. Returns a promise which eventually returns a
@@ -113,7 +113,7 @@ client.request(api.account.create, {email: '', ...})
 
 ##### Arguments
 - `blueprint` Description of API endpoint.
-- `data` Data to send to Crowdstart.
+- `data` Data to send to Hanzo.
 - `key` Key to use during requests.
 
 ## Browser API
@@ -374,7 +374,7 @@ This lists all the variants available on your store.
 
 
 ## Server API
-You have pretty much complete access to Crowdstart from your own server with a
+You have pretty much complete access to Hanzo from your own server with a
 secret key. Never share your secret key. All usages explained below are
 **specifically** for a Node.js server.
 
@@ -1071,27 +1071,27 @@ This deletes a variant from your account.
 ##### Returns
 - boolean
 
-[crowdstart]: https://crowdstart.com
-[crowdstart.js]: https://cdn.rawgit.com/crowdstart/crowdstart.js/v2.2.7/crowdstart.min.js
-[travis-url]: https://travis-ci.org/crowdstart/crowdstart.js
-[travis-image]: https://img.shields.io/travis/crowdstart/crowdstart.js.svg
-[coveralls-url]: https://coveralls.io/r/crowdstart/crowdstart.js/
-[coveralls-image]: https://img.shields.io/coveralls/crowdstart/crowdstart.js.svg
-[npm-url]: https://www.npmjs.com/package/crowdstart.js
-[npm-image]: https://img.shields.io/npm/v/crowdstart.js.svg
-[downloads-image]: https://img.shields.io/npm/dm/crowdstart.js.svg
-[downloads-url]: http://badge.fury.io/js/crowdstart.js
-[gitter-url]: https://gitter.im/crowdstart/chat
+[hanzo]: https://hanzo.io
+[hanzo.js]: https://cdn.rawgit.com/hanzo/hanzo.js/v2.2.7/hanzo.min.js
+[travis-url]: https://travis-ci.org/hanzo/hanzo.js
+[travis-image]: https://img.shields.io/travis/hanzo/hanzo.js.svg
+[coveralls-url]: https://coveralls.io/r/hanzo/hanzo.js/
+[coveralls-image]: https://img.shields.io/coveralls/hanzo/hanzo.js.svg
+[npm-url]: https://www.npmjs.com/package/hanzo.js
+[npm-image]: https://img.shields.io/npm/v/hanzo.js.svg
+[downloads-image]: https://img.shields.io/npm/dm/hanzo.js.svg
+[downloads-url]: http://badge.fury.io/js/hanzo.js
+[gitter-url]: https://gitter.im/hanzo/chat
 [gitter-image]: https://img.shields.io/badge/gitter-join_chat-brightgreen.svg
 
-[collection]:  https://www.crowdstart.com/docs/api#collection
-[coupon]:      https://www.crowdstart.com/docs/api#coupon
-[order]:       https://www.crowdstart.com/docs/api#order
-[payment]:     https://www.crowdstart.com/docs/api#payment
-[product]:     https://www.crowdstart.com/docs/api#product
-[referral]:    https://www.crowdstart.com/docs/api#referral
-[referrer]:    https://www.crowdstart.com/docs/api#referrer
-[subscriber]:  https://www.crowdstart.com/docs/api#subscriber
-[transaction]: https://www.crowdstart.com/docs/api#transaction
-[user]:        https://www.crowdstart.com/docs/api#user
-[variant]:     https://www.crowdstart.com/docs/api#variant
+[collection]:  https://www.hanzo.io/docs/api#collection
+[coupon]:      https://www.hanzo.io/docs/api#coupon
+[order]:       https://www.hanzo.io/docs/api#order
+[payment]:     https://www.hanzo.io/docs/api#payment
+[product]:     https://www.hanzo.io/docs/api#product
+[referral]:    https://www.hanzo.io/docs/api#referral
+[referrer]:    https://www.hanzo.io/docs/api#referrer
+[subscriber]:  https://www.hanzo.io/docs/api#subscriber
+[transaction]: https://www.hanzo.io/docs/api#transaction
+[user]:        https://www.hanzo.io/docs/api#user
+[variant]:     https://www.hanzo.io/docs/api#variant
