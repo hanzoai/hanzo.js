@@ -1,13 +1,15 @@
+fs = require 'fs'
+
 {statusCreated, statusNoContent, statusOk} = require '../utils'
 
 endpoint = (x) ->
-  "#{x.siteId}/deploy"
+  "/site/#{x.siteId}/deploy"
 
 byId = (x) ->
   "#{endpoint x}/#{x.id ? x.deployId}"
 
 upload = (x) ->
-  "#{byId x}/#{x.path}"
+  "#{byId x}/files/#{x.path}"
 
 module.exports = (blueprints) ->
   blueprints.deploy =
@@ -33,5 +35,5 @@ module.exports = (blueprints) ->
       expects: statusOk
       headers:
         'Content-Type': 'application/octet-stream'
-      streams: (x) -> fs.createReadStream x.absolutePath
+      file: (x) -> x.absolutePath
       followRedirects: true

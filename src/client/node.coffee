@@ -28,16 +28,36 @@ module.exports = class NodeClient extends XhrClient
       headers:            blueprint.headers ? {}
       followAllRedirects: true
 
-    if (opts.method is 'POST') or (opts.method is 'PATCH')
-      opts.json = data
-    else
-      opts.json = true
+    # Get body from previous step
+    if data.body?
+      opts.body = data.body
 
-    if @debug
-      console.log '--REQUEST--'
-      console.log opts
+    # Not JSON if blueprint.file or blueprint.stream is set
+    if blueprint.stream? or blueprint.file?
+      delete opts.json
+    else
+      if (['POST', 'PATCH', 'PUT'].indexOf opts.method) != -1
+        opts.json = data
+      else
+        opts.json = true
 
     new Promise (resolve, reject) =>
+      # Read file is requested
+      if blueprint.file? and (not data.body?)
+        fs.readFile (blueprint.file data), (err, body) =>
+          return reject err if err?
+
+          data.body = body
+
+          (@request blueprint, data, key)
+            .then resolve
+            .catch reject
+        return
+
+      if @debug
+        console.log '--REQUEST--'
+        console.log opts
+
       req = request opts, (err, res) =>
         if res?
           if @debug
@@ -52,7 +72,7 @@ module.exports = class NodeClient extends XhrClient
         if err? or (res.status > 308) or res.data?.error?
           err = newError opts, res
           if @debug
-            console.log 'ERROR:'
+            console.log '--ERROR--'
             console.log
               message: err.message
               status:  err.status
@@ -69,5 +89,5 @@ module.exports = class NodeClient extends XhrClient
           statusText:   res.statusText
           headers:      res.headers
 
-      if blueprint.upload?
-        (blueprint.upload.call @, data).pipe req
+      if blueprint.stream?
+        (blueprint.stream.call @, data).pipe req
