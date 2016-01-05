@@ -43,10 +43,10 @@ task 'build', 'build project', (cb) ->
 
       false
 
-    fs.writeFile 'crowdstart.js', (bundle.toString opts), 'utf8', done
+    fs.writeFile 'hanzo.js', (bundle.toString opts), 'utf8', done
 
 task 'build-min', 'build project', ['build'], ->
-  exec 'uglifyjs crowdstart.js --compress --mangle --lint=false > crowdstart.min.js'
+  exec 'uglifyjs hanzo.js --compress --mangle --lint=false > hanzo.min.js'
 
 server = do require 'connect'
 
@@ -66,14 +66,14 @@ task 'test', 'Run tests', ['build', 'static-server'], (opts) ->
 
   bail    = '--bail' if bail
   grep    = "--grep #{opts.grep}" if grep
-  verbose = 'DEBUG=nightmare VERBOSE=true CROWDSTART_DEBUG=1' if verbose
+  verbose = 'DEBUG=nightmare VERBOSE=true HANZO_DEBUG=1' if verbose
 
   if coverage
     bin = 'istanbul --print=none cover _mocha --'
   else
     bin = 'mocha'
 
-  {status} = yield exec.interactive "NODE_ENV=test CROWDSTART_KEY='' CROWDSTART_ENDPOINT='' #{verbose}
+  {status} = yield exec.interactive "NODE_ENV=test HANZO_KEY='' HANZO_ENDPOINT='' #{verbose}
         #{bin}
         --colors
         --reporter spec
