@@ -1,17 +1,16 @@
 {
-  "name": "crowdstart.js",
+  "name": "hanzo.js",
   "version": "2.2.7",
-  "description": "Ecommerce SDK for JavaScript and client for Crowdstart.",
-  "homepage": "http://github.com/crowdstart/crowdstart.js",
-  "bugs": "http://github.com/crowdstart/crowdstart.js/issues",
+  "description": "Ecommerce SDK for JavaScript and client for Hanzo.",
+  "homepage": "http://github.com/hanzo/hanzo.js",
+  "bugs": "http://github.com/hanzo/hanzo.js/issues",
   "keywords": [
     "browser",
     "checkout",
     "commerce",
-    "crowdfunding",
-    "crowdstart",
     "ecommerce",
     "fulfillment",
+    "hanzo",
     "orders",
     "payments",
     "preorders",
@@ -30,17 +29,17 @@
     "prepublish": "cake build-min",
     "test": "cake build && cake test"
   },
-  "author": "Crowdstart, LLC <hi@crowdstart.com> (http://crowdstart.com)",
+  "author": "hanzo, LLC <hi@hanzo.com> (http://hanzo.com)",
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/crowdstart/crowdstart.js/blob/master/LICENSE"
+      "url": "https://github.com/hanzo/hanzo.js/blob/master/LICENSE"
     }
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "http://github.com/crowdstart/crowdstart.js"
+    "url": "http://github.com/hanzo/hanzo.js"
   },
   "devDependencies": {
     "bebop": "1.7.16",
