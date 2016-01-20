@@ -1075,8 +1075,8 @@ This deletes a variant from your account.
 [hanzo.js]:        https://cdn.rawgit.com/hanzo-io/hanzo.js/v2.2.7/hanzo.min.js
 [travis-url]:      https://travis-ci.org/hanzo-io/hanzo.js
 [travis-image]:    https://img.shields.io/travis/hanzo-io/hanzo.js.svg
-[coveralls-url]:   https://coveralls.io/r/hanzo-io/hanzo.js/
-[coveralls-image]: https://img.shields.io/coveralls/hanzo-io/hanzo.js.svg
+[coveralls-url]:   https://coveralls.io/github/hanzo-io/hanzo.js
+[coveralls-image]: https://coveralls.io/repos/github/hanzo-io/hanzo.js/badge.svg?branch=master
 [npm-url]:         https://www.npmjs.com/package/hanzo.js
 [npm-image]:       https://img.shields.io/npm/v/hanzo.js.svg
 [downloads-image]: https://img.shields.io/npm/dm/hanzo.js.svg
