@@ -7,7 +7,7 @@ Api = require '../../lib'
 before ->
   global.api = new Api
     debug:    false
-    endpoint: 'https://api.staging.hanzo.io'
+    endpoint: 'https://api-dot-hanzo-staging.appspot.com'
     key:      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE0NTMyNTQ0MDAsImp0aSI6ImtnSTk4UFhYc2RBMEoiLCJGaXJzdE5hbWUiOiIiLCJMYXN0TmFtZSI6IiIsImFwcCI6IlN0b3JlIiwib3JnIjoic3VjaHRlZXMiLCJ0eXAiOiJhcGkiLCJ0c3QiOnRydWUsImJpdCI6MjR9.-kz2Y8MEm8cTHVWTtQP_YIqPUvdvmFy1W-zc3xJYY2s'
 
   global.randomToken = (n) ->

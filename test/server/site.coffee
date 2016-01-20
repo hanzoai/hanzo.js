@@ -1,4 +1,4 @@
-describe 'Api.site', ->
+describe.skip 'Api.site', ->
   site   = null
   siteId = null
 
