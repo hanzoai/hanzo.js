@@ -21,7 +21,7 @@ module.exports = class NodeClient extends XhrClient
     if opts.endpoint
       @setEndpoint opts.endpoint
 
-  request: (blueprint, data, key = @getKey()) ->
+  request: (blueprint, data = {}, key = @getKey()) ->
     opts =
       url:                @getUrl blueprint.url, data, key
       method:             blueprint.method

@@ -5,8 +5,8 @@ Client = require './client'
 Api.CLIENT     = Client
 Api.BLUEPRINTS = require './blueprints/server'
 
-Client.KEY      = process.env.CROWDSTART_KEY
-Client.ENDPOINT = process.env.CROWDSTART_ENDPOINT
-Client.DEBUG    = process.env.CROWDSTART_DEBUG
+Client.KEY      = process.env.HANZO_KEY
+Client.ENDPOINT = process.env.HANZO_ENDPOINT
+Client.DEBUG    = process.env.HANZO_DEBUG
 
 module.exports = Api

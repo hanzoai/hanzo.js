@@ -11,8 +11,8 @@ compileCoffee = (src) ->
     globalRequire: true
   , (err, bundle) ->
     return console.error err if err?
-    fs.writeFileSync 'crowdstart.js', bundle.toString(), 'utf8'
-    console.log 'compiled crowdstart.js'
+    fs.writeFileSync 'hanzo.js', bundle.toString(), 'utf8'
+    console.log 'compiled hanzo.js'
 
 module.exports =
   port: 4242

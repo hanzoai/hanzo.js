@@ -28,11 +28,13 @@ blueprints =
       url:     '/account'
       method:  'GET'
       expects: statusOk
+      useCustomerToken: true
 
     update:
       url:     '/account'
       method:  'PATCH'
       expects: statusOk
+      useCustomerToken: true
 
     exists:
       url:     (x) -> "/account/exists/#{x.email ? x.username ? x.id ? x}"
@@ -55,21 +57,23 @@ blueprints =
       method:  'POST'
       expects: statusOk
       process: (res) ->
-        @setUserKey res.data.token
+        @setCustomerToken res.data.token
         res
 
     logout: ->
-      @deleteUserKey()
+      @deleteCustomerToken()
 
     reset:
       url:     '/account/reset'
       method:  'POST'
       expects: statusOk
+      useCustomerToken: true
 
     confirm:
       url:     (x) -> "/account/confirm/#{x.tokenId ? x}"
       method:  'POST'
       expects: statusOk
+      useCustomerToken: true
 
   # CHECKOUT
   checkout:

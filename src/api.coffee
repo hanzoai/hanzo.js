@@ -36,7 +36,10 @@ module.exports = class Api
         bp.method  ?= 'POST'  # Defaulting to POST shaves a few kb off browser bundle
 
         method = (data, cb) =>
-          @client.request bp, data
+          key = undefined
+          if bp.userCustomerToken
+            key = @getCustomerToken()
+          @client.request bp, data, key
             .then (res) =>
               if res.data?.error?
                 throw newError data, res
@@ -53,11 +56,11 @@ module.exports = class Api
   setKey: (key) ->
     @client.setKey key
 
-  setUserKey: (key) ->
-    @client.setUserKey key
+  setCustomerToken: (key) ->
+    @client.setCustomerToken key
 
-  deleteUserKey: ->
-    @client.deleteUserKey()
+  deleteCustomerToken: ->
+    @client.deleteCustomerToken()
 
   setStore: (id) ->
     @storeId = id

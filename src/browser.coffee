@@ -1,4 +1,4 @@
-global.Crowdstart ?= {}
+global.Hanzo ?= {}
 
 Api    = require './api'
 Client = require './client/xhr'
@@ -6,7 +6,7 @@ Client = require './client/xhr'
 Api.CLIENT     = Client
 Api.BLUEPRINTS = require './blueprints/browser'
 
-Crowdstart.Api    = Api
-Crowdstart.Client = Client
+Hanzo.Api    = Api
+Hanzo.Client = Client
 
-module.exports = Crowdstart
+module.exports = Hanzo

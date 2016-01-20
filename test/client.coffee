@@ -8,4 +8,4 @@ describe 'Client', ->
     Client key: key
 
   it 'should use default endpoint', ->
-    client.endpoint.should.eq 'https://api.crowdstart.com'
+    client.endpoint.should.eq 'https://api.hanzo.io'

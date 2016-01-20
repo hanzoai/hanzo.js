@@ -7,8 +7,8 @@ Api = require '../../lib'
 before ->
   global.api = new Api
     debug:    false
-    endpoint: 'https://api.staging.crowdstart.com'
-    key:      'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjIwLCJqdGkiOiJ2Tl9uY1VrMDBmMCIsInN1YiI6IkVxVEdveHA1dTMifQ.iuUsAcabrWU70JNUTfZjYWIVecdfMjWtrG_LhAkgi30g39lK2aOemsM123gRBMWA91TteIvUU9nqHiDSlKjagg'
+    endpoint: 'https://api.staging.hanzo.io'
+    key:      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE0NTMyNTQ0MDAsImp0aSI6ImtnSTk4UFhYc2RBMEoiLCJGaXJzdE5hbWUiOiIiLCJMYXN0TmFtZSI6IiIsImFwcCI6IlN0b3JlIiwib3JnIjoic3VjaHRlZXMiLCJ0eXAiOiJhcGkiLCJ0c3QiOnRydWUsImJpdCI6MjR9.-kz2Y8MEm8cTHVWTtQP_YIqPUvdvmFy1W-zc3xJYY2s'
 
   global.randomToken = (n) ->
     Math.random().toString(36).replace(/[^a-z0-9A-Z]+/g, '').substr 0, n

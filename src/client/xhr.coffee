@@ -7,8 +7,8 @@ cookie = require 'js-cookie'
 
 module.exports = class XhrClient
   debug:       false
-  endpoint:    'https://api.crowdstart.com'
-  sessionName: 'crwdst'
+  endpoint:    'https://api.hanzo.io'
+  sessionName: 'hnzo'
 
   constructor: (opts = {}) ->
     return new XhrClient opts unless @ instanceof XhrClient
@@ -18,7 +18,7 @@ module.exports = class XhrClient
     if opts.endpoint
       @setEndpoint opts.endpoint
 
-    @getUserKey()
+    @getCustomerToken()
 
   setEndpoint: (endpoint) ->
     @endpoint = endpoint.replace /\/$/, ''
@@ -30,20 +30,20 @@ module.exports = class XhrClient
     @key = key
 
   getKey: ->
-    @userKey or @key or @constructor.KEY
+    @key or @constructor.KEY
 
-  getUserKey: ->
+  getCustomerToken: ->
     if (session = cookie.getJSON @sessionName)?
-      @userKey = session.userKey if session.userKey?
-    @userKey
+      @customerToken = session.customerToken if session.customerToken?
+    @customerToken
 
-  setUserKey: (key) ->
-    cookie.set @sessionName, {userKey: key}, expires: 7 * 24 * 3600 * 1000
-    @userKey = key
+  setCustomerToken: (key) ->
+    cookie.set @sessionName, {customerToken: key}, expires: 7 * 24 * 3600 * 1000
+    @customerToken = key
 
-  deleteUserKey: ->
-    cookie.set @sessionName, {userKey: null}, expires: 7 * 24 * 3600 * 1000
-    @userKey
+  deleteCustomerToken: ->
+    cookie.set @sessionName, {customerToken: null}, expires: 7 * 24 * 3600 * 1000
+    @customerToken = null
 
   getUrl: (url, data, key) ->
     if isFunction url
