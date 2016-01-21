@@ -1,1 +1,0 @@
-../../crowdstart.js
