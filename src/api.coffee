@@ -37,8 +37,8 @@ module.exports = class Api
 
         method = (data, cb) =>
           key = undefined
-          if bp.userCustomerToken
-            key = @getCustomerToken()
+          if bp.useCustomerToken
+            key = @client.getCustomerToken()
           @client.request bp, data, key
             .then (res) =>
               if res.data?.error?

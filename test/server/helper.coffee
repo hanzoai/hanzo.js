@@ -14,6 +14,10 @@ before ->
     # endpoint: 'http://localhost:8080/api'
     # key:      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE0NTI5OTAwNzQsImp0aSI6IjBNUkVJQWlvYXYiLCJhcHAiOiJTdG9yZSIsIm9yZyI6InN1Y2h0ZWVzIiwidHlwIjoiYXBpIiwidHN0Ijp0cnVlLCJiaXQiOjI0fQ.BQxRZRlnjt3tLGdxXhXZ-83-Q3A12KljgpJO0UZ241w'
 
+    # d
+    # endpoint: 'http://localhost:8080/api'
+    # key:      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE0NTMyNDQ0OTYsImp0aSI6IjBNUkVJQWlvYXYiLCJGaXJzdE5hbWUiOiIiLCJMYXN0TmFtZSI6IiIsImFwcCI6IlN0b3JlIiwib3JnIjoic3VjaHRlZXMiLCJ0eXAiOiJhcGkiLCJ0c3QiOnRydWUsImJpdCI6MjR9.OEZ6O5gKdxlLz9uMaYopuRnDG0fl0EBdRbT3Xz0v3RA'
+
   global.randomToken = (n) ->
     Math.random().toString(36).replace(/[^a-z0-9A-Z]+/g, '').substr 0, n
 

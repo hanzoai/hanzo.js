@@ -114,7 +114,7 @@ describe 'Api.account (browser)', ->
 
   describe '.get', ->
     it 'should retrieve logged in user data', ->
-      user = yield browser.evaluate ->
+      user = yield browser.evaluate () ->
         api.account.get()
 
       user.firstName.should.not.equal firstName

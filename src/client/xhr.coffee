@@ -58,6 +58,8 @@ module.exports = class XhrClient
       data:   formatData blueprint, data
 
     if @debug
+      console.log '--KEY--'
+      console.log key
       console.log '--REQUEST--'
       console.log opts
 
