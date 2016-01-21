@@ -3,7 +3,7 @@ Xhr.Promise = require 'broken'
 
 cookie = require 'js-cookie'
 
-{isFunction, newError, updateQuery} = require '../utils'
+{isFunction, newError, updateQuery, formatData} = require '../utils'
 
 module.exports = class XhrClient
   debug:       false
@@ -55,7 +55,7 @@ module.exports = class XhrClient
     opts =
       url:    @getUrl blueprint.url, data, key
       method: blueprint.method
-      data:   JSON.stringify data
+      data:   formatData blueprint, data
 
     if @debug
       console.log '--REQUEST--'

@@ -29,7 +29,7 @@ describe 'Api.product', ->
       count.should.be.gt 0
 
     it 'should update products', ->
-      p = yield api.product.update slug: 'sad-keanu-shirt', price: 3500
+      p = yield api.product.update slug: product.slug, price: 3500
       p.price.should.eq 3500
 
     it 'should delete products', ->

@@ -42,3 +42,13 @@ exports.updateQuery = (url, key, value) ->
       url
     else
       url
+
+#set the data format
+exports.formatData = (bp, data)->
+  if bp.encode == 'form'
+    params = []
+    for k, v of data
+      params.push "#{ k }=#{ v }"
+    return params.join '&'
+  else #if bp.encode == 'json'
+    return JSON.stringify data
