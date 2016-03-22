@@ -21,8 +21,7 @@ exports.newError = (data, res = {}) ->
   err.type         = res.data?.error?.type
   err
 
-# Update query on url
-exports.updateQuery = (url, key, value) ->
+updateParam = (url, key, value) ->
   re = new RegExp('([?&])' + key + '=.*?(&|#|$)(.*)', 'gi')
 
   if re.test url
@@ -43,12 +42,8 @@ exports.updateQuery = (url, key, value) ->
     else
       url
 
-#set the data format
-exports.formatData = (bp, data)->
-  if bp.encode == 'form'
-    params = []
-    for k, v of data
-      params.push "#{ k }=#{ v }"
-    return params.join '&'
-  else #if bp.encode == 'json'
-    return JSON.stringify data
+# Update query on url
+exports.updateQuery = (url, data) ->
+  for k,v of data
+    url = updateParam url, k, v
+  url
