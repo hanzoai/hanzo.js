@@ -57,9 +57,9 @@ module.exports = class XhrClient
       method: blueprint.method
 
     if blueprint.method == 'GET'
-      opts.url  = updateQuery url, opts.data
+      opts.url  = updateQuery opts.url, opts.data
     else
-      opts.data = JSON.stringfy data
+      opts.data = JSON.stringify data
 
     if @debug
       console.log '--REQUEST--'
