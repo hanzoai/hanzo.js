@@ -51,13 +51,13 @@ module.exports = class XhrClient
 
     updateQuery (@endpoint + url), token: key
 
-  request: (blueprint, data, key = @getKey()) ->
+  request: (blueprint, data={}, key = @getKey()) ->
     opts =
       url:    @getUrl blueprint.url, data, key
       method: blueprint.method
 
     if blueprint.method == 'GET'
-      opts.url  = updateQuery opts.url, opts.data
+      opts.url  = updateQuery opts.url, data
     else
       opts.data = JSON.stringify data
 
