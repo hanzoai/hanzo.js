@@ -30,7 +30,7 @@ related APIs are available in the browser making it possible to launch an
 ecommerce site without building, maintaining or securing any backend services.
 
 ```html
-<script src="https://cdn.rawgit.com/hanzo/hanzo.js/v2.2.7/hanzo.min.js"></script>
+<script src="https://cdn.rawgit.com/hanzo/hanzo.js/v2.2.8/hanzo.min.js"></script>
 <script>
 var api = new Hanzo.Api({key: yourPublishedKey});
 </script>
@@ -1072,7 +1072,7 @@ This deletes a variant from your account.
 - boolean
 
 [hanzo]:           https://hanzo.io
-[hanzo.js]:        https://cdn.rawgit.com/hanzo-io/hanzo.js/v2.2.7/hanzo.min.js
+[hanzo.js]:        https://cdn.rawgit.com/hanzo-io/hanzo.js/v2.2.8/hanzo.min.js
 [travis-url]:      https://travis-ci.org/hanzo-io/hanzo.js
 [travis-image]:    https://img.shields.io/travis/hanzo-io/hanzo.js.svg
 [coveralls-url]:   https://coveralls.io/github/hanzo-io/hanzo.js

@@ -1,6 +1,6 @@
 {
   "name": "hanzo.js",
-  "version": "2.2.7",
+  "version": "2.2.8",
   "description": "Ecommerce SDK for JavaScript and client for Hanzo.",
   "homepage": "http://github.com/hanzo/hanzo.js",
   "bugs": "http://github.com/hanzo/hanzo.js/issues",
@@ -72,7 +72,7 @@
   "dependencies": {
     "broken": "^0.1.1",
     "cake-test": "0.1.0",
-    "js-cookie": "^2.0.4",
+    "js-cookie": "2.1.0",
     "request": "^2.67.0",
     "xhr-promise-es6": "^1.2.7"
   }
