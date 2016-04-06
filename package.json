@@ -25,10 +25,6 @@
   "engines": {
     "node": ">=4.0.0"
   },
-  "scripts": {
-    "prepublish": "cake build-min",
-    "test": "cake build && cake test"
-  },
   "author": "hanzo, LLC <hi@hanzo.com> (http://hanzo.com)",
   "licenses": [
     {
