@@ -8,11 +8,12 @@ exports.statusCreated   = (res) -> res.status is 201
 exports.statusNoContent = (res) -> res.status is 204
 
 # Throw "fat" errors.
-exports.newError = (data, res = {}) ->
+exports.newError = (data, res = {}, err) ->
   message = res?.data?.error?.message ? 'Request failed'
 
-  err = new Error message
-  err.message = message
+  unless err?
+    err = new Error message
+    err.message = message
 
   err.req          = data
   err.data         = res.data

@@ -37,7 +37,9 @@ describe 'Api.deploy', ->
       files: {}
 
     # create digest for deploy
-    yield fs.mkdir basedir
+    try
+      yield fs.mkdir basedir
+    catch
     yield fs.writeFile (path.join basedir, 'index.html'), randomToken 999
     files = yield fs.readdir basedir
 

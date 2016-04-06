@@ -23,10 +23,15 @@ module.exports = class NodeClient extends XhrClient
 
   request: (blueprint, data = {}, key = @getKey()) ->
     opts =
-      url:                @getUrl blueprint.url, data, key
-      method:             blueprint.method
-      headers:            blueprint.headers ? {}
-      followAllRedirects: true
+      url:                 @getUrl blueprint.url, data, key
+      method:              blueprint.method
+      headers:             blueprint.headers ? {}
+      followAllRedirects:  true
+
+      # Enable proxy for automatically generating documentation
+      # proxy:               'http://localhost:4010'
+      # tunnel:              true
+      # strictSSL:           false
 
     # Get body from previous step
     if data.body?
@@ -70,14 +75,15 @@ module.exports = class NodeClient extends XhrClient
           res.data   = res.body
 
         if err? or (res.status > 308) or res.data?.error?
-          err = newError opts, res
+          _err = newError opts, res, err
           if @debug
             console.log '--ERROR--'
             console.log
-              message: err.message
-              status:  err.status
-              type:    err.type
-          return reject err
+              message: _err.message
+              status:  _err.status
+              type:    _err.type
+            console.log err.stack if err?
+          return reject _err
 
         resolve
           url:          opts.url
