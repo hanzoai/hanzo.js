@@ -1,12 +1,13 @@
 moment = require 'moment'
-user = {}
-referredUser = {}
-refrFixture = {}
-reflFixture = {}
-referrer = {}
-referral = {}
 
 describe 'Api.referrer/Api.referrral', ->
+  user = null
+  referredUser = null
+  refrFixture = null
+  reflFixture = null
+  referrer = null
+  referral = null
+
   program =
     name: 'Sample Program'
     triggers: [0]
