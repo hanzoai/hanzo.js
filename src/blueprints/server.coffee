@@ -10,6 +10,8 @@
 # Start with browser-based APIs.
 blueprints = require './browser'
 
+
+
 # Complete RESTful API available with secret key, so all methods are
 # exposed in server environment.
 createBlueprint = (name) ->
@@ -57,6 +59,16 @@ models = [
 for model in models
   do (model) ->
     blueprints[model] = createBlueprint model
+
+blueprints.referrer.referrals =
+  url:     (x) -> "/referrer/#{x.id ? x}/referrals"
+  method:  'GET'
+  expects: statusOk
+
+blueprints.referrer.transactions =
+  url:     (x) -> "/referrer/#{x.id ? x}/transactions"
+  method:  'GET'
+  expects: statusOk
 
 # Attach deploy API
 require('./deploy') blueprints
