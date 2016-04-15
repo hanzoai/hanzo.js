@@ -1,41 +1,43 @@
-describe 'Api.product', ->
-  product = null
+describe 'Api.variant', ->
+  variant = null
 
   before ->
-    product =
-      slug:        'sad-keanu-shirt' + (randomToken 2)
-      name:        'Sad Keanu T-shirt'
-      price:        2500
-      currency:     'USD'
-      headline:    'Oh Keanu'
-      description: 'Sad Keanu is sad.'
+    variant =
+      productId: ''
+      sku:       'sad-keanu-shirt-m' + (randomToken 2)
+      name:      'Sad Keanu T-shirt (Medium)'
+      price:     2000
+      currency:  'USD'
       options: [
-        name:   'size'
-        values: ['sadness']
+        name:  'size'
+        value: 'medium'
+      ,
+        name:  'color'
+        value: 'dark'
       ]
 
   describe '.create', ->
-    it 'should create products', ->
-      p = yield api.product.create product
-      p.price.should.eq product.price
-      product.slug = p.slug
+    it 'should create variants', ->
+      p = yield api.variant.create variant
+      p.price.should.eq variant.price
+      variant.sku = p.sku
 
   describe '.get', ->
-    it 'should get product', ->
-      p = yield api.product.get product.slug
-      p.price.should.eq 2500
+    it 'should get variant', ->
+      p = yield api.variant.get variant.sku
+      p.price.should.eq 2000
 
   describe '.list', ->
-    it 'should list products', ->
-      {count, models} = yield api.product.list()
+    it 'should list variants', ->
+      {count, models} = yield api.variant.list()
       models.length.should.be.gt 0
       count.should.be.gt 0
 
   describe '.update', ->
-    it 'should update products', ->
-      p = yield api.product.update slug: product.slug, price: 3500
+    it 'should update variants', ->
+      p = yield api.variant.update sku: variant.sku, price: 3500
       p.price.should.eq 3500
 
   describe '.delete', ->
-    it 'should delete products', ->
-      yield api.product.delete product.slug
+    it 'should delete variants', ->
+      yield api.variant.delete variant.sku
