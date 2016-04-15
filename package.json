@@ -40,7 +40,7 @@
   "devDependencies": {
     "bebop": "1.8.3",
     "cake-publish": "0.1.1",
-    "cake-version": "0.1.8",
+    "cake-version": "0.1.9",
     "chai": "^3.4.1",
     "chai-as-promised": "^5.1.0",
     "co-mocha": "^1.1.2",
@@ -53,17 +53,17 @@
     "fs": "0.0.2",
     "istanbul": "^0.4.1",
     "joseph": "^0.2.9",
-    "mocha": "^2.3.4",
+    "mocha": "2.4.5",
     "mocha-lcov-reporter": "^1.0.0",
     "moment": "^2.10.6",
     "mz": "2.1.0",
-    "nightmare": "2.3.0",
+    "nightmare": "2.3.2",
     "postmortem": "^0.2.3",
     "random-token": "0.0.8",
     "requisite": "1.18.2",
     "serve-static": "^1.10.0",
     "shortcake": "1.1.16",
-    "uglify-js": "^2.6.1"
+    "uglify-js": "2.6.2"
   },
   "dependencies": {
     "broken": "0.1.4",
