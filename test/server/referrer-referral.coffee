@@ -21,9 +21,9 @@ describe 'Api.referrer/Api.referrral', ->
 
   before ->
     user = yield api.account.create
-      firstName:       firstName
-      lastName:        lastName
-      email:           email
+      firstName:       'referrer' + firstName
+      lastName:        'referrer' + lastName
+      email:           'referrer' + email
       password:        goodPass1
       passwordConfirm: goodPass1
 
