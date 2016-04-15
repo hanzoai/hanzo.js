@@ -52,6 +52,7 @@ models = [
   'subscriber'
   'subscription'
   'transaction'
+  'token'
   'user'
   'variant'
 ]
@@ -68,6 +69,11 @@ blueprints.referrer.referrals =
 blueprints.referrer.transactions =
   url:     (x) -> "/referrer/#{x.id ? x}/transactions"
   method:  'GET'
+  expects: statusOk
+
+blueprints.order.refund =
+  url:     (x) -> "/order/#{x.id ? x}/refund"
+  method:  'POST'
   expects: statusOk
 
 # Attach deploy API
