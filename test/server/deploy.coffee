@@ -2,7 +2,7 @@ fs     = require 'mz/fs'
 path   = require 'path'
 crypto = require 'crypto'
 
-describe 'Api.deploy', ->
+describe 'Api.deploy.skip', ->
   basedir = path.join __dirname, '..', 'tmp'
   deploy  = null
   digest  = null
