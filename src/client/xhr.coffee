@@ -57,7 +57,7 @@ module.exports = class XhrClient
       method: blueprint.method
 
     if blueprint.method != 'GET'
-      opt.headers:
+      opts.headers =
         'Content-Type': 'application/json'
 
     if blueprint.method == 'GET'
