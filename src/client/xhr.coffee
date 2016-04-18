@@ -56,6 +56,10 @@ module.exports = class XhrClient
       url:    @getUrl blueprint.url, data, key
       method: blueprint.method
 
+    if blueprint.method != 'GET'
+      opt.headers:
+        'Content-Type': 'application/json'
+
     if blueprint.method == 'GET'
       opts.url  = updateQuery opts.url, data
     else
