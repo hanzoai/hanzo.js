@@ -70,6 +70,12 @@ blueprints =
       useCustomerToken: true
 
     confirm:
+      url:     (x) -> "/account/order/#{x.orderId ? x}"
+      method:  'PATCH'
+      expects: statusOk
+      useCustomerToken: true
+
+    updateOrder:
       url:     (x) -> "/account/confirm/#{x.tokenId ? x}"
       method:  'POST'
       expects: statusOk
