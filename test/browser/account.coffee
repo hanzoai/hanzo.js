@@ -134,6 +134,7 @@ describe 'Api.account (browser)', ->
     it 'should patch logged in user password', ->
       user = yield browser.evaluate ->
         api.account.update
+          currentPassword:  goodPass1
           password:         goodPass2
           passwordConfirm:  goodPass2
 
