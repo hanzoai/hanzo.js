@@ -10,8 +10,6 @@
 # Start with browser-based APIs.
 blueprints = require './browser'
 
-
-
 # Complete RESTful API available with secret key, so all methods are
 # exposed in server environment.
 createBlueprint = (name) ->
@@ -60,6 +58,11 @@ models = [
 for model in models
   do (model) ->
     blueprints[model] = createBlueprint model
+
+cart         = createBlueprint 'cart'
+cart.set     = blueprints.cart.set
+cart.discard = blueprints.cart.discard
+blueprints.cart = cart
 
 blueprints.referrer.referrals =
   url:     (x) -> "/referrer/#{x.id ? x}/referrals"
