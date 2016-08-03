@@ -25,7 +25,8 @@ describe.only 'Api.cart', ->
 
   describe '.create', ->
     it 'should create carts', ->
-      car = cart = yield api.cart.create fixture
+      { id } = yield api.cart.create fixture
+      car = cart = yield api.cart.get id
       cart.shippingAddress.line1.should.equal 'line1'
       cart.shippingAddress.line2.should.equal 'line2'
       cart.shippingAddress.city.should.equal 'city'
@@ -48,10 +49,11 @@ describe.only 'Api.cart', ->
 
   describe '.set', ->
     it 'should set cart item', ->
-      cart = yield api.cart.set
+      yield api.cart.set
         id: car.id
         productSlug: 'sad-keanu-shirt'
         quantity: 2
+      cart = yield api.cart.get car.id
       cart.status.should.eq 'active'
       cart.items.length.should.equal 1
       cart.items[0].productSlug.should.equal 'sad-keanu-shirt'
@@ -65,10 +67,11 @@ describe.only 'Api.cart', ->
 
   describe '.update', ->
     it 'should update carts', ->
-      cart = yield api.cart.update
+      yield api.cart.update
         id: car.id
         shippingAddress:
           line1: 'line1u'
+      cart = yield api.cart.get car.id
       cart.shippingAddress.line1.should.equal 'line1u'
       cart.status.should.eq 'active'
       cart.items.length.should.equal 1

@@ -87,6 +87,10 @@ blueprints =
       url:     '/cart'
       method:  'POST'
       expects: statusCreated
+    update:
+      url:     '/cart'
+      method:  'PATCH'
+      expects: statusOk
     discard:
       url:     (x) -> "/cart/#{x.id ? x}/discard"
       method:  'POST'
