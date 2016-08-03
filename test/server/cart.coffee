@@ -46,6 +46,17 @@ describe.only 'Api.cart', ->
       cart.items[0].productSlug.should.equal 'sad-keanu-shirt'
       cart.items[0].quantity.should.equal 1
 
+  describe '.set', ->
+    it 'should set cart item', ->
+      cart = yield api.cart.set
+        id: car.id
+        productSlug: 'sad-keanu-shirt'
+        quantity: 2
+      cart.status.should.eq 'active'
+      cart.items.length.should.equal 1
+      cart.items[0].productSlug.should.equal 'sad-keanu-shirt'
+      cart.items[0].quantity.should.equal 2
+
   describe '.list', ->
     it 'should list carts', ->
       {count, models} = yield api.cart.list()
@@ -59,6 +70,8 @@ describe.only 'Api.cart', ->
         shippingAddress:
           line1: 'line1u'
       cart.shippingAddress.line1.should.equal 'line1u'
+      cart.status.should.eq 'active'
+      cart.items.length.should.equal 1
 
   describe '.delete', ->
     it 'should delete carts', ->
