@@ -130,3 +130,18 @@ describe 'Api.account (browser)', ->
       user.firstName.should.not.equal newFirstName
       user.lastName.should.not.equal lastName
       user.email.should.not.equal email
+
+    it 'should patch logged in user password', ->
+      user = yield browser.evaluate ->
+        api.account.update
+          currentPassword:  goodPass1
+          password:         goodPass2
+          passwordConfirm:  goodPass2
+
+      res = yield browser.evaluate ->
+        api.account.login
+          email:    email
+          password: goodPass2
+
+      res.token.should.not.eq ''
+

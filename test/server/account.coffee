@@ -18,7 +18,6 @@ describe 'Api.account', ->
           email:           firstName
           password:        goodPass1
           passwordConfirm: goodPass1
-
       catch err
 
       err.status.should.eq 400
