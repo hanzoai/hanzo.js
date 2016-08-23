@@ -81,6 +81,21 @@ blueprints =
       expects: statusOk
       useCustomerToken: true
 
+  # CART
+  cart:
+    create:
+      url:     '/cart'
+      method:  'POST'
+      expects: statusCreated
+    discard:
+      url:     (x) -> "/cart/#{x.id ? x}/discard"
+      method:  'POST'
+      expects: statusOk
+    set:
+      url:     (x) -> "/cart/#{x.id ? x}/set"
+      method:  'POST'
+      expects: statusOk
+
   # CHECKOUT
   checkout:
     authorize:
