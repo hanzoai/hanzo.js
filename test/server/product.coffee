@@ -39,3 +39,13 @@ describe 'Api.product', ->
   describe '.delete', ->
     it 'should delete products', ->
       yield api.product.delete product.slug
+
+  describe 'cache invalidation', ->
+    it 'should invalidate product', ->
+      product2 =
+        slug: 'happy-keanu-shirt'
+        price: 4000
+      yield api.product.create product2
+      yield api.product.update slug: 'happy-keanu-shirt', price: 5000
+      p = yield api.product.get slug: 'happy-keanu-shirt'
+      p.price.should.eq 5000
