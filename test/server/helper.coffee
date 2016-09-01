@@ -5,6 +5,12 @@ chai.use require 'chai-as-promised'
 Api = require '../../lib'
 
 before ->
+  global.sleep = (time) ->
+    new Promise (resolve, reject) ->
+      setTimeout ->
+        resolve()
+      , time
+
   global.api = new Api
     debug:    true
     # endpoint: 'https://api-dot-hanzo-staging.appspot.com'
@@ -13,7 +19,7 @@ before ->
     endpoint: 'https://api-dot-crowdstart-staging.appspot.com'
     key:      'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjI0LCJqdGkiOiI0Y251UEJWWGxVUSIsInN1YiI6IjhBVEVPa0VuU2wifQ.FhX_E4D70umPeOCpJ3TU740kyuTCyOnDar0nq_icBxQx9qJ3aGqIu-xTUz9C_AvpJ0CJKaAVql1a_T4fWTVojw'
 
-    # zk
+    # z
     # endpoint: 'http://localhost:8080/api'
     # key:      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE0NTI5OTAwNzQsImp0aSI6IjBNUkVJQWlvYXYiLCJhcHAiOiJTdG9yZSIsIm9yZyI6InN1Y2h0ZWVzIiwidHlwIjoiYXBpIiwidHN0Ijp0cnVlLCJiaXQiOjI0fQ.BQxRZRlnjt3tLGdxXhXZ-83-Q3A12KljgpJO0UZ241w'
 
@@ -34,3 +40,4 @@ before ->
   global.goodPass1    = randomToken 6
   global.goodPass2    = randomToken 6
   global.badPass1     = randomToken 5
+
