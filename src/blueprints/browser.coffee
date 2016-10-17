@@ -137,11 +137,6 @@ models = [
   'variant'
 ]
 
-userModels = [
-  'order'
-  'subscription'
-]
-
 for model in models
   do (model) ->
     blueprints[model] = createBlueprint model
