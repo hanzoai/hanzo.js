@@ -130,7 +130,7 @@ blueprints =
       expects: statusCreated
 
     get:
-      url:     '/referrer'
+      url:     (x) -> "/referrer/#{x.id ? x}"
       method:  'GET'
       expects: statusOk
 
