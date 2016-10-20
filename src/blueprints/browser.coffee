@@ -129,6 +129,11 @@ blueprints =
       method:  'POST'
       expects: statusCreated
 
+    get:
+      url:     '/referrer'
+      method:  'GET'
+      expects: statusOk
+
 # MODELS
 models = [
   'collection'
