@@ -37,9 +37,16 @@
     "type": "git",
     "url": "http://github.com/hanzo/hanzo.js"
   },
+  "dependencies": {
+    "broken": "0.1.4",
+    "js-cookie": "2.1.0",
+    "request": "2.70.0",
+    "xhr-promise-es6": "^1.2.7"
+  },
   "devDependencies": {
     "bebop": "1.8.3",
     "cake-publish": "0.1.1",
+    "cake-test": "0.1.0",
     "cake-version": "0.1.9",
     "chai": "3.5.0",
     "chai-as-promised": "5.3.0",
@@ -60,16 +67,9 @@
     "nightmare": "2.3.2",
     "postmortem": "^0.2.3",
     "random-token": "0.0.8",
-    "requisite": "1.18.2",
+    "requisite": "1.19.1",
     "serve-static": "^1.10.0",
-    "shortcake": "1.1.16",
-    "uglify-js": "2.6.2"
-  },
-  "dependencies": {
-    "broken": "0.1.4",
-    "cake-test": "0.1.0",
-    "js-cookie": "2.1.0",
-    "request": "2.70.0",
-    "xhr-promise-es6": "^1.2.7"
+    "shortcake": "1.1.18",
+    "uglify-js": "2.7.4"
   }
 }
