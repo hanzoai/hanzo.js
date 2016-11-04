@@ -63,7 +63,7 @@
     "mocha": "2.4.5",
     "mocha-lcov-reporter": "^1.0.0",
     "moment": "^2.10.6",
-    "mz": "2.1.0",
+    "mz": "2.5.0",
     "nightmare": "2.3.2",
     "postmortem": "^0.2.3",
     "random-token": "0.0.8",
