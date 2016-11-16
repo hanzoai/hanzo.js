@@ -45,6 +45,8 @@ updateParam = (url, key, value) ->
 
 # Update query on url
 exports.updateQuery = (url, data) ->
+  return url if typeof data != 'object'
+
   for k,v of data
     url = updateParam url, k, v
   url
