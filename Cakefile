@@ -45,7 +45,7 @@ task 'build', 'build project', (cb) ->
 
     fs.writeFile 'hanzo.js', (bundle.toString opts), 'utf8', done
 
-task 'build-min', 'build project', ['build'], ->
+task 'build:min', 'build project', ['build'], ->
   exec 'uglifyjs hanzo.js --compress --mangle --lint=false > hanzo.min.js'
 
 server = do require 'connect'
