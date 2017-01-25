@@ -1,5 +1,7 @@
 # Hanzo.js  [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NPM version][npm-image]][npm-url]  [![Gitter chat][gitter-image]][gitter-url]
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/hanzo-io/hanzo.js.svg)](https://greenkeeper.io/)
+
 <!-- [![Downloads][downloads-image]][downloads-url] -->
 Hanzo.js is a complete Ecommerce SDK for JavaScript and client for
 [Hanzo][hanzo]. With Hanzo.js you can:
