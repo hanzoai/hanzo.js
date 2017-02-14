@@ -44,7 +44,7 @@
     "xhr-promise-es6": "^1.2.7"
   },
   "devDependencies": {
-    "bebop": "1.9.4",
+    "bebop": "1.11.0",
     "cake-publish": "0.1.1",
     "cake-test": "0.1.0",
     "cake-version": "0.1.9",
