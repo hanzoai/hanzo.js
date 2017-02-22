@@ -16,7 +16,7 @@ before ->
     # endpoint: 'https://api-dot-hanzo-staging.appspot.com'
     # key:      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE0NTMyNTQ0MDAsImp0aSI6ImtnSTk4UFhYc2RBMEoiLCJGaXJzdE5hbWUiOiIiLCJMYXN0TmFtZSI6IiIsImFwcCI6IlN0b3JlIiwib3JnIjoic3VjaHRlZXMiLCJ0eXAiOiJhcGkiLCJ0c3QiOnRydWUsImJpdCI6MjR9.-kz2Y8MEm8cTHVWTtQP_YIqPUvdvmFy1W-zc3xJYY2s'
 
-    endpoint: 'https://api-dot-crowdstart-staging.appspot.com'
+    endpoint: 'https://api-staging.hanzo.io'
     key:      'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjI0LCJqdGkiOiI0Y251UEJWWGxVUSIsInN1YiI6IjhBVEVPa0VuU2wifQ.FhX_E4D70umPeOCpJ3TU740kyuTCyOnDar0nq_icBxQx9qJ3aGqIu-xTUz9C_AvpJ0CJKaAVql1a_T4fWTVojw'
 
     # z
