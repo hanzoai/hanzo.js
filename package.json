@@ -38,7 +38,7 @@
     "url": "http://github.com/hanzo/hanzo.js"
   },
   "dependencies": {
-    "broken": "0.1.4",
+    "broken": "0.1.6",
     "js-cookie": "2.1.0",
     "request": "2.70.0",
     "xhr-promise-es6": "^1.2.7"
@@ -67,7 +67,7 @@
     "nightmare": "2.3.2",
     "postmortem": "^0.2.3",
     "random-token": "0.0.8",
-    "requisite": "1.19.1",
+    "requisite": "1.19.11",
     "serve-static": "^1.10.0",
     "shortcake": "1.1.18",
     "uglify-js": "2.7.4"
