@@ -3,8 +3,17 @@ require 'shortcake'
 use 'cake-version'
 use 'cake-publish'
 
-fs        = require 'fs'
-requisite = require 'requisite'
+builtins    = require 'rollup-plugin-node-builtins'
+coffee      = require 'rollup-plugin-coffee-script'
+commonjs    = require 'rollup-plugin-commonjs'
+filesize    = require 'rollup-plugin-filesize'
+globals     = require 'rollup-plugin-node-globals'
+json        = require 'rollup-plugin-json'
+nodeResolve = require 'rollup-plugin-node-resolve'
+path        = require 'path'
+rollup      = require 'rollup'
+
+pkg = require './package'
 
 option '-b', '--browser [browser]', 'browser to use for tests'
 option '-g', '--grep [filter]',     'test filter'
@@ -15,38 +24,98 @@ option '-l', '--local',             'use local server for testing'
 task 'clean', 'clean project', ->
   exec 'rm -rf lib'
 
-task 'build', 'build project', (cb) ->
-  todo = 2
-  done = (err) ->
-    throw err if err?
-    cb() if --todo is 0
+task 'build', 'build project', ->
+  exec 'coffee -bcm -o lib/ src/'
 
-  exec 'coffee -bcm -o lib/ src/', done
+  plugins = [
+    json()
+    coffee()
+    nodeResolve
+      browser: true
+      extensions: ['.js', '.coffee']
+      module:  true
+      preferBuiltins: true
+    commonjs
+      extensions: ['.js', '.coffee']
+      sourceMap: true
+      exclude: 'node_modules/request/**'
+    globals()
+    builtins()
+  ]
 
-  opts =
-    entry:      'src/browser.coffee'
-    stripDebug: true
+  # Browser (single file)
+  bundle = yield rollup.rollup
+    entry:   'src/browser.coffee'
+    plugins:  plugins
 
-  requisite.bundle opts, (err, bundle) ->
-    return done err if err?
+  yield bundle.write
+    format:     'iife'
+    dest:       'hanzo.js'
+    moduleName: pkg.name.charAt(0).toUpperCase() + pkg.name.slice 1
+    sourceMap: 'inline'
 
-    # Strip out unnecessary api bits
-    bundle.moduleCache['./blueprints/browser'].walkAst (node) ->
-      if (node.type == 'ObjectExpression') and (Array.isArray node.properties)
+  # CommonJS && ES Module for browser
+  deps = Object.keys pkg.dependencies
 
-        node.properties = node.properties.filter (prop) ->
-          if prop?.key?.name == 'method' and prop?.value?.value == 'POST'
-            return false
-          if prop?.key?.name == 'expects' and prop?.value?.name == 'statusOk'
-            return false
-          true
+  bundle = yield rollup.rollup
+    entry:    'src/browser.coffee'
+    external: deps
+    plugins:  plugins
 
-      false
+  bundle.write
+    format:     'cjs'
+    dest:       pkg.browser
+    moduleName: pkg.name
+    sourceMap:  'inline'
 
-    fs.writeFile 'hanzo.js', (bundle.toString opts), 'utf8', done
+  bundle.write
+    format:    'es'
+    dest:      pkg.module
+    sourceMap: 'inline'
+
+  # Node version
+  bundle = yield rollup.rollup
+    entry:    'src/index.coffee'
+    external: deps
+    plugins:  plugins
+
+  bundle.write
+    format:         'cjs'
+    dest:           pkg.main
+    moduleName:     pkg.name
+    sourceMap:      'inline'
+
+  # todo = 2
+  # done = (err) ->
+  #   throw err if err?
+  #   cb() if --todo is 0
+
+  # exec 'coffee -bcm -o lib/ src/', done
+
+  # opts =
+  #   entry:      'src/browser.coffee'
+  #   stripDebug: true
+
+  # requisite.bundle opts, (err, bundle) ->
+  #   return done err if err?
+
+  #   # Strip out unnecessary api bits
+  #   bundle.moduleCache['./blueprints/browser'].walkAst (node) ->
+  #     if (node.type == 'ObjectExpression') and (Array.isArray node.properties)
+
+  #       node.properties = node.properties.filter (prop) ->
+  #         if prop?.key?.name == 'method' and prop?.value?.value == 'POST'
+  #           return false
+  #         if prop?.key?.name == 'expects' and prop?.value?.name == 'statusOk'
+  #           return false
+  #         true
+
+  #     false
+
+  #   fs.writeFile 'hanzo.js', (bundle.toString opts), 'utf8', done
 
 task 'build:min', 'build project', ['build'], ->
-  exec 'uglifyjs hanzo.js --compress --mangle --lint=false > hanzo.min.js'
+  exec 'uglifyjs hanzo.js > hanzo.min.js'
 
 server = do require 'connect'
 
