@@ -1,11 +1,11 @@
-{
+import {
   isFunction
   statusCreated
   statusNoContent
   statusOk
-} = require '../utils'
+} from '../utils'
 
-{byId, storePrefixed} = require './url'
+import {byId, storePrefixed} from './url'
 
 # Only list, get methods of a few models are supported with a publishable key,
 # so only these methods are exposed in the browser.

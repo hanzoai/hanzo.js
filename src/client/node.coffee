@@ -1,12 +1,12 @@
-Promise = require 'broken'
-fs      = require 'fs'
-request = require 'request'
+import Promise from 'broken'
+import fs      from 'fs'
+import request from 'request'
 
-XhrClient = require './xhr'
+import XhrClient from './browser'
 
-{newError} = require '../utils'
+import {newError} from '../utils'
 
-module.exports = class NodeClient extends XhrClient
+class NodeClient extends XhrClient
   constructor: (opts = {}) ->
     return new NodeClient opts unless @ instanceof NodeClient
 
@@ -97,3 +97,5 @@ module.exports = class NodeClient extends XhrClient
 
       if blueprint.stream?
         (blueprint.stream.call @, data).pipe req
+
+export default NodeClient

@@ -1,11 +1,12 @@
-Xhr         = require 'xhr-promise-es6'
-Xhr.Promise = require 'broken'
+import Xhr     from 'xhr-promise-es6'
+import Promise from 'broken'
+import cookie  from 'js-cookie'
 
-cookie = require 'js-cookie'
+import {isFunction, newError, updateQuery} from '../utils'
 
-{isFunction, newError, updateQuery} = require '../utils'
+Xhr.Promise = Promise
 
-module.exports = class XhrClient
+class XhrClient
   debug:       false
   endpoint:    'https://api.hanzo.io'
   sessionName: 'hnzo'
@@ -91,3 +92,5 @@ module.exports = class XhrClient
           console.log 'ERROR:', err
 
         throw err
+
+export default XhrClient

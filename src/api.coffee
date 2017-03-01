@@ -1,6 +1,6 @@
-{isFunction, isString, newError, statusOk} = require './utils'
+import {isFunction, isString, newError, statusOk} from './utils'
 
-module.exports = class Api
+class Api
   @BLUEPRINTS = {}
   @CLIENT     = null
 
@@ -65,3 +65,5 @@ module.exports = class Api
   setStore: (id) ->
     @storeId = id
     @client.setStore id
+
+export default Api

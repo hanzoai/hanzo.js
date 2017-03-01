@@ -1,12 +1,10 @@
-global.Hanzo ?= {}
+import Api        from './api'
+import Client     from './client/browser'
+import blueprints from './blueprints/browser'
 
-Api    = require './api'
-Client = require './client/xhr'
+Hanzo =
+  Api:        Api
+  Client:     Client
+  blueprints: blueprints
 
-Api.CLIENT     = Client
-Api.BLUEPRINTS = require './blueprints/browser'
-
-Hanzo.Api    = Api
-Hanzo.Client = Client
-
-module.exports = Hanzo
+export default Hanzo

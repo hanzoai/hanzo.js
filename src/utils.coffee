@@ -1,14 +1,14 @@
 # Helpers
-exports.isFunction = (fn) -> typeof fn is 'function'
-exports.isString   = (s)  -> typeof s  is 'string'
+export isFunction = (fn) -> typeof fn is 'function'
+export isString   = (s)  -> typeof s  is 'string'
 
 # Few status codes we use throughout code base
-exports.statusOk        = (res) -> res.status is 200
-exports.statusCreated   = (res) -> res.status is 201
-exports.statusNoContent = (res) -> res.status is 204
+export statusOk        = (res) -> res.status is 200
+export statusCreated   = (res) -> res.status is 201
+export statusNoContent = (res) -> res.status is 204
 
 # Throw "fat" errors.
-exports.newError = (data, res = {}, err) ->
+export newError = (data, res = {}, err) ->
   message = res?.data?.error?.message ? 'Request failed'
 
   unless err?
@@ -44,7 +44,7 @@ updateParam = (url, key, value) ->
       url
 
 # Update query on url
-exports.updateQuery = (url, data) ->
+export updateQuery = (url, data) ->
   return url if typeof data != 'object'
 
   for k,v of data

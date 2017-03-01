@@ -1,14 +1,15 @@
-{
+# Start with browser-based APIs.
+import blueprints from './browser'
+import deploy from './deploy'
+
+import {
   isFunction
   statusCreated
   statusNoContent
   statusOk
-} = require '../utils'
+} from  '../utils'
 
-{byId} = require './url'
-
-# Start with browser-based APIs.
-blueprints = require './browser'
+import {byId} from './url'
 
 # Complete RESTful API available with secret key, so all methods are
 # exposed in server environment.
@@ -57,12 +58,11 @@ models = [
 ]
 
 for model in models
-  do (model) ->
-    blueprints[model] = createBlueprint model
+  blueprints[model] = createBlueprint model
 
-cart         = createBlueprint 'cart'
-cart.set     = blueprints.cart.set
-cart.discard = blueprints.cart.discard
+cart            = createBlueprint 'cart'
+cart.set        = blueprints.cart.set
+cart.discard    = blueprints.cart.discard
 blueprints.cart = cart
 
 blueprints.referrer.referrals =
@@ -80,7 +80,6 @@ blueprints.order.refund =
   method:  'POST'
   expects: statusOk
 
-# Attach deploy API
-require('./deploy') blueprints
+blueprints.deploy = deploy
 
-module.exports = blueprints
+export default blueprints

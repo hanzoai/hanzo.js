@@ -1,7 +1,7 @@
-{isFunction} = require '../utils'
+import {isFunction} from '../utils'
 
 # Wrap a url function to provide store-prefixed URLs
-exports.storePrefixed = sp = (u) ->
+export storePrefixed = sp = (u) ->
   (x) ->
     if isFunction u
       url = u x
@@ -14,7 +14,7 @@ exports.storePrefixed = sp = (u) ->
       url
 
 # Returns a URL for getting a single
-exports.byId = (name) ->
+export byId = (name) ->
   switch name
     when 'coupon'
       sp (x) -> "/coupon/#{x.code ? x}"
