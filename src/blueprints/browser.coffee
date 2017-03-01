@@ -157,4 +157,4 @@ for model in models
   do (model) ->
     blueprints[model] = createBlueprint model
 
-module.exports = blueprints
+export default blueprints

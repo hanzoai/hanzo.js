@@ -75,7 +75,7 @@ task 'build', 'build project', ->
 
   # Node version
   bundle = yield rollup.rollup
-    entry:    'src/index.coffee'
+    entry:    'src/node.coffee'
     external: deps
     plugins:  plugins
 
