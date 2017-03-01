@@ -5,4 +5,4 @@ describe 'Client', ->
   client = new hanzo.Client key: key
 
   it 'should use default endpoint', ->
-    client.endpoint.should.eq 'https://api.hanzo.io'
+    client.opts.endpoint.should.eq 'https://api.hanzo.io'

@@ -17,7 +17,7 @@ before ->
     # key:      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE0NTMyNTQ0MDAsImp0aSI6ImtnSTk4UFhYc2RBMEoiLCJGaXJzdE5hbWUiOiIiLCJMYXN0TmFtZSI6IiIsImFwcCI6IlN0b3JlIiwib3JnIjoic3VjaHRlZXMiLCJ0eXAiOiJhcGkiLCJ0c3QiOnRydWUsImJpdCI6MjR9.-kz2Y8MEm8cTHVWTtQP_YIqPUvdvmFy1W-zc3xJYY2s'
 
     endpoint: 'https://api-staging.hanzo.io'
-    key:      'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjIwLCJqdGkiOiJScW1BSWlzQXRRNCIsInN1YiI6IkVxVEdveHA1dTMifQ.1fHMT4z4y0TLIVG9oh1UleSKBroVhZXP2sCVDhtiWcB9VfvNd46PojYZ-PpHSnnmhdN9JY1CF2HxyHVcJK5JMQ'
+    key:      'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjI0LCJqdGkiOiJhajNhTUpPcUlfWSIsInN1YiI6IkVxVEdveHA1dTMifQ.dwz3XXRPSHzhFIXYIW-GrU1ovf1alEvRN9syqRKlfAwapXwVxp5Twort3ibaDd6V-yQtLHfziy2PHNin1VfZ4A'
 
     # z
     # endpoint: 'http://localhost:8080/api'

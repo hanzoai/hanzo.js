@@ -4,7 +4,7 @@ sleep = (delay) ->
   new Promise (resolve, reject) ->
     setTimeout resolve, delay
 
-describe.only 'Api.cart', ->
+describe 'Api.cart', ->
   fixture = null
   car = null
 
