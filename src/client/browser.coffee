@@ -12,7 +12,7 @@ class BrowserClient extends Client
     super opts
     @getCustomerToken()
 
-  request: (blueprint, data={}, key = @key) ->
+  request: (blueprint, data={}, key = @getKey()) ->
     opts =
       url:    @url blueprint.url, data, key
       method: blueprint.method

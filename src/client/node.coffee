@@ -14,16 +14,11 @@ class NodeClient extends Client
   constructor: (opts) ->
     super opts
 
-    if ENDPOINT
-      @opts.endpoint = endpoint
+    @opts.endpoint = ENDPOINT if ENDPOINT
+    @opts.debug = true if DEBUG
+    @key = KEY if KEY
 
-    if DEBUG
-      @opts.debug = true
-
-    if KEY
-      @key = key
-
-  request: (blueprint, data = {}, key = @key) ->
+  request: (blueprint, data = {}, key = @getKey()) ->
     opts =
       url:                 @url blueprint.url, data, key
       method:              blueprint.method
@@ -48,7 +43,7 @@ class NodeClient extends Client
       else
         opts.json = true
 
-    @log 'request', opts, key
+    @log 'request', opts, 'key', key
 
     new Promise (resolve, reject) =>
 

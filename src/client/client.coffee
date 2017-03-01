@@ -15,6 +15,12 @@ class Client
     for k,v of opts
       @opts[k] = v
 
+  getKey: ->
+    @opts.key
+
+  setKey: (key) ->
+    @opts.key = key
+
   getCustomerToken: ->
     if (session = cookie.getJSON @opts.session.name)?
       @customerToken = session.customerToken if session.customerToken?
@@ -35,7 +41,7 @@ class Client
     updateQuery (@opts.endpoint + url), token: key
 
   log: (args...) ->
-    args.unshift 'hanzo.js'
+    args.unshift 'hanzo.js>'
     if @opts.debug and console?
       console.log args...
 

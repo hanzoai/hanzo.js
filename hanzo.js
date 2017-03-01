@@ -1102,6 +1102,14 @@ Client$1 = (function() {
     }
   }
 
+  Client.prototype.getKey = function() {
+    return this.opts.key;
+  };
+
+  Client.prototype.setKey = function(key) {
+    return this.opts.key = key;
+  };
+
   Client.prototype.getCustomerToken = function() {
     var session;
     if ((session = js_cookie.getJSON(this.opts.session.name)) != null) {
@@ -1142,7 +1150,7 @@ Client$1 = (function() {
   Client.prototype.log = function() {
     var args;
     args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-    args.unshift('hanzo.js');
+    args.unshift('hanzo.js>');
     if (this.opts.debug && (typeof console !== "undefined" && console !== null)) {
       return console.log.apply(console, args);
     }
@@ -1174,7 +1182,7 @@ BrowserClient = (function(superClass) {
       data = {};
     }
     if (key == null) {
-      key = this.key;
+      key = this.getKey();
     }
     opts = {
       url: this.url(blueprint.url, data, key),
