@@ -1,4 +1,4 @@
-{updateQuery} = require '../lib/utils'
+{updateQuery} = (require '../').utils
 
 describe 'utils', ->
   describe '#updateQuery', ->

@@ -1,11 +1,8 @@
-Client = require '../lib/client'
+hanzo = require '../'
 
 describe 'Client', ->
   key = 'fakekey'
-  client = new Client key: key
-
-  it 'should instantiate with and without new', ->
-    Client key: key
+  client = new hanzo.Client key: key
 
   it 'should use default endpoint', ->
     client.endpoint.should.eq 'https://api.hanzo.io'

@@ -1,6 +1,7 @@
 import Api        from './api'
-import Client     from './client/browser'
-import blueprints from './blueprints/browser'
+import Client     from './client/node'
+import blueprints from './blueprints/node'
+import * as utils from './utils'
 
 Api.BLUEPRINTS = blueprints
 Api.CLIENT     = Client
@@ -12,5 +13,7 @@ Hanzo = (opts = {}) ->
 
 Hanzo.Api        = Api
 Hanzo.Client     = Client
+Hanzo.blueprints = blueprints
+Hanzo.utils      = utils
 
 export default Hanzo

@@ -2,28 +2,30 @@ import Promise from 'broken'
 import fs      from 'fs'
 import request from 'request'
 
-import XhrClient from './browser'
+import Client from './client'
 
 import {newError} from '../utils'
 
-class NodeClient extends XhrClient
-  constructor: (opts = {}) ->
-    return new NodeClient opts unless @ instanceof NodeClient
+KEY      = process.env.HANZO_KEY
+ENDPOINT = process.env.HANZO_ENDPOINT
+DEBUG    = process.env.HANZO_DEBUG
 
-    {@key, @debug} = opts
+class NodeClient extends Client
+  constructor: (opts) ->
+    super opts
 
-    if NodeClient.ENDPOINT
-      @setEndpoint NodeClient.ENDPOINT
+    if ENDPOINT
+      @opts.endpoint = endpoint
 
-    if NodeClient.DEBUG
-      @debug = true
+    if DEBUG
+      @opts.debug = true
 
-    if opts.endpoint
-      @setEndpoint opts.endpoint
+    if KEY
+      @key = key
 
-  request: (blueprint, data = {}, key = @getKey()) ->
+  request: (blueprint, data = {}, key = @key) ->
     opts =
-      url:                 @getUrl blueprint.url, data, key
+      url:                 @url blueprint.url, data, key
       method:              blueprint.method
       headers:             blueprint.headers ? {}
       followAllRedirects:  true
@@ -46,7 +48,10 @@ class NodeClient extends XhrClient
       else
         opts.json = true
 
+    @log 'request', opts, key
+
     new Promise (resolve, reject) =>
+
       # Read file is requested
       if blueprint.file? and (not data.body?)
         fs.readFile (blueprint.file data), (err, body) =>
@@ -59,30 +64,17 @@ class NodeClient extends XhrClient
             .catch reject
         return
 
-      if @debug
-        console.log '--REQUEST--'
-        console.log opts
-
       req = request opts, (err, res) =>
         if res?
-          if @debug
-            console.log '--RESPONSE--'
-            console.log
-              status: res.statusCode
-              body:   res.body
+          @log 'response', res.statusCode, res.body
 
           res.status = res.statusCode
           res.data   = res.body
 
         if err? or (res.status > 308) or res.data?.error?
           _err = newError opts, res, err
-          if @debug
-            console.log '--ERROR--'
-            console.log
-              message: _err.message
-              status:  _err.status
-              type:    _err.type
-            console.log err.stack if err?
+          @log 'error', _err.type, _err.status, _err.message
+          @log err.stack if err?
           return reject _err
 
         resolve

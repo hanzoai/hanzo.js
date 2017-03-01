@@ -69,6 +69,7 @@
     "random-token": "0.0.8",
     "requisite": "1.19.12",
     "rollup": "0.41.4",
+    "rollup-analyzer": "1.0.1",
     "rollup-plugin-coffee-script": "1.1.0",
     "rollup-plugin-commonjs": "7.0.0",
     "rollup-plugin-filesize": "1.0.1",

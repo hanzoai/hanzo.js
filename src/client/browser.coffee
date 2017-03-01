@@ -1,60 +1,20 @@
-import Xhr     from 'xhr-promise-es6'
 import Promise from 'broken'
-import cookie  from 'js-cookie'
+import Xhr     from 'xhr-promise-es6'
 
-import {isFunction, newError, updateQuery} from '../utils'
+import Client     from './client'
+import {newError} from '../utils'
 
 Xhr.Promise = Promise
 
-class XhrClient
-  debug:       false
-  endpoint:    'https://api.hanzo.io'
-  sessionName: 'hnzo'
 
-  constructor: (opts = {}) ->
-    return new XhrClient opts unless @ instanceof XhrClient
-
-    {@key, @debug} = opts
-
-    if opts.endpoint
-      @setEndpoint opts.endpoint
-
+class BrowserClient extends Client
+  constructor: (opts) ->
+    super opts
     @getCustomerToken()
 
-  setEndpoint: (endpoint) ->
-    @endpoint = endpoint.replace /\/$/, ''
-
-  setStore: (id) ->
-    @storeId = id
-
-  setKey: (key) ->
-    @key = key
-
-  getKey: ->
-    @key or @constructor.KEY
-
-  getCustomerToken: ->
-    if (session = cookie.getJSON @sessionName)?
-      @customerToken = session.customerToken if session.customerToken?
-    @customerToken
-
-  setCustomerToken: (key) ->
-    cookie.set @sessionName, {customerToken: key}, expires: 7 * 24 * 3600 * 1000
-    @customerToken = key
-
-  deleteCustomerToken: ->
-    cookie.set @sessionName, {customerToken: null}, expires: 7 * 24 * 3600 * 1000
-    @customerToken = null
-
-  getUrl: (url, data, key) ->
-    if isFunction url
-      url = url.call @, data
-
-    updateQuery (@endpoint + url), token: key
-
-  request: (blueprint, data={}, key = @getKey()) ->
+  request: (blueprint, data={}, key = @key) ->
     opts =
-      url:    @getUrl blueprint.url, data, key
+      url:    @url blueprint.url, data, key
       method: blueprint.method
 
     if blueprint.method != 'GET'
@@ -66,31 +26,22 @@ class XhrClient
     else
       opts.data = JSON.stringify data
 
-    if @debug
-      console.log '--KEY--'
-      console.log key
-      console.log '--REQUEST--'
-      console.log opts
+    @log 'request', key: key, opts: opts
 
     (new Xhr).send opts
-      .then (res) ->
-        if @debug
-          console.log '--RESPONSE--'
-          console.log res
-
+      .then (res) =>
+        @log 'response', res
         res.data   = res.responseText
         res
-      .catch (res) ->
+      .catch (res) =>
         try
           res.data   = res.responseText ? (JSON.parse res.xhr.responseText)
         catch err
 
         err = newError data, res
-        if @debug
-          console.log '--RESPONSE--'
-          console.log res
-          console.log 'ERROR:', err
+        @log 'response', res
+        @log 'error', err
 
         throw err
 
-export default XhrClient
+export default BrowserClient

@@ -1,57 +1,48 @@
-import {isFunction, isString, newError, statusOk} from './utils'
+import {GET, isFunction, isString, newError, statusOk} from './utils'
 
 class Api
   @BLUEPRINTS = {}
   @CLIENT     = null
 
   constructor: (opts = {}) ->
-    return new Api opts unless @ instanceof Api
+    {blueprints, client} = opts
 
-    {endpoint, debug, key, client, blueprints} = opts
+    @client = client or new @constructor.CLIENT opts
 
-    @debug      = debug
     blueprints ?= @constructor.BLUEPRINTS
-
-    if client
-      @client = client
-    else
-      @client = new @constructor.CLIENT
-        debug:    debug
-        endpoint: endpoint
-        key:      key
-
     @addBlueprints k, v for k, v of blueprints
 
   addBlueprints: (api, blueprints) ->
     @[api] ?= {}
-
     for name, bp of blueprints
-      do (name, bp) =>
-        # Normal method
-        if isFunction bp
-          return @[api][name] = => bp.apply @, arguments
-
-        # Blueprint method
-        bp.expects ?= statusOk
-        bp.method  ?= 'POST'  # Defaulting to POST shaves a few kb off browser bundle
-
-        method = (data, cb) =>
-          key = undefined
-          if bp.useCustomerToken
-            key = @client.getCustomerToken()
-          @client.request bp, data, key
-            .then (res) =>
-              if res.data?.error?
-                throw newError data, res
-              unless bp.expects res
-                throw newError data, res
-              if bp.process?
-                bp.process.call @, res
-              res.data ? res.body
-            .callback cb
-
-        @[api][name] = method
+      @addBlueprint api, name, bp
     return
+
+  addBlueprint: (api, name, bp) ->
+    # Normal method
+    if isFunction bp
+      return @[api][name] = => bp.apply @, arguments
+
+    # Blueprint method
+    bp.expects ?= statusOk
+    bp.method  ?= GET
+
+    method = (data, cb) =>
+      key = undefined
+      if bp.useCustomerToken
+        key = @client.getCustomerToken()
+      @client.request bp, data, key
+        .then (res) =>
+          if res.data?.error?
+            throw newError data, res
+          unless bp.expects res
+            throw newError data, res
+          if bp.process?
+            bp.process.call @, res
+          res.data ? res.body
+        .callback cb
+
+    @[api][name] = method
 
   setKey: (key) ->
     @client.setKey key

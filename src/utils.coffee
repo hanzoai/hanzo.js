@@ -7,6 +7,11 @@ export statusOk        = (res) -> res.status is 200
 export statusCreated   = (res) -> res.status is 201
 export statusNoContent = (res) -> res.status is 204
 
+# Allow method names to be minified
+export GET   = 'GET'
+export POST  = 'POST'
+export PATCH = 'PATCH'
+
 # Throw "fat" errors.
 export newError = (data, res = {}, err) ->
   message = res?.data?.error?.message ? 'Request failed'

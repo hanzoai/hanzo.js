@@ -1,4 +1,4 @@
-Api = require '../lib'
+Api = require '../'
 
 describe 'Api', ->
   it 'should instantiate', ->

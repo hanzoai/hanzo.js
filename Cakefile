@@ -3,6 +3,7 @@ require 'shortcake'
 use 'cake-version'
 use 'cake-publish'
 
+analyzer    = require 'rollup-analyzer'
 builtins    = require 'rollup-plugin-node-builtins'
 coffee      = require 'rollup-plugin-coffee-script'
 commonjs    = require 'rollup-plugin-commonjs'
@@ -48,11 +49,14 @@ task 'build', 'build project', ->
     entry:   'src/browser.coffee'
     plugins:  plugins
 
+  analyzer.init limit: 1
+  console.log yield analyzer.formatted bundle
+
   yield bundle.write
     format:     'iife'
     dest:       'hanzo.js'
-    moduleName: pkg.name.charAt(0).toUpperCase() + pkg.name.slice 1
-    sourceMap: 'inline'
+    moduleName: 'Hanzo'
+    sourceMap:  false
 
   # CommonJS && ES Module for browser
   deps = Object.keys pkg.dependencies
@@ -66,16 +70,16 @@ task 'build', 'build project', ->
     format:     'cjs'
     dest:       pkg.browser
     moduleName: pkg.name
-    sourceMap:  'inline'
+    sourceMap:  true
 
   bundle.write
     format:    'es'
     dest:      pkg.module
-    sourceMap: 'inline'
+    sourceMap: true
 
   # Node version
   bundle = yield rollup.rollup
-    entry:    'src/node.coffee'
+    entry:    'src/index.coffee'
     external: deps
     plugins:  plugins
 
@@ -83,7 +87,7 @@ task 'build', 'build project', ->
     format:         'cjs'
     dest:           pkg.main
     moduleName:     pkg.name
-    sourceMap:      'inline'
+    sourceMap:      true
 
   # todo = 2
   # done = (err) ->
