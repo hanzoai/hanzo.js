@@ -15,8 +15,8 @@ class NodeClient extends Client
     super opts
 
     @opts.endpoint = ENDPOINT if ENDPOINT
-    @opts.debug = true if DEBUG
-    @key = KEY if KEY
+    @opts.debug    = true if DEBUG
+    @setKey KEY if KEY
 
   request: (blueprint, data = {}, key = @getKey()) ->
     opts =
