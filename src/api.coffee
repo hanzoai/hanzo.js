@@ -5,6 +5,8 @@ class Api
   @CLIENT     = null
 
   constructor: (opts = {}) ->
+    return new Api opts unless @ instanceof Api
+
     {blueprints, client} = opts
 
     @client = client or new @constructor.CLIENT opts

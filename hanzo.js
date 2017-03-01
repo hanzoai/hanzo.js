@@ -96,6 +96,9 @@ Api = (function() {
     if (opts == null) {
       opts = {};
     }
+    if (!(this instanceof Api)) {
+      return new Api(opts);
+    }
     blueprints = opts.blueprints, client = opts.client;
     this.client = client || new this.constructor.CLIENT(opts);
     if (blueprints == null) {
@@ -1172,6 +1175,9 @@ BrowserClient = (function(superClass) {
   extend(BrowserClient, superClass);
 
   function BrowserClient(opts) {
+    if (!(this instanceof BrowserClient)) {
+      return new BrowserClient(opts);
+    }
     BrowserClient.__super__.constructor.call(this, opts);
     this.getCustomerToken();
   }

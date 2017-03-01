@@ -9,6 +9,7 @@ Xhr.Promise = Promise
 
 class BrowserClient extends Client
   constructor: (opts) ->
+    return new BrowserClient opts unless @ instanceof BrowserClient
     super opts
     @getCustomerToken()
 

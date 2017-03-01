@@ -12,6 +12,7 @@ DEBUG    = process.env.HANZO_DEBUG
 
 class NodeClient extends Client
   constructor: (opts) ->
+    return new NodeClient opts unless @ instanceof NodeClient
     super opts
 
     @opts.endpoint = ENDPOINT if ENDPOINT
