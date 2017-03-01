@@ -23,7 +23,7 @@ describe 'Api.account (browser)', ->
       catch err
 
       err.status.should.eq 400
-      err.message.should.eq 'Email is not valid'
+      err.message.should.eq "Email '#{firstName}' is not valid"
 
     it 'should not allow firstName to be blank', ->
       try
