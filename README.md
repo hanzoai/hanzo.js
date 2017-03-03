@@ -3,17 +3,16 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/hanzo-io/hanzo.js.svg)](https://greenkeeper.io/)
 
 <!-- [![Downloads][downloads-image]][downloads-url] -->
-Hanzo.js is a complete Ecommerce SDK for JavaScript and client for
-[Hanzo][hanzo]. With Hanzo.js you can:
+Hanzo.js is a client and server-side library for [Hanzo][hanzo]. It is a
+complete Ecommerce SDK for JavaScript.
 
+With it you can:
 - Launch static sites to test new ideas or reach additional markets.
+- Gather detailed analytics about your users and their behavior.
 - Acquire, on-board and keep users.
 - Collect payments and create subscriptions for products, software or services.
 - Manage orders, shipping and fulfillment for products.
 - Run referral programs and other incentive-based programs for your business.
-- Gather detailed analytics about your users and their behavior.
-
-A complete Ecommerce platform at your fingertips, all in a tiny 5.3KiB (gzipped) library.
 
 ## Install
 ```bash

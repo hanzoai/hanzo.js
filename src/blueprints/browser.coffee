@@ -84,21 +84,32 @@ blueprints =
   # CART
   cart:
     create:
-      url:     '/cart'
-      method:  'POST'
-      expects: statusCreated
+      url:      '/cart'
+      method:   'POST'
+      expects:  statusCreated
     update:
-      url:     (x) -> "/cart/#{x.id ? x}"
-      method:  'PATCH'
-      expects: statusOk
+      url:      (x) -> "/cart/#{x.id ? x}"
+      method:   'PATCH'
+      expects:  statusOk
     discard:
-      url:     (x) -> "/cart/#{x.id ? x}/discard"
-      method:  'POST'
-      expects: statusOk
+      url:      (x) -> "/cart/#{x.id ? x}/discard"
+      method:   'POST'
+      expects:  statusOk
     set:
-      url:     (x) -> "/cart/#{x.id ? x}/set"
-      method:  'POST'
-      expects: statusOk
+      url:      (x) -> "/cart/#{x.id ? x}/set"
+      method:   'POST'
+      expects:  statusOk
+
+  # REVIEWS
+  review:
+    create:
+      url:      '/review'
+      method:   'POST'
+      expects:  statusCreated
+    get:
+      url:      (x)-> "/review/#{x.id ? x}"
+      method:   'GET'
+      expects:  statusOk
 
   # CHECKOUT
   checkout:
