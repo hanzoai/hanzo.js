@@ -66,7 +66,7 @@
     "postmortem": "^0.2.3",
     "random-token": "0.0.8",
     "requisite": "1.19.12",
-    "serve-static": "1.12.0",
+    "serve-static": "1.12.1",
     "shortcake": "1.1.19",
     "uglify-js": "2.8.1"
   }
