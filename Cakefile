@@ -3,19 +3,6 @@ require 'shortcake'
 use 'cake-version'
 use 'cake-publish'
 
-analyzer    = require 'rollup-analyzer'
-builtins    = require 'rollup-plugin-node-builtins'
-coffee      = require 'rollup-plugin-coffee-script'
-commonjs    = require 'rollup-plugin-commonjs'
-filesize    = require 'rollup-plugin-filesize'
-globals     = require 'rollup-plugin-node-globals'
-json        = require 'rollup-plugin-json'
-nodeResolve = require 'rollup-plugin-node-resolve'
-path        = require 'path'
-rollup      = require 'rollup'
-
-pkg = require './package'
-
 option '-b', '--browser [browser]', 'browser to use for tests'
 option '-g', '--grep [filter]',     'test filter'
 option '-t', '--test [test]',       'specify test to run'
@@ -26,68 +13,68 @@ task 'clean', 'clean project', ->
   exec 'rm -rf lib'
 
 task 'build', 'build project', ->
-  exec 'coffee -bcm -o lib/ src/'
+  # exec 'coffee -bcm -o lib/ src/'
 
-  plugins = [
-    json()
-    coffee()
-    nodeResolve
-      browser: true
-      extensions: ['.js', '.coffee']
-      module:  true
-      preferBuiltins: true
-    commonjs
-      extensions: ['.js', '.coffee']
-      sourceMap: true
-      exclude: 'node_modules/request/**'
-    globals()
-    builtins()
-  ]
+  # plugins = [
+  #   json()
+  #   coffee()
+  #   nodeResolve
+  #     browser: true
+  #     extensions: ['.js', '.coffee']
+  #     module:  true
+  #     preferBuiltins: true
+  #   commonjs
+  #     extensions: ['.js', '.coffee']
+  #     sourceMap: true
+  #     exclude: 'node_modules/request/**'
+  #   globals()
+  #   builtins()
+  # ]
 
-  # Browser (single file)
-  bundle = yield rollup.rollup
-    entry:   'src/browser.coffee'
-    plugins:  plugins
+  # # Browser (single file)
+  # bundle = yield rollup.rollup
+  #   entry:   'src/browser.coffee'
+  #   plugins:  plugins
 
-  analyzer.init limit: 1
-  console.log yield analyzer.formatted bundle
+  # analyzer.init limit: 1
+  # console.log yield analyzer.formatted bundle
 
-  yield bundle.write
-    format:     'iife'
-    dest:       'hanzo.js'
-    moduleName: 'Hanzo'
-    sourceMap:  false
+  # yield bundle.write
+  #   format:     'iife'
+  #   dest:       'hanzo.js'
+  #   moduleName: 'Hanzo'
+  #   sourceMap:  false
 
-  # CommonJS && ES Module for browser
-  deps = Object.keys pkg.dependencies
+  # # CommonJS && ES Module for browser
+  # deps = Object.keys pkg.dependencies
 
-  bundle = yield rollup.rollup
-    entry:    'src/browser.coffee'
-    external: deps
-    plugins:  plugins
+  # bundle = yield rollup.rollup
+  #   entry:    'src/browser.coffee'
+  #   external: deps
+  #   plugins:  plugins
 
-  bundle.write
-    format:     'cjs'
-    dest:       pkg.browser
-    moduleName: pkg.name
-    sourceMap:  true
+  # bundle.write
+  #   format:     'cjs'
+  #   dest:       pkg.browser
+  #   moduleName: pkg.name
+  #   sourceMap:  true
 
-  bundle.write
-    format:    'es'
-    dest:      pkg.module
-    sourceMap: true
+  # bundle.write
+  #   format:    'es'
+  #   dest:      pkg.module
+  #   sourceMap: true
 
-  # Node version
-  bundle = yield rollup.rollup
-    entry:    'src/index.coffee'
-    external: deps
-    plugins:  plugins
+  # # Node version
+  # bundle = yield rollup.rollup
+  #   entry:    'src/index.coffee'
+  #   external: deps
+  #   plugins:  plugins
 
-  bundle.write
-    format:         'cjs'
-    dest:           pkg.main
-    moduleName:     pkg.name
-    sourceMap:      true
+  # bundle.write
+  #   format:         'cjs'
+  #   dest:           pkg.main
+  #   moduleName:     pkg.name
+  #   sourceMap:      true
 
   # todo = 2
   # done = (err) ->
@@ -117,6 +104,22 @@ task 'build', 'build project', ->
   #     false
 
   #   fs.writeFile 'hanzo.js', (bundle.toString opts), 'utf8', done
+  handroll = require 'handroll'
+
+  bundle = yield handroll.bundle
+    entry:    'src/index.coffee'
+    commonjs: true
+  bundle.write format: 'cjs'
+
+  bundle = yield handroll.bundle
+    entry:    'src/browser.coffee'
+  bundle.write format: 'es'
+
+  bundle = yield handroll.bundle
+    entry:    'src/browser.coffee'
+    external: false
+
+  bundle.write format: 'web'
 
 task 'build:min', 'build project', ['build'], ->
   exec 'uglifyjs hanzo.js > hanzo.min.js'
