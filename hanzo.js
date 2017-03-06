@@ -30,13 +30,13 @@ var newError = function(data, res, err) {
   if (res == null) {
     res = {};
   }
-  message = (ref = res != null ? (ref1 = res.data) != null ? (ref2 = ref1.error) != null ? ref2.message : void 0 : void 0 : void 0) != null ? ref : 'Request failed';
+  message = (ref = (ref1 = res.data) != null ? (ref2 = ref1.error) != null ? ref2.message : void 0 : void 0) != null ? ref : 'Request failed';
   if (err == null) {
     err = new Error(message);
-    err.message = message;
   }
-  err.req = data;
   err.data = res.data;
+  err.msg = message;
+  err.req = data;
   err.responseText = res.data;
   err.status = res.status;
   err.type = (ref3 = res.data) != null ? (ref4 = ref3.error) != null ? ref4.type : void 0 : void 0;
@@ -1222,7 +1222,7 @@ BrowserClient = (function(superClass) {
         } catch (error) {
           err = error;
         }
-        err = newError(data, res);
+        err = newError(data, res, err);
         _this.log('response', res);
         _this.log('error', err);
         throw err;

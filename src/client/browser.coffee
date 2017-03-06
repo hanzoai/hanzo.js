@@ -32,14 +32,14 @@ class BrowserClient extends Client
     (new Xhr).send opts
       .then (res) =>
         @log 'response', res
-        res.data   = res.responseText
+        res.data = res.responseText
         res
       .catch (res) =>
         try
-          res.data   = res.responseText ? (JSON.parse res.xhr.responseText)
+          res.data = res.responseText ? (JSON.parse res.xhr.responseText)
         catch err
 
-        err = newError data, res
+        err = newError data, res, err
         @log 'response', res
         @log 'error', err
 

@@ -14,19 +14,20 @@ export PATCH = 'PATCH'
 
 # Throw "fat" errors.
 export newError = (data, res = {}, err) ->
-  message = res?.data?.error?.message ? 'Request failed'
+  message = res.data?.error?.message ? 'Request failed'
 
   unless err?
     err = new Error message
-    err.message = message
 
-  err.req          = data
   err.data         = res.data
+  err.msg          = message
+  err.req          = data
   err.responseText = res.data
   err.status       = res.status
   err.type         = res.data?.error?.type
   err
 
+# Update param in query
 updateParam = (url, key, value) ->
   re = new RegExp('([?&])' + key + '=.*?(&|#|$)(.*)', 'gi')
 

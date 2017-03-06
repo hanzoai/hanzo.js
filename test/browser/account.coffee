@@ -19,11 +19,10 @@ describe 'Api.account (browser)', ->
             email:           firstName
             password:        goodPass1
             passwordConfirm: goodPass1
-
       catch err
 
       err.status.should.eq 400
-      err.message.should.eq "Email '#{firstName}' is not valid"
+      err.msg.should.eq "Email '#{firstName}' is not valid"
 
     it 'should not allow firstName to be blank', ->
       try
@@ -37,7 +36,7 @@ describe 'Api.account (browser)', ->
       catch err
 
       err.status.should.eq 400
-      err.message.should.eq 'First name cannot be blank'
+      err.msg.should.eq 'First name cannot be blank'
 
     it 'should not allow firstName to be nil', ->
       try
@@ -51,7 +50,7 @@ describe 'Api.account (browser)', ->
       catch err
 
       err.status.should.eq 400
-      err.message.should.eq 'First name cannot be blank'
+      err.msg.should.eq 'First name cannot be blank'
 
     it 'should enforce password match requirement', ->
       try
@@ -65,7 +64,7 @@ describe 'Api.account (browser)', ->
       catch err
 
       err.status.should.eq 400
-      err.message.should.equal 'Passwords need to match'
+      err.msg.should.equal 'Passwords need to match'
 
     it 'should enforce password min-length requirement', ->
       try
@@ -79,7 +78,7 @@ describe 'Api.account (browser)', ->
       catch err
 
       err.status.should.eq 400
-      err.message.should.eq 'Password needs to be atleast 6 characters'
+      err.msg.should.eq 'Password needs to be atleast 6 characters'
 
   describe '.login', ->
     # test users are automatically enabled
@@ -99,7 +98,7 @@ describe 'Api.account (browser)', ->
       catch err
 
       err.status.should.equal 401
-      err.message.should.equal 'Email or password is incorrect'
+      err.msg.should.equal 'Email or password is incorrect'
 
     it 'should not allow login with invalid password', ->
       try
@@ -110,7 +109,7 @@ describe 'Api.account (browser)', ->
       catch err
 
       err.status.should.eq 401
-      err.message.should.eq 'Email or password is incorrect'
+      err.msg.should.eq 'Email or password is incorrect'
 
   describe '.get', ->
     it 'should retrieve logged in user data', ->
