@@ -1,6 +1,6 @@
 {
   "name": "hanzo.js",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "Ecommerce SDK for JavaScript and client for Hanzo.",
   "homepage": "http://github.com/hanzo/hanzo.js",
   "bugs": "http://github.com/hanzo/hanzo.js/issues",
@@ -23,7 +23,9 @@
   "main": "dist/hanzo.js",
   "module": "dist/hanzo.mjs",
   "js:next": "dist/hanzo.mjs",
-  "files": ["dist/"],
+  "files": [
+    "dist/"
+  ],
   "engines": {
     "node": ">=4.0.0"
   },
