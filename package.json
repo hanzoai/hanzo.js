@@ -21,9 +21,8 @@
     "subscriptions"
   ],
   "main": "dist/hanzo.js",
-  "browser": "dist/hanzo.browser.js",
-  "module": "dist/hanzo.browser.mjs",
-  "js:next": "dist/hanzo.browser.mjs",
+  "module": "dist/hanzo.mjs",
+  "js:next": "dist/hanzo.mjs",
   "engines": {
     "node": ">=4.0.0"
   },
@@ -67,16 +66,6 @@
     "nightmare": "2.10.0",
     "postmortem": "^0.2.3",
     "random-token": "0.0.8",
-    "requisite": "1.19.12",
-    "rollup": "0.41.4",
-    "rollup-analyzer": "1.0.1",
-    "rollup-plugin-coffee-script": "1.1.0",
-    "rollup-plugin-commonjs": "7.0.0",
-    "rollup-plugin-filesize": "1.0.1",
-    "rollup-plugin-json": "2.1.0",
-    "rollup-plugin-node-builtins": "2.1.0",
-    "rollup-plugin-node-globals": "1.1.0",
-    "rollup-plugin-node-resolve": "2.0.0",
     "serve-static": "1.12.0",
     "shortcake": "1.1.19",
     "uglify-js": "2.8.1"

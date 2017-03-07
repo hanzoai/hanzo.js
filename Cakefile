@@ -112,13 +112,12 @@ task 'build', 'build project', ->
   bundle.write format: 'cjs'
 
   bundle = yield handroll.bundle
-    entry:    'src/browser.coffee'
+    entry: 'src/browser.coffee'
   bundle.write format: 'es'
 
   bundle = yield handroll.bundle
     entry:    'src/browser.coffee'
     external: false
-
   bundle.write format: 'web'
 
 task 'build:min', 'build project', ['build'], ->
