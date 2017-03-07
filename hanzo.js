@@ -827,18 +827,18 @@ Promise$1$1 = (function() {
 
 })();
 
-var Promise$2$1 = Promise$1$1;
+var Promise$2$2 = Promise$1$1;
 
 var resolve$1 = function(val) {
   var z;
-  z = new Promise$2$1;
+  z = new Promise$2$2;
   z.resolve(val);
   return z;
 };
 
 var reject$1 = function(err) {
   var z;
-  z = new Promise$2$1;
+  z = new Promise$2$2;
   z.reject(err);
   return z;
 };
@@ -847,7 +847,7 @@ var all$1 = function(ps) {
   var i, j, len, p, rc, resolvePromise, results, retP;
   results = [];
   rc = 0;
-  retP = new Promise$2$1();
+  retP = new Promise$2$2();
   resolvePromise = function(p, i) {
     if (!p || typeof p.then !== 'function') {
       p = resolve$1(p);
@@ -873,7 +873,7 @@ var all$1 = function(ps) {
 };
 
 var reflect$1 = function(promise) {
-  return new Promise$2$1(function(resolve, reject) {
+  return new Promise$2$2(function(resolve, reject) {
     return promise.then(function(value) {
       return resolve(new PromiseInspection$1$2({
         state: 'fulfilled',
@@ -892,17 +892,17 @@ var settle$1 = function(promises) {
   return all$1(promises.map(reflect$1));
 };
 
-Promise$2$1.all = all$1;
+Promise$2$2.all = all$1;
 
-Promise$2$1.reflect = reflect$1;
+Promise$2$2.reflect = reflect$1;
 
-Promise$2$1.reject = reject$1;
+Promise$2$2.reject = reject$1;
 
-Promise$2$1.resolve = resolve$1;
+Promise$2$2.resolve = resolve$1;
 
-Promise$2$1.settle = settle$1;
+Promise$2$2.settle = settle$1;
 
-Promise$2$1.soon = soon$1$2;
+Promise$2$2.soon = soon$1$2;
 
 var getOwnPropertySymbols;
 var hasOwnProperty;
@@ -1046,7 +1046,7 @@ var index = XMLHttpRequestPromise = (function() {
 
   XMLHttpRequestPromise.DEFAULT_CONTENT_TYPE = 'application/x-www-form-urlencoded; charset=UTF-8';
 
-  XMLHttpRequestPromise.Promise = Promise$2$1;
+  XMLHttpRequestPromise.Promise = Promise$2$2;
 
 
   /*
@@ -1070,7 +1070,7 @@ var index = XMLHttpRequestPromise = (function() {
       password: null
     };
     options = index_1({}, defaults, options);
-    return new Promise$2$1((function(_this) {
+    return new Promise$2$2((function(_this) {
       return function(resolve, reject) {
         var e, header, ref, value, xhr;
         if (!XMLHttpRequest) {
@@ -1529,8 +1529,6 @@ var Client$2 = Client$1;
 var BrowserClient;
 var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 var hasProp = {}.hasOwnProperty;
-
-index.Promise = Promise$2;
 
 BrowserClient = (function(superClass) {
   extend(BrowserClient, superClass);
