@@ -1,4 +1,4 @@
-import cookie from 'js-cookie'
+import cookies from 'es-cookies'
 
 import {isFunction, updateQuery} from '../utils'
 
@@ -22,16 +22,16 @@ class Client
     @opts.key = key
 
   getCustomerToken: ->
-    if (session = cookie.getJSON @opts.session.name)?
+    if (session = cookies.getJSON @opts.session.name)?
       @customerToken = session.customerToken if session.customerToken?
     @customerToken
 
   setCustomerToken: (key) ->
-    cookie.set @opts.session.name, {customerToken: key}, expires: @opts.session.expires
+    cookies.set @opts.session.name, {customerToken: key}, expires: @opts.session.expires
     @customerToken = key
 
   deleteCustomerToken: ->
-    cookie.set @opts.session.name, {customerToken: null}, expires: @opts.session.expires
+    cookies.set @opts.session.name, {customerToken: null}, expires: @opts.session.expires
     @customerToken = null
 
   url: (url, data, key) ->
