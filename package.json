@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "broken": "0.1.9",
-    "es-cookies": "2.1.5",
+    "es-cookies": "2.1.6",
     "es-xhr-promise": "1.2.6",
     "request": "2.79.0"
   },
