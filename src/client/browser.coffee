@@ -4,8 +4,6 @@ import Xhr     from 'es-xhr-promise'
 import Client     from './client'
 import {newError} from '../utils'
 
-Xhr.Promise = Promise
-
 
 class BrowserClient extends Client
   constructor: (opts) ->
