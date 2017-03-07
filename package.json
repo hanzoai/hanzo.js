@@ -23,6 +23,7 @@
   "main": "dist/hanzo.js",
   "module": "dist/hanzo.mjs",
   "js:next": "dist/hanzo.mjs",
+  "files": ["dist/"],
   "engines": {
     "node": ">=4.0.0"
   },
