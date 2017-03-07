@@ -13,112 +13,23 @@ task 'clean', 'clean project', ->
   exec 'rm -rf lib'
 
 task 'build', 'build project', ->
-  # exec 'coffee -bcm -o lib/ src/'
-
-  # plugins = [
-  #   json()
-  #   coffee()
-  #   nodeResolve
-  #     browser: true
-  #     extensions: ['.js', '.coffee']
-  #     module:  true
-  #     preferBuiltins: true
-  #   commonjs
-  #     extensions: ['.js', '.coffee']
-  #     sourceMap: true
-  #     exclude: 'node_modules/request/**'
-  #   globals()
-  #   builtins()
-  # ]
-
-  # # Browser (single file)
-  # bundle = yield rollup.rollup
-  #   entry:   'src/browser.coffee'
-  #   plugins:  plugins
-
-  # analyzer.init limit: 1
-  # console.log yield analyzer.formatted bundle
-
-  # yield bundle.write
-  #   format:     'iife'
-  #   dest:       'hanzo.js'
-  #   moduleName: 'Hanzo'
-  #   sourceMap:  false
-
-  # # CommonJS && ES Module for browser
-  # deps = Object.keys pkg.dependencies
-
-  # bundle = yield rollup.rollup
-  #   entry:    'src/browser.coffee'
-  #   external: deps
-  #   plugins:  plugins
-
-  # bundle.write
-  #   format:     'cjs'
-  #   dest:       pkg.browser
-  #   moduleName: pkg.name
-  #   sourceMap:  true
-
-  # bundle.write
-  #   format:    'es'
-  #   dest:      pkg.module
-  #   sourceMap: true
-
-  # # Node version
-  # bundle = yield rollup.rollup
-  #   entry:    'src/index.coffee'
-  #   external: deps
-  #   plugins:  plugins
-
-  # bundle.write
-  #   format:         'cjs'
-  #   dest:           pkg.main
-  #   moduleName:     pkg.name
-  #   sourceMap:      true
-
-  # todo = 2
-  # done = (err) ->
-  #   throw err if err?
-  #   cb() if --todo is 0
-
-  # exec 'coffee -bcm -o lib/ src/', done
-
-  # opts =
-  #   entry:      'src/browser.coffee'
-  #   stripDebug: true
-
-  # requisite.bundle opts, (err, bundle) ->
-  #   return done err if err?
-
-  #   # Strip out unnecessary api bits
-  #   bundle.moduleCache['./blueprints/browser'].walkAst (node) ->
-  #     if (node.type == 'ObjectExpression') and (Array.isArray node.properties)
-
-  #       node.properties = node.properties.filter (prop) ->
-  #         if prop?.key?.name == 'method' and prop?.value?.value == 'POST'
-  #           return false
-  #         if prop?.key?.name == 'expects' and prop?.value?.name == 'statusOk'
-  #           return false
-  #         true
-
-  #     false
-
-  #   fs.writeFile 'hanzo.js', (bundle.toString opts), 'utf8', done
   handroll = require 'handroll'
 
   bundle = yield handroll.bundle
     entry:    'src/index.coffee'
     commonjs: true
-  bundle.write format: 'cjs'
-
-  bundle = yield handroll.bundle
-    entry: 'src/browser.coffee'
-  bundle.write format: 'es'
+    external: true
+  yield bundle.write format: 'cjs'
 
   bundle = yield handroll.bundle
     entry:    'src/browser.coffee'
-    external: false
-  bundle.write format: 'web'
+    external: true
+  yield bundle.write format: 'es'
+
+  bundle = yield handroll.bundle
+    entry:     'src/browser.coffee'
+    sourceMap: false
+  yield bundle.write format: 'web'
 
 task 'build:min', 'build project', ['build'], ->
   exec 'uglifyjs hanzo.js > hanzo.min.js'

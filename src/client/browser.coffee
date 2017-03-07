@@ -1,5 +1,4 @@
-import Promise from 'broken'
-import Xhr     from 'es-xhr-promise'
+import Xhr from 'es-xhr-promise'
 
 import Client     from './client'
 import {newError} from '../utils'
