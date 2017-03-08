@@ -69,7 +69,7 @@
     "nightmare": "2.10.0",
     "postmortem": "^0.2.3",
     "random-token": "0.0.8",
-    "serve-static": "1.12.0",
+    "serve-static": "1.12.1",
     "shortcake": "1.2.5",
     "uglify-js": "2.8.7"
   }
