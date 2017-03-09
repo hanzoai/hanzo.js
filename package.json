@@ -45,7 +45,7 @@
     "broken": "0.1.9",
     "es-cookies": "2.1.11",
     "es-xhr-promise": "1.2.7",
-    "request": "2.80.0"
+    "request": "2.81.0"
   },
   "devDependencies": {
     "bebop": "1.11.5",
