@@ -970,32 +970,423 @@ var index$2 = objectAssign$1 = (function() {
   };
 })();
 
-/*!
- * JavaScript Cookie v2.1.3
- * https://github.com/js-cookie/js-cookie
- *
- * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
- * Released under the MIT license
- */
-var init;
+var NON_HOST_TYPES;
+var base64Regex;
+var classic;
+var hexRegex;
+var isActualNaN;
+var isArgs;
+var isFn;
+var objProto;
+var owns;
+var symbolValueOf;
+var toStr;
 
-init = function(converter) {
-  var api;
-  api = function(key, value, attributes) {
-    var attributeName, cookie, cookies, err, expires, i, name, parts, rdecode, result, stringifiedAttributes;
+objProto = Object.prototype;
+
+owns = objProto.hasOwnProperty;
+
+toStr = objProto.toString;
+
+symbolValueOf = void 0;
+
+if (typeof Symbol === 'function') {
+  symbolValueOf = Symbol.prototype.valueOf;
+}
+
+isActualNaN = function(value) {
+  return value !== value;
+};
+
+NON_HOST_TYPES = {
+  'boolean': 1,
+  number: 1,
+  string: 1,
+  undefined: 1
+};
+
+base64Regex = /^([A-Za-z0-9+\/]{4})*([A-Za-z0-9+\/]{4}|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{2}==)$/;
+
+hexRegex = /^[A-Fa-f0-9]+$/;
+
+var isType = function(value, type) {
+  return typeof value === type;
+};
+
+var isDefined = function(value) {
+  return typeof value !== 'undefined';
+};
+
+var isEmpty = function(value) {
+  var key, type;
+  type = toStr.call(value);
+  if (type === '[object Array]' || type === '[object Arguments]' || type === '[object String]') {
+    return value.length === 0;
+  }
+  if (type === '[object Object]') {
+    for (key in value) {
+      if (owns.call(value, key)) {
+        return false;
+      }
+    }
+    return true;
+  }
+  return !value;
+};
+
+var isEqual = function(value, other) {
+  var key, type;
+  if (value === other) {
+    return true;
+  }
+  type = toStr.call(value);
+  if (type !== toStr.call(other)) {
+    return false;
+  }
+  if (type === '[object Object]') {
+    for (key in value) {
+      if (!isEqual(value[key], other[key]) || !(key in other)) {
+        return false;
+      }
+    }
+    for (key in other) {
+      if (!isEqual(value[key], other[key]) || !(key in value)) {
+        return false;
+      }
+    }
+    return true;
+  }
+  if (type === '[object Array]') {
+    key = value.length;
+    if (key !== other.length) {
+      return false;
+    }
+    while (key--) {
+      if (!isEqual(value[key], other[key])) {
+        return false;
+      }
+    }
+    return true;
+  }
+  if (type === '[object Function]') {
+    return value.prototype === other.prototype;
+  }
+  if (type === '[object Date]') {
+    return value.getTime() === other.getTime();
+  }
+  return false;
+};
+
+var isHosted = function(value, host) {
+  var type;
+  type = typeof host[value];
+  if (type === 'object') {
+    return !!host[value];
+  } else {
+    return !NON_HOST_TYPES[type];
+  }
+};
+
+var isInstanceof = function(value, constructor) {
+  return value instanceof constructor;
+};
+
+var isNil = function(value) {
+  return value === null;
+};
+
+var isUndefined = function(value) {
+  return typeof value === 'undefined';
+};
+
+var isArrayLike = function(value) {
+  return !!value && !isBool(value) && owns.call(value, 'length') && isFinite(value.length) && isNumber(value.length) && value.length >= 0;
+};
+
+var isArguments = isArgs = function(value) {
+  var isOldArguments, isStandardArguments;
+  isStandardArguments = toStr.call(value) === '[object Arguments]';
+  isOldArguments = !isArray$1(value) && isArrayLike(value) && isObject(value) && isFn(value.callee);
+  return isStandardArguments || isOldArguments;
+};
+
+var isArray$1 = Array.isArray || function(value) {
+  return toStr.call(value) === '[object Array]';
+};
+
+var isEmptyArgs = function(value) {
+  return isArgs(value) && value.length === 0;
+};
+
+var isEmptyArray = function(value) {
+  return isArray$1(value) && value.length === 0;
+};
+
+var isBool = function(value) {
+  return toStr.call(value) === '[object Boolean]';
+};
+
+var isFalse = function(value) {
+  return isBool(value) && Boolean(Number(value)) === false;
+};
+
+var isTrue = function(value) {
+  return isBool(value) && Boolean(Number(value)) === true;
+};
+
+var isDate = function(value) {
+  return toStr.call(value) === '[object Date]';
+};
+
+var isValidDate = function(value) {
+  return isDate(value) && !isNaN(Number(value));
+};
+
+var isElement = function(value) {
+  return value !== void 0 && typeof HTMLElement !== 'undefined' && value instanceof HTMLElement && value.nodeType === 1;
+};
+
+var isError = function(value) {
+  return toStr.call(value) === '[object Error]';
+};
+
+var isFunction$1 = isFn = function(value) {
+  var isAlert, str;
+  isAlert = typeof window !== 'undefined' && value === window.alert;
+  if (isAlert) {
+    return true;
+  }
+  str = toStr.call(value);
+  return str === '[object Function]' || str === '[object GeneratorFunction]' || str === '[object AsyncFunction]';
+};
+
+var isNumber = function(value) {
+  return toStr.call(value) === '[object Number]';
+};
+
+var isInfinite = function(value) {
+  return value === 2e308 || value === -2e308;
+};
+
+var isDecimal = function(value) {
+  return isNumber(value) && !isActualNaN(value) && !isInfinite(value) && value % 1 !== 0;
+};
+
+var isDivisibleBy = function(value, n) {
+  var isDividendInfinite, isDivisorInfinite, isNonZeroNumber;
+  isDividendInfinite = isInfinite(value);
+  isDivisorInfinite = isInfinite(n);
+  isNonZeroNumber = isNumber(value) && !isActualNaN(value) && isNumber(n) && !isActualNaN(n) && n !== 0;
+  return isDividendInfinite || isDivisorInfinite || isNonZeroNumber && value % n === 0;
+};
+
+var isInteger = function(value) {
+  return isNumber(value) && !isActualNaN(value) && value % 1 === 0;
+};
+
+var isMaximum = function(value, others) {
+  var len;
+  if (isActualNaN(value)) {
+    throw new TypeError('NaN is not a valid value');
+  } else if (!isArrayLike(others)) {
+    throw new TypeError('second argument must be array-like');
+  }
+  len = others.length;
+  while (--len >= 0) {
+    if (value < others[len]) {
+      return false;
+    }
+  }
+  return true;
+};
+
+var isMinimum = function(value, others) {
+  var len;
+  if (isActualNaN(value)) {
+    throw new TypeError('NaN is not a valid value');
+  } else if (!isArrayLike(others)) {
+    throw new TypeError('second argument must be array-like');
+  }
+  len = others.length;
+  while (--len >= 0) {
+    if (value > others[len]) {
+      return false;
+    }
+  }
+  return true;
+};
+
+var isNan = function(value) {
+  return isNumber(value) || value !== value;
+};
+
+var isEven = function(value) {
+  return isInfinite(value) || isNumber(value) && value === value && value % 2 === 0;
+};
+
+var isOdd = function(value) {
+  return isInfinite(value) || isNumber(value) && value === value && value % 2 !== 0;
+};
+
+var isGe = function(value, other) {
+  if (isActualNaN(value) || isActualNaN(other)) {
+    throw new TypeError('NaN is not a valid value');
+  }
+  return !isInfinite(value) && !isInfinite(other) && value >= other;
+};
+
+var isGt = function(value, other) {
+  if (isActualNaN(value) || isActualNaN(other)) {
+    throw new TypeError('NaN is not a valid value');
+  }
+  return !isInfinite(value) && !isInfinite(other) && value > other;
+};
+
+var isLe = function(value, other) {
+  if (isActualNaN(value) || isActualNaN(other)) {
+    throw new TypeError('NaN is not a valid value');
+  }
+  return !isInfinite(value) && !isInfinite(other) && value <= other;
+};
+
+var isLt = function(value, other) {
+  if (isActualNaN(value) || isActualNaN(other)) {
+    throw new TypeError('NaN is not a valid value');
+  }
+  return !isInfinite(value) && !isInfinite(other) && value < other;
+};
+
+var isWithin = function(value, start, finish) {
+  var isAnyInfinite;
+  if (isActualNaN(value) || isActualNaN(start) || isActualNaN(finish)) {
+    throw new TypeError('NaN is not a valid value');
+  } else if (!isNumber(value) || !isNumber(start) || !isNumber(finish)) {
+    throw new TypeError('all arguments must be numbers');
+  }
+  isAnyInfinite = isInfinite(value) || isInfinite(start) || isInfinite(finish);
+  return isAnyInfinite || value >= start && value <= finish;
+};
+
+var isObject = function(value) {
+  return toStr.call(value) === '[object Object]';
+};
+
+var isPrimitive = function(value) {
+  if (!value) {
+    return true;
+  }
+  if (typeof value === 'object' || isObject(value) || isFn(value) || isArray$1(value)) {
+    return false;
+  }
+  return true;
+};
+
+var isHash = function(value) {
+  return isObject(value) && value.constructor === Object && !value.nodeType && !value.setInterval;
+};
+
+var isRegexp = function(value) {
+  return toStr.call(value) === '[object RegExp]';
+};
+
+var isString$1 = function(value) {
+  return toStr.call(value) === '[object String]';
+};
+
+var isBase64 = function(value) {
+  return isString$1(value) && (!value.length || base64Regex.test(value));
+};
+
+var isHex = function(value) {
+  return isString$1(value) && (!value.length || hexRegex.test(value));
+};
+
+var isSymbol = function(value) {
+  return typeof Symbol === 'function' && toStr.call(value) === '[object Symbol]' && typeof symbolValueOf.call(value) === 'symbol';
+};
+
+classic = {
+  type: isType,
+  defined: isDefined,
+  empty: isEmpty,
+  equal: isEqual,
+  hosted: isHosted,
+  'instanceof': isInstanceof,
+  instance: isInstanceof,
+  nil: isNil,
+  undefined: isUndefined,
+  undef: isUndefined,
+  'arguments': isArguments,
+  args: isArguments,
+  array: isArray$1,
+  arraylike: isArrayLike,
+  bool: isBool,
+  "false": isFalse,
+  "true": isTrue,
+  date: isDate,
+  element: isElement,
+  error: isError,
+  "function": isFunction$1,
+  fn: isFunction$1,
+  number: isNumber,
+  infinite: isInfinite,
+  decimal: isDecimal,
+  divisibleBy: isDivisibleBy,
+  integer: isInteger,
+  maximum: isMaximum,
+  max: isMaximum,
+  minimum: isMinimum,
+  min: isMinimum,
+  nan: isNan,
+  even: isEven,
+  odd: isOdd,
+  ge: isGe,
+  gt: isGt,
+  le: isLe,
+  lt: isLt,
+  within: isWithin,
+  object: isObject,
+  primitive: isPrimitive,
+  hash: isHash,
+  regexp: isRegexp,
+  string: isString$1,
+  base64: isBase64,
+  hex: isHex,
+  symbol: isSymbol
+};
+
+classic.args.empty = isEmptyArgs;
+
+classic.array.empty = isEmptyArray;
+
+classic.date.valid = isValidDate;
+
+var classic$1 = classic;
+
+var Cookie;
+
+Cookie = (function() {
+  function Cookie() {}
+
+  Cookie.prototype.contructor = function(defaults) {
+    this.defaults = defaults != null ? defaults : {};
+  };
+
+  Cookie.prototype.api = function(key, value, attrs) {
+    var attr, cookie, cookies, err, expires, i, name, parts, rdecode, result, strAttrs;
     if (typeof document === 'undefined') {
       return;
     }
     if (arguments.length > 1) {
-      attributes = index$2({
+      attrs = index$2({
         path: '/'
-      }, api.defaults, attributes);
-      if (typeof attributes.expires === 'number') {
+      }, this.defaults, attrs);
+      if (classic$1(attrs.expires)) {
         expires = new Date;
-        expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
-        attributes.expires = expires;
+        expires.setMilliseconds(expires.getMilliseconds() + attrs.expires * 864e+5);
+        attrs.expires = expires;
       }
-      attributes.expires = attributes.expires ? attributes.expires.toUTCString() : '';
+      attrs.expires = attrs.expires ? attrs.expires.toUTCString() : '';
       try {
         result = JSON.stringify(value);
         if (/^[\{\[]/.test(result)) {
@@ -1004,26 +1395,23 @@ init = function(converter) {
       } catch (error) {
         err = error;
       }
-      if (!converter.write) {
-        value = encodeURIComponent(String(value)).replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
-      } else {
-        value = converter.write(value, key);
-      }
+      value = encodeURIComponent(String(value)).replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
       key = encodeURIComponent(String(key));
       key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
       key = key.replace(/[\(\)]/g, escape);
-      stringifiedAttributes = '';
-      for (attributeName in attributes) {
-        if (!attributes[attributeName]) {
+      strAttrs = '';
+      for (name in attrs) {
+        attr = attrs[name];
+        if (!attr) {
           continue;
         }
-        stringifiedAttributes += '; ' + attributeName;
-        if (attributes[attributeName] === true) {
+        strAttrs += '; ' + name;
+        if (attr === true) {
           continue;
         }
-        stringifiedAttributes += '=' + attributes[attributeName];
+        strAttrs += '=' + attr;
       }
-      return document.cookie = key + '=' + value + stringifiedAttributes;
+      return document.cookie = key + '=' + value + strAttrs;
     }
     if (!key) {
       result = {};
@@ -1039,14 +1427,7 @@ init = function(converter) {
       }
       try {
         name = parts[0].replace(rdecode, decodeURIComponent);
-        cookie = converter.read ? converter.read(cookie, name) : converter(cookie, name) || cookie.replace(rdecode, decodeURIComponent);
-        if (this.json) {
-          try {
-            cookie = JSON.parse(cookie);
-          } catch (error) {
-            err = error;
-          }
-        }
+        cookie = cookie.replace(rdecode, decodeURIComponent);
         if (key === name) {
           result = cookie;
           break;
@@ -1060,26 +1441,38 @@ init = function(converter) {
     }
     return result;
   };
-  api.set = api;
-  api.get = function(key) {
-    return api.call(api, key);
+
+  Cookie.prototype.get = function(key) {
+    return this.api.get(key);
   };
-  api.getJSON = function() {
-    return api.apply({
-      json: true
-    }, [].slice.call(arguments));
+
+  Cookie.prototype.getJSON = function(key) {
+    var err;
+    try {
+      return JSON.parse(this.api.get(key));
+    } catch (error) {
+      err = error;
+      return {};
+    }
   };
-  api.defaults = {};
-  api.remove = function(key, attributes) {
-    api(key, '', index$2(attributes, {
+
+  Cookie.prototype.set = function(key, value, attrs) {
+    return this.api(key, value, attrs);
+  };
+
+  Cookie.prototype.remove = function(key, attrs) {
+    return this.api(key, '', index$2(attrs, {
       expires: -1
     }));
   };
-  api.withConverter = init;
-  return api;
-};
 
-var index$1$1 = init(function() {});
+  return Cookie;
+
+})();
+
+var Cookie$1 = Cookie;
+
+var index$1$1 = new Cookie$1();
 
 var Client$1;
 var slice$1 = [].slice;
