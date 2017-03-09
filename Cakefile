@@ -15,24 +15,24 @@ task 'clean', 'clean project', ->
 task 'build', 'build project', ->
   handroll = require 'handroll'
 
-  bundle = yield handroll.bundle
-    entry:    'src/index.coffee'
-    commonjs: true
-    external: true
-  yield bundle.write format: 'cjs'
+  Promise.all [
+    handroll.write
+      entry:    'src/index.coffee'
+      format:   'cjs'
+      commonjs: true
+      external: true
 
-  bundle = yield handroll.bundle
-    entry:    'src/browser.coffee'
-    external: true
-  yield bundle.write format: 'es'
+    handroll.write
+      entry:    'src/browser.coffee'
+      format:   'es'
+      external: true
 
-  bundle = yield handroll.bundle
-    entry:     'src/browser.coffee'
-    sourceMap: false
-  yield bundle.write format: 'web'
-
-task 'build:min', 'build project', ['build'], ->
-  exec 'uglifyjs hanzo.js > hanzo.min.js'
+    handroll.write
+      entry:     'src/browser.coffee'
+      format:    'web'
+      sourceMap: false
+      minify:    true
+  ]
 
 server = do require 'connect'
 
