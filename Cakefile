@@ -1,7 +1,9 @@
 require 'shortcake'
 
-use 'cake-version'
+use 'cake-bundle'
+use 'cake-outdated'
 use 'cake-publish'
+use 'cake-version'
 
 option '-b', '--browser [browser]', 'browser to use for tests'
 option '-g', '--grep [filter]',     'test filter'
@@ -13,25 +15,27 @@ task 'clean', 'clean project', ->
   exec 'rm -rf lib'
 
 task 'build', 'build project', ->
-  handroll = require 'handroll'
+  b = bundle
+    entry: 'src/browser.coffee'
+    compilers:
+      coffee:
+        version: 1
 
   Promise.all [
-    handroll.write
+    bundle.write
       entry:    'src/index.coffee'
       format:   'cjs'
       commonjs: true
-      external: true
+      compilers:
+        coffee:
+          version: 1
 
-    handroll.write
-      entry:    'src/browser.coffee'
-      format:   'es'
-      external: true
+    b.write format: 'es'
 
-    handroll.write
-      entry:     'src/browser.coffee'
+    b.write
       format:    'web'
-      sourceMap: false
       minify:    true
+      sourceMap: false
   ]
 
 server = do require 'connect'
