@@ -11,9 +11,9 @@ Hanzo = (opts = {}) ->
   opts.blueprints ?= blueprints
   new Api opts
 
-Hanzo.Api        = Api
-Hanzo.Client     = Client
-Hanzo.blueprints = blueprints
-Hanzo.utils      = utils
+export {Api}
+export {Client}
+export {blueprints}
+export {utils}
 
 export default Hanzo

@@ -15,28 +15,28 @@ task 'clean', 'clean project', ->
   exec 'rm -rf lib'
 
 task 'build', 'build project', ->
-  b = bundle
-    entry: 'src/browser.coffee'
+  b = new Bundle
     compilers:
       coffee:
         version: 1
 
-  Promise.all [
-    bundle.write
-      entry:    'src/index.coffee'
-      format:   'cjs'
-      commonjs: true
-      compilers:
-        coffee:
-          version: 1
+  yield b.write
+    entry:     'src/browser.coffee'
+    external:  false
+    format:    'web'
+    minify:    true
+    sourceMap: false
 
-    b.write format: 'es'
+  # Build es lib for bundlers
+  yield b.write
+    entry:  'src/browser.coffee'
+    format: 'es'
 
-    b.write
-      format:    'web'
-      minify:    true
-      sourceMap: false
-  ]
+  # Build commonjs lib
+  yield b.write
+    entry:    'src/index.coffee'
+    format:   'cjs'
+    commonjs: true
 
 server = do require 'connect'
 
