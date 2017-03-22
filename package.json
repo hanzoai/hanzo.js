@@ -44,7 +44,7 @@
   "dependencies": {
     "broken": "0.1.10",
     "es-cookies": "2.1.11",
-    "es-xhr-promise": "1.2.7",
+    "es-xhr-promise": "1.2.8",
     "request": "2.81.0"
   },
   "devDependencies": {
