@@ -1,8 +1,7 @@
 import Xhr from 'es-xhr-promise'
 
 import Client     from './client'
-import {newError} from '../utils'
-
+import {newError, updateQuery} from '../utils'
 
 class BrowserClient extends Client
   constructor: (opts) ->
