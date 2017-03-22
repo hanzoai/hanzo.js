@@ -44,12 +44,12 @@
   "dependencies": {
     "broken": "0.1.11",
     "es-cookies": "2.1.11",
-    "es-xhr-promise": "1.2.7",
+    "es-xhr-promise": "1.2.8",
     "request": "2.81.0"
   },
   "devDependencies": {
     "bebop": "1.11.5",
-    "cake-bundle": "0.2.2",
+    "cake-bundle": "0.2.3",
     "cake-outdated": "0.1.13",
     "cake-publish": "0.1.5",
     "cake-test": "0.1.0",
