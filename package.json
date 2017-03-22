@@ -24,7 +24,8 @@
   "module": "dist/hanzo.mjs",
   "js:next": "dist/hanzo.mjs",
   "files": [
-    "dist/"
+    "dist/",
+    "src/"
   ],
   "engines": {
     "node": ">=4.0.0"
