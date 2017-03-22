@@ -12,7 +12,7 @@ option '-v', '--verbose',           'enable verbose test logging'
 option '-l', '--local',             'use local server for testing'
 
 task 'clean', 'clean project', ->
-  exec 'rm -rf lib'
+  exec 'rm -rf dist'
 
 task 'build', 'build project', ->
   b = new Bundle
@@ -34,7 +34,7 @@ task 'build', 'build project', ->
 
   # Build commonjs lib
   yield b.write
-    entry:    'src/index.coffee'
+    entry:    'src/node.coffee'
     format:   'cjs'
     commonjs: true
 

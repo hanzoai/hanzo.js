@@ -4,7 +4,7 @@ import blueprints from './blueprints/node'
 import * as utils from './utils'
 
 Api.BLUEPRINTS = blueprints
-Api.Client     = Client
+Api.CLIENT     = Client
 
 Hanzo = (opts = {}) ->
   opts.client     ?= new Client opts
