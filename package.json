@@ -37,7 +37,7 @@
     "url": "http://github.com/hanzo/hanzo.js"
   },
   "dependencies": {
-    "broken": "0.1.11",
+    "broken": "0.1.12",
     "es-cookies": "2.1.11",
     "es-xhr-promise": "1.2.12",
     "request": "2.81.0"
