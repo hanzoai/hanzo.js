@@ -20,23 +20,25 @@ task 'build', 'build project', ->
       coffee:
         version: 1
 
-  yield b.write
-    entry:     'src/browser.coffee'
-    external:  false
-    format:    'web'
-    minify:    true
-    sourceMap: false
+  Promise.all [
+    b.write
+      entry:     'src/browser.coffee'
+      external:  false
+      format:    'web'
+      minify:    true
+      sourceMap: false
 
-  # Build es lib for bundlers
-  yield b.write
-    entry:  'src/browser.coffee'
-    format: 'es'
+    # Build es lib for bundlers
+    b.write
+      entry:  'src/browser.coffee'
+      format: 'es'
 
-  # Build commonjs lib
-  yield b.write
-    entry:    'src/node.coffee'
-    format:   'cjs'
-    commonjs: true
+    # Build commonjs lib
+    b.write
+      entry:    'src/node.coffee'
+      format:   'cjs'
+      commonjs: true
+    ]
 
 server = do require 'connect'
 
