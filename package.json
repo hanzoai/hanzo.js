@@ -44,18 +44,18 @@
   },
   "devDependencies": {
     "bebop": "1.11.5",
-    "cake-bundle": "0.2.9",
-    "cake-outdated": "0.1.15",
+    "cake-bundle": "0.2.17",
+    "cake-outdated": "0.1.16",
     "cake-publish": "0.1.10",
     "cake-test": "0.1.0",
-    "cake-version": "0.1.11",
+    "cake-version": "0.1.14",
     "chai": "3.5.0",
     "chai-as-promised": "6.0.0",
     "co-mocha": "1.2.0",
     "codecov.io": "^0.1.6",
     "coffee-script": "1.12.4",
     "connect": "3.6.0",
-    "coveralls": "2.12.0",
+    "coveralls": "2.13.0",
     "es5-shim": "4.5.9",
     "istanbul": "0.4.5",
     "mocha": "3.2.0",
@@ -66,6 +66,6 @@
     "postmortem": "^0.2.3",
     "random-token": "0.0.8",
     "serve-static": "1.12.1",
-    "shortcake": "1.2.5"
+    "shortcake": "1.2.7"
   }
 }
