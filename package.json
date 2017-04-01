@@ -66,6 +66,6 @@
     "postmortem": "^0.2.3",
     "random-token": "0.0.8",
     "serve-static": "1.12.1",
-    "shortcake": "1.2.7"
+    "shortcake": "1.2.8"
   }
 }
