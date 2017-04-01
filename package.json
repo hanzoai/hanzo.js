@@ -48,7 +48,7 @@
     "cake-outdated": "0.1.16",
     "cake-publish": "0.1.10",
     "cake-test": "0.1.0",
-    "cake-version": "0.1.14",
+    "cake-version": "0.1.15",
     "chai": "3.5.0",
     "chai-as-promised": "6.0.0",
     "co-mocha": "1.2.0",
