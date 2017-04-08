@@ -20,11 +20,11 @@
     "site",
     "subscriptions"
   ],
-  "main": "dist/hanzo.js",
-  "module": "dist/hanzo.mjs",
-  "js:next": "dist/hanzo.mjs",
+  "main": "lib/hanzo.js",
+  "module": "lib/hanzo.mjs",
+  "js:next": "lib/hanzo.mjs",
   "files": [
-    "dist/",
+    "lib/",
     "src/"
   ],
   "engines": {

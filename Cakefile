@@ -12,7 +12,7 @@ option '-v', '--verbose',           'enable verbose test logging'
 option '-l', '--local',             'use local server for testing'
 
 task 'clean', 'clean project', ->
-  exec 'rm -rf dist'
+  exec 'rm -rf lib'
 
 task 'build', 'build project', ->
   b = new Bundle
