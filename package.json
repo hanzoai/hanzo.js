@@ -37,18 +37,18 @@
     "url": "http://github.com/hanzo/hanzo.js"
   },
   "dependencies": {
-    "broken": "0.1.12",
-    "es-cookies": "2.1.11",
+    "broken": "0.1.13",
+    "es-cookies": "2.1.12",
     "es-xhr-promise": "1.2.14",
     "request": "2.81.0"
   },
   "devDependencies": {
-    "bebop": "1.11.5",
-    "cake-bundle": "0.2.19",
-    "cake-outdated": "0.1.16",
+    "bebop": "1.12.2",
+    "cake-bundle": "0.2.21",
+    "cake-outdated": "0.1.18",
     "cake-publish": "0.1.10",
     "cake-test": "0.1.0",
-    "cake-version": "0.1.14",
+    "cake-version": "0.1.15",
     "chai": "3.5.0",
     "chai-as-promised": "6.0.0",
     "co-mocha": "1.2.0",
