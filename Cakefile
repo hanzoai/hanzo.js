@@ -25,8 +25,7 @@ task 'build', 'build project', ->
       entry:     'src/browser.coffee'
       external:  false
       format:    'web'
-      minify:    true
-      sourceMap: false
+      sourceMap: 'inline'
 
     # Build es lib for bundlers
     b.write
@@ -39,6 +38,9 @@ task 'build', 'build project', ->
       format:   'cjs'
       commonjs: true
     ]
+
+task 'build:min', 'build project and minify', ['build'], ->
+  exec 'uglifyjs hanzo.js -o hanzo.min.js'
 
 server = do require 'connect'
 
