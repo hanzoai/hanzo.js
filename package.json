@@ -67,5 +67,8 @@
     "random-token": "0.0.8",
     "serve-static": "1.12.1",
     "shortcake": "1.2.8"
+  },
+  "scripts": {
+    "prepublishOnly": "cake build:min"
   }
 }
