@@ -44,11 +44,6 @@
   },
   "devDependencies": {
     "bebop": "1.12.2",
-    "cake-bundle": "0.2.21",
-    "cake-outdated": "0.1.18",
-    "cake-publish": "0.1.10",
-    "cake-test": "0.1.0",
-    "cake-version": "0.1.15",
     "chai": "3.5.0",
     "chai-as-promised": "6.0.0",
     "co-mocha": "1.2.0",
@@ -69,10 +64,9 @@
     "sake-outdated": "0.1.18",
     "sake-publish": "0.1.10",
     "sake-version": "0.1.16",
-    "serve-static": "1.12.1",
-    "shortcake": "1.2.8"
+    "serve-static": "1.12.1"
   },
   "scripts": {
-    "prepublishOnly": "cake build:min"
+    "prepublishOnly": "sake build:min"
   }
 }
