@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "broken": "0.1.13",
-    "es-cookies": "2.1.13",
+    "es-cookies": "2.1.15",
     "es-xhr-promise": "1.2.14",
     "request": "2.81.0"
   },
@@ -53,7 +53,7 @@
     "chai-as-promised": "6.0.0",
     "co-mocha": "1.2.0",
     "codecov.io": "^0.1.6",
-    "coffee-script": "1.12.4",
+    "coffee-script": "1.12.5",
     "connect": "3.6.0",
     "coveralls": "2.13.0",
     "es5-shim": "4.5.9",
