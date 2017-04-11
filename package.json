@@ -61,9 +61,9 @@
     "postmortem": "^0.2.3",
     "random-token": "0.0.8",
     "sake-bundle": "0.4.4",
-    "sake-outdated": "0.1.18",
+    "sake-outdated": "0.1.19",
     "sake-publish": "0.1.10",
-    "sake-version": "0.1.16",
+    "sake-version": "0.1.17",
     "serve-static": "1.12.1"
   },
   "scripts": {
