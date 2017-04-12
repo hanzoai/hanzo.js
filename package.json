@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "broken": "0.1.13",
-    "es-cookies": "2.1.15",
+    "es-cookies": "2.1.16",
     "es-xhr-promise": "1.2.14",
     "request": "2.81.0"
   },
@@ -60,10 +60,10 @@
     "nightmare": "2.10.0",
     "postmortem": "^0.2.3",
     "random-token": "0.0.8",
-    "sake-bundle": "0.4.2",
-    "sake-outdated": "0.1.18",
-    "sake-publish": "0.1.10",
-    "sake-version": "0.1.16",
+    "sake-bundle": "0.4.11",
+    "sake-outdated": "0.1.20",
+    "sake-publish": "0.1.12",
+    "sake-version": "0.1.18",
     "serve-static": "1.12.1"
   },
   "scripts": {
