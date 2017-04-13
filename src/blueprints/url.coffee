@@ -1,4 +1,4 @@
-import {isFunction} from '../utils'
+import isFunction from 'es-is/function'
 
 # Wrap a url function to provide store-prefixed URLs
 export storePrefixed = sp = (u) ->

@@ -1,7 +1,3 @@
-# Helpers
-export isFunction = (fn) -> typeof fn is 'function'
-export isString   = (s)  -> typeof s  is 'string'
-
 # Few status codes we use throughout code base
 export statusOk        = (res) -> res.status is 200
 export statusCreated   = (res) -> res.status is 201

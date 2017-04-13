@@ -1,8 +1,9 @@
+import isFunction from 'es-is/function'
+
 import {
   GET
   POST
   PATCH
-  isFunction
   statusCreated
   statusNoContent
   statusOk

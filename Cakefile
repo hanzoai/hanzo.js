@@ -32,9 +32,9 @@ task 'build', 'build project', ->
 
     # Build commonjs lib
     b.write
-      entry:    'src/node.coffee'
-      format:   'cjs'
-      commonjs: true
+      entry:   'src/node.coffee'
+      format:  'cjs'
+      include: ['es-is']
     ]
 
 task 'build:min', 'build project and minify', ['build'], ->

@@ -1,4 +1,7 @@
-import {GET, isFunction, isString, newError, statusOk} from './utils'
+import isFunction from 'es-is/function'
+import isString   from 'es-is/string'
+
+import {GET, newError, statusOk} from './utils'
 
 class Api
   @BLUEPRINTS = {}

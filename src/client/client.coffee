@@ -1,6 +1,7 @@
-import cookies from 'es-cookies'
+import cookies    from 'es-cookies'
+import isFunction from 'es-is/function'
 
-import {isFunction, updateQuery} from '../utils'
+import {updateQuery} from '../utils'
 
 
 class Client

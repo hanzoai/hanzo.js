@@ -1,9 +1,10 @@
+import isFunction from 'es-is/function'
+
 # Start with browser-based APIs.
 import blueprints from './browser'
-import deploy from './deploy'
+import deploy     from './deploy'
 
 import {
-  isFunction
   statusCreated
   statusNoContent
   statusOk
