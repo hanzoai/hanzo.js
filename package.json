@@ -43,7 +43,7 @@
     "request": "2.81.0"
   },
   "devDependencies": {
-    "bebop": "1.12.2",
+    "bebop": "1.12.3",
     "chai": "3.5.0",
     "chai-as-promised": "6.0.0",
     "co-mocha": "1.2.0",
