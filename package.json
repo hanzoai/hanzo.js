@@ -43,7 +43,7 @@
     "request": "2.81.0"
   },
   "devDependencies": {
-    "bebop": "1.12.2",
+    "bebop": "1.12.5",
     "chai": "3.5.0",
     "chai-as-promised": "6.0.0",
     "co-mocha": "1.2.0",
@@ -60,8 +60,8 @@
     "nightmare": "2.10.0",
     "postmortem": "^0.2.3",
     "random-token": "0.0.8",
-    "sake-bundle": "0.4.14",
-    "sake-outdated": "0.1.20",
+    "sake-bundle": "0.4.17",
+    "sake-outdated": "0.1.21",
     "sake-publish": "0.1.12",
     "sake-version": "0.1.18",
     "serve-static": "1.12.1"
