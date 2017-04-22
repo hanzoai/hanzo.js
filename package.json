@@ -67,6 +67,9 @@
     "serve-static": "1.12.1"
   },
   "scripts": {
+    "pretest": "sake build",
+    "build": "sake build",
+    "test": "sake test",
     "prepublishOnly": "sake build:min"
   }
 }

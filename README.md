@@ -1,8 +1,14 @@
-# Hanzo.js  [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NPM version][npm-image]][npm-url]  [![Gitter chat][gitter-image]][gitter-url]
+# Hanzo.js
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/hanzo-io/hanzo.js.svg)](https://greenkeeper.io/)
+[![npm][npm-img]][npm-url]
+[![build][build-img]][build-url]
+[![dependencies][dependencies-img]][dependencies-url]
+[![downloads][downloads-img]][downloads-url]
+[![license][license-img]][license-url]
+[![chat][chat-img]][chat-url]
 
-<!-- [![Downloads][downloads-image]][downloads-url] -->
+> JavaScript SDK for Hanzo
+
 Hanzo.js is a client and server-side library for [Hanzo][hanzo]. It is a
 complete Ecommerce SDK for JavaScript.
 
@@ -1072,18 +1078,11 @@ This deletes a variant from your account.
 ##### Returns
 - boolean
 
+## License
+[BSD][license-url]
+
 [hanzo]:           https://hanzo.io
 [hanzo.js]:        https://cdn.rawgit.com/hanzo-io/hanzo.js/v2.2.8/hanzo.min.js
-[travis-url]:      https://travis-ci.org/hanzo-io/hanzo.js
-[travis-image]:    https://img.shields.io/travis/hanzo-io/hanzo.js.svg
-[coveralls-url]:   https://coveralls.io/github/hanzo-io/hanzo.js
-[coveralls-image]: https://coveralls.io/repos/github/hanzo-io/hanzo.js/badge.svg?branch=master
-[npm-url]:         https://www.npmjs.com/package/hanzo.js
-[npm-image]:       https://img.shields.io/npm/v/hanzo.js.svg
-[downloads-image]: https://img.shields.io/npm/dm/hanzo.js.svg
-[downloads-url]:   http://badge.fury.io/js/hanzo.js
-[gitter-url]:      https://gitter.im/hanzo-io/chat
-[gitter-image]:    https://img.shields.io/badge/gitter-join_chat-brightgreen.svg
 
 [collection]:  https://hanzo.io/docs/api#collection
 [coupon]:      https://hanzo.io/docs/api#coupon
@@ -1096,3 +1095,18 @@ This deletes a variant from your account.
 [transaction]: https://hanzo.io/docs/api#transaction
 [user]:        https://hanzo.io/docs/api#user
 [variant]:     https://hanzo.io/docs/api#variant
+
+[build-img]:        https://img.shields.io/travis/zeekay/handroll.svg
+[build-url]:        https://travis-ci.org/zeekay/handroll
+[chat-img]:         https://badges.gitter.im/join-chat.svg
+[chat-url]:         https://gitter.im/zeekay/hi
+[coverage-img]:     https://coveralls.io/repos/zeekay/handroll/badge.svg?branch=master&service=github
+[coverage-url]:     https://coveralls.io/github/zeekay/handroll?branch=master
+[dependencies-img]: https://david-dm.org/zeekay/handroll.svg
+[dependencies-url]: https://david-dm.org/zeekay/handroll
+[downloads-img]:    https://img.shields.io/npm/dm/handroll.svg
+[downloads-url]:    http://badge.fury.io/js/handroll
+[license-img]:      https://img.shields.io/npm/l/handroll.svg
+[license-url]:      https://github.com/zeekay/handroll/blob/master/LICENSE
+[npm-img]:          https://img.shields.io/npm/v/handroll.svg
+[npm-url]:          https://www.npmjs.com/package/handroll

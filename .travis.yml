@@ -19,7 +19,7 @@ install:
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
   - yarn install
 script:
-- node_modules/.bin/sake test
+- npm test
 # after_success:
 # - node_modules/.bin/shortcake coverage
 notifications:
