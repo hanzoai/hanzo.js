@@ -7,7 +7,7 @@
 [![license][license-img]][license-url]
 [![chat][chat-img]][chat-url]
 
-> JavaScript SDK for Hanzo
+> JavaScript SDK for [Hanzo][hanzo]
 
 Hanzo.js is a client and server-side library for [Hanzo][hanzo]. It is a
 complete Ecommerce SDK for JavaScript.
