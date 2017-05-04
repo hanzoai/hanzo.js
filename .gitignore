@@ -4,3 +4,4 @@ node_modules/
 phantomjsdriver.log
 npm-debug.log
 test/tmp
+.sake
