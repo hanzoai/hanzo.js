@@ -1,6 +1,6 @@
 import Promise from 'broken'
+import axios   from 'axios'
 import fs      from 'fs'
-import request from 'request'
 
 import Client from './client'
 
@@ -60,7 +60,7 @@ class NodeClient extends Client
             .catch reject
         return
 
-      req = request opts, (err, res) =>
+      req = axios opts, (err, res) =>
         if res?
           @log 'response', res.statusCode, res.body
 
