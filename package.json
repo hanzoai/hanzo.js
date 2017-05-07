@@ -38,12 +38,12 @@
   },
   "dependencies": {
     "axios": "0.16.1",
-    "broken": "0.1.13",
-    "es-cookies": "2.1.18",
-    "es-xhr-promise": "1.2.15"
+    "broken": "^0.1.13",
+    "es-cookies": "^2.1.18",
+    "es-xhr-promise": "^1.2.15"
   },
   "devDependencies": {
-    "bebop": "1.12.5",
+    "bebop": "^1.12.5",
     "chai": "3.5.0",
     "chai-as-promised": "6.0.0",
     "co-mocha": "1.2.0",
@@ -60,12 +60,12 @@
     "nightmare": "2.10.0",
     "postmortem": "^0.2.6",
     "random-token": "0.0.8",
-    "sake-bundle": "0.5.1",
-    "sake-cli": "0.5.6",
-    "sake-outdated": "0.1.27",
-    "sake-publish": "0.1.16",
-    "sake-version": "0.1.19",
-    "serve-static": "1.12.2"
+    "sake-bundle": "^0.5.1",
+    "sake-cli": "^0.5.6",
+    "sake-outdated": "^0.1.27",
+    "sake-publish": "^0.1.16",
+    "sake-version": "^0.1.19",
+    "serve-static": "^1.12.2"
   },
   "scripts": {
     "pretest": "sake build",
