@@ -40,7 +40,7 @@
     "axios": "0.16.1",
     "broken": "^0.1.13",
     "es-cookies": "^2.1.18",
-    "es-xhr-promise": "^1.2.16"
+    "es-xhr-promise": "1.2.15"
   },
   "devDependencies": {
     "bebop": "^1.12.5",
