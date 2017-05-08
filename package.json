@@ -60,7 +60,7 @@
     "nightmare": "2.10.0",
     "postmortem": "^0.2.6",
     "random-token": "0.0.8",
-    "sake-bundle": "^0.5.1",
+    "sake-bundle": "^0.5.2",
     "sake-cli": "^0.5.6",
     "sake-outdated": "^0.1.27",
     "sake-publish": "^0.1.16",
