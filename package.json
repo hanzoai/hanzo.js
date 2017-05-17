@@ -65,7 +65,7 @@
     "sake-outdated": "^0.1.27",
     "sake-publish": "^0.1.16",
     "sake-version": "^0.1.19",
-    "serve-static": "^1.12.2"
+    "serve-static": "1.12.2"
   },
   "scripts": {
     "pretest": "sake build",
