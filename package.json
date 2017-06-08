@@ -2,8 +2,8 @@
   "name": "hanzo.js",
   "version": "2.3.25",
   "description": "Ecommerce SDK for JavaScript and client for Hanzo.",
-  "homepage": "http://github.com/hanzo/hanzo.js",
-  "bugs": "http://github.com/hanzo/hanzo.js/issues",
+  "homepage": "http://github.com/hanzo-io/hanzo.js",
+  "bugs": "http://github.com/hanzo-io/hanzo.js/issues",
   "keywords": [
     "browser",
     "checkout",
@@ -34,7 +34,7 @@
   "license": "BSD-3-Clause",
   "repository": {
     "type": "git",
-    "url": "http://github.com/hanzo/hanzo.js"
+    "url": "http://github.com/hanzo-io/hanzo.js"
   },
   "dependencies": {
     "broken": "^0.1.13",
