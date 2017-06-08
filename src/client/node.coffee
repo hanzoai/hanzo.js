@@ -1,6 +1,6 @@
 import Promise from 'broken'
-import axios   from 'axios'
 import fs      from 'fs'
+import request from 'request'
 
 import Client from './client'
 
@@ -31,7 +31,7 @@ class NodeClient extends Client
     @log 'request', opts, 'key', key
 
     new Promise (resolve, reject) =>
-      axios opts
+      request opts
         .then (res) =>
           @log 'response', res.status
 
