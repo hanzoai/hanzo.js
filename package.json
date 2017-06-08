@@ -62,7 +62,7 @@
     "random-token": "0.0.8",
     "sake-bundle": "^0.5.2",
     "sake-cli": "^0.5.6",
-    "sake-outdated": "^0.1.27",
+    "sake-outdated": "^0.1.28",
     "sake-publish": "^0.1.16",
     "sake-version": "^0.1.19",
     "serve-static": "^1.12.2"
