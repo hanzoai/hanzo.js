@@ -3,7 +3,6 @@ import isFunction from 'es-is/function'
 
 import {updateQuery} from '../utils'
 
-
 class Client
   constructor: (opts = {}) ->
     @opts =

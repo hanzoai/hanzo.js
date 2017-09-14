@@ -1,4 +1,4 @@
-moment = require 'moment'
+moment = require 'moment-timezone'
 
 describe 'Api.collection', ->
   fixture =

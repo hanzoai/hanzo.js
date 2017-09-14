@@ -26,6 +26,13 @@ createBlueprint = (name) ->
     expects: statusOk
 
 blueprints =
+  # LIBRARY
+  library:
+    shopjs:
+      url:  '/library/shopjs'
+      method: POST
+      expects: statusOk
+
   # ACCOUNT
   account:
     get:
