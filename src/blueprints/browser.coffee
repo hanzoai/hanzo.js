@@ -156,16 +156,43 @@ blueprints =
       method:  GET
       expects: statusOk
 
+  # MARKETING
+  marketing:
+    create:
+      url:     '/marketing'
+      method:  POST
+      expects: statusCreated
+
+    # get:
+    #   url:     (x) -> "/referrer/#{x.id ? x}"
+    #   method:  GET
+    #   expects: statusOk
+
 # MODELS
 models = [
   'collection'
   'coupon'
   'product'
   'variant'
+
+  'copy'
+  'media'
 ]
 
 for model in models
   do (model) ->
     blueprints[model] = createBlueprint model
+
+# MARKETING MODELS
+marketingModels = [
+  'adcampaign'
+  'adconfig'
+  'adset'
+  'ad'
+]
+
+for model in marketingModels
+  do (model) ->
+    blueprints[model] = createBlueprint "marketing/#{model}"
 
 export default blueprints
