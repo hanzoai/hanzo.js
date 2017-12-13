@@ -37,7 +37,7 @@ related APIs are available in the browser making it possible to launch an
 ecommerce site without building, maintaining or securing any backend services.
 
 ```html
-<script src="https://cdn.rawgit.com/hanzo/hanzo.js/v2.2.8/hanzo.min.js"></script>
+<script src="https://cdn.rawgit.com/hanzoai/hanzo.js/v2.2.8/hanzo.min.js"></script>
 <script>
 var api = new Hanzo.Api({key: yourPublishedKey});
 </script>
