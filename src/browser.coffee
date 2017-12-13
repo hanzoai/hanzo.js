@@ -14,4 +14,3 @@ Hanzo.Api        = Api
 Hanzo.Client     = Client
 
 export default Hanzo
-export {Api, Client}
