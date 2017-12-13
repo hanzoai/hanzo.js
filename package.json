@@ -60,12 +60,12 @@
     "nightmare": "^2.10.0",
     "postmortem": "^0.2.6",
     "random-token": "0.0.8",
-    "sake-bundle": "^0.6.0",
-    "sake-cli": "^0.5.21",
+    "sake-bundle": "^0.6.3",
+    "sake-cli": "^0.5.23",
     "sake-outdated": "^0.1.28",
     "sake-publish": "^0.1.16",
     "sake-version": "^0.1.19",
-    "serve-static": "^1.12.4"
+    "serve-static": "^1.13.1"
   },
   "scripts": {
     "pretest": "sake build",
