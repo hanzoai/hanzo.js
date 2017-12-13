@@ -48,7 +48,7 @@
     "chai-as-promised": "7.1.1",
     "co-mocha": "1.2.1",
     "codecov.io": "^0.1.6",
-    "coffee-script": "1.12.7",
+    "coffeescript": "1.12.7",
     "connect": "3.6.5",
     "coveralls": "3.0.0",
     "es5-shim": "4.5.9",
