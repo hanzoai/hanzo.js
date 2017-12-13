@@ -1081,32 +1081,32 @@ This deletes a variant from your account.
 ## License
 [BSD][license-url]
 
-[hanzo]:           https://hanzo.io
-[hanzo.js]:        https://cdn.rawgit.com/hanzo-io/hanzo.js/v2.2.8/hanzo.min.js
+[hanzo]:           https://hanzo.ai
+[hanzo.js]:        https://cdn.rawgit.com/hanzoai/hanzo.js/v2.2.8/hanzo.min.js
 
-[collection]:  https://hanzo.io/docs/api#collection
-[coupon]:      https://hanzo.io/docs/api#coupon
-[order]:       https://hanzo.io/docs/api#order
-[payment]:     https://hanzo.io/docs/api#payment
-[product]:     https://hanzo.io/docs/api#product
-[referral]:    https://hanzo.io/docs/api#referral
-[referrer]:    https://hanzo.io/docs/api#referrer
-[subscriber]:  https://hanzo.io/docs/api#subscriber
-[transaction]: https://hanzo.io/docs/api#transaction
-[user]:        https://hanzo.io/docs/api#user
-[variant]:     https://hanzo.io/docs/api#variant
+[collection]:  https://docs.hanzo.ai
+[coupon]:      https://docs.hanzo.ai
+[order]:       https://docs.hanzo.ai
+[payment]:     https://docs.hanzo.ai
+[product]:     https://docs.hanzo.ai
+[referral]:    https://docs.hanzo.ai
+[referrer]:    https://docs.hanzo.ai
+[subscriber]:  https://docs.hanzo.ai
+[transaction]: https://docs.hanzo.ai
+[user]:        https://docs.hanzo.ai
+[variant]:     https://docs.hanzo.ai
 
-[build-img]:        https://img.shields.io/travis/hanzo-io/hanzo.js.svg
-[build-url]:        https://travis-ci.org/hanzo-io/hanzo.js
+[build-img]:        https://img.shields.io/travis/hanzoai/hanzo.js.svg
+[build-url]:        https://travis-ci.org/hanzoai/hanzo.js
 [chat-img]:         https://badges.gitter.im/join-chat.svg
-[chat-url]:         https://gitter.im/hanzo-io/chat
-[coverage-img]:     https://coveralls.io/repos/hanzo-io/hanzo.js/badge.svg?branch=master&service=github
-[coverage-url]:     https://coveralls.io/github/hanzo-io/hanzo.js?branch=master
-[dependencies-img]: https://david-dm.org/hanzo-io/hanzo.js.svg
-[dependencies-url]: https://david-dm.org/hanzo-io/hanzo.js
+[chat-url]:         https://gitter.im/hanzoai/chat
+[coverage-img]:     https://coveralls.io/repos/hanzoai/hanzo.js/badge.svg?branch=master&service=github
+[coverage-url]:     https://coveralls.io/github/hanzoai/hanzo.js?branch=master
+[dependencies-img]: https://david-dm.org/hanzoai/hanzo.js.svg
+[dependencies-url]: https://david-dm.org/hanzoai/hanzo.js
 [downloads-img]:    https://img.shields.io/npm/dm/hanzo.js.svg
 [downloads-url]:    http://badge.fury.io/js/hanzo.js
 [license-img]:      https://img.shields.io/npm/l/hanzo.js.svg
-[license-url]:      https://github.com/hanzo-io/hanzo.js/blob/master/LICENSE
+[license-url]:      https://github.com/hanzoai/hanzo.js/blob/master/LICENSE
 [npm-img]:          https://img.shields.io/npm/v/hanzo.js.svg
 [npm-url]:          https://www.npmjs.com/package/hanzo.js
