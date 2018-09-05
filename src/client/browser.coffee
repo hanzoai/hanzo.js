@@ -5,8 +5,10 @@ import {newError, updateQuery} from '../utils'
 
 class BrowserClient extends Client
   constructor: (opts) ->
-    return new BrowserClient opts unless @ instanceof BrowserClient
     super opts
+
+    return new BrowserClient opts unless @ instanceof BrowserClient
+
     @getCustomerToken()
 
   request: (blueprint, opts={}, key = @getKey()) ->
