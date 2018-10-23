@@ -11,14 +11,15 @@ class BrowserClient extends Client
 
     @getCustomerToken()
 
-  request: (blueprint, data={}, key = @getKey()) ->
-    opts =
-      url:    @url blueprint.url, data, key
-      method: blueprint.method
+  request: (blueprint, opts={}, key = @getKey()) ->
+    if opts.data?
+      data = opts.data
+    else
+      data = opts
 
-    if blueprint.method != 'GET'
-      opts.headers =
-        'Content-Type': 'application/json'
+    opts.url     = @url blueprint.url, data, key
+    opts.method  = blueprint.method
+    opts.headers = 'Content-Type': 'application/json'
 
     if blueprint.method == 'GET'
       opts.url  = updateQuery opts.url, data
