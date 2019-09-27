@@ -1429,7 +1429,7 @@ var Hanzo = (function () {
     }
   };
 
-  models = ['collection', 'coupon', 'product', 'variant', 'copy', 'media'];
+  models = ['collection', 'coupon', 'product', 'variant', 'movie', 'watchlist', 'copy', 'media'];
 
   fn = function(model) {
     return blueprints[model] = createBlueprint(model);
