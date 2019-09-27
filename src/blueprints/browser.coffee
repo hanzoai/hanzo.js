@@ -174,6 +174,8 @@ models = [
   'coupon'
   'product'
   'variant'
+  'movie'
+  'watchlist'
 
   'copy'
   'media'
