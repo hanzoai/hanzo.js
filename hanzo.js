@@ -1332,6 +1332,14 @@ var Hanzo = (function () {
         method: POST,
         expects: statusOk,
         useCustomerToken: true
+      },
+      paymentmethod: {
+        url: function(x) {
+          return "/account/paymentmethod" + x.type;
+        },
+        method: POST,
+        expects: statusOk,
+        useCustomerToken: true
       }
     },
     cart: {
