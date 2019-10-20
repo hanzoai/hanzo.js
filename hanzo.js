@@ -1338,7 +1338,7 @@ var Hanzo = (function () {
           return "/account/paymentmethod/" + x.type;
         },
         method: POST,
-        expects: statusOk,
+        expects: statusCreated,
         useCustomerToken: true
       }
     },
