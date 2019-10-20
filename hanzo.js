@@ -183,6 +183,10 @@ var Hanzo = (function () {
       return this.client.setCustomerToken(key);
     };
 
+    Api.prototype.getCustomerToken = function() {
+      return this.client.getCustomerToken();
+    };
+
     Api.prototype.deleteCustomerToken = function() {
       return this.client.deleteCustomerToken();
     };
