@@ -1335,7 +1335,7 @@ var Hanzo = (function () {
       },
       paymentmethod: {
         url: function(x) {
-          return "/account/paymentmethod" + x.type;
+          return "/account/paymentmethod/" + x.type;
         },
         method: POST,
         expects: statusOk,
