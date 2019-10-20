@@ -57,6 +57,9 @@ class Api
   setCustomerToken: (key) ->
     @client.setCustomerToken key
 
+  getCustomerToken: () ->
+    @client.getCustomerToken()
+
   deleteCustomerToken: ->
     @client.deleteCustomerToken()
 
