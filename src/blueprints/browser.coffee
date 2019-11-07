@@ -93,11 +93,10 @@ blueprints =
       useCustomerToken: true
 
     paymentMethod:
-      create:
-        url:     (x) -> "/account/paymentmethod/#{x.type}"
-        method:  POST
-        expects: statusCreated
-        useCustomerToken: true
+      url:     (x) -> "/account/paymentmethod/#{x.type}"
+      method:  POST
+      expects: statusCreated
+      useCustomerToken: true
 
   # CART
   cart:
