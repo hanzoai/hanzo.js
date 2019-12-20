@@ -1,6 +1,6 @@
 {
   "name": "hanzo.js",
-  "version": "2.5.13",
+  "version": "3.0.0",
   "description": "Ecommerce SDK for JavaScript and client for Hanzo.",
   "homepage": "http://github.com/hanzoai/hanzo.js",
   "bugs": "http://github.com/hanzoai/hanzo.js/issues",
@@ -20,15 +20,12 @@
     "site",
     "subscriptions"
   ],
-  "main": "lib/hanzo.js",
-  "module": "lib/hanzo.mjs",
-  "js:next": "lib/hanzo.mjs",
   "files": [
     "lib/",
     "src/"
   ],
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">= 12.13 <13"
   },
   "author": "Hanzo, Inc <hi@hanzo.ai> (https://hanzo.ai)",
   "license": "BSD-3-Clause",
@@ -36,41 +33,29 @@
     "type": "git",
     "url": "http://github.com/hanzoai/hanzo.js"
   },
-  "dependencies": {
-    "broken": "^0.1.13",
-    "es-cookies": "^2.1.18",
-    "es-xhr-promise": "^1.2.17",
-    "request": "^2.88.0"
-  },
   "devDependencies": {
-    "bebop": "^1.15.2",
-    "chai": "4.2.0",
-    "chai-as-promised": "7.1.1",
-    "co-mocha": "1.2.2",
-    "codecov.io": "^0.1.6",
-    "coffeescript": "2.4.1",
-    "connect": "3.7.0",
-    "coveralls": "3.0.7",
-    "es5-shim": "4.5.13",
-    "istanbul": "0.4.5",
-    "mocha": "6.2.2",
-    "mocha-lcov-reporter": "1.3.0",
-    "moment-timezone": "0.5.27",
-    "mz": "2.7.0",
-    "nightmare": "^3.0.2",
-    "postmortem": "^0.2.6",
-    "random-token": "0.0.8",
-    "sake-bundle": "^0.6.15",
-    "sake-cli": "^0.7.3",
-    "sake-outdated": "^0.4.4",
-    "sake-publish": "^0.1.17",
-    "sake-version": "^0.1.19",
-    "serve-static": "^1.14.1"
+    "@types/jest": "^24.0.21",
+    "@types/node": "^12.12.5",
+    "jest": "~24.9.0",
+    "prettier": "~1.18.2",
+    "rimraf": "^3.0.0",
+    "ts-jest": "^24.1.0",
+    "tslint": "~5.20.1",
+    "tslint-config-prettier": "1.18.0",
+    "tslint-microsoft-contrib": "~6.2.0",
+    "tsutils": "~3.17.0",
+    "typescript": "~3.7.2"
   },
   "scripts": {
-    "pretest": "sake build",
-    "build": "sake build",
-    "test": "sake test",
-    "prepublishOnly": "sake build:min"
+    "clean": "rimraf coverage build tmp",
+    "build": "tsc -p tsconfig.release.json",
+    "build:watch": "tsc -w -p tsconfig.release.json",
+    "lint": "tslint -t stylish --project \"tsconfig.json\"",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "es-cookies": "^2.1.18",
+    "tslib": "~1.10.0"
   }
 }
