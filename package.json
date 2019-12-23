@@ -1,61 +1,115 @@
 {
-  "name": "hanzo.js",
-  "version": "3.0.0",
-  "description": "Ecommerce SDK for JavaScript and client for Hanzo.",
-  "homepage": "http://github.com/hanzoai/hanzo.js",
-  "bugs": "http://github.com/hanzoai/hanzo.js/issues",
-  "keywords": [
-    "browser",
-    "checkout",
-    "commerce",
-    "ecommerce",
-    "fulfillment",
-    "hanzo",
-    "orders",
-    "payments",
-    "preorders",
-    "products",
-    "referrals",
-    "shipping",
-    "site",
-    "subscriptions"
-  ],
-  "files": [
-    "lib/",
-    "src/"
-  ],
-  "engines": {
-    "node": ">= 12.13 <13"
-  },
-  "author": "Hanzo, Inc <hi@hanzo.ai> (https://hanzo.ai)",
-  "license": "BSD-3-Clause",
+  "name": "@hanzo/hanzo.js",
+  "version": "1.0.1",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "browser": "dist/index.umd.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "http://github.com/hanzoai/hanzo.js"
+    "url": "https://github.com/hanzoai/matching-engine"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.21",
-    "@types/node": "^12.12.5",
-    "jest": "~24.9.0",
-    "prettier": "~1.18.2",
-    "rimraf": "^3.0.0",
-    "ts-jest": "^24.1.0",
+    "@babel/core": "7.6.2",
+    "@babel/plugin-proposal-class-properties": "7.5.5",
+    "@babel/plugin-proposal-decorators": "7.6.0",
+    "@babel/plugin-proposal-object-rest-spread": "7.6.2",
+    "@babel/preset-env": "7.6.2",
+    "@babel/preset-typescript": "7.7.2",
+    "@types/jest": "24.0.22",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "24.9.0",
+    "jest": "24.9.0",
+    "node-eval": "2.0.0",
+    "nodemon": "1.19.4",
+    "rollup": "1.23.0",
+    "rollup-plugin-babel": "4.3.3",
+    "rollup-plugin-commonjs": "10.1.0",
+    "rollup-plugin-filesize": "6.2.1",
+    "rollup-plugin-json": "4.0.0",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-resolve": "5.2.0",
+    "rollup-plugin-peer-deps-external": "2.2.0",
+    "rollup-plugin-visualizer": "2.7.2",
+    "serve": "11.2.0",
+    "source-map-explorer": "2.1.0",
+    "source-map-support": "0.5.16",
+    "ts-jest": "24.1.0",
+    "ts-node": "8.5.0",
     "tslint": "~5.20.1",
     "tslint-config-prettier": "1.18.0",
-    "tslint-microsoft-contrib": "~6.2.0",
-    "tsutils": "~3.17.0",
-    "typescript": "~3.7.2"
+    "tslint-microsoft-contrib": "6.2.0",
+    "typedoc": "github:TypeStrong/typedoc#5704bf5",
+    "typedoc-plugin-markdown": "2.2.11",
+    "typescript": "3.7.2"
   },
   "scripts": {
-    "clean": "rimraf coverage build tmp",
-    "build": "tsc -p tsconfig.release.json",
-    "build:watch": "tsc -w -p tsconfig.release.json",
+    "audit": "node_modules/.bin/source-map-explorer dist/index.js",
+    "prepublishOnly": "npm run build",
+    "clean:js": "rm -rf dist",
+    "clean:docs": "rm -rf docs",
+    "build": "npm run clean:js && npm run build:js && npm run build:types && npm run build:docs",
+    "build:js": "npm run clean:js && node_modules/.bin/rollup -c",
+    "build:docs": "npm run clean:docs && node_modules/.bin/typedoc --out docs --exclude '**/*+(test).ts' src",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:watch": "node_modules/.bin/rollup -c -w",
     "lint": "tslint -t stylish --project \"tsconfig.json\"",
-    "test": "jest --coverage",
-    "test:watch": "jest --watch"
+    "lint:watch": "npm run lint -- --watch",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "test": "node_modules/.bin/jest",
+    "test:coverage": "node_modules/.bin/jest --collect-coverage"
   },
+  "renovate": {
+    "extends": [
+      "config:js-lib"
+    ],
+    "automerge": true,
+    "major": {
+      "automerge": false
+    },
+    "automergeType": "branch"
+  },
+  "directories": {
+    "src": "src",
+    "dist": "dist"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "browserslist": [
+    "defaults"
+  ],
   "dependencies": {
-    "es-cookies": "^2.1.18",
-    "tslib": "~1.10.0"
+    "@babel/plugin-proposal-nullish-coalescing-operator": "7.4.4",
+    "@babel/plugin-proposal-optional-chaining": "7.6.0",
+    "@types/cors": "2.8.6",
+    "@types/express": "4.17.2",
+    "@types/moment-timezone": "0.5.12",
+    "@types/node": "12.12.7",
+    "@types/raf": "3.4.0",
+    "@types/random": "2.1.0",
+    "@types/socket.io": "2.1.4",
+    "@types/uuid": "3.4.6",
+    "avl": "1.4.4",
+    "body-parser": "1.19.0",
+    "cors": "2.8.5",
+    "d3-format": "1.4.2",
+    "decimal.js": "10.2.0",
+    "express": "4.17.1",
+    "fast-memoize": "2.5.1",
+    "http": "0.0.0",
+    "mnemonist": "0.30.0",
+    "moment": "2.24.0",
+    "moment-timezone": "0.5.27",
+    "raf": "3.4.1",
+    "random": "2.1.1",
+    "socket.io": "^2.3.0",
+    "uuid": "3.3.3"
+  },
+  "peerDependencies": {
+    "socket.io": "2.3.0"
   }
 }

@@ -1,8 +1,7 @@
-lib/
-coverage/
 node_modules/
-phantomjsdriver.log
+dist/
 npm-debug.log
-test/tmp
-.sake
-hanzo.js.map
+yarn-error.log
+package-lock.json
+coverage/
+server.js
